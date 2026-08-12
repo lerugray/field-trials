@@ -1,0 +1,11 @@
+{
+  "name": "alkahest",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A run-based panel-dissolving puzzle battler on an alchemist's bench. Zero runtime dependencies.",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test",
+    "build": "node scripts/build.js"
+  }
+}

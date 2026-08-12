@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>ALKAHEST</title>
+<style>
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: #05040a; color: #8a7a58;
+    overflow: hidden;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    -webkit-user-select: none; user-select: none;
+    touch-action: none;
+  }
+  #stage {
+    position: fixed; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #screen {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: block; outline: none; cursor: none;
+    box-shadow: 0 0 80px rgba(0,0,0,.9), 0 0 0 1px rgba(120,100,60,.12);
+  }
+</style>
+</head>
+<body>
+<div id="stage"><canvas id="screen" tabindex="0"></canvas></div>
+
+<!-- source modules, dependency order; single-file build inlines these -->
+<script src="src/core.js"></script>
+<script src="src/framebuffer.js"></script>
+<script src="src/png.js"></script>
+<script src="src/palette.js"></script>
+<script src="src/render.js"></script>
+<script src="src/visuals.js"></script>
+<script src="src/font.js"></script>
+<script src="src/reagents.js"></script>
+<script src="src/bench.js"></script>
+<script src="src/grid.js"></script>
+<script src="src/acts.js"></script>
+<script src="src/machine.js"></script>
+<script src="src/alembic.js"></script>
+<script src="src/duel.js"></script>
+<script src="src/formulae.js"></script>
+<script src="src/run.js"></script>
+<script src="src/tutorial.js"></script>
+<script src="src/debuglog.js"></script>
+<script src="src/score.js"></script>
+<script src="src/input.js"></script>
+<script src="src/title.js"></script>
+<script src="src/well.js"></script>
+<script src="src/folioui.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>
