@@ -9,6 +9,14 @@ import { CANONICAL_FACING, loadSheetFrames } from '../tools/rig-extract.mjs';
 import {
   checkNormalisedTrail, facingProblems, measureTrailAnchor,
 } from '../tools/rig-facing-probe.mjs';
+import { RIG_ROOT } from '../tools/rig-manifest.mjs';
+
+// The raw-source and normalization layers read the licensed template from the local
+// pixel-art-library (RIG_ROOT) and the uncommitted tools/out pipeline output. Neither
+// can ship to this public repo (license: no standalone redistribution), so those layers
+// certify on machines that hold the library (Mac/home-PC) and CI verifies the layers it
+// can see: the recorded audit invariants and the sha-pinned shipped strips.
+const RIG_SOURCE_AVAILABLE = existsSync(RIG_ROOT);
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const MANIFEST = JSON.parse(readFileSync(join(ROOT, 'assets/art/MANIFEST.json'), 'utf8'));
@@ -18,21 +26,30 @@ function sha256(path) {
 }
 
 test('hero facing guard: physical dash trail stays backward through source, normalization, and ship', () => {
-  const raw = measureTrailAnchor();
-  assert.equal(raw.sourceFacing, 'right', `raw trail offset ${raw.offset}px must imply source-right`);
-  assert.ok(raw.offset < 0 && raw.frames === 9, 'raw trail must sit left/behind over all nine dash frames');
-  assert.deepEqual(facingProblems(), [], 'all eleven source sheets must share the dash-anchored orientation');
-
-  const normalized = checkNormalisedTrail(loadSheetFrames, CANONICAL_FACING);
-  assert.equal(CANONICAL_FACING, 'left');
-  assert.equal(normalized.ok, true, `normalised ${normalized.offset}px trail must sit right/behind`);
-  assert.ok(normalized.offset > 0 && normalized.frames === 9);
-
   const audit = MANIFEST.hero.facingAudit;
-  assert.equal(audit.rawSourceFacing, raw.sourceFacing);
-  assert.equal(audit.rawDashTrailOffset, raw.offset);
-  assert.equal(audit.normalisedDashTrailOffset, normalized.offset);
+
+  if (RIG_SOURCE_AVAILABLE) {
+    const raw = measureTrailAnchor();
+    assert.equal(raw.sourceFacing, 'right', `raw trail offset ${raw.offset}px must imply source-right`);
+    assert.ok(raw.offset < 0 && raw.frames === 9, 'raw trail must sit left/behind over all nine dash frames');
+    assert.deepEqual(facingProblems(), [], 'all eleven source sheets must share the dash-anchored orientation');
+
+    const normalized = checkNormalisedTrail(loadSheetFrames, CANONICAL_FACING);
+    assert.equal(CANONICAL_FACING, 'left');
+    assert.equal(normalized.ok, true, `normalised ${normalized.offset}px trail must sit right/behind`);
+    assert.ok(normalized.offset > 0 && normalized.frames === 9);
+
+    assert.equal(audit.rawSourceFacing, raw.sourceFacing);
+    assert.equal(audit.rawDashTrailOffset, raw.offset);
+    assert.equal(audit.normalisedDashTrailOffset, normalized.offset);
+  }
+
+  // Always-run layer (CI included): recorded audit invariants + certified shipped bytes.
+  assert.equal(audit.rawSourceFacing, 'right');
   assert.equal(audit.normalisedTrailSide, 'right');
+  assert.ok(audit.rawDashTrailOffset < 0, 'recorded raw trail must sit behind a right-facing source');
+  assert.equal(audit.normalisedDashTrailOffset, -audit.rawDashTrailOffset,
+    'normalisation must mirror the recorded raw offset exactly');
 
   for (const headgear of MANIFEST.hero.headgearOptions) {
     const record = MANIFEST.assets.find((asset) => asset.file === `player_${headgear}_dash.png`);
