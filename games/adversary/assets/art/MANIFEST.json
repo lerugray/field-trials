@@ -1,0 +1,3647 @@
+{
+  "attribution": "Art assets: commissioned hero paint-over plus Willibab / Monsteretrope (see each asset's license)",
+  "license": "Per-asset terms in this manifest",
+  "note": "Operator decision 2026-08-10: Ray-certified paint-over Variant B is the protagonist. The former Willibab candidate B remains recorded under assets/art/backup/willibab-candidate-b/.",
+  "hero": {
+    "defaultHeadgear": "bareheaded",
+    "headgearOptions": [
+      "bareheaded",
+      "hooded",
+      "helmed"
+    ],
+    "variant": "B",
+    "canonicalFacing": "left",
+    "geometrySource": "tools/derived/rig-geometry.json",
+    "stripCount": 11,
+    "frameCount": 89,
+    "facingAudit": {
+      "rawDashTrailOffset": -7.95,
+      "rawSourceFacing": "right",
+      "normalisedDashTrailOffset": 7.95,
+      "normalisedTrailSide": "right",
+      "rule": "trail streams backward from a canonical-left hero"
+    },
+    "strips": {
+      "idle": {
+        "asset": "player_bareheaded_idle",
+        "verb": "idle",
+        "frameW": 48,
+        "frameH": 48,
+        "frames": 10,
+        "loops": true,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ],
+        "rigFeet": [
+          {
+            "x": 25,
+            "y": 39
+          },
+          {
+            "x": 25,
+            "y": 39
+          },
+          {
+            "x": 25.71,
+            "y": 39
+          },
+          {
+            "x": 25.71,
+            "y": 39
+          },
+          {
+            "x": 25.71,
+            "y": 39
+          },
+          {
+            "x": 25,
+            "y": 39
+          },
+          {
+            "x": 25,
+            "y": 39
+          },
+          {
+            "x": 25,
+            "y": 39
+          },
+          {
+            "x": 25,
+            "y": 39
+          },
+          {
+            "x": 25,
+            "y": 39
+          }
+        ]
+      },
+      "walk": {
+        "asset": "player_bareheaded_walk",
+        "verb": "walk",
+        "frameW": 48,
+        "frameH": 48,
+        "frames": 8,
+        "loops": true,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ],
+        "rigFeet": [
+          {
+            "x": 26.5,
+            "y": 39
+          },
+          {
+            "x": 28,
+            "y": 39
+          },
+          {
+            "x": 25,
+            "y": 39
+          },
+          {
+            "x": 21.83,
+            "y": 39
+          },
+          {
+            "x": 25.5,
+            "y": 39
+          },
+          {
+            "x": 28,
+            "y": 39
+          },
+          {
+            "x": 25,
+            "y": 39
+          },
+          {
+            "x": 21.83,
+            "y": 39
+          }
+        ]
+      },
+      "run": {
+        "asset": "player_bareheaded_run",
+        "verb": "run",
+        "frameW": 48,
+        "frameH": 48,
+        "frames": 8,
+        "loops": true,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 36
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 37
+          }
+        ],
+        "rigFeet": [
+          {
+            "x": 16,
+            "y": 39
+          },
+          {
+            "x": 25.5,
+            "y": 39
+          },
+          {
+            "x": 35,
+            "y": 39
+          },
+          {
+            "x": 14,
+            "y": 35
+          },
+          {
+            "x": 17,
+            "y": 39
+          },
+          {
+            "x": 28.5,
+            "y": 39
+          },
+          {
+            "x": 34,
+            "y": 39
+          },
+          {
+            "x": 14,
+            "y": 36
+          }
+        ]
+      },
+      "jump": {
+        "asset": "player_bareheaded_jump",
+        "verb": "jump",
+        "frameW": 48,
+        "frameH": 48,
+        "frames": 6,
+        "loops": false,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 44
+          },
+          {
+            "x": 24.0,
+            "y": 44
+          },
+          {
+            "x": 24.0,
+            "y": 39
+          },
+          {
+            "x": 24.0,
+            "y": 39
+          },
+          {
+            "x": 24.0,
+            "y": 39
+          },
+          {
+            "x": 24.0,
+            "y": 44
+          }
+        ],
+        "rigFeet": [
+          {
+            "x": 33.5,
+            "y": 43
+          },
+          {
+            "x": 32.5,
+            "y": 43
+          },
+          {
+            "x": 30,
+            "y": 38
+          },
+          {
+            "x": 25,
+            "y": 38
+          },
+          {
+            "x": 25,
+            "y": 38
+          },
+          {
+            "x": 26.5,
+            "y": 43
+          }
+        ]
+      },
+      "land": {
+        "asset": "player_bareheaded_land",
+        "verb": "land",
+        "frameW": 48,
+        "frameH": 48,
+        "frames": 9,
+        "loops": false,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ],
+        "rigFeet": [
+          {
+            "x": 25.71,
+            "y": 39
+          },
+          {
+            "x": 25.71,
+            "y": 39
+          },
+          {
+            "x": 25.71,
+            "y": 39
+          },
+          {
+            "x": 25.71,
+            "y": 39
+          },
+          {
+            "x": 25.71,
+            "y": 39
+          },
+          {
+            "x": 25,
+            "y": 39
+          },
+          {
+            "x": 25,
+            "y": 39
+          },
+          {
+            "x": 25,
+            "y": 39
+          },
+          {
+            "x": 25,
+            "y": 39
+          }
+        ]
+      },
+      "airspin": {
+        "asset": "player_bareheaded_airspin",
+        "verb": "double jump",
+        "frameW": 48,
+        "frameH": 48,
+        "frames": 6,
+        "loops": true,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 37
+          },
+          {
+            "x": 24.0,
+            "y": 30
+          },
+          {
+            "x": 24.0,
+            "y": 36
+          },
+          {
+            "x": 24.0,
+            "y": 32
+          },
+          {
+            "x": 24.0,
+            "y": 31
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ],
+        "rigFeet": [
+          {
+            "x": 23,
+            "y": 36
+          },
+          {
+            "x": 29,
+            "y": 28
+          },
+          {
+            "x": 23.5,
+            "y": 22
+          },
+          {
+            "x": 18,
+            "y": 28
+          },
+          {
+            "x": 19,
+            "y": 28
+          },
+          {
+            "x": 19.5,
+            "y": 39
+          }
+        ]
+      },
+      "dash": {
+        "asset": "player_bareheaded_dash",
+        "verb": "dodge step",
+        "frameW": 48,
+        "frameH": 48,
+        "frames": 9,
+        "loops": false,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 42
+          }
+        ],
+        "rigFeet": [
+          {
+            "x": 37,
+            "y": 39
+          },
+          {
+            "x": 35.5,
+            "y": 39
+          },
+          {
+            "x": 35.5,
+            "y": 39
+          },
+          {
+            "x": 35.5,
+            "y": 39
+          },
+          {
+            "x": 35.5,
+            "y": 39
+          },
+          {
+            "x": 23.5,
+            "y": 39
+          },
+          {
+            "x": 23.5,
+            "y": 39
+          },
+          {
+            "x": 22.86,
+            "y": 39
+          },
+          {
+            "x": 24,
+            "y": 39
+          }
+        ]
+      },
+      "hurt": {
+        "asset": "player_bareheaded_hurt",
+        "verb": "hurt",
+        "frameW": 48,
+        "frameH": 48,
+        "frames": 4,
+        "loops": false,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ],
+        "rigFeet": [
+          {
+            "x": 32,
+            "y": 39
+          },
+          {
+            "x": 33,
+            "y": 39
+          },
+          {
+            "x": 33,
+            "y": 39
+          },
+          {
+            "x": 33,
+            "y": 39
+          }
+        ]
+      },
+      "death": {
+        "asset": "player_bareheaded_death",
+        "verb": "death",
+        "frameW": 48,
+        "frameH": 48,
+        "frames": 10,
+        "loops": false,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ],
+        "rigFeet": [
+          {
+            "x": 33,
+            "y": 39
+          },
+          {
+            "x": 31.5,
+            "y": 39
+          },
+          {
+            "x": 31.5,
+            "y": 39
+          },
+          {
+            "x": 31.5,
+            "y": 39
+          },
+          {
+            "x": 31.5,
+            "y": 39
+          },
+          {
+            "x": 31.5,
+            "y": 39
+          },
+          {
+            "x": 31.5,
+            "y": 39
+          },
+          {
+            "x": 33.5,
+            "y": 39
+          },
+          {
+            "x": 33.5,
+            "y": 39
+          },
+          {
+            "x": 33.5,
+            "y": 39
+          }
+        ]
+      },
+      "katana_slash": {
+        "asset": "player_bareheaded_katana_slash",
+        "verb": "base melee",
+        "frameW": 80,
+        "frameH": 64,
+        "frames": 10,
+        "loops": false,
+        "frameAnchors": [
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          }
+        ],
+        "rigFeet": [
+          {
+            "x": 44.5,
+            "y": 47
+          },
+          {
+            "x": 41.4,
+            "y": 47
+          },
+          {
+            "x": 42.5,
+            "y": 47
+          },
+          {
+            "x": 42.5,
+            "y": 47
+          },
+          {
+            "x": 42.5,
+            "y": 47
+          },
+          {
+            "x": 44,
+            "y": 47
+          },
+          {
+            "x": 44,
+            "y": 47
+          },
+          {
+            "x": 44.5,
+            "y": 47
+          },
+          {
+            "x": 44.5,
+            "y": 47
+          },
+          {
+            "x": 44.5,
+            "y": 47
+          }
+        ]
+      },
+      "katana_combo": {
+        "asset": "player_bareheaded_katana_combo",
+        "verb": "base melee (chain)",
+        "frameW": 80,
+        "frameH": 64,
+        "frames": 9,
+        "loops": true,
+        "frameAnchors": [
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          }
+        ],
+        "rigFeet": [
+          {
+            "x": 41.4,
+            "y": 47
+          },
+          {
+            "x": 42.5,
+            "y": 47
+          },
+          {
+            "x": 42.5,
+            "y": 47
+          },
+          {
+            "x": 42.5,
+            "y": 47
+          },
+          {
+            "x": 41.4,
+            "y": 47
+          },
+          {
+            "x": 44.5,
+            "y": 47
+          },
+          {
+            "x": 45,
+            "y": 47
+          },
+          {
+            "x": 45,
+            "y": 47
+          },
+          {
+            "x": 44.5,
+            "y": 47
+          }
+        ]
+      }
+    }
+  },
+  "heroHandAnchors": {
+    "coordinateSpace": "canonical-left strip-frame pixels; derived from frontArm/blade class masks",
+    "source": "tools/derived/rig-geometry.json",
+    "katana_slash": {
+      "0": {
+        "hand": {
+          "x": 44,
+          "y": 34
+        },
+        "bladeTip": {
+          "x": 41,
+          "y": 36
+        }
+      },
+      "1": {
+        "hand": {
+          "x": 40,
+          "y": 37
+        },
+        "bladeTip": {
+          "x": 3,
+          "y": 32
+        }
+      },
+      "2": {
+        "hand": {
+          "x": 35,
+          "y": 37
+        },
+        "bladeTip": {
+          "x": 58,
+          "y": 18
+        }
+      },
+      "3": {
+        "hand": {
+          "x": 33,
+          "y": 36
+        },
+        "bladeTip": {
+          "x": 58,
+          "y": 18
+        }
+      },
+      "4": {
+        "hand": {
+          "x": 33,
+          "y": 36
+        },
+        "bladeTip": {
+          "x": 58,
+          "y": 18
+        }
+      },
+      "5": {
+        "hand": {
+          "x": 42,
+          "y": 34
+        },
+        "bladeTip": {
+          "x": 16,
+          "y": 25
+        }
+      },
+      "6": {
+        "hand": {
+          "x": 42,
+          "y": 34
+        },
+        "bladeTip": {
+          "x": 35,
+          "y": 36
+        }
+      },
+      "7": {
+        "hand": {
+          "x": 44,
+          "y": 34
+        },
+        "bladeTip": {
+          "x": 41,
+          "y": 36
+        }
+      },
+      "8": {
+        "hand": {
+          "x": 44,
+          "y": 34
+        },
+        "bladeTip": {
+          "x": 41,
+          "y": 36
+        }
+      },
+      "9": {
+        "hand": {
+          "x": 44,
+          "y": 34
+        },
+        "bladeTip": {
+          "x": 41,
+          "y": 36
+        }
+      }
+    },
+    "katana_combo": {
+      "0": {
+        "hand": {
+          "x": 40,
+          "y": 37
+        },
+        "bladeTip": {
+          "x": 3,
+          "y": 32
+        }
+      },
+      "1": {
+        "hand": {
+          "x": 35,
+          "y": 37
+        },
+        "bladeTip": {
+          "x": 58,
+          "y": 18
+        }
+      },
+      "2": {
+        "hand": {
+          "x": 33,
+          "y": 36
+        },
+        "bladeTip": {
+          "x": 58,
+          "y": 18
+        }
+      },
+      "3": {
+        "hand": {
+          "x": 33,
+          "y": 36
+        },
+        "bladeTip": {
+          "x": 58,
+          "y": 18
+        }
+      },
+      "4": {
+        "hand": {
+          "x": 40,
+          "y": 37
+        },
+        "bladeTip": {
+          "x": 2,
+          "y": 32
+        }
+      },
+      "6": {
+        "hand": {
+          "x": 46,
+          "y": 34
+        },
+        "bladeTip": {
+          "x": 47,
+          "y": 11
+        }
+      },
+      "7": {
+        "hand": {
+          "x": 46,
+          "y": 34
+        },
+        "bladeTip": {
+          "x": 47,
+          "y": 11
+        }
+      },
+      "8": {
+        "hand": {
+          "x": 45,
+          "y": 34
+        },
+        "bladeTip": {
+          "x": 47,
+          "y": 12
+        }
+      }
+    }
+  },
+  "assets": [
+    {
+      "file": "backup/willibab-candidate-b/player_walk_0.png",
+      "sourcePack": "My_Character_Creator_Pack",
+      "sourceFile": "My_Character_Creator_Pack/My_Character_Creator_Pack/Examples/hero9.png [walk frame 0; row0/col0]",
+      "license": "Personal and commercial projects permitted; editing/combining and exported character sheets permitted; credit appreciated but not required",
+      "round": "AR2E-BACKUP",
+      "usage": "recorded backup protagonist walk frame 0",
+      "fit": "Former candidate B red/orange shield fighter; retained byte-for-byte as the operator-requested backup; not loaded at runtime",
+      "licenseSource": "My_Character_Creator_Pack/My_Character_Creator_Pack/readme.txt [TERMS OF USE: commercial use + editing/combining + exported sheets permitted]",
+      "processing": "72x72 source cell cropped on integer bounds; exact 1/4 top-left integer-lattice reduction to 18x18 (same sampler as the AR2d candidate strip); transparency preserved; no generation",
+      "runtime": false
+    },
+    {
+      "file": "backup/willibab-candidate-b/player_walk_1.png",
+      "sourcePack": "My_Character_Creator_Pack",
+      "sourceFile": "My_Character_Creator_Pack/My_Character_Creator_Pack/Examples/hero9.png [walk frame 1; row0/col1]",
+      "license": "Personal and commercial projects permitted; editing/combining and exported character sheets permitted; credit appreciated but not required",
+      "round": "AR2E-BACKUP",
+      "usage": "recorded backup protagonist walk frame 1",
+      "fit": "Former candidate B red/orange shield fighter; retained byte-for-byte as the operator-requested backup; not loaded at runtime",
+      "licenseSource": "My_Character_Creator_Pack/My_Character_Creator_Pack/readme.txt [TERMS OF USE: commercial use + editing/combining + exported sheets permitted]",
+      "processing": "72x72 source cell cropped on integer bounds; exact 1/4 top-left integer-lattice reduction to 18x18 (same sampler as the AR2d candidate strip); transparency preserved; no generation",
+      "runtime": false
+    },
+    {
+      "file": "backup/willibab-candidate-b/player_walk_2.png",
+      "sourcePack": "My_Character_Creator_Pack",
+      "sourceFile": "My_Character_Creator_Pack/My_Character_Creator_Pack/Examples/hero9.png [walk frame 2; row0/col2]",
+      "license": "Personal and commercial projects permitted; editing/combining and exported character sheets permitted; credit appreciated but not required",
+      "round": "AR2E-BACKUP",
+      "usage": "recorded backup protagonist walk frame 2",
+      "fit": "Former candidate B red/orange shield fighter; retained byte-for-byte as the operator-requested backup; not loaded at runtime",
+      "licenseSource": "My_Character_Creator_Pack/My_Character_Creator_Pack/readme.txt [TERMS OF USE: commercial use + editing/combining + exported sheets permitted]",
+      "processing": "72x72 source cell cropped on integer bounds; exact 1/4 top-left integer-lattice reduction to 18x18 (same sampler as the AR2d candidate strip); transparency preserved; no generation",
+      "runtime": false
+    },
+    {
+      "file": "backup/willibab-candidate-b/player_run_0.png",
+      "sourcePack": "My_Character_Creator_Pack",
+      "sourceFile": "My_Character_Creator_Pack/My_Character_Creator_Pack/Examples/hero9.png [evade/dash run frame 0; row1/col6]",
+      "license": "Personal and commercial projects permitted; editing/combining and exported character sheets permitted; credit appreciated but not required",
+      "round": "AR3B-BACKUP",
+      "usage": "recorded backup protagonist evade/dash run frame 0",
+      "fit": "Former candidate B red/orange shield fighter; retained byte-for-byte as the operator-requested backup; not loaded at runtime",
+      "licenseSource": "My_Character_Creator_Pack/My_Character_Creator_Pack/readme.txt [TERMS OF USE: commercial use + editing/combining + exported sheets permitted]",
+      "processing": "72x72 source cell cropped on integer bounds; exact 1/4 top-left integer-lattice reduction to 18x18 (same sampler as the AR2d candidate strip); transparency preserved; no generation",
+      "runtime": false
+    },
+    {
+      "file": "backup/willibab-candidate-b/player_run_1.png",
+      "sourcePack": "My_Character_Creator_Pack",
+      "sourceFile": "My_Character_Creator_Pack/My_Character_Creator_Pack/Examples/hero9.png [evade/dash run frame 1; row1/col7]",
+      "license": "Personal and commercial projects permitted; editing/combining and exported character sheets permitted; credit appreciated but not required",
+      "round": "AR3B-BACKUP",
+      "usage": "recorded backup protagonist evade/dash run frame 1",
+      "fit": "Former candidate B red/orange shield fighter; retained byte-for-byte as the operator-requested backup; not loaded at runtime",
+      "licenseSource": "My_Character_Creator_Pack/My_Character_Creator_Pack/readme.txt [TERMS OF USE: commercial use + editing/combining + exported sheets permitted]",
+      "processing": "72x72 source cell cropped on integer bounds; exact 1/4 top-left integer-lattice reduction to 18x18 (same sampler as the AR2d candidate strip); transparency preserved; no generation",
+      "runtime": false
+    },
+    {
+      "file": "backup/willibab-candidate-b/player_idle_0.png",
+      "sourcePack": "My_Character_Creator_Pack",
+      "sourceFile": "My_Character_Creator_Pack/My_Character_Creator_Pack/Examples/hero9.png [idle/wait frame 0; row0/col3]",
+      "license": "Personal and commercial projects permitted; editing/combining and exported character sheets permitted; credit appreciated but not required",
+      "round": "AR2E-BACKUP",
+      "usage": "recorded backup protagonist idle/wait frame 0",
+      "fit": "Former candidate B red/orange shield fighter; retained byte-for-byte as the operator-requested backup; not loaded at runtime",
+      "licenseSource": "My_Character_Creator_Pack/My_Character_Creator_Pack/readme.txt [TERMS OF USE: commercial use + editing/combining + exported sheets permitted]",
+      "processing": "72x72 source cell cropped on integer bounds; exact 1/4 top-left integer-lattice reduction to 18x18 (same sampler as the AR2d candidate strip); transparency preserved; no generation",
+      "runtime": false
+    },
+    {
+      "file": "backup/willibab-candidate-b/player.png",
+      "sourcePack": "My_Character_Creator_Pack",
+      "sourceFile": "My_Character_Creator_Pack/My_Character_Creator_Pack/Examples/hero9.png [idle/wait frame 1 (canonical still); row0/col4]",
+      "license": "Personal and commercial projects permitted; editing/combining and exported character sheets permitted; credit appreciated but not required",
+      "round": "AR2E-BACKUP",
+      "usage": "recorded backup protagonist idle/wait frame 1 (canonical still)",
+      "fit": "Former candidate B red/orange shield fighter; retained byte-for-byte as the operator-requested backup; not loaded at runtime",
+      "licenseSource": "My_Character_Creator_Pack/My_Character_Creator_Pack/readme.txt [TERMS OF USE: commercial use + editing/combining + exported sheets permitted]",
+      "processing": "72x72 source cell cropped on integer bounds; exact 1/4 top-left integer-lattice reduction to 18x18 (same sampler as the AR2d candidate strip); transparency preserved; no generation",
+      "runtime": false
+    },
+    {
+      "file": "backup/willibab-candidate-b/player_idle_2.png",
+      "sourcePack": "My_Character_Creator_Pack",
+      "sourceFile": "My_Character_Creator_Pack/My_Character_Creator_Pack/Examples/hero9.png [idle/wait frame 2; row0/col5]",
+      "license": "Personal and commercial projects permitted; editing/combining and exported character sheets permitted; credit appreciated but not required",
+      "round": "AR2E-BACKUP",
+      "usage": "recorded backup protagonist idle/wait frame 2",
+      "fit": "Former candidate B red/orange shield fighter; retained byte-for-byte as the operator-requested backup; not loaded at runtime",
+      "licenseSource": "My_Character_Creator_Pack/My_Character_Creator_Pack/readme.txt [TERMS OF USE: commercial use + editing/combining + exported sheets permitted]",
+      "processing": "72x72 source cell cropped on integer bounds; exact 1/4 top-left integer-lattice reduction to 18x18 (same sampler as the AR2d candidate strip); transparency preserved; no generation",
+      "runtime": false
+    },
+    {
+      "file": "backup/willibab-candidate-b/player_attack_0.png",
+      "sourcePack": "My_Character_Creator_Pack",
+      "sourceFile": "My_Character_Creator_Pack/My_Character_Creator_Pack/Examples/hero9.png [skill/coiled wind-up frame; row3/col0]",
+      "license": "Personal and commercial projects permitted; editing/combining and exported character sheets permitted; credit appreciated but not required",
+      "round": "AR3B-BACKUP",
+      "usage": "recorded backup protagonist skill/coiled wind-up frame",
+      "fit": "Former candidate B red/orange shield fighter; retained byte-for-byte as the operator-requested backup; not loaded at runtime",
+      "licenseSource": "My_Character_Creator_Pack/My_Character_Creator_Pack/readme.txt [TERMS OF USE: commercial use + editing/combining + exported sheets permitted]",
+      "processing": "72x72 source cell cropped on integer bounds; exact 1/4 top-left integer-lattice reduction to 18x18 (same sampler as the AR2d candidate strip); transparency preserved; no generation",
+      "runtime": false
+    },
+    {
+      "file": "backup/willibab-candidate-b/player_attack_1.png",
+      "sourcePack": "My_Character_Creator_Pack",
+      "sourceFile": "My_Character_Creator_Pack/My_Character_Creator_Pack/Examples/hero9.png [thrust/lunge frame 0; row2/col0]",
+      "license": "Personal and commercial projects permitted; editing/combining and exported character sheets permitted; credit appreciated but not required",
+      "round": "AR3B-BACKUP",
+      "usage": "recorded backup protagonist thrust/lunge frame 0",
+      "fit": "Former candidate B red/orange shield fighter; retained byte-for-byte as the operator-requested backup; not loaded at runtime",
+      "licenseSource": "My_Character_Creator_Pack/My_Character_Creator_Pack/readme.txt [TERMS OF USE: commercial use + editing/combining + exported sheets permitted]",
+      "processing": "72x72 source cell cropped on integer bounds; exact 1/4 top-left integer-lattice reduction to 18x18 (same sampler as the AR2d candidate strip); transparency preserved; no generation",
+      "runtime": false
+    },
+    {
+      "file": "backup/willibab-candidate-b/player_attack_2.png",
+      "sourcePack": "My_Character_Creator_Pack",
+      "sourceFile": "My_Character_Creator_Pack/My_Character_Creator_Pack/Examples/hero9.png [thrust/lunge frame 1; row2/col1]",
+      "license": "Personal and commercial projects permitted; editing/combining and exported character sheets permitted; credit appreciated but not required",
+      "round": "AR3B-BACKUP",
+      "usage": "recorded backup protagonist thrust/lunge frame 1",
+      "fit": "Former candidate B red/orange shield fighter; retained byte-for-byte as the operator-requested backup; not loaded at runtime",
+      "licenseSource": "My_Character_Creator_Pack/My_Character_Creator_Pack/readme.txt [TERMS OF USE: commercial use + editing/combining + exported sheets permitted]",
+      "processing": "72x72 source cell cropped on integer bounds; exact 1/4 top-left integer-lattice reduction to 18x18 (same sampler as the AR2d candidate strip); transparency preserved; no generation",
+      "runtime": false
+    },
+    {
+      "file": "backup/willibab-candidate-b/player_hurt.png",
+      "sourcePack": "My_Character_Creator_Pack",
+      "sourceFile": "My_Character_Creator_Pack/My_Character_Creator_Pack/Examples/hero9.png [damage/hurt frame; row1/col4]",
+      "license": "Personal and commercial projects permitted; editing/combining and exported character sheets permitted; credit appreciated but not required",
+      "round": "AR3A-BACKUP",
+      "usage": "recorded backup protagonist damage/hurt frame",
+      "fit": "Former candidate B red/orange shield fighter; retained byte-for-byte as the operator-requested backup; not loaded at runtime",
+      "licenseSource": "My_Character_Creator_Pack/My_Character_Creator_Pack/readme.txt [TERMS OF USE: commercial use + editing/combining + exported sheets permitted]",
+      "processing": "72x72 source cell cropped on integer bounds; exact 1/4 top-left integer-lattice reduction to 18x18 (same sampler as the AR2d candidate strip); transparency preserved; no generation",
+      "runtime": false
+    },
+    {
+      "file": "player_bareheaded_idle.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/idle.png [idle; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist idle strip (bareheaded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 10,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "ff77d6d29bc6079f252f67b8c5ed0f5897c5be10b09b88f1eef21531238c7dcc"
+    },
+    {
+      "file": "player_bareheaded_walk.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/walk.png [walk; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist walk strip (bareheaded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 8,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "22f385790b2c2fff1623203487994710c19b766963404326b22020ff1ff52bee"
+    },
+    {
+      "file": "player_bareheaded_run.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/run.png [run; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist run strip (bareheaded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 8,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 36
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 37
+          }
+        ]
+      },
+      "sha256": "589730841caeedd232b0c1d4f36115146f9fdb5f101d7f05c3826a7b13f62e61"
+    },
+    {
+      "file": "player_bareheaded_jump.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/jump.png [jump; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist jump strip (bareheaded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 6,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 44
+          },
+          {
+            "x": 24.0,
+            "y": 44
+          },
+          {
+            "x": 24.0,
+            "y": 39
+          },
+          {
+            "x": 24.0,
+            "y": 39
+          },
+          {
+            "x": 24.0,
+            "y": 39
+          },
+          {
+            "x": 24.0,
+            "y": 44
+          }
+        ]
+      },
+      "sha256": "c87771dd4973c6a2b9fe37d37dce8c72d9fb7a26151e8f441a6d6253fd929910"
+    },
+    {
+      "file": "player_bareheaded_land.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/land.png [land; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist land strip (bareheaded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 9,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "8438055260a11869b9d5aebbe9f5a7232189989f9de38e62538ac93fffadb9a2"
+    },
+    {
+      "file": "player_bareheaded_airspin.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/airspin.png [double jump; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist double jump strip (bareheaded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 6,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 37
+          },
+          {
+            "x": 24.0,
+            "y": 30
+          },
+          {
+            "x": 24.0,
+            "y": 36
+          },
+          {
+            "x": 24.0,
+            "y": 32
+          },
+          {
+            "x": 24.0,
+            "y": 31
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "5adeff9f6592033ba6cc68d6b52acf9ac8570819875ffa8babb10ae1aa1b75bc"
+    },
+    {
+      "file": "player_bareheaded_dash.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/dash.png [dodge step; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist dodge step strip (bareheaded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 9,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 42
+          }
+        ]
+      },
+      "sha256": "d84cc0872a5bcbe1d81845160d4c9014716bd8a24be88d4a8076a76127c8b336"
+    },
+    {
+      "file": "player_bareheaded_hurt.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/hurt.png [hurt; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist hurt strip (bareheaded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 4,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "4c41190a243a205e28ddd515e7faa3d7c0bea2cc937d15a37543979e62953fe2"
+    },
+    {
+      "file": "player_bareheaded_death.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/death.png [death; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist death strip (bareheaded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 10,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "0c06c6c502cf202ca9e3afc32039bb8e48a7791e750e6f102a5b1cde1387bad4"
+    },
+    {
+      "file": "player_bareheaded_katana_slash.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/katana_slash.png [base melee; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist base melee strip (bareheaded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 80,
+        "cellH": 64,
+        "frames": 10,
+        "frameAnchors": [
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          }
+        ]
+      },
+      "sha256": "7479cdb09f265a9a92a6cfe355d5b378307775acc42f366913ae57ba115aa8c5"
+    },
+    {
+      "file": "player_bareheaded_katana_combo.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/katana_combo.png [base melee (chain); canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist base melee (chain) strip (bareheaded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 80,
+        "cellH": 64,
+        "frames": 9,
+        "frameAnchors": [
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          }
+        ]
+      },
+      "sha256": "7a4a9e05336ca2ed80bd1c1c778317539b58334eee5a7007ef88492859151983"
+    },
+    {
+      "file": "player_hooded_idle.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/hooded/idle.png [idle; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist idle strip (hooded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 10,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "0e298997bf13563f73e7f07889b6021873240de066d37f38e6afa85ee539af07"
+    },
+    {
+      "file": "player_hooded_walk.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/hooded/walk.png [walk; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist walk strip (hooded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 8,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "5e13940ea9716f96b89c052817c7e49c2a941b4f61a350ae31e95ccdc1edb254"
+    },
+    {
+      "file": "player_hooded_run.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/hooded/run.png [run; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist run strip (hooded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 8,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 36
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 37
+          }
+        ]
+      },
+      "sha256": "aa8d75d31f4794e67776c177ddc26cc62e89fd2815a6330ed9a4326c20f9963c"
+    },
+    {
+      "file": "player_hooded_jump.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/hooded/jump.png [jump; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist jump strip (hooded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 6,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 44
+          },
+          {
+            "x": 24.0,
+            "y": 44
+          },
+          {
+            "x": 24.0,
+            "y": 39
+          },
+          {
+            "x": 24.0,
+            "y": 39
+          },
+          {
+            "x": 24.0,
+            "y": 39
+          },
+          {
+            "x": 24.0,
+            "y": 44
+          }
+        ]
+      },
+      "sha256": "4b7ea8d0960ea93ed0bf1c22ab56d2941b75247185ba30fe64c033c93c4de0e5"
+    },
+    {
+      "file": "player_hooded_land.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/hooded/land.png [land; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist land strip (hooded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 9,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "7fe521fea51b33d64ebb59b11de0491917d3a2fbf5be4fd5c4aeb3c6b6621370"
+    },
+    {
+      "file": "player_hooded_airspin.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/hooded/airspin.png [double jump; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist double jump strip (hooded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 6,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 37
+          },
+          {
+            "x": 24.0,
+            "y": 30
+          },
+          {
+            "x": 24.0,
+            "y": 36
+          },
+          {
+            "x": 24.0,
+            "y": 32
+          },
+          {
+            "x": 24.0,
+            "y": 31
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "511262d7c40052e1a74a7938b36f40ce5dbdaa0e227a6c12c0d2f64a756cc7c8"
+    },
+    {
+      "file": "player_hooded_dash.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/hooded/dash.png [dodge step; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist dodge step strip (hooded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 9,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 42
+          }
+        ]
+      },
+      "sha256": "07d1b9a008da99e54e30dfb01064dcb817ec200ecc409e6ce3280c67d7c7c7a9"
+    },
+    {
+      "file": "player_hooded_hurt.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/hooded/hurt.png [hurt; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist hurt strip (hooded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 4,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "7ea67a72dfd8b49586d6e4aaf3578ca04548820fbf2d4bbcb04222911cd4318b"
+    },
+    {
+      "file": "player_hooded_death.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/hooded/death.png [death; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist death strip (hooded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 10,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "01421a5e917b80c66693ef2b78e9d2df3a7aea77a2cfcd199997794ca88a0f7c"
+    },
+    {
+      "file": "player_hooded_katana_slash.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/hooded/katana_slash.png [base melee; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist base melee strip (hooded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 80,
+        "cellH": 64,
+        "frames": 10,
+        "frameAnchors": [
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          }
+        ]
+      },
+      "sha256": "3be4a66ab9960d9c428518d9899872bb0547387e93085365056d0cafb55b8ea3"
+    },
+    {
+      "file": "player_hooded_katana_combo.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/hooded/katana_combo.png [base melee (chain); canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist base melee (chain) strip (hooded)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 80,
+        "cellH": 64,
+        "frames": 9,
+        "frameAnchors": [
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          }
+        ]
+      },
+      "sha256": "dec51f2ae37bae7d71aa30f99419612552476f2fb173ba60e1015cae53f33d1e"
+    },
+    {
+      "file": "player_helmed_idle.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/helmed/idle.png [idle; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist idle strip (helmed)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 10,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "6f7d3bfda50e1d2ecfa00f11eb4bc5f82ab092f02a4125e3a6784a8835d37dc3"
+    },
+    {
+      "file": "player_helmed_walk.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/helmed/walk.png [walk; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist walk strip (helmed)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 8,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "bcc20f163798ed118e46adb4f167e46615fbb52292ee36930761f882f871d49e"
+    },
+    {
+      "file": "player_helmed_run.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/helmed/run.png [run; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist run strip (helmed)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 8,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 36
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 37
+          }
+        ]
+      },
+      "sha256": "b7f7ffb685816b7f94c4b5dafea09b47b35b9ee29023b095a4b857d4b183c7b4"
+    },
+    {
+      "file": "player_helmed_jump.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/helmed/jump.png [jump; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist jump strip (helmed)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 6,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 44
+          },
+          {
+            "x": 24.0,
+            "y": 44
+          },
+          {
+            "x": 24.0,
+            "y": 39
+          },
+          {
+            "x": 24.0,
+            "y": 39
+          },
+          {
+            "x": 24.0,
+            "y": 39
+          },
+          {
+            "x": 24.0,
+            "y": 44
+          }
+        ]
+      },
+      "sha256": "456c929c4bab5d86d6e9dd57b6c36f586d75482f5c6f7cd9ee4cd23d313e511e"
+    },
+    {
+      "file": "player_helmed_land.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/helmed/land.png [land; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist land strip (helmed)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 9,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "53b94d27cee1b5b41223a90c1bc75f43b1d5fac3d35490020772c3e1f98faea2"
+    },
+    {
+      "file": "player_helmed_airspin.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/helmed/airspin.png [double jump; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist double jump strip (helmed)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 6,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 37
+          },
+          {
+            "x": 24.0,
+            "y": 30
+          },
+          {
+            "x": 24.0,
+            "y": 36
+          },
+          {
+            "x": 24.0,
+            "y": 32
+          },
+          {
+            "x": 24.0,
+            "y": 31
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "d3df82d2f44a92a36af908ef77bf0e98c9b6cd5e527cc8e8cf19a33a5ebab9b6"
+    },
+    {
+      "file": "player_helmed_dash.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/helmed/dash.png [dodge step; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist dodge step strip (helmed)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 9,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 42
+          }
+        ]
+      },
+      "sha256": "356efab5f1db721356b4e9cbe52fa9c785e1a6ff331886a116e910aebdab48f1"
+    },
+    {
+      "file": "player_helmed_hurt.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/helmed/hurt.png [hurt; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist hurt strip (helmed)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 4,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "45ebfa3ae9dd0eed7dae25494f797fe7098840a33a0fe1b5913cad6489a71a17"
+    },
+    {
+      "file": "player_helmed_death.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/helmed/death.png [death; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist death strip (helmed)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 48,
+        "cellH": 48,
+        "frames": 10,
+        "frameAnchors": [
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          },
+          {
+            "x": 24.0,
+            "y": 40
+          }
+        ]
+      },
+      "sha256": "e0d4b02f872de9ff0cc0c76ca29740b229d75a98aa78791358bac0909ccfd2ca"
+    },
+    {
+      "file": "player_helmed_katana_slash.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/helmed/katana_slash.png [base melee; canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist base melee strip (helmed)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 80,
+        "cellH": 64,
+        "frames": 10,
+        "frameAnchors": [
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          }
+        ]
+      },
+      "sha256": "729f32fa9ddc7253a425261f67ec6c5cbb71e315b66610268dcc890d6ab72845"
+    },
+    {
+      "file": "player_helmed_katana_combo.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/helmed/katana_combo.png [base melee (chain); canonical left]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "protagonist base melee (chain) strip (helmed)",
+      "fit": "Ray-certified Variant B silhouette/timing paint-over; nearest-neighbour strip; feet-rooted; canonical left and mirrored only for right-facing play",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Certified paint-over pipeline output copied without resampling; see tools/README.md",
+      "grid": {
+        "cellW": 80,
+        "cellH": 64,
+        "frames": 9,
+        "frameAnchors": [
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          },
+          {
+            "x": 40.0,
+            "y": 48
+          }
+        ]
+      },
+      "sha256": "4430b545a3a4718d12d6c06c6ef38721dbdd1b9749f76f9a64d408a1c19786a1"
+    },
+    {
+      "file": "player_walk_0.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/walk.png [frame 0]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "certified protagonist compatibility frame: walk 0",
+      "fit": "Compatibility alias for proof and fallback tooling; the live renderer uses the full certified strip",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Lossless frame crop from certified strip; no resampling"
+    },
+    {
+      "file": "player_walk_1.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/walk.png [frame 1]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "certified protagonist compatibility frame: walk 1",
+      "fit": "Compatibility alias for proof and fallback tooling; the live renderer uses the full certified strip",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Lossless frame crop from certified strip; no resampling"
+    },
+    {
+      "file": "player_walk_2.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/walk.png [frame 2]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "certified protagonist compatibility frame: walk 2",
+      "fit": "Compatibility alias for proof and fallback tooling; the live renderer uses the full certified strip",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Lossless frame crop from certified strip; no resampling"
+    },
+    {
+      "file": "player_run_0.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/run.png [frame 0]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "certified protagonist compatibility frame: run 0",
+      "fit": "Compatibility alias for proof and fallback tooling; the live renderer uses the full certified strip",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Lossless frame crop from certified strip; no resampling"
+    },
+    {
+      "file": "player_run_1.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/run.png [frame 1]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "certified protagonist compatibility frame: run 1",
+      "fit": "Compatibility alias for proof and fallback tooling; the live renderer uses the full certified strip",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Lossless frame crop from certified strip; no resampling"
+    },
+    {
+      "file": "player_idle_0.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/idle.png [frame 0]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "certified protagonist compatibility frame: idle 0",
+      "fit": "Compatibility alias for proof and fallback tooling; the live renderer uses the full certified strip",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Lossless frame crop from certified strip; no resampling"
+    },
+    {
+      "file": "player.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/idle.png [frame 1]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "certified protagonist compatibility frame: idle 1",
+      "fit": "Compatibility alias for proof and fallback tooling; the live renderer uses the full certified strip",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Lossless frame crop from certified strip; no resampling"
+    },
+    {
+      "file": "player_idle_2.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/idle.png [frame 2]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "certified protagonist compatibility frame: idle 2",
+      "fit": "Compatibility alias for proof and fallback tooling; the live renderer uses the full certified strip",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Lossless frame crop from certified strip; no resampling"
+    },
+    {
+      "file": "player_attack_0.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/katana_combo.png [frame 0]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "certified protagonist compatibility frame: katana_combo 0",
+      "fit": "Compatibility alias for proof and fallback tooling; the live renderer uses the full certified strip",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Lossless frame crop from certified strip; no resampling"
+    },
+    {
+      "file": "player_attack_1.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/katana_combo.png [frame 1]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "certified protagonist compatibility frame: katana_combo 1",
+      "fit": "Compatibility alias for proof and fallback tooling; the live renderer uses the full certified strip",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Lossless frame crop from certified strip; no resampling"
+    },
+    {
+      "file": "player_attack_2.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/katana_combo.png [frame 4]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "certified protagonist compatibility frame: katana_combo 4",
+      "fit": "Compatibility alias for proof and fallback tooling; the live renderer uses the full certified strip",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Lossless frame crop from certified strip; no resampling"
+    },
+    {
+      "file": "player_hurt.png",
+      "sourcePack": "2D-Pixel-Art-Character-Template paint-over",
+      "sourceFile": "tools/out/bareheaded/hurt.png [frame 1]",
+      "license": "Purchased human-made base; commercial use and modification authorized by Ray's 2026-08-10 operator ruling; authored commissioned-class paint-over",
+      "round": "HERO-INTEGRATION",
+      "usage": "certified protagonist compatibility frame: hurt 1",
+      "fit": "Compatibility alias for proof and fallback tooling; the live renderer uses the full certified strip",
+      "licenseSource": "docs/hero-draft/PROVENANCE.md",
+      "processing": "Lossless frame crop from certified strip; no resampling"
+    },
+    {
+      "file": "enemy_walker.png",
+      "sourcePack": "Retro_8bit_Monster_Pack",
+      "sourceFile": "Retro_8bit_Monster_Pack/Retro_8bit_Monster_Pack/Normal Size/Style 1/Undead_Minion_2.png",
+      "license": "CC BY",
+      "round": "AR1",
+      "usage": "walker enemy sprite",
+      "fit": "shambling undead reads as a side-view ground threat"
+    },
+    {
+      "file": "enemy_hopper.png",
+      "sourcePack": "Retro_8bit_Monster_Pack",
+      "sourceFile": "Retro_8bit_Monster_Pack/Retro_8bit_Monster_Pack/Normal Size/Style 1/Demon_Onimp_2.png",
+      "license": "CC BY",
+      "round": "AR1",
+      "usage": "hopper enemy sprite",
+      "fit": "compact horned imp fits the small springer role; AR2 adds a 1px pale-bone outer rim for dark-ground contrast"
+    },
+    {
+      "file": "boss.png",
+      "sourcePack": "Retro_8bit_Monster_Pack",
+      "sourceFile": "Retro_8bit_Monster_Pack/Retro_8bit_Monster_Pack/Normal Size/Style 1/Demon_Titan.png",
+      "license": "CC BY",
+      "round": "AR1",
+      "usage": "boss sprite",
+      "fit": "large sword-wielding demon titan reads as a stage-ending boss"
+    },
+    {
+      "file": "icon_blade.png",
+      "sourcePack": "Simple-8-bit-Sideview-Battlers (Weapon_Pack subset)",
+      "sourceFile": "Simple-8-bit-Sideview-Battlers/Simple 8-bit Sideview Battlers/Simple 8-bit Sideview Battlers/Style 1/Weapon_Pack/weapons/BLADE_01.png [left half, trimmed]",
+      "license": "CC BY",
+      "round": "AR1",
+      "usage": "short blade / sword icon",
+      "fit": "small diagonal weapon reads clearly as a HUD icon"
+    },
+    {
+      "file": "icon_spear.png",
+      "sourcePack": "Simple-8-bit-Sideview-Battlers (Weapon_Pack subset)",
+      "sourceFile": "Simple-8-bit-Sideview-Battlers/Simple 8-bit Sideview Battlers/Simple 8-bit Sideview Battlers/Style 1/Weapon_Pack/weapons/SPEAR_01.png [left half, trimmed]",
+      "license": "CC BY",
+      "round": "AR1",
+      "usage": "spear icon",
+      "fit": "small diagonal weapon reads clearly as a HUD icon"
+    },
+    {
+      "file": "icon_axe.png",
+      "sourcePack": "Simple-8-bit-Sideview-Battlers (Weapon_Pack subset)",
+      "sourceFile": "Simple-8-bit-Sideview-Battlers/Simple 8-bit Sideview Battlers/Simple 8-bit Sideview Battlers/Style 1/Weapon_Pack/weapons/AXE_01.png [left half, trimmed]",
+      "license": "CC BY",
+      "round": "AR1",
+      "usage": "axe icon",
+      "fit": "small diagonal weapon reads clearly as a HUD icon"
+    },
+    {
+      "file": "icon_mace.png",
+      "sourcePack": "Simple-8-bit-Sideview-Battlers (Weapon_Pack subset)",
+      "sourceFile": "Simple-8-bit-Sideview-Battlers/Simple 8-bit Sideview Battlers/Simple 8-bit Sideview Battlers/Style 1/Weapon_Pack/weapons/MACE_01.png [left half, trimmed]",
+      "license": "CC BY",
+      "round": "AR1",
+      "usage": "mace icon",
+      "fit": "small diagonal weapon reads clearly as a HUD icon"
+    },
+    {
+      "file": "icon_heart.png",
+      "sourcePack": "Willibab-s-Retro-Icons",
+      "sourceFile": "Willibab-s-Retro-Icons/Willibab's Retro Icons/Willibab's Retro Icons/Iconset.png [cell col6/row2]",
+      "license": "CC BY",
+      "round": "AR1",
+      "usage": "HP/heart indicator",
+      "fit": "small recognizable retro icon for HUD"
+    },
+    {
+      "file": "icon_coin.png",
+      "sourcePack": "Willibab-s-Retro-Icons",
+      "sourceFile": "Willibab-s-Retro-Icons/Willibab's Retro Icons/Willibab's Retro Icons/Iconset.png [cell col10/row3]",
+      "license": "CC BY",
+      "round": "AR1",
+      "usage": "gold/coin indicator",
+      "fit": "small recognizable retro icon for HUD"
+    },
+    {
+      "file": "icon_sword.png",
+      "sourcePack": "Willibab-s-Retro-Icons",
+      "sourceFile": "Willibab-s-Retro-Icons/Willibab's Retro Icons/Willibab's Retro Icons/Iconset.png [cell col5/row6]",
+      "license": "CC BY",
+      "round": "AR1",
+      "usage": "weapon indicator",
+      "fit": "small recognizable retro icon for HUD"
+    },
+    {
+      "file": "env_tile_cemetery.png",
+      "sourcePack": "WILLIBAB_DUNGEON",
+      "sourceFile": "WILLIBAB_DUNGEON/WILLIBAB_DUNGEON/1x/tilesets/D_A4_01.png [crop (80, 48, 96, 64)]",
+      "license": "CC BY",
+      "round": "AR2",
+      "usage": "cemetery platform-face stone block",
+      "fit": "neutral clustered stone face reads correctly in side view; moss cap is added by the renderer"
+    },
+    {
+      "file": "env_tile_crypt.png",
+      "sourcePack": "WILLIBAB_DUNGEON",
+      "sourceFile": "WILLIBAB_DUNGEON/WILLIBAB_DUNGEON/1x/tilesets/D_A4_01.png [crop (32, 48, 48, 64)]",
+      "license": "CC BY",
+      "round": "AR2",
+      "usage": "crypt platform-face masonry",
+      "fit": "clean grey brick face separates solid crypt geometry from the local backdrop"
+    },
+    {
+      "file": "env_tile_keep.png",
+      "sourcePack": "WILLIBAB_CASTLE",
+      "sourceFile": "WILLIBAB_CASTLE/WILLIBAB_CASTLE/1x/Tileset/CASTLE_A4.png [crop (0, 208, 16, 224)]",
+      "license": "CC BY",
+      "round": "AR2",
+      "usage": "keep platform-face masonry",
+      "fit": "chunky castle brick face reads as a vertical side-view wall without top-down cues"
+    },
+    {
+      "file": "env_prop_banner.png",
+      "sourcePack": "WILLIBAB_CASTLE",
+      "sourceFile": "WILLIBAB_CASTLE/WILLIBAB_CASTLE/1x/Tileset/Castle_C.png [crop (240, 0, 256, 32)]",
+      "license": "CC BY",
+      "round": "AR2",
+      "usage": "sparse keep banner dressing",
+      "fit": "vertical hanging banner reads cleanly against a side-view wall"
+    },
+    {
+      "file": "env_prop_gargoyle.png",
+      "sourcePack": "WILLIBAB_DUNGEON",
+      "sourceFile": "WILLIBAB_DUNGEON/WILLIBAB_DUNGEON/1x/tilesets/D_A4_01.png [crop (224, 48, 240, 80)]",
+      "license": "CC BY",
+      "round": "AR2",
+      "usage": "sparse crypt wall relief",
+      "fit": "framed stone relief reads as recessed period architecture, not traversable geometry"
+    },
+    {
+      "file": "enemy_walker_zombie_idle.png",
+      "sourcePack": "Admurin Enemy_Galore_II",
+      "sourceFile": "Enemy_Galore_II/Zombie/Zomb_Idle.png [idle; measured 4 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "cemetery walker idle animation strip",
+      "fit": "slow left-facing cemetery walker mirrored for right play",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 4
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_walker_zombie_run.png",
+      "sourcePack": "Admurin Enemy_Galore_II",
+      "sourceFile": "Enemy_Galore_II/Zombie/Zomb_Run.png [run; measured 8 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "cemetery walker shamble animation strip",
+      "fit": "slow left-facing cemetery walker mirrored for right play",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 8
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_walker_zombie_attack.png",
+      "sourcePack": "Admurin Enemy_Galore_II",
+      "sourceFile": "Enemy_Galore_II/Zombie/Zomb_AttackA.png [attack; measured 4 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "cemetery walker lunge attack strip",
+      "fit": "slow left-facing cemetery walker mirrored for right play",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 4
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_walker_zombie_hit.png",
+      "sourcePack": "Admurin Enemy_Galore_II",
+      "sourceFile": "Enemy_Galore_II/Zombie/Zomb_Hit.png [hit; measured 6 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "cemetery walker damage reaction strip",
+      "fit": "slow left-facing cemetery walker mirrored for right play",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 6
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_walker_zombie_death.png",
+      "sourcePack": "Admurin Enemy_Galore_II",
+      "sourceFile": "Enemy_Galore_II/Zombie/Zomb_Death.png [death; measured 7 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "cemetery walker death strip",
+      "fit": "slow left-facing cemetery walker mirrored for right play",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 7
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_hopper_slime_spiked_idle.png",
+      "sourcePack": "Admurin Enemy_Galore_I",
+      "sourceFile": "Enemy_Galore_I/Slime/Slime_Spiked_Idle.png [idle; measured 4 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "spiked slime idle animation strip",
+      "fit": "spiked slime hopper mirrored for right play; jump attack reads as a spring threat",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 4
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_hopper_slime_spiked_run.png",
+      "sourcePack": "Admurin Enemy_Galore_I",
+      "sourceFile": "Enemy_Galore_I/Slime/Slime_Spiked_Run.png [run; measured 4 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "spiked slime hop animation strip",
+      "fit": "spiked slime hopper mirrored for right play; jump attack reads as a spring threat",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 4
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_hopper_slime_spiked_attack.png",
+      "sourcePack": "Admurin Enemy_Galore_I",
+      "sourceFile": "Enemy_Galore_I/Slime/Slime_Spiked_Jump.png [attack; measured 8 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "spiked slime jump attack strip",
+      "fit": "spiked slime hopper mirrored for right play; jump attack reads as a spring threat",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 8
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_hopper_slime_spiked_hit.png",
+      "sourcePack": "Admurin Enemy_Galore_I",
+      "sourceFile": "Enemy_Galore_I/Slime/Slime_Spiked_Hit.png [hit; measured 4 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "spiked slime damage reaction strip",
+      "fit": "spiked slime hopper mirrored for right play; jump attack reads as a spring threat",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 4
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_hopper_slime_spiked_death.png",
+      "sourcePack": "Admurin Enemy_Galore_I",
+      "sourceFile": "Enemy_Galore_I/Slime/Slime_Spiked_Death.png [death; measured 6 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "spiked slime death dissolve strip",
+      "fit": "spiked slime hopper mirrored for right play; jump attack reads as a spring threat",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 6
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_walker_bones_gladiator_idle.png",
+      "sourcePack": "Admurin Enemy_Galore_IV",
+      "sourceFile": "Enemy_Galore_IV/Bones/Bones - Gladiator/Bones_Gladiator_Idle.png [idle; measured 4 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "skeleton gladiator idle animation strip",
+      "fit": "right-facing skeletal gladiator; no mirror needed",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 4
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_walker_bones_gladiator_run.png",
+      "sourcePack": "Admurin Enemy_Galore_IV",
+      "sourceFile": "Enemy_Galore_IV/Bones/Bones - Gladiator/Bones_Gladiator_Walk.png [run; measured 8 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "skeleton gladiator walk animation strip",
+      "fit": "right-facing skeletal gladiator; no mirror needed",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 8
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_walker_bones_gladiator_attack.png",
+      "sourcePack": "Admurin Enemy_Galore_IV",
+      "sourceFile": "Enemy_Galore_IV/Bones/Bones - Gladiator/Bones_Gladiator_Attack.png [attack; measured 3 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "skeleton gladiator sword attack strip",
+      "fit": "right-facing skeletal gladiator; no mirror needed",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 3
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_walker_bones_gladiator_hit.png",
+      "sourcePack": "Admurin Enemy_Galore_IV",
+      "sourceFile": "Enemy_Galore_IV/Bones/Bones - Gladiator/Bones_Gladiator_Hit.png [hit; measured 3 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "skeleton gladiator damage reaction strip",
+      "fit": "right-facing skeletal gladiator; no mirror needed",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 3
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_walker_bones_gladiator_death.png",
+      "sourcePack": "Admurin Enemy_Galore_IV",
+      "sourceFile": "Enemy_Galore_IV/Bones/Bones - Gladiator/Bones_Gladiator_Death.png [death; measured 10 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "skeleton gladiator collapse strip",
+      "fit": "right-facing skeletal gladiator; no mirror needed",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 10
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_hopper_bat_idle.png",
+      "sourcePack": "Admurin Enemy_Galore_I",
+      "sourceFile": "Enemy_Galore_I/Bat/Bat_Fly.png [idle; measured 4 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "cave bat idle/fly animation strip",
+      "fit": "left-facing cave bat mirrored for right play; flying hopper silhouette",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 4
+      },
+      "bottomInset": 10
+    },
+    {
+      "file": "enemy_hopper_bat_run.png",
+      "sourcePack": "Admurin Enemy_Galore_I",
+      "sourceFile": "Enemy_Galore_I/Bat/Bat_Fly.png [run; measured 4 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "cave bat fly animation strip",
+      "fit": "left-facing cave bat mirrored for right play; flying hopper silhouette",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 4
+      },
+      "bottomInset": 10
+    },
+    {
+      "file": "enemy_hopper_bat_attack.png",
+      "sourcePack": "Admurin Enemy_Galore_I",
+      "sourceFile": "Enemy_Galore_I/Bat/Bat_Attack.png [attack; measured 7 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "cave bat swoop attack strip",
+      "fit": "left-facing cave bat mirrored for right play; flying hopper silhouette",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 7
+      },
+      "bottomInset": 10
+    },
+    {
+      "file": "enemy_hopper_bat_hit.png",
+      "sourcePack": "Admurin Enemy_Galore_I",
+      "sourceFile": "Enemy_Galore_I/Bat/Bat_Hit.png [hit; measured 5 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "cave bat damage reaction strip",
+      "fit": "left-facing cave bat mirrored for right play; flying hopper silhouette",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 5
+      },
+      "bottomInset": 10
+    },
+    {
+      "file": "enemy_hopper_bat_death.png",
+      "sourcePack": "Admurin Enemy_Galore_I",
+      "sourceFile": "Enemy_Galore_I/Bat/Bat_Death.png [death; measured 11 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "cave bat death strip",
+      "fit": "left-facing cave bat mirrored for right play; flying hopper silhouette",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 11
+      },
+      "bottomInset": 10
+    },
+    {
+      "file": "enemy_hopper_rat_idle.png",
+      "sourcePack": "Admurin Enemy_Galore_I",
+      "sourceFile": "Enemy_Galore_I/Rat/Rat_Idle.png [idle; measured 4 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "giant rat idle animation strip",
+      "fit": "left-facing giant rat mirrored for right play; scurrying hopper",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 4
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_hopper_rat_run.png",
+      "sourcePack": "Admurin Enemy_Galore_I",
+      "sourceFile": "Enemy_Galore_I/Rat/Rat_Run.png [run; measured 6 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "giant rat run animation strip",
+      "fit": "left-facing giant rat mirrored for right play; scurrying hopper",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 6
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_hopper_rat_attack.png",
+      "sourcePack": "Admurin Enemy_Galore_I",
+      "sourceFile": "Enemy_Galore_I/Rat/Rat_Attack.png [attack; measured 8 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "giant rat bite attack strip",
+      "fit": "left-facing giant rat mirrored for right play; scurrying hopper",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 8
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_hopper_rat_hit.png",
+      "sourcePack": "Admurin Enemy_Galore_I",
+      "sourceFile": "Enemy_Galore_I/Rat/Rat_Hit.png [hit; measured 4 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "giant rat damage reaction strip",
+      "fit": "left-facing giant rat mirrored for right play; scurrying hopper",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 4
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_hopper_rat_death.png",
+      "sourcePack": "Admurin Enemy_Galore_I",
+      "sourceFile": "Enemy_Galore_I/Rat/Rat_Hit.png [death; measured 4 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "giant rat death dissolve strip",
+      "fit": "left-facing giant rat mirrored for right play; scurrying hopper",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 4
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_walker_zombslime_idle.png",
+      "sourcePack": "Admurin Enemy_Galore_II",
+      "sourceFile": "Enemy_Galore_II/Zomblime/Zomblime_Idle.png [idle; measured 4 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "zomblime idle animation strip",
+      "fit": "left-facing zomblime mirrored for right play; toxic slime walker",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 4
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_walker_zombslime_run.png",
+      "sourcePack": "Admurin Enemy_Galore_II",
+      "sourceFile": "Enemy_Galore_II/Zomblime/Zomblime_Run.png [run; measured 8 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "zomblime hop animation strip",
+      "fit": "left-facing zomblime mirrored for right play; toxic slime walker",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 8
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_walker_zombslime_attack.png",
+      "sourcePack": "Admurin Enemy_Galore_II",
+      "sourceFile": "Enemy_Galore_II/Zomblime/Zomb_AttackA.png [attack; measured 4 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "zomblime bite attack strip",
+      "fit": "left-facing zomblime mirrored for right play; toxic slime walker",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 4
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_walker_zombslime_hit.png",
+      "sourcePack": "Admurin Enemy_Galore_II",
+      "sourceFile": "Enemy_Galore_II/Zomblime/Zomblime_Hit.png [hit; measured 6 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "zomblime damage reaction strip",
+      "fit": "left-facing zomblime mirrored for right play; toxic slime walker",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 6
+      },
+      "bottomInset": 0
+    },
+    {
+      "file": "enemy_walker_zombslime_death.png",
+      "sourcePack": "Admurin Enemy_Galore_II",
+      "sourceFile": "Enemy_Galore_II/Zomblime/Zomblime_Death.png [death; measured 8 frames]",
+      "license": "Commercial use permitted in games; redistribution as stand-alone assets prohibited; credit optional",
+      "round": "AR2-ART-PASS",
+      "usage": "zomblime death strip",
+      "fit": "left-facing zomblime mirrored for right play; toxic slime walker",
+      "processing": "64x64 source cell decoded; per-enemy shared union bbox across all frames; frames mirrored for left-facing source; cropped and concatenated into horizontal strip; raw pack colours (conform toggle off)",
+      "grid": {
+        "cellW": 64,
+        "cellH": 64,
+        "frames": 8
+      },
+      "bottomInset": 0
+    }
+  ]
+}

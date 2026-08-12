@@ -1,0 +1,216 @@
+{
+  "_comment": "DERIVED by tools/rig-layer-audit.mjs (via rig-layer-audit.lua) from the rig pack's own Aseprite layer names. Do not hand-edit; regenerate. Maps a rig identifier colour -> body part.",
+  "generated": "2026-08-09",
+  "partOrder": [
+    "backLeg",
+    "backArm",
+    "torso",
+    "frontLeg",
+    "frontArm",
+    "head",
+    "weapon",
+    "fx"
+  ],
+  "unknownLayers": [
+    "Layer 3"
+  ],
+  "layerOrder": {
+    "idle": [
+      "BG",
+      "Back Leg",
+      "Back arm",
+      "Torso",
+      "Front Leg",
+      "Front Arm",
+      "Head"
+    ],
+    "walk": [
+      "Layer 2",
+      "Back Arm",
+      "Back Leg",
+      "Torso",
+      "Front Leg",
+      "Front Arm",
+      "Head"
+    ],
+    "run": [
+      "BG",
+      "Back Hand",
+      "Back Leg",
+      "Front Leg",
+      "Torso",
+      "Front Hand",
+      "Head"
+    ],
+    "jump": [
+      "bg",
+      "Back leg",
+      "Back arm",
+      "Front leg",
+      "Torso",
+      "Front arm",
+      "Head"
+    ],
+    "land": [
+      "BG",
+      "Back Arm",
+      "Back Leg",
+      "Torso",
+      "Front Leg",
+      "Front Arm",
+      "Head"
+    ],
+    "airspin": [
+      "gif bg",
+      "Back Arm",
+      "Back Leg",
+      "Torso",
+      "Front Leg",
+      "Front Arm",
+      "Head"
+    ],
+    "dash": [
+      "Layer 3",
+      "Layer 1"
+    ],
+    "hurt": [
+      "bg",
+      "Back Arm",
+      "Back Leg",
+      "Torso",
+      "Front Leg",
+      "Front Arm",
+      "Head",
+      "Damage Indicator"
+    ],
+    "death": [
+      "bg",
+      "Back Arm",
+      "Back Leg",
+      "Torso",
+      "Front Leg",
+      "Front Arm",
+      "Head"
+    ],
+    "katana_slash": [
+      "bg",
+      "Back Arm",
+      "Back Leg",
+      "Torso",
+      "Front Leg",
+      "Front Arm",
+      "Head",
+      "Slashies"
+    ],
+    "katana_combo": [
+      "BG",
+      "Back Arm",
+      "Back Leg",
+      "Torso",
+      "Front Leg",
+      "Sword/Sheathe",
+      "Front Arm",
+      "Head",
+      "slashies"
+    ]
+  },
+  "ambiguous": [
+    {
+      "color": "#bf6fa7",
+      "share": 0.537,
+      "ranked": [
+        [
+          "backArm",
+          36
+        ],
+        [
+          "weapon",
+          31
+        ]
+      ]
+    },
+    {
+      "color": "#a3608f",
+      "share": 0.578,
+      "ranked": [
+        [
+          "weapon",
+          218
+        ],
+        [
+          "backArm",
+          159
+        ]
+      ]
+    },
+    {
+      "color": "#d77bba",
+      "share": 0.77,
+      "ranked": [
+        [
+          "fx",
+          1155
+        ],
+        [
+          "weapon",
+          231
+        ],
+        [
+          "backArm",
+          114
+        ]
+      ]
+    },
+    {
+      "color": "#c46423",
+      "share": 0.949,
+      "ranked": [
+        [
+          "torso",
+          596
+        ],
+        [
+          "backArm",
+          18
+        ],
+        [
+          "head",
+          8
+        ],
+        [
+          "frontLeg",
+          6
+        ]
+      ]
+    }
+  ],
+  "colors": {
+    "#5fb4d9": "head",
+    "#5fcde4": "head",
+    "#674085": "backArm",
+    "#69ad31": "frontArm",
+    "#6abe30": "frontArm",
+    "#6e8b99": "backArm",
+    "#76428a": "backArm",
+    "#951799": "backArm",
+    "#962d2d": "backArm",
+    "#99e550": "frontArm",
+    "#9c304d": "backLeg",
+    "#a3608f": "weapon",
+    "#ac3232": "backLeg",
+    "#ae1db3": "backArm",
+    "#af1ab2": "backArm",
+    "#b35b20": "torso",
+    "#bf6fa7": "backArm",
+    "#c46423": "torso",
+    "#ce5050": "backLeg",
+    "#d1cc60": "frontLeg",
+    "#d77bba": "fx",
+    "#d95763": "backLeg",
+    "#df7126": "torso",
+    "#f092d4": "fx",
+    "#f7a3e0": "fx",
+    "#fbf236": "frontLeg",
+    "#ffffff": "fx"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "adversary",
+  "version": "0.1.0",
+  "description": "ADVERSARY — a code-drawn pixel-art side-scrolling action-RPG gauntlet (original IP).",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "build": "node scripts/build.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
+  }
+}

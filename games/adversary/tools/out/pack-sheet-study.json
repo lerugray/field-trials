@@ -1,0 +1,164 @@
+[
+  {
+    "file": "/Users/rayweiss/Desktop/Dev Work/pixel-art-library/extracted/Legacy Vania Pack - Cathedral/Cathedral/Assets/Tiles.png",
+    "imageSize": [
+      96,
+      240
+    ],
+    "best": {
+      "cellW": 96,
+      "cellH": 240,
+      "cols": 1,
+      "rows": 1,
+      "frames": 1,
+      "gridCells": 1,
+      "seamViolations": 0,
+      "filledCells": 1,
+      "interiorHoles": 0,
+      "contentSpread": 0,
+      "maxContentW": 96,
+      "maxContentH": 240
+    },
+    "cleanCandidates": [
+      {
+        "cellW": 96,
+        "cellH": 240,
+        "cols": 1,
+        "rows": 1,
+        "frames": 1,
+        "gridCells": 1,
+        "seamViolations": 0,
+        "filledCells": 1,
+        "interiorHoles": 0,
+        "contentSpread": 0,
+        "maxContentW": 96,
+        "maxContentH": 240
+      }
+    ],
+    "note": null
+  },
+  {
+    "file": "/Users/rayweiss/Desktop/Dev Work/pixel-art-library/extracted/Legacy Vania Pack - Crypt/Crypt/Assets/Tiles.png",
+    "imageSize": [
+      112,
+      96
+    ],
+    "best": {
+      "cellW": 112,
+      "cellH": 96,
+      "cols": 1,
+      "rows": 1,
+      "frames": 1,
+      "gridCells": 1,
+      "seamViolations": 0,
+      "filledCells": 1,
+      "interiorHoles": 0,
+      "contentSpread": 0,
+      "maxContentW": 112,
+      "maxContentH": 96
+    },
+    "cleanCandidates": [
+      {
+        "cellW": 112,
+        "cellH": 96,
+        "cols": 1,
+        "rows": 1,
+        "frames": 1,
+        "gridCells": 1,
+        "seamViolations": 0,
+        "filledCells": 1,
+        "interiorHoles": 0,
+        "contentSpread": 0,
+        "maxContentW": 112,
+        "maxContentH": 96
+      }
+    ],
+    "note": null
+  },
+  {
+    "file": "/Users/rayweiss/Desktop/Dev Work/pixel-art-library/extracted/Legacy Vania Pack - Forest/Forest/Assets/Tiles.png",
+    "imageSize": [
+      80,
+      272
+    ],
+    "best": null,
+    "cleanCandidates": [],
+    "note": "NO CLEAN GRID \u2014 inspect by hand before use"
+  },
+  {
+    "file": "/Users/rayweiss/Desktop/Dev Work/pixel-art-library/extracted/Legacy Vania Pack - Hall/Hall/Tiles/Tiles.png",
+    "imageSize": [
+      112,
+      144
+    ],
+    "best": {
+      "cellW": 112,
+      "cellH": 144,
+      "cols": 1,
+      "rows": 1,
+      "frames": 1,
+      "gridCells": 1,
+      "seamViolations": 0,
+      "filledCells": 1,
+      "interiorHoles": 0,
+      "contentSpread": 0,
+      "maxContentW": 112,
+      "maxContentH": 144
+    },
+    "cleanCandidates": [
+      {
+        "cellW": 112,
+        "cellH": 144,
+        "cols": 1,
+        "rows": 1,
+        "frames": 1,
+        "gridCells": 1,
+        "seamViolations": 0,
+        "filledCells": 1,
+        "interiorHoles": 0,
+        "contentSpread": 0,
+        "maxContentW": 112,
+        "maxContentH": 144
+      }
+    ],
+    "note": null
+  },
+  {
+    "file": "/Users/rayweiss/Desktop/Dev Work/pixel-art-library/extracted/Legacy Vania Pack - Library/Library/Assets/Tiles.png",
+    "imageSize": [
+      96,
+      208
+    ],
+    "best": {
+      "cellW": 96,
+      "cellH": 208,
+      "cols": 1,
+      "rows": 1,
+      "frames": 1,
+      "gridCells": 1,
+      "seamViolations": 0,
+      "filledCells": 1,
+      "interiorHoles": 0,
+      "contentSpread": 0,
+      "maxContentW": 96,
+      "maxContentH": 208
+    },
+    "cleanCandidates": [
+      {
+        "cellW": 96,
+        "cellH": 208,
+        "cols": 1,
+        "rows": 1,
+        "frames": 1,
+        "gridCells": 1,
+        "seamViolations": 0,
+        "filledCells": 1,
+        "interiorHoles": 0,
+        "contentSpread": 0,
+        "maxContentW": 96,
+        "maxContentH": 208
+      }
+    ],
+    "note": null
+  }
+]

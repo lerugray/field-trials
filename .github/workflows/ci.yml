@@ -31,6 +31,7 @@ jobs:
           - innsmouth-2000
           - stray-squadron
           - oddseedz
+          - adversary
     defaults:
       run:
         working-directory: games/${{ matrix.game }}
@@ -71,6 +72,7 @@ jobs:
           - innsmouth-2000
           - stray-squadron
           - oddseedz
+          - adversary
     defaults:
       run:
         working-directory: games/${{ matrix.game }}
@@ -106,4 +108,5 @@ jobs:
             innsmouth-2000)  echo "covered by browser-gate.test.js in the suite step" ;;
             stray-squadron)  node scripts/soak-stray-squadron.mjs ;;
             oddseedz)        npm run smoke ;;
+            adversary)       node scripts/smoke.mjs ;;
           esac
