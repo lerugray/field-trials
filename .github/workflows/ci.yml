@@ -1,0 +1,107 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # Weekly, Monday 06:00 UTC — the browser job below only runs on this and on dispatch.
+    - cron: "0 6 * * 1"
+
+# The suites job is the required, always-on gate: every game's Node test suite, no
+# browser, no third-party runtime dependencies. It is the one that has to stay green.
+# The browser job is heavier and optional — it installs Chromium and runs each game's
+# real-browser probe. Keeping them apart is deliberate: a flaky browser download must
+# never be able to turn a source-only push red.
+
+jobs:
+  suites:
+    name: "suite · ${{ matrix.game }}"
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        game:
+          - shoeleather
+          - jacquard-index
+          - alkahest
+          - chapel-perilous
+          - innsmouth-2000
+          - stray-squadron
+          - oddseedz
+    defaults:
+      run:
+        working-directory: games/${{ matrix.game }}
+    env:
+      # Nothing here needs a browser binary; make sure no transitive install fetches one.
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.x
+
+      - name: Install (production deps only, if the game has a lockfile)
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci --omit=dev
+          else
+            echo "no lockfile — these games have zero runtime dependencies"
+          fi
+
+      - name: Run the suite
+        run: npm test
+
+  browser:
+    name: "browser gate · ${{ matrix.game }}"
+    # Optional: weekly and on demand only, never on a normal push.
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        game:
+          - shoeleather
+          - jacquard-index
+          - alkahest
+          - chapel-perilous
+          - innsmouth-2000
+          - stray-squadron
+          - oddseedz
+    defaults:
+      run:
+        working-directory: games/${{ matrix.game }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.x
+
+      - name: Install dev deps + Chromium
+        run: |
+          if [ -f package-lock.json ]; then npm ci; fi
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Build the single-file artifact
+        run: npm run build
+
+      - name: Suite (browser gates unskip once Playwright is present)
+        run: npm test
+
+      - name: Browser / artifact probes
+        run: |
+          set -e
+          case "${{ matrix.game }}" in
+            shoeleather)     node scripts/soak.mjs ;;
+            jacquard-index)  node scripts/dist-smoke.js ;;
+            alkahest)        node scripts/proof.js ;;
+            chapel-perilous) node scripts/probe-audio.mjs ;;
+            innsmouth-2000)  echo "covered by browser-gate.test.js in the suite step" ;;
+            stray-squadron)  node scripts/soak-stray-squadron.mjs ;;
+            oddseedz)        npm run smoke ;;
+          esac

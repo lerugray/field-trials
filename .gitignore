@@ -1,0 +1,11 @@
+node_modules/
+dist/
+
+# Single-file build outputs written into the repo root by a game's build script.
+games/chapel-perilous/chapel-perilous.html
+
+# Probe / soak output
+games/*/artifacts/
+games/*/runs/
+
+.DS_Store
