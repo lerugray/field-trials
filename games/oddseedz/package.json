@@ -1,0 +1,15 @@
+{
+  "name": "oddseedz",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A browser-native, fully code-generated monster-ranching toy.",
+  "scripts": {
+    "test": "node --test",
+    "build": "node scripts/build-singlefile.mjs",
+    "smoke": "node scripts/smoke-dist.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
+  }
+}
