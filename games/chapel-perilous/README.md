@@ -33,6 +33,16 @@ One file: CSS, JS and all `data/*.json` inlined, zero `import`/`export`.
 npm test               # node --test — 605 tests
 ```
 
+**Known flake.** One probe in `test/audit-fixes-render.test.js` — the one that opens the
+Manual overlay and then bumps a dungeon wall through the real input conduit — is
+timing-sensitive. On its own it passes every time in about 3.5 seconds; inside the full
+parallel suite it occasionally stretches past 17 seconds and its last assertion fails, at
+roughly one run in five to seven. Capping the runner's concurrency reduces the contention
+without eliminating it, so no cap is applied. It is documented here rather than skipped or
+loosened: it is a real defect in the probe's dependence on wall clock, it predates this
+repository, and weakening an assertion to buy a green badge is the exact move the audits
+in this project exist to catch.
+
 Browser probes (require Playwright):
 
 ```bash
