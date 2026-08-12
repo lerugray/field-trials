@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- pre-JS fallback only; the live title is set from GAME_TITLE (config.js) at boot. -->
+<title>SHOELEATHER</title>
+<style>
+  :root { color-scheme: dark; }
+  html, body {
+    margin: 0; height: 100%;
+    background: #0c0a07;
+    color: #e8dcc0;
+    font-family: "Courier New", monospace;
+    overflow: hidden;
+  }
+  #app { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 8px; }
+  .sl-stage { position: relative; line-height: 0; box-shadow: 0 0 40px rgba(0,0,0,0.8); }
+  .sl-world {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: block;
+  }
+  .sl-overlay { position: absolute; left: 0; top: 0; }
+  .sl-bar { display: flex; gap: 8px; }
+  .sl-btn {
+    background: #241c14; color: #e8dcc0;
+    border: 1px solid #4a3422; padding: 6px 12px;
+    font-family: inherit; font-size: 13px; cursor: pointer;
+  }
+  .sl-btn:disabled {
+    opacity: 0.48;
+    cursor: not-allowed;
+    filter: grayscale(0.4);
+  }
+  .sl-btn:hover { background: #3a2c1e; }
+  .sl-banner {
+    background: #b5561e; color: #fff;
+    padding: 8px 14px; font-weight: bold;
+    max-width: 90vw; word-break: break-word;
+  }
+  /* Evidence toast — the visible moment a fact is noted. */
+  .sl-toast {
+    position: absolute; left: 50%; bottom: 40px; transform: translateX(-50%);
+    background: rgba(24,18,12,0.94); color: #e8dcc0;
+    border: 1px solid #6b7a32; padding: 8px 16px; font-size: 14px;
+    max-width: 80%; text-align: center; pointer-events: none;
+  }
+  /* Notebook — crisp DOM text layer, the core instrument. */
+  .sl-notebook {
+    position: fixed; inset: 4% 6%; z-index: 20;
+    display: flex; flex-direction: column;
+    background: #1b140d; border: 2px solid #4a3422;
+    box-shadow: 0 0 60px rgba(0,0,0,0.9);
+    color: #e8dcc0; font-size: 14px;
+  }
+  .sl-nb-head { display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-bottom: 1px solid #4a3422; }
+  .sl-nb-title { font-weight: bold; letter-spacing: 2px; color: #c8a03c; }
+  .sl-nb-search { flex: 1; background: #0c0a07; color: #e8dcc0; border: 1px solid #4a3422; padding: 6px 8px; font-family: inherit; }
+  .sl-nb-filters { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-bottom: 1px solid #4a3422; }
+  .sl-nb-people { display: flex; gap: 10px; padding: 8px 12px; border-bottom: 1px solid #4a3422; background: #130e09; }
+  .sl-nb-person { display: flex; align-items: center; gap: 8px; min-width: 230px; border: 1px solid #3a2c1e; background: #1b140d; padding: 5px; }
+  .sl-nb-portrait { width: 64px; height: 80px; image-rendering: pixelated; border: 1px solid #4a3422; object-fit: cover; }
+  .sl-nb-person-name { color: #c8a03c; font-weight: bold; }
+  .sl-nb-person-tell { color: #8a9a5a; font-size: 12px; font-style: italic; margin-top: 4px; }
+  .sl-chip { background: #241c14; color: #b09678; border: 1px solid #4a3422; padding: 3px 8px; font-family: inherit; font-size: 12px; cursor: pointer; }
+  .sl-chip-on { background: #6b7a32; color: #0c0a07; border-color: #6b7a32; }
+  .sl-nb-body { flex: 1; overflow-y: auto; padding: 6px 12px; }
+  .sl-nb-row { display: flex; gap: 10px; align-items: baseline; padding: 6px 0; border-bottom: 1px dotted #3a2c1e; }
+  .sl-pin { background: none; border: 1px solid #4a3422; color: #8a7050; cursor: pointer; font-family: inherit; padding: 2px 6px; }
+  .sl-pin-on { color: #c8a03c; border-color: #c8a03c; }
+  .sl-rowbtn { background: #241c14; color: #8a7050; border: 1px solid #4a3422; padding: 2px 6px; font-family: inherit; font-size: 11px; cursor: pointer; }
+  .sl-rowbtn-on { background: #b5561e; color: #fff; border-color: #b5561e; }
+  .sl-nb-meta { color: #8a9a5a; min-width: 240px; font-size: 12px; }
+  .sl-nb-text { flex: 1; }
+  .sl-nb-empty { color: #8a7050; padding: 20px 0; font-style: italic; }
+  .sl-nb-foot { padding: 8px 12px; border-top: 1px solid #4a3422; color: #8a7050; font-size: 12px; }
+  /* Interrogation — portrait tells + dialogue + statement x evidence challenge. */
+  .sl-interro {
+    position: fixed; inset: 6% 8%; z-index: 25; display: flex; gap: 20px;
+    background: #140f0a; border: 2px solid #4a3422; box-shadow: 0 0 60px rgba(0,0,0,0.9);
+    color: #e8dcc0; padding: 16px;
+  }
+  .sl-i-left { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 170px; }
+  .sl-portrait { image-rendering: pixelated; border: 1px solid #4a3422; }
+  .sl-i-speaker { font-weight: bold; color: #c8a03c; letter-spacing: 1px; }
+  .sl-i-posture { color: #8a9a5a; font-size: 13px; font-style: italic; }
+  .sl-i-right { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+  .sl-i-text { font-size: 16px; line-height: 1.4; min-height: 44px; }
+  .sl-i-options { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
+  .sl-i-opt { text-align: left; }
+  .sl-i-challenge { display: flex; flex-direction: column; gap: 6px; }
+  .sl-i-sel { background: #0c0a07; color: #e8dcc0; border: 1px solid #4a3422; padding: 5px; font-family: inherit; max-width: 100%; }
+  .sl-i-clabel { color: #8a7050; font-size: 12px; }
+  .sl-i-log { flex: 1; overflow-y: auto; border-top: 1px dotted #3a2c1e; padding-top: 6px; color: #b09678; font-size: 13px; }
+  .sl-i-logline { padding: 2px 0; }
+  .sl-i-bar { display: flex; gap: 8px; }
+  /* Accusation board — the slotted assertion. */
+  .sl-board {
+    position: fixed; inset: 12% 12%; z-index: 30; flex-direction: column; gap: 16px;
+    background: #16100a; border: 2px solid #6b7a32; box-shadow: 0 0 60px rgba(0,0,0,0.9);
+    color: #e8dcc0; padding: 24px; display: none;
+  }
+  .sl-board[style*="flex"] { display: flex; }
+  .sl-b-title { font-weight: bold; letter-spacing: 3px; color: #c8a03c; }
+  .sl-b-sentence { font-size: 17px; line-height: 2.1; }
+  .sl-b-victim { color: #b5561e; font-weight: bold; }
+  .sl-b-slot { background: #0c0a07; color: #c8a03c; border: 1px solid #6b7a32; padding: 3px 6px; font-family: inherit; font-size: 14px; min-width: 220px; max-width: 100%; }
+  .sl-b-slot option { white-space: normal; }
+  .sl-b-deflect { color: #b5561e; min-height: 22px; font-style: italic; }
+  .sl-b-bar { display: flex; gap: 10px; margin-top: auto; }
+  /* Ending — the confrontation scene. */
+  .sl-ending {
+    position: fixed; inset: 0; z-index: 40; flex-direction: column; align-items: center; justify-content: center;
+    gap: 6px; padding: 40px; display: none; text-align: center; color: #e8dcc0;
+    /* translucent scrim over the murder-scene backdrop (the ratified PoC) */
+    background: linear-gradient(180deg, rgba(10,7,5,0.42) 0%, rgba(10,7,5,0.72) 52%, rgba(10,7,5,0.93) 100%);
+  }
+  .sl-ending[style*="flex"] { display: flex; }
+  .sl-end-kicker { letter-spacing: 6px; color: #8a9a5a; font-size: 12px; text-shadow: 0 2px 6px #000; }
+  .sl-end-cast { width: min(780px, 90vw); display: flex; align-items: end; justify-content: center; gap: 58px; margin: 8px 0 14px; }
+  .sl-end-witnesses { display: flex; gap: 18px; align-items: end; }
+  .sl-end-person { min-width: 140px; padding: 8px; border: 1px solid #6b5032; background: rgba(18,12,8,.72); box-shadow: 0 8px 24px #000, inset 0 0 18px rgba(200,160,60,.05); color: #e8dcc0; transition: border-color .15s, transform .15s; }
+  .sl-end-portrait { display: block; width: 128px; height: 160px; image-rendering: pixelated; image-rendering: crisp-edges; border: 1px solid #8a7050; margin: 0 auto 7px; object-fit: cover; background: #2a1b10; }
+  .sl-end-accused { min-width: 176px; border-color: #b5561e; color: #e0ba78; }
+  .sl-end-accused .sl-end-portrait { width: 160px; height: 200px; border-color: #b96b36; }
+  .sl-end-witness { color: #b8ad91; }
+  .sl-end-active { border-color: #c8a03c; transform: translateY(-4px); box-shadow: 0 10px 30px #000, 0 0 16px rgba(200,160,60,.20); }
+  .sl-end-person-name { font-size: 13px; letter-spacing: 1px; }
+  .sl-end-person-tell { margin-top: 4px; min-height: 14px; color: #8a9a5a; font-size: 11px; font-style: italic; }
+  .sl-end-speaker { color: #c8a03c; letter-spacing: 2px; font-size: 13px; }
+  .sl-end-title { font-size: 22px; letter-spacing: 4px; color: #c8a03c; margin-bottom: 20px; text-shadow: 0 2px 8px #000, 0 0 3px #000; }
+  .sl-end-line { font-size: 16px; line-height: 1.5; max-width: 640px; text-shadow: 0 2px 6px #000, 0 0 3px #000; }
+  .sl-end-reaction { min-height: 22px; color: #a99778; font-style: italic; text-shadow: 0 2px 6px #000; }
+  .sl-ending button { margin-top: 24px; }
+  /* Prologue — play as the murderer (forced-linear). */
+  .sl-prologue {
+    position: fixed; inset: 0; z-index: 35; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px; padding: 48px; display: none; text-align: center; color: #e8dcc0;
+    /* translucent scrim over the murder-scene backdrop (the ratified PoC) */
+    background: linear-gradient(180deg, rgba(8,6,5,0.40) 0%, rgba(8,6,5,0.70) 52%, rgba(8,6,5,0.92) 100%);
+  }
+  .sl-prologue[style*="flex"] { display: flex; }
+  .sl-p-card {
+    width: min(660px, 84vw); display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid #8a7050; border-bottom: 1px solid #8a7050; padding: 8px 12px;
+    color: #c8a03c; background: rgba(18,12,8,.68); box-shadow: 0 4px 18px rgba(0,0,0,.7);
+  }
+  .sl-p-act { letter-spacing: 5px; font-size: 12px; }
+  .sl-p-time { letter-spacing: 2px; color: #e0ba78; font-size: 13px; }
+  .sl-p-kicker { letter-spacing: 6px; color: #8a9a5a; font-size: 13px; text-shadow: 0 2px 6px #000; }
+  .sl-p-prose { font-size: 19px; line-height: 1.6; max-width: 660px; min-height: 120px; text-shadow: 0 2px 8px #000, 0 0 3px #000; }
+  .sl-p-note { color: #8a7050; font-style: italic; font-size: 13px; min-height: 18px; }
+  .sl-p-action { margin-top: 12px; font-size: 15px; padding: 8px 20px; }
+  .sl-prologue-kill {
+    background: linear-gradient(180deg, rgba(24,8,5,0.50) 0%, rgba(32,8,4,0.78) 52%, rgba(8,5,4,0.95) 100%);
+    box-shadow: inset 0 0 0 4px rgba(181,86,30,.72), inset 0 0 90px rgba(90,18,6,.42);
+  }
+  .sl-prologue-kill .sl-p-card { border-color: #b5561e; }
+  .sl-prologue-kill .sl-p-kicker { color: #df7b3c; font-size: 21px; font-weight: bold; letter-spacing: 10px; }
+  .sl-prologue-kill .sl-p-prose { font-weight: bold; color: #f2dfc1; }
+  .sl-prologue-kill .sl-p-action { border-color: #b5561e; color: #f0c18c; }
+  /* Title / case-select — the front door (M7 ship polish; swappable name layer). */
+  .sl-title {
+    position: fixed; inset: 0; z-index: 45; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; padding: 48px; display: none; text-align: center; color: #e8dcc0;
+    background: linear-gradient(180deg, rgba(8,6,5,0.46) 0%, rgba(8,6,5,0.74) 55%, rgba(8,6,5,0.94) 100%);
+  }
+  .sl-title[style*="flex"] { display: flex; }
+  .sl-t-name { font-size: 46px; letter-spacing: 12px; color: #c8a03c; text-shadow: 0 3px 12px #000, 0 0 4px #000; }
+  .sl-t-sub { letter-spacing: 5px; color: #8a7050; font-size: 14px; margin-bottom: 26px; text-shadow: 0 2px 6px #000; }
+  .sl-t-prompt { color: #6b7a32; letter-spacing: 4px; font-size: 12px; margin-bottom: 6px; }
+  .sl-t-case { width: 420px; max-width: 80vw; text-align: left; padding: 12px 18px; margin-top: 2px; }
+  .sl-t-case .sl-t-ct { color: #c8a03c; font-size: 16px; letter-spacing: 1px; }
+  .sl-t-case .sl-t-cb { color: #b09678; font-size: 13px; margin-top: 3px; }
+  /* Options — accessibility / QoL. */
+  .sl-options {
+    position: fixed; inset: 14% 22%; z-index: 36; flex-direction: column; gap: 14px;
+    background: #16100a; border: 2px solid #4a3422; box-shadow: 0 0 60px rgba(0,0,0,0.9);
+    color: #e8dcc0; padding: 22px; display: none;
+  }
+  .sl-options[style*="flex"] { display: flex; }
+  .sl-o-title { font-weight: bold; letter-spacing: 3px; color: #c8a03c; }
+  .sl-o-body { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .sl-o-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px dotted #3a2c1e; padding-bottom: 8px; }
+  .sl-o-label { color: #b09678; }
+  .sl-o-ctrl { display: flex; align-items: center; gap: 10px; }
+  .sl-o-read { min-width: 48px; text-align: center; color: #c8a03c; }
+  .sl-o-note { color: #8a7050; font-size: 12px; font-style: italic; margin-top: 8px; }
+  /* Help overlay reuses .sl-options; sections + lines. */
+  .sl-help { inset: 8% 16%; }
+  .sl-help-sec { margin-bottom: 14px; }
+  .sl-help-t { color: #c8a03c; font-weight: bold; margin-bottom: 4px; }
+  .sl-help-l { color: #cdbb99; font-size: 14px; line-height: 1.5; }
+</style>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
