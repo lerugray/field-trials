@@ -1,0 +1,12 @@
+{
+  "name": "innsmouth-2000",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A Lovecraftian transposition of the classic 1993 Maxis dimetric city-builder format. Zero dependencies.",
+  "scripts": {
+    "test": "node --test",
+    "build": "node scripts/build.js"
+  },
+  "license": "UNLICENSED"
+}

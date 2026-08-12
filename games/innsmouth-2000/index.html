@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>INNSMOUTH 2000</title>
+  <style>
+    html, body { margin: 0; height: 100%; background: #20242a; overflow: hidden; }
+    #screen { display: block; width: 100vw; height: 100vh; image-rendering: pixelated; cursor: crosshair; }
+  </style>
+</head>
+<body>
+  <canvas id="screen"></canvas>
+  <script type="module">
+    import { boot } from './src/main.js';
+    boot(document.getElementById('screen'));
+  </script>
+</body>
+</html>
