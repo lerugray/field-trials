@@ -1,0 +1,11 @@
+{
+  "name": "jacquard-index",
+  "version": "0.0.0",
+  "description": "THE JACQUARD INDEX — a perfected nonogram machine in a defunct textile house's pattern library.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "build": "node build.js"
+  }
+}
