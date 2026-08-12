@@ -1,0 +1,75 @@
+{
+  "_note": "Structure Arc LOCK 2 — Operation 4 (Ledger Reconciliation). Hand-authored layout: a branching loop around a central pillar with east/west setpiece rooms and a north shrine. The geometry forces backtracking and repeated passes, maximizing opportunities to notice journal corruption/ghost entries. No new proc systems — relies on the existing exposure/journal hooks. CONTENTS randomize within authored budgets.",
+  "id": "authored-operation-4",
+  "rows": [
+    "#########################",
+    "###########...###########",
+    "###########...###########",
+    "########.........########",
+    "########.#######.########",
+    "########.#######.########",
+    "########.#######.########",
+    "########.#######.########",
+    "########.........########",
+    "###....................##",
+    "###....................##",
+    "###....................##",
+    "########.........########",
+    "##########.....##########",
+    "##########.....##########",
+    "##########.....##########",
+    "############.############"
+  ],
+  "entrance": {
+    "x": 12,
+    "y": 16,
+    "dir": "S"
+  },
+  "start": {
+    "x": 12,
+    "y": 15,
+    "facing": "N"
+  },
+  "milestones": [
+    {
+      "id": "op4-milestone",
+      "x": 12,
+      "y": 1,
+      "kind": "relic",
+      "artifact": "op4-milestone",
+      "description": "PROSE_TBD_op4-milestone",
+      "tags": [
+        "milestone"
+      ]
+    }
+  ],
+  "spawns": [
+    {
+      "id": "op4-spawn-west-study",
+      "x": 4,
+      "y": 9,
+      "pool": [
+        "gutter-clerk",
+        "hollow-pilgrim"
+      ]
+    },
+    {
+      "id": "op4-spawn-east-gallery",
+      "x": 20,
+      "y": 9,
+      "pool": [
+        "hollow-pilgrim",
+        "surveyor-of-fnords"
+      ]
+    },
+    {
+      "id": "op4-spawn-north-shrine",
+      "x": 8,
+      "y": 3,
+      "pool": [
+        "brass-automaton",
+        "five-eyed-auditor"
+      ]
+    }
+  ]
+}

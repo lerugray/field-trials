@@ -1,0 +1,62 @@
+{
+  "_note": "Structure Arc slice 1 (STRUCTURE-ARC-LOCKS-2026-08-05.md LOCK 2) \u2014 the first hand-authored dungeon interior, the pattern exemplar for every authored dungeon after it, wired to Operation 1 via data/operations.json's authoredLayout field. The floor plan (`rows`) is fixed data, never generated at runtime: '#' wall, '.' floor. entrance/start are authored coordinates (not searched for, unlike the procedural kit). CONTENTS randomize within the authored budgets below: each `spawns[]` room draws a being from its `pool` seeded off the dungeon seed (a fixed ROOM, a random OCCUPANT); `milestones[]` sit at fixed points and are granted once, guaranteeing forward progress regardless of loot luck. Verified connected (flood-fill from `start` reaches every floor tile, including both spawns and the milestone) by the script that produced this file; see test/authoreddungeon.test.js for the standing regression. Shape: entrance room (south) -> corridor -> junction room (2 inhabitant spawns) -> corridor -> inner sanctum (the milestone).",
+  "id": "authored-operation-1",
+  "rows": [
+    "#################",
+    "###########.....#",
+    "###########.....#",
+    "#.........#.....#",
+    "#...............#",
+    "#.........#.....#",
+    "#.........#######",
+    "####.############",
+    "####.############",
+    "##.....##########",
+    "##.....##########",
+    "##.....##########",
+    "####.############"
+  ],
+  "entrance": {
+    "x": 4,
+    "y": 12,
+    "dir": "S"
+  },
+  "start": {
+    "x": 4,
+    "y": 11,
+    "facing": "N"
+  },
+  "milestones": [
+    {
+      "id": "op1-milestone",
+      "x": 13,
+      "y": 3,
+      "kind": "relic",
+      "artifact": "op1-milestone",
+      "description": "Primary Calibration Standard: a machined brass cylinder etched with concentric decay scales, recovered to verify local reality drift against established parameters.",
+      "tags": [
+        "milestone"
+      ]
+    }
+  ],
+  "spawns": [
+    {
+      "id": "op1-spawn-junction-w",
+      "x": 2,
+      "y": 4,
+      "pool": [
+        "cave-rat",
+        "gutter-clerk"
+      ]
+    },
+    {
+      "id": "op1-spawn-junction-e",
+      "x": 8,
+      "y": 5,
+      "pool": [
+        "cave-rat",
+        "gutter-clerk"
+      ]
+    }
+  ]
+}

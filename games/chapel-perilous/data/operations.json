@@ -1,0 +1,76 @@
+{
+  "_note": "Structure Arc slice 1 (STRUCTURE-ARC-LOCKS-2026-08-05.md LOCK 1/2/3) \u2014 the recovered manual's fixed questline. Five Operations, identical in every generated world, one per procedurally-placed dungeon site (worldgen.js DUNGEON_SITE_COUNT=5). `dungeonSlot` indexes the world's dungeon sites sorted nearest-to-farthest from spawn (src/engine/manual.js orderDungeonSites) \u2014 that ordering is what assigns MEANING onto already-procedural positions; it never touches placement itself (LOCK 2's placement fork stays resolved to (b)). Operation 5 is always the farthest dungeon and is therefore 'the Chapel' (LOCK 3) \u2014 src/engine/manual.js's isChapelSite() is the single source of truth for this, replacing the old id/name regex guess that only worked when a site's randomly-templated name happened to say 'Chapel'. `teaches` is factual/mechanical (which real, already-shipped system the operation walks the player through) and is NOT a naming item. `title`/`gates`/`pointerHint`/`intro` were authored by WEISS 2026-08-05 night (Ray routed CHP voice calls to Weiss this session; Weiss calibration: DRAFT-ONLY band). RAY BLESSED THE FULL SET 2026-08-06 (titles, gates, pointers, intro beats, op1 relic) \u2014 this is operator-approved voice; edits are his to make, not a pending gate. `gates` is DESCRIPTIVE (which capability the operation's completion narratively represents becoming legible/available) \u2014 completing an operation does NOT mechanically lock/unlock any verb; the world stays open and every site is enterable in any order, exactly as shipped. `status` (locked/active/complete) is the MANUAL's own display bookkeeping only. `completion.type: clearSite` reads the EXISTING session.clearedSites() signal \u2014 session.clearSite(site.id) already fires the moment any fight is won inside a dungeon (src/main.js combat-return handling) \u2014 no new completion mechanic was added.",
+  "introBeats": [
+    "You found the manual. It was left on a bench with no name on the cover.",
+    "The manual contains five operations. They are printed in sequence and do not change.",
+    "Whoever runs the operations becomes the thing people whisper about. The pattern follows them regardless."
+  ],
+  "operations": [
+    {
+      "id": "op-1",
+      "number": 1,
+      "title": "Baseline Survey",
+      "teaches": "first-person dungeon crawling (forward/back, turning) and the four-verb tactical combat loop (strike/guard/reach/gambit) against a mundane single foe, in a hand-authored layout",
+      "gates": "How to hold the line",
+      "dungeonSlot": 0,
+      "authoredLayout": "operation-1",
+      "pointerHint": "Proceed to the nearest service tunnel and note that the walls are already dry.",
+      "completion": {
+        "type": "clearSite"
+      }
+    },
+    {
+      "id": "op-2",
+      "number": 2,
+      "title": "Entity Assessment",
+      "teaches": "reading a being before you fight it \u2014 sneaking past a visible dungeon enemy (NERVE-gated) or opening a parley (the stat-gated approach verbs) instead of striking",
+      "gates": "How to read what watches back",
+      "dungeonSlot": 1,
+      "authoredLayout": "operation-2",
+      "pointerHint": "Follow the drainage line to the secondary shaft where the air moves against the wind.",
+      "completion": {
+        "type": "clearSite"
+      }
+    },
+    {
+      "id": "op-3",
+      "number": 3,
+      "title": "Transit Authorization",
+      "teaches": "the work of passage \u2014 world gates that stay shut until a tagged traversal item is spent at them, found as loot in the biomes that border a gate",
+      "gates": "The door opens on payment",
+      "dungeonSlot": 2,
+      "authoredLayout": "operation-3",
+      "pointerHint": "Cross to the third junction and find the gate; it opens only when the ledger matches.",
+      "completion": {
+        "type": "clearSite"
+      }
+    },
+    {
+      "id": "op-4",
+      "number": 4,
+      "title": "Ledger Reconciliation",
+      "teaches": "the record keeps its own account \u2014 the journal's corruption and ghost entries rising with hidden exposure (FNORD), so what you wrote and what you read start to differ",
+      "gates": "The ledger keeps its own count",
+      "dungeonSlot": 3,
+      "authoredLayout": "operation-4",
+      "pointerHint": "Travel past the municipal boundary to the railyard and observe that the tracks do not connect.",
+      "completion": {
+        "type": "clearSite"
+      }
+    },
+    {
+      "id": "op-5",
+      "number": 5,
+      "title": "Terminal Audit",
+      "teaches": "the Chapel \u2014 full-register collision (every register speaks over the others at once) and the far harder 'chapel' encounter table; the rumored entity's theory resolves here, unconfirmed either way",
+      "gates": "All voices speak at once",
+      "dungeonSlot": 4,
+      "final": true,
+      "authoredLayout": "operation-5",
+      "pointerHint": "Continue to the end of the grid where the pavement stops; the structure waits without a door.",
+      "completion": {
+        "type": "clearSite"
+      }
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "_note": "Structure Arc LOCK 2 — Operation 5, the Chapel (Terminal Audit). Hand-authored culmination interior: approach narthex, side aisles, transept crossing, and the chapel proper/choir. Largest floor budget; contents are hardest (existing 'chapel' encounter table is selected for this site in main.js via isChapel). CONTENTS randomize within authored budgets. Milestone at the altar.",
+  "id": "authored-operation-5",
+  "rows": [
+    "###############################",
+    "###########.........###########",
+    "###########.........###########",
+    "###########.........###########",
+    "###########.........###########",
+    "###########.........###########",
+    "###########.........###########",
+    "###########.........###########",
+    "#####.....................#####",
+    "#####.....................#####",
+    "#####.....................#####",
+    "#####.....................#####",
+    "#####.....................#####",
+    "#####.......#.....#.......#####",
+    "#####.......#.....#.......#####",
+    "#####.....................#####",
+    "###########.........###########",
+    "###########.........###########",
+    "###########.........###########",
+    "###########.........###########",
+    "###############.###############"
+  ],
+  "entrance": {
+    "x": 15,
+    "y": 20,
+    "dir": "S"
+  },
+  "start": {
+    "x": 15,
+    "y": 19,
+    "facing": "N"
+  },
+  "milestones": [
+    {
+      "id": "op5-milestone",
+      "x": 15,
+      "y": 2,
+      "kind": "relic",
+      "artifact": "op5-milestone",
+      "description": "PROSE_TBD_op5-milestone",
+      "tags": [
+        "milestone"
+      ]
+    }
+  ],
+  "spawns": [
+    {
+      "id": "op5-spawn-narthex",
+      "x": 17,
+      "y": 16,
+      "pool": [
+        "yellow-sign-bearer",
+        "hollow-pilgrim"
+      ]
+    },
+    {
+      "id": "op5-spawn-left-aisle",
+      "x": 7,
+      "y": 11,
+      "pool": [
+        "brass-automaton",
+        "five-eyed-auditor"
+      ]
+    },
+    {
+      "id": "op5-spawn-right-aisle",
+      "x": 23,
+      "y": 11,
+      "pool": [
+        "brass-automaton",
+        "five-eyed-auditor"
+      ]
+    },
+    {
+      "id": "op5-spawn-choir",
+      "x": 13,
+      "y": 3,
+      "pool": [
+        "five-eyed-auditor",
+        "yellow-sign-bearer"
+      ]
+    },
+    {
+      "id": "op5-spawn-transept",
+      "x": 15,
+      "y": 10,
+      "pool": [
+        "hollow-pilgrim",
+        "gutter-clerk"
+      ]
+    }
+  ]
+}

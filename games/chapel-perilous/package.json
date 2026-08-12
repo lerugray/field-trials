@@ -1,0 +1,12 @@
+{
+  "name": "chapel-perilous",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A first-person grid dungeon crawler in Illuminatus!-trilogy conspiracy static. Zero runtime dependencies.",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test",
+    "build": "node scripts/build-singlefile.mjs"
+  }
+}

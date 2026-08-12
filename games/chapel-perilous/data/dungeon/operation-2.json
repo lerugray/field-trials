@@ -1,0 +1,74 @@
+{
+  "_note": "Operation 2: Entity Assessment \u2014 authored interior. Teaches reading a being before fighting it: a long central corridor puts the first guard in direct view, while a narrow west bypass lets the player route around it. A second guard watches the east alcove, making a frontal assault on every occupant the expensive option. Layout is authored; occupants are drawn from their room pools with deterministic seeding.",
+  "id": "authored-operation-2",
+  "rows": [
+    "#########################",
+    "#########################",
+    "##########.....##########",
+    "##########.....##########",
+    "##########.....##########",
+    "####...........##########",
+    "####.#####.....##########",
+    "####.#####.....##########",
+    "####.#######.###.....####",
+    "####.#######.........####",
+    "####.#######.###.....####",
+    "####.#######.###.....####",
+    "####.#######.############",
+    "####...........##########",
+    "##########.....##########",
+    "##########.....##########",
+    "############.############"
+  ],
+  "entrance": {
+    "x": 12,
+    "y": 16,
+    "dir": "S"
+  },
+  "start": {
+    "x": 12,
+    "y": 15,
+    "facing": "N"
+  },
+  "milestones": [
+    {
+      "id": "op2-milestone",
+      "x": 12,
+      "y": 2,
+      "kind": "relic",
+      "description": "PROSE_TBD_op2-milestone",
+      "tags": [
+        "milestone"
+      ]
+    }
+  ],
+  "spawns": [
+    {
+      "id": "op2-spawn-guard-corridor",
+      "x": 12,
+      "y": 6,
+      "pool": [
+        "gutter-clerk",
+        "hollow-pilgrim"
+      ]
+    },
+    {
+      "id": "op2-spawn-east-alcove",
+      "x": 18,
+      "y": 9,
+      "pool": [
+        "brass-automaton",
+        "five-eyed-auditor"
+      ]
+    },
+    {
+      "id": "op2-spawn-bypass",
+      "x": 4,
+      "y": 9,
+      "pool": [
+        "cave-rat",
+        "gutter-clerk"
+      ]
+    }
+  ]
+}

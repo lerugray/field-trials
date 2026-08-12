@@ -1,0 +1,38 @@
+[
+  {
+    "name_flavor": "Guttural — short, consonant-heavy",
+    "onset": ["k", "g", "d", "dr", "gr", "kr", "b", "br", "t", "th", "wh", "tr"],
+    "nucleus": ["e", "u", "a", "o", "i"],
+    "coda": ["lm", "rr", "cht", "ck", "rk", "nt", "st", "lk", "sk", "rd", "ft", "ng", "ld", "rg"],
+    "syllable_patterns": ["CVC", "CVC", "CVC"],
+    "settlement_suffixes": ["holm", "keep", "burg", "mark", "stead", "crag", "gard", "fell"],
+    "compound": false
+  },
+  {
+    "name_flavor": "Sibilant — longer, vowel-rich",
+    "onset": ["s", "sh", "v", "sv", "th", "sl", "z", "r", "l", ""],
+    "nucleus": ["ee", "aa", "i", "e", "a", "o", "ai", "oo", "u"],
+    "coda": ["th", "ss", "sh", "n", "r", "l", "s", "nd", "ll"],
+    "syllable_patterns": ["CVC", "CV", "VC", "V"],
+    "settlement_suffixes": ["essa", "anis", "issi", "een", "aal", "oth", "ais", "ira"],
+    "compound": false
+  },
+  {
+    "name_flavor": "Nasal — rhythmic, resonant",
+    "onset": ["m", "n", "nn", "gn", "", "g", "b", "d"],
+    "nucleus": ["e", "a", "o", "i", "u"],
+    "coda": ["n", "m", "ng", "nn", "nk", "nd", "nt", "ll", "rn", "mm", "nv", "r"],
+    "syllable_patterns": ["CVC", "VC", "CVC"],
+    "settlement_suffixes": ["mond", "nim", "enn", "ang", "ummer", "inn", "annen", "ond"],
+    "compound": false
+  },
+  {
+    "name_flavor": "Compound — hyphenated, diplomatic",
+    "onset": ["p", "d", "k", "t", "b", "w", "kr", "pl", "tr", ""],
+    "nucleus": ["e", "i", "a", "o", "u"],
+    "coda": ["lm", "rr", "ck", "n", "st", "th", "lk", "v", "ld"],
+    "syllable_patterns": ["CVC", "CV", "VC"],
+    "settlement_suffixes": [],
+    "compound": true
+  }
+]

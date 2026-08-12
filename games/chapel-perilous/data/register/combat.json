@@ -1,0 +1,103 @@
+{
+  "_note": "[SEED] M11 combat register — the in-voice combat SURFACE (directive §4: all verbs + outcomes render through the register engine's prose, no menu-speak). labels: the short verb names on the choice line (not 'fight/talk/flee'). beats: the voiced line after an action resolves. outcomes: the banner when a fight ends or a verb is refused. subterfuge: the environment-keyed edge the SUBTERFUGE verb reads per-biome. All strings [SEED] until Ray's voice pass; stripped from every player surface at draw.",
+  "labels": {
+    "attack": "[SEED] Strike",
+    "defend": "[SEED] Guard",
+    "item": "[SEED] Reach",
+    "subterfuge": "[SEED] Gambit",
+    "talk": "[SEED] Parley",
+    "flee": "[SEED] Break away"
+  },
+  "beats": {
+    "attack": ["[SEED] you commit — no taking it back", "[SEED] you close and cut"],
+    "defend": ["[SEED] you set your feet and wait for it", "[SEED] you give no opening"],
+    "item": ["[SEED] you reach into the pack", "[SEED] you trust the found thing"],
+    "subterfuge": ["[SEED] you work the ground for a lie", "[SEED] you bend the moment"],
+    "talk": ["[SEED] you try the words instead", "[SEED] you spend breath, not blood"],
+    "flee": ["[SEED] you look for a lane out"]
+  },
+  "outcomes": {
+    "win": ["[SEED] the pattern breaks and does not re-form", "[SEED] the shape comes apart in your hands"],
+    "lose": ["[SEED] the thread is cut", "[SEED] the world closes over the space you held"],
+    "fled": ["[SEED] you break contact and run", "[SEED] the dark takes you before it can"],
+    "flee_fail": ["[SEED] there is no lane out — not yet", "[SEED] the way closes; you turn back to it"],
+    "parley": ["[SEED] words hold where blows would not", "[SEED] it stands down, uneasy"],
+    "recruit": ["[SEED] it falls in beside you", "[SEED] it throws in with your thread"],
+    "talk_hardened": ["[SEED] it is past listening now", "[SEED] the time for words closed with the first blow"],
+    "verb_unavailable": ["[SEED] that tack finds no purchase in it", "[SEED] it hears the word and is unmoved"],
+    "subterfuge_spent": ["[SEED] that trick is used up", "[SEED] the ground gives you nothing more"],
+    "item_fumble": ["[SEED] the rite slips its gnosis and scatters", "[SEED] you reach past your reach; nothing answers"]
+  },
+  "approaches": {
+    "overawe": ["[SEED] you hold its gaze and do not blink", "[SEED] you meet it without looking away"],
+    "impress": ["[SEED] you name the thing it fears becoming", "[SEED] you show it the mask it cannot wear"],
+    "bargain": ["[SEED] you offer what you cannot keep", "[SEED] you name a price that costs you nothing yet"],
+    "bind": ["[SEED] you speak the old compact", "[SEED] you call the name that was never secret"]
+  },
+  "responses": {
+    "parley": {
+      "mundane": ["[SEED] it listens because you are not yet an enemy", "[SEED] it weighs the cost of closing with you"],
+      "strange": ["[SEED] it leans, tasting the shape of your words", "[SEED] something in it hesitates, half-turned"],
+      "uncanny": ["[SEED] it answers in the grammar of almost-recognition", "[SEED] the pattern bends around your voice"],
+      "sacred": ["[SEED] it hears you because the old law requires it", "[SEED] your words fall into a silence older than the fight"]
+    },
+    "recruit": {
+      "mundane": ["[SEED] it falls in as if the choice were already made", "[SEED] it takes your side before it knows why"],
+      "strange": ["[SEED] it turns, and something in it settles toward you", "[SEED] it decides you are the safer pattern"],
+      "uncanny": ["[SEED] it consents, for reasons that are not yours", "[SEED] it throws in - you will wonder later why"],
+      "sacred": ["[SEED] it inclines toward you, which should be impossible", "[SEED] it walks with you now; do not ask what it wants"]
+    },
+    "verb_unavailable": {
+      "mundane": ["[SEED] the word passes through it without catching", "[SEED] it is not the sort of thing that bends to that"],
+      "strange": ["[SEED] that tack finds no purchase in it", "[SEED] it hears the word and is unmoved"],
+      "uncanny": ["[SEED] that approach reads like a lie to its kind", "[SEED] your words open no door in it"],
+      "sacred": ["[SEED] it regards you as one regards weather", "[SEED] your voice is a small noise against its purpose"]
+    },
+    "talk_hardened": {
+      "mundane": ["[SEED] it is past listening now", "[SEED] the time for words closed with the first blow"],
+      "strange": ["[SEED] something in it has locked; speech will not turn it", "[SEED] it has gone deaf to reason in the old way"],
+      "uncanny": ["[SEED] the shape of your words breaks against it", "[SEED] the air rejects the grammar of peace"],
+      "sacred": ["[SEED] it does not answer; it has never answered", "[SEED] your voice is one more thing the world ignores"]
+    }
+  },
+  "_targeting_note": "[SEED] M12 H3 — the follower-targeting weight table. Ships EXACTLY uniform {pc:1, follower:1} so combat is unchanged; a later operator pass can raise follower to make allies drawn fire, or pc to make the stranger the mark. A tunable design lever, not an array-order accident.",
+  "targeting": { "pc": 1, "follower": 1 },
+  "_kills_note": "[SEED] C1 kill beat — one line per KILL CLASS (banded by the felled thing's weirdness / sacredness). Held a beat as a framed panel over the scene.",
+  "kills": {
+    "mundane": ["[SEED] it drops, and is only meat", "[SEED] the body folds; nothing was watching after all"],
+    "strange": ["[SEED] it comes apart wrong, and is still", "[SEED] whatever held it lets go all at once"],
+    "uncanny": ["[SEED] the shape unspools and will not re-knot", "[SEED] it ends, and the air is glad of the space"],
+    "sacred": ["[SEED] you have unmade something that should not have been struck", "[SEED] the silence after is not empty"]
+  },
+  "_joins_note": "[SEED] C2 join beat — the being's own turning, by class, held a beat. Ray's voice pass can give each being its own line.",
+  "joins": {
+    "mundane": ["[SEED] it takes your side as if it always had", "[SEED] it falls in, glad of the company"],
+    "strange": ["[SEED] it turns, and something in it settles toward you", "[SEED] it decides you are the safer pattern"],
+    "uncanny": ["[SEED] it consents, for reasons that are not yours", "[SEED] it throws in - you will wonder later why"],
+    "sacred": ["[SEED] it inclines toward you, which should be impossible", "[SEED] it walks with you now; do not ask what it wants"]
+  },
+  "subterfuge": {
+    "default": { "chance": 0.5, "kind": "distract", "labels": [
+      "[SEED] kicks up grit and shadow",
+      "[SEED] fakes a stumble to pull the eye wide"
+    ] },
+    "biomes": {
+      "drowned-fen": { "chance": 0.62, "kind": "distract", "labels": [
+        "[SEED] slaps the black water into a curtain of mist",
+        "[SEED] lets the reeds close like a drawn breath"
+      ] },
+      "salt-flats": { "chance": 0.38, "kind": "expose", "labels": [
+        "[SEED] there is nowhere to hide on the pan — the feint goes wide and true",
+        "[SEED] throws salt-glare across its eyes"
+      ] },
+      "pine-barrens": { "chance": 0.55, "kind": "distract", "labels": [
+        "[SEED] snaps a resin branch to crack like a shot",
+        "[SEED] melts a step back into the black conifers"
+      ] },
+      "perilous-verge": { "chance": 0.5, "kind": "expose", "labels": [
+        "[SEED] lets the wrong-angle geometry do the lying",
+        "[SEED] steps through a corner that should not be there"
+      ] }
+    }
+  }
+}

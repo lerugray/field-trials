@@ -1,0 +1,25 @@
+{
+  "_note": "[SEED] Character generation content (CHARACTER-DESIGN-2026-08-02: deal a person, not a spreadsheet). Omens are the quirk a roll deals; oddments are the one starting item that IS your weapon (power from items, never stats). Names/omens [SEED] until Ray's voice pass; oddment dmg bands are mechanical. Rerolls are unlimited — each is a whole stranger, and there is no 'good' roll: stats are a conversation style, not a power level.",
+  "omens": [
+    "[SEED] born under a crossed-out star",
+    "[SEED] remembers a city that was never built",
+    "[SEED] counts doorways, always arrives at five",
+    "[SEED] the mirror is half a second late",
+    "[SEED] owes a debt to someone not yet met",
+    "[SEED] hums a hymn no church will claim",
+    "[SEED] the number 23 follows, politely",
+    "[SEED] dreams in triplicate carbon copy",
+    "[SEED] was declared missing before setting out",
+    "[SEED] carries the smell of a room long closed"
+  ],
+  "oddments": [
+    { "name": "[SEED] a dull ceremonial knife", "weapon": { "name": "[SEED] dull knife", "dmg": [2, 4] } },
+    { "name": "[SEED] a length of surveyor's chain", "weapon": { "name": "[SEED] iron chain", "dmg": [2, 5] } },
+    { "name": "[SEED] a heavy brass paperweight", "weapon": { "name": "[SEED] brass weight", "dmg": [3, 5] } },
+    { "name": "[SEED] a walking cane with a hidden heft", "weapon": { "name": "[SEED] loaded cane", "dmg": [2, 6] } },
+    { "name": "[SEED] a rusted service revolver, one round", "weapon": { "name": "[SEED] one-shot revolver", "dmg": [1, 9] } },
+    { "name": "[SEED] a fistful of blessed gravel", "weapon": { "name": "[SEED] thrown gravel", "dmg": [1, 4] } },
+    { "name": "[SEED] a fire-axe from a door marked EXIT", "weapon": { "name": "[SEED] fire-axe", "dmg": [3, 7] } },
+    { "name": "[SEED] nothing but your own two hands", "weapon": { "name": "[SEED] bare hands", "dmg": [1, 3] } }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "_note": "[SEED] M9 biome ambient-event fragments (events channel). Short subject phrases the prose engine wraps with a generated, register-weighted event tail (biome weirdness + register). Every fragment is [SEED]; the composed output is [SEED] too — Ray's voice pass replaces the wording, the event engine stays. Keyed by biome id.",
+  "events": {
+    "perilous-verge": [
+      "[SEED] the ground disagrees with your feet",
+      "[SEED] a door stands here with no wall around it",
+      "[SEED] the fnords thicken until you can almost read them",
+      "[SEED] your shadow arrives a moment before you do",
+      "[SEED] a bell you cannot see is rung once, apologetically"
+    ],
+    "pine-barrens": [
+      "[SEED] the pines close the path quietly behind you",
+      "[SEED] something in the dark counts your steps in fives",
+      "[SEED] resin holds an old scream very still",
+      "[SEED] a knoll-stone settles as though it had been listening",
+      "[SEED] the needles underfoot spell nothing you will admit to reading"
+    ],
+    "salt-flats": [
+      "[SEED] the pan records your passage in a thin line of salt",
+      "[SEED] a survey stake marks nothing here, precisely",
+      "[SEED] the heat bends the horizon into a standing figure",
+      "[SEED] the glare completes its report and files you under it",
+      "[SEED] a wind crosses the flat carrying the smell of old paper"
+    ],
+    "drowned-fen": [
+      "[SEED] the reeds pass a folded note between them",
+      "[SEED] a bell rings once, underwater, and is corrected",
+      "[SEED] the water keeps its own filing system and consults it",
+      "[SEED] something surfaces, reconsiders the whole affair, and sinks",
+      "[SEED] your reflection lingers a beat after you move on"
+    ]
+  }
+}

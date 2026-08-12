@@ -1,0 +1,24 @@
+{
+  "seed": 2323,
+  "chunkSize": 16,
+  "streamRadius": 1,
+  "noise": { "octaves": 4, "freq": 0.07, "lacunarity": 2, "gain": 0.5 },
+  "bands": [
+    { "tile": "DEEP",   "max": 0.30 },
+    { "tile": "WATER",  "max": 0.38 },
+    { "tile": "SAND",   "max": 0.44 },
+    { "tile": "GRASS",  "max": 0.62 },
+    { "tile": "FOREST", "max": 0.74 },
+    { "tile": "HILL",   "max": 0.85 },
+    { "tile": "MOUNT",  "max": 1.01 }
+  ],
+  "start": { "x": 5, "y": 5 },
+  "sites": [
+    { "id": "chapel-0",       "x": 8,  "y": 6,  "kind": "dungeon", "name": "[SEED] The Chapel Perilous" },
+    { "id": "waystation-23",  "x": 3,  "y": 9,  "kind": "dungeon", "name": "[SEED] Waystation 23" },
+    { "id": "hive-5",         "x": 12, "y": 11, "kind": "city",    "name": "[SEED] Hive of the Fifth" }
+  ],
+  "gates": [
+    { "id": "fen-ford-0", "x": 11, "y": 15, "requiresTag": "ford", "label": "[SEED] the drowned ford" }
+  ]
+}

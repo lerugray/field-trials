@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapel Perilous</title>
+  <style>
+    :root { color-scheme: dark; }
+    html, body {
+      margin: 0; height: 100%;
+      background: #000; color: #ccc;
+      font-family: "Courier New", monospace;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    #screen {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      background: #000;
+      border-radius: 26px; /* approved PoC faux tube corners */
+      /* Backing size + CSS size are set by JS via the full-window frame
+         (src/engine/frame.js): the composed surface — scene viewport + side HUD
+         panel + bottom console strip — fills ~99% of the window, no pillarbox. */
+    }
+    /* The status/hint moved INTO the in-canvas console strip; kept as hidden
+       mirrors for accessibility + any host page that reads them. */
+    #status, #hint { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  </style>
+</head>
+<body>
+  <canvas id="screen" width="864" height="540"></canvas>
+  <div id="status">&nbsp;</div>
+  <div id="hint" aria-hidden="true"></div>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "_note": "[SEED] M4 VIBE palette schemes. The look is ONE hue at a time (DESIGN-SEED): each scheme is a single base hue the 0..6 shade ramp is remapped onto, dark→light by brightness only. Monochrome by construction — every shade of a scheme shares the scheme's channel ratio. M6 review addendum item 3 (Ray, Cyclopean-2 move): each scheme gains ONE restrained accent hue used sparingly (HUD accents, the party marker, special entities, register moments) — the base ramp stays strictly single-hue; the accent is the only second colour. Names [SEED] until Ray's voice pass.",
+  "default": "phosphor-green",
+  "schemes": [
+    { "id": "phosphor-green", "name": "[SEED] Phosphor Green", "rgb": [60, 255, 104], "accent": [206, 255, 208], "glow": [206, 255, 208] },
+    { "id": "amber", "name": "[SEED] Amber", "rgb": [255, 170, 42], "accent": [255, 240, 196], "glow": [255, 240, 196] },
+    { "id": "paper-white", "name": "[SEED] Paper White", "rgb": [228, 236, 246], "accent": [230, 96, 96], "glow": [255, 255, 255] },
+    { "id": "ice-blue", "name": "[SEED] Ice", "rgb": [116, 204, 255], "accent": [255, 190, 96], "glow": [224, 244, 255] },
+    { "id": "blood", "name": "[SEED] Blood", "rgb": [255, 58, 48], "accent": [240, 210, 120], "glow": [255, 196, 164] }
+  ]
+}

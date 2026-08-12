@@ -1,0 +1,34 @@
+{
+  "_note": "[SEED] City-mode strings (M3 CITY / M8 town variety). Cities are the SOCIAL dungeon (CONTENT-IDENTITY): the identity layer is lodges/cells/front organizations. M8 adds per-town archetypes, more service verbs, per-building proprietors, and citizens so two towns and two buildings never read the same. All [SEED] until Ray's voice pass.",
+  "prompt_enter_building": "[SEED] A door stands open. Step inside?",
+  "prompt_leave_city": "[SEED] The gate is behind you; the map resumes, probably.",
+  "services": {
+    "shop": { "name": "[SEED] Sundries & Contraband", "greeting": "[SEED] The stall opens for the right knock. Everything is for sale; some of it is yours already." },
+    "inn": { "name": "[SEED] The Bent Nail", "greeting": "[SEED] Rooms by the hour. Dreams are extra and not guaranteed to be your own." },
+    "rumor": { "name": "[SEED] The Listening Post", "greeting": "[SEED] Someone here sells what everyone already knows, at a markup for the telling." },
+    "lodge": { "name": "[SEED] A Door With No Sign", "greeting": "[SEED] You were expected. Give the word, or give a reason you don't have it." },
+    "shrine": { "name": "[SEED] The Half-Lit Chapel-of-Ease", "greeting": "[SEED] A shrine to a saint whose name keeps changing. Kneel, if your certainties will let you." },
+    "bureau": { "name": "[SEED] The Sub-Office of Minor Permanences", "greeting": "[SEED] Take a number. The number takes one back. A clerk will see your file, eventually, forever." }
+  },
+  "service_effects": {
+    "shrine_blessed": "[SEED] the changing saint marks you; the party is mended and something watches back",
+    "shrine_refused": "[SEED] you kneel and feel nothing kneel with you — no gnosis, no blessing",
+    "bureau_filed": "[SEED] your existence is stamped, cross-referenced, and filed under a name almost your own",
+    "bureau_pending": "[SEED] your file is already open; the stamp has been applied and cannot be un-applied"
+  },
+  "archetypes": {
+    "port": "[SEED] a salt-rotted port town; the tide leaves messages nobody admits to reading",
+    "bureau": "[SEED] a bureaucratic seat where the paperwork outnumbers the people and outranks them",
+    "pilgrimage": "[SEED] a pilgrimage stop; every third door is a shrine to a slightly different god",
+    "market": "[SEED] a market town that will sell you anything, including things you brought",
+    "garrison": "[SEED] a garrison town; the walls face inward and no one will say why"
+  },
+  "citizen_greetings": [
+    "[SEED] gives you directions to a street that was demolished, warmly.",
+    "[SEED] recognizes you from a future you have not had yet.",
+    "[SEED] is counting the windows and asks you not to interrupt.",
+    "[SEED] offers to sell you your own name back at a fair price.",
+    "[SEED] warns you about the man in the grey coat, who is also them.",
+    "[SEED] says the gate moved again and points three different ways."
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "_note": "Structure Arc LOCK 2 — Operation 3 (Transit Authorization). Hand-authored layout: an interior gate/door in the main corridor, consistent with the overworld gate shape (requiresTag + label). The fixed milestone is a tagged work-item (kind:relic, tags include the gate's requiresTag) placed in a western alcove before the gate, so the run cannot dead-end. Spending the item at the gate opens the way to the inner chamber. CONTENTS randomize within authored budgets.",
+  "id": "authored-operation-3",
+  "rows": [
+    "###################",
+    "###################",
+    "###################",
+    "#######.....#######",
+    "#######.....#######",
+    "#######.....#######",
+    "#######.....#######",
+    "#######.....#######",
+    "#########.#########",
+    "####...##.#########",
+    "####...##.#########",
+    "####........#######",
+    "#######.....#######",
+    "#######.....#######",
+    "#########.#########"
+  ],
+  "entrance": {
+    "x": 9,
+    "y": 14,
+    "dir": "S"
+  },
+  "start": {
+    "x": 9,
+    "y": 13,
+    "facing": "N"
+  },
+  "gates": [
+    {
+      "id": "op3-interior-gate",
+      "x": 9,
+      "y": 8,
+      "requiresTag": "op3-transit",
+      "label": "PROSE_TBD_op3-gate"
+    }
+  ],
+  "milestones": [
+    {
+      "id": "op3-milestone",
+      "x": 4,
+      "y": 10,
+      "kind": "relic",
+      "artifact": "op3-milestone",
+      "description": "PROSE_TBD_op3-milestone",
+      "tags": [
+        "milestone",
+        "op3-transit"
+      ]
+    }
+  ],
+  "spawns": [
+    {
+      "id": "op3-spawn-keyguard",
+      "x": 6,
+      "y": 10,
+      "pool": [
+        "cave-rat",
+        "gutter-clerk"
+      ]
+    },
+    {
+      "id": "op3-spawn-inner",
+      "x": 9,
+      "y": 5,
+      "pool": [
+        "brass-automaton",
+        "hollow-pilgrim"
+      ]
+    }
+  ]
+}

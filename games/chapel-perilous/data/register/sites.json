@@ -1,0 +1,14 @@
+{
+  "dungeon": [
+    "[SEED] the %s Chapel",
+    "[SEED] the %s Hollow",
+    "[SEED] the %s Threshold",
+    "[SEED] Waystation %s",
+    "[SEED] the %s Gate"
+  ],
+  "city": [
+    "[SEED] the %s Hive",
+    "[SEED] %s Town",
+    "[SEED] %s Station"
+  ]
+}

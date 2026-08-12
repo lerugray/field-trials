@@ -1,0 +1,151 @@
+{
+  "_note": "[SEED] ENCOUNTERS LOCK (DIRECTIONS 2026-08-02): Fallout-style, RARE + GENUINELY UNFAIR. Mostly-mundane tables with FAT TAILS — a few % chance of the absurd (a cache that breaks the game open, a monster that kills you at level 2). NO level-scaling, NO pity gates: the roller reads no party level and no miss-counter. Operation tables are fixed progression/location profiles; the only live modifier is the explicit exposure clock, whose conservative tiers raise fight-entry weight without changing triggerChance or removing either fat tail. `triggerChance` is per crawl step (rare). `lootChance` is the fixed per-operation kill-drop profile. Entry `kind`: none (nothing happens) | fight | cache (a good tail — payoff placed, not guaranteed). `unfair:true` flags a tail that can simply end the run. `count` is an inclusive [min,max] band.",
+  "artifacts": {
+    "_note": "[SEED] named uniques, tail-placed. Descriptions await Ray's voice pass.",
+    "the-original-snub": "[SEED] The Original Snub — a coin stamped on both sides with the back of a head.",
+    "hagbards-compass": "[SEED] Hagbard's Compass — points at whatever you are avoiding.",
+    "fnord-lens": "[SEED] The Fnord Lens — through it, the word appears everywhere it was always printed."
+  },
+  "tables": {
+    "dungeon": {
+      "triggerChance": 0.08,
+      "lootChance": 0.30,
+      "entries": [
+        { "weight": 62, "kind": "none" },
+        { "weight": 18, "kind": "fight", "foes": [{ "being": "cave-rat", "count": [1, 3] }] },
+        { "weight": 8, "kind": "fight", "foes": [{ "being": "gutter-clerk", "count": [1, 1] }] },
+        { "weight": 5, "kind": "fight", "foes": [{ "being": "hollow-pilgrim", "count": [1, 2] }] },
+        { "weight": 3, "kind": "fight", "foes": [{ "being": "brass-automaton", "count": [1, 1] }] },
+        { "weight": 2, "kind": "fight", "foes": [{ "being": "five-eyed-auditor", "count": [1, 1] }] },
+        { "weight": 1, "kind": "cache", "artifact": "the-original-snub" },
+        { "weight": 1, "kind": "fight", "foes": [{ "being": "thing-in-the-23rd-corridor", "count": [1, 1] }], "unfair": true }
+      ]
+    },
+    "operation_1": {
+      "triggerChance": 0.08,
+      "lootChance": 0.30,
+      "entries": [
+        { "weight": 62, "kind": "none" },
+        { "weight": 18, "kind": "fight", "foes": [{ "being": "cave-rat", "count": [1, 3] }] },
+        { "weight": 8, "kind": "fight", "foes": [{ "being": "gutter-clerk", "count": [1, 1] }] },
+        { "weight": 5, "kind": "fight", "foes": [{ "being": "hollow-pilgrim", "count": [1, 2] }] },
+        { "weight": 3, "kind": "fight", "foes": [{ "being": "brass-automaton", "count": [1, 1] }] },
+        { "weight": 2, "kind": "fight", "foes": [{ "being": "five-eyed-auditor", "count": [1, 1] }] },
+        { "weight": 1, "kind": "cache", "artifact": "the-original-snub" },
+        { "weight": 1, "kind": "fight", "foes": [{ "being": "thing-in-the-23rd-corridor", "count": [1, 1] }], "unfair": true }
+      ]
+    },
+    "operation_2": {
+      "triggerChance": 0.09,
+      "lootChance": 0.33,
+      "entries": [
+        { "weight": 59, "kind": "none" },
+        { "weight": 17, "kind": "fight", "foes": [{ "being": "cave-rat", "count": [1, 3] }] },
+        { "weight": 9, "kind": "fight", "foes": [{ "being": "gutter-clerk", "count": [1, 2] }] },
+        { "weight": 6, "kind": "fight", "foes": [{ "being": "hollow-pilgrim", "count": [1, 2] }] },
+        { "weight": 4, "kind": "fight", "foes": [{ "being": "brass-automaton", "count": [1, 1] }] },
+        { "weight": 2, "kind": "fight", "foes": [{ "being": "five-eyed-auditor", "count": [1, 1] }] },
+        { "weight": 2, "kind": "cache", "artifact": "hagbards-compass" },
+        { "weight": 1, "kind": "fight", "foes": [{ "being": "thing-in-the-23rd-corridor", "count": [1, 1] }], "unfair": true }
+      ]
+    },
+    "operation_3": {
+      "triggerChance": 0.10,
+      "lootChance": 0.36,
+      "entries": [
+        { "weight": 56, "kind": "none" },
+        { "weight": 15, "kind": "fight", "foes": [{ "being": "cave-rat", "count": [2, 4] }] },
+        { "weight": 10, "kind": "fight", "foes": [{ "being": "gutter-clerk", "count": [1, 2] }] },
+        { "weight": 7, "kind": "fight", "foes": [{ "being": "hollow-pilgrim", "count": [1, 2] }] },
+        { "weight": 5, "kind": "fight", "foes": [{ "being": "brass-automaton", "count": [1, 2] }] },
+        { "weight": 2, "kind": "fight", "foes": [{ "being": "five-eyed-auditor", "count": [1, 1] }] },
+        { "weight": 3, "kind": "cache", "artifact": "hagbards-compass" },
+        { "weight": 2, "kind": "fight", "foes": [{ "being": "thing-in-the-23rd-corridor", "count": [1, 1] }], "unfair": true }
+      ]
+    },
+    "operation_4": {
+      "triggerChance": 0.12,
+      "lootChance": 0.40,
+      "entries": [
+        { "weight": 52, "kind": "none" },
+        { "weight": 12, "kind": "fight", "foes": [{ "being": "cave-rat", "count": [2, 4] }] },
+        { "weight": 11, "kind": "fight", "foes": [{ "being": "gutter-clerk", "count": [1, 2] }] },
+        { "weight": 9, "kind": "fight", "foes": [{ "being": "hollow-pilgrim", "count": [1, 3] }] },
+        { "weight": 7, "kind": "fight", "foes": [{ "being": "brass-automaton", "count": [1, 2] }] },
+        { "weight": 3, "kind": "fight", "foes": [{ "being": "five-eyed-auditor", "count": [1, 2] }] },
+        { "weight": 4, "kind": "cache", "artifact": "fnord-lens" },
+        { "weight": 2, "kind": "fight", "foes": [{ "being": "thing-in-the-23rd-corridor", "count": [1, 1] }], "unfair": true }
+      ]
+    },
+    "overworld": {
+      "triggerChance": 0.05,
+      "entries": [
+        { "weight": 70, "kind": "none" },
+        { "weight": 14, "kind": "fight", "foes": [{ "being": "carrion-crow", "count": [1, 2] }] },
+        { "weight": 8, "kind": "fight", "foes": [{ "being": "hollow-pilgrim", "count": [1, 1] }] },
+        { "weight": 4, "kind": "fight", "foes": [{ "being": "law-of-fives-hound", "count": [1, 2] }] },
+        { "weight": 2, "kind": "fight", "foes": [{ "being": "discordian-monk", "count": [1, 1] }] },
+        { "weight": 1, "kind": "cache", "artifact": "hagbards-compass" },
+        { "weight": 1, "kind": "fight", "foes": [{ "being": "law-of-fives-hound", "count": [3, 5] }], "unfair": true }
+      ]
+    },
+    "biome_pine_barrens": {
+      "triggerChance": 0.06,
+      "entries": [
+        { "weight": 60, "kind": "none" },
+        { "weight": 16, "kind": "fight", "foes": [{ "being": "law-of-fives-hound", "count": [1, 2] }] },
+        { "weight": 8, "kind": "fight", "foes": [{ "being": "hollow-pilgrim", "count": [1, 2] }] },
+        { "weight": 7, "kind": "fight", "foes": [{ "being": "pine-warden", "count": [1, 1] }] },
+        { "weight": 4, "kind": "fight", "foes": [{ "being": "discordian-monk", "count": [1, 1] }] },
+        { "weight": 2, "kind": "cache", "artifact": "hagbards-compass" },
+        { "weight": 3, "kind": "fight", "foes": [{ "being": "law-of-fives-hound", "count": [3, 4] }], "unfair": true }
+      ]
+    },
+    "biome_salt_flats": {
+      "triggerChance": 0.05,
+      "entries": [
+        { "weight": 66, "kind": "none" },
+        { "weight": 14, "kind": "fight", "foes": [{ "being": "carrion-crow", "count": [1, 3] }] },
+        { "weight": 8, "kind": "fight", "foes": [{ "being": "salt-preacher", "count": [1, 1] }] },
+        { "weight": 6, "kind": "fight", "foes": [{ "being": "hollow-pilgrim", "count": [1, 1] }] },
+        { "weight": 2, "kind": "cache", "artifact": "the-original-snub" },
+        { "weight": 2, "kind": "fight", "foes": [{ "being": "five-eyed-auditor", "count": [1, 1] }], "unfair": true }
+      ]
+    },
+    "biome_drowned_fen": {
+      "triggerChance": 0.07,
+      "entries": [
+        { "weight": 62, "kind": "none" },
+        { "weight": 14, "kind": "fight", "foes": [{ "being": "carrion-crow", "count": [1, 2] }] },
+        { "weight": 10, "kind": "fight", "foes": [{ "being": "fen-lantern", "count": [1, 1] }] },
+        { "weight": 8, "kind": "fight", "foes": [{ "being": "discordian-monk", "count": [1, 1] }] },
+        { "weight": 2, "kind": "cache", "artifact": "hagbards-compass" },
+        { "weight": 4, "kind": "fight", "foes": [{ "being": "fen-lantern", "count": [2, 3] }], "unfair": true }
+      ]
+    },
+    "biome_perilous_verge": {
+      "triggerChance": 0.16,
+      "entries": [
+        { "weight": 42, "kind": "none" },
+        { "weight": 16, "kind": "fight", "foes": [{ "being": "hollow-pilgrim", "count": [1, 2] }] },
+        { "weight": 12, "kind": "fight", "foes": [{ "being": "surveyor-of-fnords", "count": [1, 1] }] },
+        { "weight": 8, "kind": "fight", "foes": [{ "being": "discordian-monk", "count": [1, 1] }] },
+        { "weight": 8, "kind": "cache", "artifact": "fnord-lens" },
+        { "weight": 10, "kind": "fight", "foes": [{ "being": "verge-antibody", "count": [1, 1] }], "unfair": true },
+        { "weight": 4, "kind": "fight", "foes": [{ "being": "thing-in-the-23rd-corridor", "count": [1, 1] }], "unfair": true }
+      ]
+    },
+    "chapel": {
+      "triggerChance": 0.5,
+      "lootChance": 0.46,
+      "entries": [
+        { "weight": 40, "kind": "none" },
+        { "weight": 20, "kind": "fight", "foes": [{ "being": "five-eyed-auditor", "count": [1, 2] }] },
+        { "weight": 15, "kind": "fight", "foes": [{ "being": "yellow-sign-bearer", "count": [1, 1] }] },
+        { "weight": 10, "kind": "cache", "artifact": "fnord-lens" },
+        { "weight": 10, "kind": "fight", "foes": [{ "being": "chapel-warden", "count": [1, 1] }], "unfair": true },
+        { "weight": 5, "kind": "fight", "foes": [{ "being": "thing-in-the-23rd-corridor", "count": [1, 1] }], "unfair": true }
+      ]
+    }
+  }
+}

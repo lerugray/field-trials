@@ -1,0 +1,45 @@
+{
+  "_note": "[SEED] M12 playtest2 — visible NPC dialogue pools. Every interaction type has its own seeded register pool; the social engine picks from these instead of hard-coded stubs. Placeholders like ${name} are filled at runtime; the leading [SEED] is stripped before display.",
+  "greeting": [
+    "[SEED] ${name} stops, as if the conversation had already started.",
+    "[SEED] ${name} looks at you with the resigned patience of a clerk.",
+    "[SEED] ${name} smiles before you have said anything — a bad sign.",
+    "[SEED] ${name} gestures for you to keep your voice down.",
+    "[SEED] ${name} says your name, which you did not offer."
+  ],
+  "talk": [
+    "[SEED] ${name} tells you something that will be true tomorrow.",
+    "[SEED] ${name} asks a question and then answers it, incorrectly.",
+    "[SEED] ${name} speaks in a register you almost remember from school.",
+    "[SEED] ${name} gives you directions to a street that moved.",
+    "[SEED] ${name} mentions a number. You wish it had been a different one."
+  ],
+  "recruit_attempt": [
+    "[SEED] you ask ${name} to throw in with you.",
+    "[SEED] you offer ${name} a place in the pattern.",
+    "[SEED] you tell ${name} the road is wider with company.",
+    "[SEED] you ask ${name} what they are doing later, forever.",
+    "[SEED] you offer ${name} the only thing you have in abundance: forward motion."
+  ],
+  "join": [
+    "[SEED] ${name} nods, and the party grows by one.",
+    "[SEED] ${name} falls in beside you without a word.",
+    "[SEED] ${name} says yes in a language that has no no.",
+    "[SEED] ${name} joins you, still holding the secret they were about to tell.",
+    "[SEED] ${name} takes their place in the column."
+  ],
+  "refuse": [
+    "[SEED] ${name} has nothing for you and less to say.",
+    "[SEED] ${name} declines, politely and finally.",
+    "[SEED] ${name} shakes their head and returns to their counting.",
+    "[SEED] ${name} says the timing is wrong, and you believe them.",
+    "[SEED] ${name} turns away before the question finishes."
+  ],
+  "farewell": [
+    "[SEED] ${name} leaves before you can ask their real name.",
+    "[SEED] ${name} walks on, already forgetting the exchange.",
+    "[SEED] ${name} tips a hat that isn't there and is gone.",
+    "[SEED] ${name} mutters a number under their breath and keeps walking.",
+    "[SEED] ${name} presses a leaflet into your hand. It is blank on both sides."
+  ]
+}

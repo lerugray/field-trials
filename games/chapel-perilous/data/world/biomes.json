@@ -1,0 +1,53 @@
+{
+  "_note": "[SEED] M9 BIOMES (DIRECTIONS-2026-08-02-BIOMES) — guaranteed areas present in EVERY run, alongside the procedural material. Placement is ABSOLUTE world coords (the same model as sites) so a given world always reads the same; each biome is a chebyshev square region (center +/- radius) and regions MUST NOT overlap (the engine validates this by construction). Four identity channels wire off these defs: terrain `dress` ({ baseTileId: artId } — art added M9 inc2), monster/NPC pool `wanderers` + encounter `table`, and the vibe pair `weirdness` + `register` (the dominant register the prose engine leans on in-biome). The Chapel Perilous sits inside `perilous-verge` and keeps its full-collision pin. Player-facing biome flavor is generated prose ([SEED] at output); the discrete event fragments live in data/register/biomes.json.",
+  "biomes": [
+    {
+      "id": "perilous-verge",
+      "name": "[SEED] The Perilous Verge",
+      "blurb": "[SEED] the unquiet ground that leans toward the Chapel",
+      "center": { "x": 8, "y": 6 },
+      "radius": 2,
+      "weirdness": 0.95,
+      "register": "conspiratorial",
+      "wanderers": ["hollow-pilgrim", "discordian-monk"],
+      "table": "biome_perilous_verge",
+      "dress": { "GRASS": "VERGE_GROUND", "SAND": "VERGE_GROUND" }
+    },
+    {
+      "id": "pine-barrens",
+      "name": "[SEED] The Pine Barrens",
+      "blurb": "[SEED] black conifers over rattling knoll-rock",
+      "center": { "x": 20, "y": 2 },
+      "radius": 3,
+      "weirdness": 0.55,
+      "register": "ominous",
+      "wanderers": ["law-of-fives-hound", "hollow-pilgrim", "pine-warden"],
+      "table": "biome_pine_barrens",
+      "dress": { "FOREST": "PINE_BARRENS", "GRASS": "PINE_FLOOR" }
+    },
+    {
+      "id": "salt-flats",
+      "name": "[SEED] The Salt Flats",
+      "blurb": "[SEED] a bleached pan surveyed to no conclusion",
+      "center": { "x": 4, "y": 18 },
+      "radius": 3,
+      "weirdness": 0.2,
+      "register": "clinical",
+      "wanderers": ["carrion-crow", "hollow-pilgrim", "salt-preacher"],
+      "table": "biome_salt_flats",
+      "dress": { "GRASS": "SALT_PAN", "SAND": "SALT_CRUST" }
+    },
+    {
+      "id": "drowned-fen",
+      "name": "[SEED] The Drowned Fen",
+      "blurb": "[SEED] reed-water that keeps its own filing system",
+      "center": { "x": 11, "y": 16 },
+      "radius": 3,
+      "weirdness": 0.7,
+      "register": "conspiratorial",
+      "wanderers": ["carrion-crow", "discordian-monk", "fen-lantern"],
+      "table": "biome_drowned_fen",
+      "dress": { "GRASS": "FEN_REED", "SAND": "FEN_MUD", "WATER": "FEN_POOL" }
+    }
+  ]
+}

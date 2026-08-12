@@ -1,0 +1,598 @@
+{
+  "_note": "[SEED] Bestiary — CONTENT-IDENTITY-2026-08-02. ~12 beings spanning city/overworld/dungeon and every interaction archetype. All names/register [SEED] until Ray's voice pass. `interaction` lists ONLY the verbs that bite (overawe=NERVE, bargain=PULL, bind=GNOSIS, impress=CRAFT); an omitted verb is closed. `sacred:true` = refuses ALL verbs, never recruitable — the small class that makes the rule feel real. `portrait` is a recipe stub for the later gallery pass (chunky block-shaded bust). Stats-lite: hp + weapon band only — combat reads no stat.",
+  "beings": [
+    {
+      "id": "cave-rat",
+      "name": "[SEED] Cave Rat",
+      "habitat": [
+        "dungeon"
+      ],
+      "rarity": "common",
+      "hp": 3,
+      "weapon": {
+        "name": "[SEED] yellow teeth",
+        "dmg": [
+          1,
+          2
+        ]
+      },
+      "interaction": {
+        "impress": "open"
+      },
+      "want": "food",
+      "recruitable": true,
+      "register": {
+        "weirdness": 0.15
+      },
+      "portrait": {
+        "shape": "squat",
+        "shades": [
+          1,
+          3
+        ],
+        "marks": 2
+      },
+      "behavior": "pack",
+      "defense": "dodge"
+    },
+    {
+      "id": "carrion-crow",
+      "name": "[SEED] Carrion Crow",
+      "habitat": [
+        "overworld"
+      ],
+      "rarity": "common",
+      "hp": 3,
+      "weapon": {
+        "name": "[SEED] scavenging beak",
+        "dmg": [
+          1,
+          2
+        ]
+      },
+      "interaction": {
+        "impress": "open"
+      },
+      "want": "food",
+      "recruitable": true,
+      "register": {
+        "weirdness": 0.15
+      },
+      "portrait": {
+        "shape": "squat",
+        "shades": [
+          1,
+          2
+        ],
+        "marks": 2
+      },
+      "behavior": "cowardly",
+      "defense": "dodge"
+    },
+    {
+      "id": "gutter-clerk",
+      "name": "[SEED] Gutter Clerk",
+      "habitat": [
+        "city",
+        "dungeon"
+      ],
+      "rarity": "common",
+      "hp": 6,
+      "weapon": {
+        "name": "[SEED] rubber stamp",
+        "dmg": [
+          1,
+          3
+        ]
+      },
+      "interaction": {
+        "bargain": "open",
+        "overawe": "hard"
+      },
+      "want": "secrets",
+      "recruitable": true,
+      "register": {
+        "weirdness": 0.3
+      },
+      "portrait": {
+        "shape": "tall",
+        "shades": [
+          2,
+          4
+        ],
+        "marks": 1
+      },
+      "behavior": "steady",
+      "defense": "avoid",
+      "talkInCombat": true
+    },
+    {
+      "id": "hollow-pilgrim",
+      "name": "[SEED] Hollow Pilgrim",
+      "habitat": [
+        "overworld",
+        "dungeon"
+      ],
+      "rarity": "common",
+      "hp": 7,
+      "weapon": {
+        "name": "[SEED] walking staff",
+        "dmg": [
+          2,
+          4
+        ]
+      },
+      "interaction": {
+        "overawe": "open",
+        "impress": "hard"
+      },
+      "want": "attention",
+      "recruitable": true,
+      "register": {
+        "weirdness": 0.35
+      },
+      "portrait": {
+        "shape": "tall",
+        "shades": [
+          1,
+          4
+        ],
+        "marks": 0
+      },
+      "behavior": "steady",
+      "defense": "avoid",
+      "talkInCombat": true
+    },
+    {
+      "id": "lodge-initiate",
+      "name": "[SEED] Lodge Initiate",
+      "habitat": [
+        "city"
+      ],
+      "rarity": "uncommon",
+      "hp": 8,
+      "weapon": {
+        "name": "[SEED] ceremonial dagger",
+        "dmg": [
+          2,
+          5
+        ]
+      },
+      "interaction": {
+        "bargain": "open",
+        "impress": "open"
+      },
+      "want": "money",
+      "recruitable": true,
+      "register": {
+        "weirdness": 0.4
+      },
+      "portrait": {
+        "shape": "blocky",
+        "shades": [
+          2,
+          5
+        ],
+        "marks": 3
+      },
+      "behavior": "aggressive",
+      "defense": "avoid"
+    },
+    {
+      "id": "law-of-fives-hound",
+      "name": "[SEED] Law-of-Fives Hound",
+      "habitat": [
+        "overworld"
+      ],
+      "rarity": "uncommon",
+      "hp": 9,
+      "weapon": {
+        "name": "[SEED] fivefold bite",
+        "dmg": [
+          3,
+          6
+        ]
+      },
+      "interaction": {
+        "impress": "hard"
+      },
+      "want": "blood",
+      "recruitable": true,
+      "register": {
+        "weirdness": 0.55
+      },
+      "portrait": {
+        "shape": "squat",
+        "shades": [
+          1,
+          5
+        ],
+        "marks": 5
+      },
+      "behavior": "pack",
+      "defense": "dodge"
+    },
+    {
+      "id": "discordian-monk",
+      "name": "[SEED] Discordian Monk",
+      "habitat": [
+        "overworld",
+        "city"
+      ],
+      "rarity": "uncommon",
+      "hp": 7,
+      "weapon": {
+        "name": "[SEED] blessed brick",
+        "dmg": [
+          2,
+          5
+        ]
+      },
+      "interaction": {
+        "bind": "open",
+        "bargain": "hard"
+      },
+      "want": "secrets",
+      "recruitable": true,
+      "register": {
+        "weirdness": 0.6
+      },
+      "portrait": {
+        "shape": "round",
+        "shades": [
+          2,
+          5
+        ],
+        "marks": 2
+      },
+      "behavior": "caster",
+      "defense": "dodge",
+      "talkInCombat": true
+    },
+    {
+      "id": "surveyor-of-fnords",
+      "name": "[SEED] Surveyor of Fnords",
+      "habitat": [
+        "city",
+        "dungeon"
+      ],
+      "rarity": "uncommon",
+      "hp": 8,
+      "weapon": {
+        "name": "[SEED] surveyor's tripod",
+        "dmg": [
+          2,
+          6
+        ]
+      },
+      "interaction": {
+        "overawe": "open",
+        "bind": "hard"
+      },
+      "want": "attention",
+      "recruitable": true,
+      "register": {
+        "weirdness": 0.65
+      },
+      "portrait": {
+        "shape": "tall",
+        "shades": [
+          1,
+          6
+        ],
+        "marks": 1
+      },
+      "behavior": "caster",
+      "defense": "avoid"
+    },
+    {
+      "id": "brass-automaton",
+      "name": "[SEED] Brass Automaton",
+      "habitat": [
+        "dungeon"
+      ],
+      "rarity": "uncommon",
+      "hp": 12,
+      "weapon": {
+        "name": "[SEED] piston fist",
+        "dmg": [
+          3,
+          7
+        ]
+      },
+      "interaction": {
+        "bind": "open"
+      },
+      "want": "blood",
+      "recruitable": true,
+      "register": {
+        "weirdness": 0.6
+      },
+      "portrait": {
+        "shape": "blocky",
+        "shades": [
+          3,
+          6
+        ],
+        "marks": 4
+      },
+      "behavior": "aggressive",
+      "defense": "absorb"
+    },
+    {
+      "id": "five-eyed-auditor",
+      "name": "[SEED] Five-Eyed Auditor",
+      "habitat": [
+        "dungeon"
+      ],
+      "rarity": "rare",
+      "hp": 14,
+      "weapon": {
+        "name": "[SEED] red pen of erasure",
+        "dmg": [
+          4,
+          8
+        ]
+      },
+      "interaction": {
+        "overawe": "hard",
+        "bind": "hard"
+      },
+      "want": "secrets",
+      "recruitable": true,
+      "register": {
+        "weirdness": 0.8
+      },
+      "portrait": {
+        "shape": "tall",
+        "shades": [
+          0,
+          6
+        ],
+        "marks": 5
+      },
+      "behavior": "caster",
+      "defense": "absorb"
+    },
+    {
+      "id": "yellow-sign-bearer",
+      "name": "[SEED] Bearer of the Yellow Sign",
+      "habitat": [
+        "city",
+        "dungeon"
+      ],
+      "rarity": "rare",
+      "hp": 11,
+      "weapon": {
+        "name": "[SEED] tattered banner",
+        "dmg": [
+          3,
+          9
+        ]
+      },
+      "interaction": {
+        "bargain": "hard"
+      },
+      "want": "attention",
+      "recruitable": true,
+      "register": {
+        "weirdness": 0.85
+      },
+      "portrait": {
+        "shape": "round",
+        "shades": [
+          2,
+          6
+        ],
+        "marks": 3
+      },
+      "behavior": "caster",
+      "defense": "avoid"
+    },
+    {
+      "id": "pine-warden",
+      "name": "[SEED] Warden of the Pine Barrens",
+      "habitat": [
+        "overworld"
+      ],
+      "rarity": "uncommon",
+      "hp": 10,
+      "weapon": {
+        "name": "[SEED] antler crook",
+        "dmg": [
+          3,
+          6
+        ]
+      },
+      "interaction": {
+        "bind": "open",
+        "overawe": "hard"
+      },
+      "want": "secrets",
+      "recruitable": true,
+      "register": {
+        "weirdness": 0.5
+      },
+      "portrait": {
+        "shape": "tall",
+        "shades": [
+          1,
+          5
+        ],
+        "marks": 3
+      },
+      "behavior": "steady",
+      "defense": "absorb"
+    },
+    {
+      "id": "salt-preacher",
+      "name": "[SEED] Preacher of the Flats",
+      "habitat": [
+        "overworld"
+      ],
+      "rarity": "uncommon",
+      "hp": 8,
+      "weapon": {
+        "name": "[SEED] sun-cracked staff",
+        "dmg": [
+          2,
+          5
+        ]
+      },
+      "interaction": {
+        "bargain": "open",
+        "impress": "hard"
+      },
+      "want": "attention",
+      "recruitable": true,
+      "register": {
+        "weirdness": 0.3
+      },
+      "portrait": {
+        "shape": "tall",
+        "shades": [
+          4,
+          6
+        ],
+        "marks": 1
+      },
+      "behavior": "caster",
+      "defense": "avoid",
+      "talkInCombat": true
+    },
+    {
+      "id": "fen-lantern",
+      "name": "[SEED] The Fen Lantern",
+      "habitat": [
+        "overworld"
+      ],
+      "rarity": "rare",
+      "hp": 6,
+      "weapon": {
+        "name": "[SEED] drowning light",
+        "dmg": [
+          3,
+          7
+        ]
+      },
+      "interaction": {
+        "bind": "open"
+      },
+      "want": "blood",
+      "recruitable": true,
+      "register": {
+        "weirdness": 0.75
+      },
+      "portrait": {
+        "shape": "round",
+        "shades": [
+          0,
+          6
+        ],
+        "marks": 4
+      },
+      "behavior": "caster",
+      "defense": "dodge"
+    },
+    {
+      "id": "verge-antibody",
+      "name": "[SEED] Antibody of the Verge",
+      "habitat": [
+        "overworld",
+        "dungeon"
+      ],
+      "rarity": "tail",
+      "hp": 26,
+      "weapon": {
+        "name": "[SEED] corrective geometry",
+        "dmg": [
+          7,
+          13
+        ]
+      },
+      "interaction": {},
+      "sacred": true,
+      "want": "nothing you have",
+      "recruitable": false,
+      "register": {
+        "weirdness": 1
+      },
+      "portrait": {
+        "shape": "blocky",
+        "shades": [
+          0,
+          6
+        ],
+        "marks": 6
+      },
+      "behavior": "aggressive",
+      "defense": "absorb"
+    },
+    {
+      "id": "thing-in-the-23rd-corridor",
+      "name": "[SEED] The Thing in the 23rd Corridor",
+      "habitat": [
+        "dungeon"
+      ],
+      "rarity": "tail",
+      "hp": 40,
+      "weapon": {
+        "name": "[SEED] wrongness",
+        "dmg": [
+          12,
+          20
+        ]
+      },
+      "interaction": {},
+      "sacred": true,
+      "want": "nothing you have",
+      "recruitable": false,
+      "register": {
+        "weirdness": 1
+      },
+      "portrait": {
+        "shape": "blocky",
+        "shades": [
+          0,
+          6
+        ],
+        "marks": 6
+      },
+      "behavior": "aggressive",
+      "defense": "absorb"
+    },
+    {
+      "id": "chapel-warden",
+      "name": "[SEED] Warden of the Chapel",
+      "habitat": [
+        "dungeon"
+      ],
+      "rarity": "tail",
+      "hp": 30,
+      "weapon": {
+        "name": "[SEED] key that is also a knife",
+        "dmg": [
+          8,
+          14
+        ]
+      },
+      "interaction": {},
+      "sacred": true,
+      "want": "nothing you have",
+      "recruitable": false,
+      "register": {
+        "weirdness": 0.95
+      },
+      "portrait": {
+        "shape": "tall",
+        "shades": [
+          0,
+          5
+        ],
+        "marks": 4
+      },
+      "behavior": "steady",
+      "defense": "absorb"
+    }
+  ]
+}

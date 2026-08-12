@@ -1,0 +1,111 @@
+{
+  "_note": "[SEED] M12 shops — seeded-chaotic barter commerce. Stock tables, currency label, and player-facing refusal/no-offer lines. All strings [SEED] until Ray's voice pass.",
+  "currency": {
+    "singular": "[SEED] grey coin",
+    "plural": "[SEED] grey coins"
+  },
+  "no_stock": "[SEED] the shelf is bare; even absence has a price here",
+  "sold_out": "[SEED] the last of it is gone; what remains is only the description",
+  "sell_empty": "[SEED] you have nothing the dealer wants to carry away",
+  "secret_spent": "[SEED] you have already told this room too much",
+  "refusal": {
+    "money": "[SEED] the price is ${amount} grey coins; your purse disagrees",
+    "food": "[SEED] the price is food you do not carry",
+    "rest-offering": "[SEED] the price is an offering you have not kept",
+    "attention": "[SEED] the price is attention you cannot spare",
+    "blood": "[SEED] the price is blood; you have too little of it left",
+    "secrets": "[SEED] the price is a secret; you have none left to tell here",
+    "default": "[SEED] the price is something you cannot pay"
+  },
+  "buy_line": "[SEED] you lay down the price and take ${item}",
+  "blood_buy_line": "[SEED] you pay in blood — ${before}→${after} hp — and take ${item}",
+  "sell_line": "[SEED] the dealer counts out ${amount} grey coins for ${item}",
+  "sell_offer_line": "[SEED] the dealer will give ${amount} grey coins for ${items}",
+  "mislabel_reveal": "[SEED] it is not what the label said — it is ${trueName}",
+  "archetypes": {
+    "port": {
+      "stock": [
+        { "name": "[SEED] a ration of grey bread", "tags": ["food"] },
+        { "name": "[SEED] a dried fish", "tags": ["food"] },
+        { "name": "[SEED] a jar of pickled eyes", "tags": ["food"] },
+        { "name": "[SEED] a folding knife" },
+        { "name": "[SEED] a spool of red thread", "tags": ["attention"] },
+        { "name": "[SEED] a half-empty flask", "tags": ["rest-offering"] },
+        { "name": "[SEED] a corroded key" },
+        { "name": "[SEED] a small tonic", "effect": { "kind": "heal", "power": [2, 4] }, "charges": 1, "tags": ["consumable"] },
+        { "name": "[SEED] a rusty hatchet", "weapon": { "name": "rusty hatchet", "dmg": [2, 4] } },
+        { "name": "[SEED] a patched coat", "armor": { "name": "patched coat", "absorb": 1 } },
+        { "name": "[SEED] a brass token stamped with a closed eye" }
+      ]
+    },
+    "bureau": {
+      "stock": [
+        { "name": "[SEED] a folded offering-slip", "tags": ["rest-offering"] },
+        { "name": "[SEED] a wax-sealed letter", "tags": ["attention"] },
+        { "name": "[SEED] a file number that matches no file" },
+        { "name": "[SEED] a stamp that marks the wrong date" },
+        { "name": "[SEED] a vial of someone else’s blood", "tags": ["blood"] },
+        { "name": "[SEED] a warding charm", "effect": { "kind": "status", "status": { "id": "WARDED", "polarity": "good", "duration": 3, "amount": 2 } }, "charges": 1, "tags": ["secrets"] },
+        { "name": "[SEED] a key that fits no lock you've met" },
+        { "name": "[SEED] a coin that always lands on its edge" },
+        { "name": "[SEED] a weighted club", "weapon": { "name": "weighted club", "dmg": [3, 5] } },
+        { "name": "[SEED] a tin buckler", "armor": { "name": "tin buckler", "absorb": 2 } },
+        { "name": "[SEED] a page torn from a book you were about to write" }
+      ]
+    },
+    "pilgrimage": {
+      "stock": [
+        { "name": "[SEED] a half-empty flask", "tags": ["rest-offering"] },
+        { "name": "[SEED] a dried fish", "tags": ["food"] },
+        { "name": "[SEED] a prayer written backwards" },
+        { "name": "[SEED] a finger-bone worn smooth by counting" },
+        { "name": "[SEED] a warding charm", "effect": { "kind": "status", "status": { "id": "WARDED", "polarity": "good", "duration": 3, "amount": 2 } }, "charges": 1, "tags": ["secrets"] },
+        { "name": "[SEED] a small tonic", "effect": { "kind": "heal", "power": [2, 4] }, "charges": 1, "tags": ["consumable"] },
+        { "name": "[SEED] a candle that drips upwards" },
+        { "name": "[SEED] a pocket watch stopped at 5:00" },
+        { "name": "[SEED] a patched coat", "armor": { "name": "patched coat", "absorb": 1 } },
+        { "name": "[SEED] a whistle that makes only silence" },
+        { "name": "[SEED] a folded map of a city that isn't there" }
+      ]
+    },
+    "market": {
+      "stock": [
+        { "name": "[SEED] a ration of grey bread", "tags": ["food"] },
+        { "name": "[SEED] a folded offering-slip", "tags": ["rest-offering"] },
+        { "name": "[SEED] a wax-sealed letter", "tags": ["attention"] },
+        { "name": "[SEED] a spool of red thread", "tags": ["attention"] },
+        { "name": "[SEED] a jar of pickled eyes", "tags": ["food"] },
+        { "name": "[SEED] a vial of someone else’s blood", "tags": ["blood"] },
+        { "name": "[SEED] a warding charm", "effect": { "kind": "status", "status": { "id": "WARDED", "polarity": "good", "duration": 3, "amount": 2 } }, "charges": 1, "tags": ["secrets"] },
+        { "name": "[SEED] a small tonic", "effect": { "kind": "heal", "power": [2, 4] }, "charges": 1, "tags": ["consumable"] },
+        { "name": "[SEED] a rusty hatchet", "weapon": { "name": "rusty hatchet", "dmg": [2, 4] } },
+        { "name": "[SEED] a weighted club", "weapon": { "name": "weighted club", "dmg": [3, 5] } },
+        { "name": "[SEED] a tin buckler", "armor": { "name": "tin buckler", "absorb": 2 } }
+      ]
+    },
+    "garrison": {
+      "stock": [
+        { "name": "[SEED] a dried fish", "tags": ["food"] },
+        { "name": "[SEED] a half-empty flask", "tags": ["rest-offering"] },
+        { "name": "[SEED] a folding knife" },
+        { "name": "[SEED] a file number that matches no file" },
+        { "name": "[SEED] a stamp that marks the wrong date" },
+        { "name": "[SEED] a corroded key" },
+        { "name": "[SEED] a rusty hatchet", "weapon": { "name": "rusty hatchet", "dmg": [2, 4] } },
+        { "name": "[SEED] a weighted club", "weapon": { "name": "weighted club", "dmg": [3, 5] } },
+        { "name": "[SEED] a patched coat", "armor": { "name": "patched coat", "absorb": 1 } },
+        { "name": "[SEED] a tin buckler", "armor": { "name": "tin buckler", "absorb": 2 } },
+        { "name": "[SEED] a warding charm", "effect": { "kind": "status", "status": { "id": "WARDED", "polarity": "good", "duration": 3, "amount": 2 } }, "charges": 1, "tags": ["secrets"] }
+      ]
+    }
+  },
+  "fallback": {
+    "stock": [
+      { "name": "[SEED] a ration of grey bread", "tags": ["food"] },
+      { "name": "[SEED] a half-empty flask", "tags": ["rest-offering"] },
+      { "name": "[SEED] a small tonic", "effect": { "kind": "heal", "power": [2, 4] }, "charges": 1, "tags": ["consumable"] },
+      { "name": "[SEED] a corroded key" },
+      { "name": "[SEED] a rusty hatchet", "weapon": { "name": "rusty hatchet", "dmg": [2, 4] } }
+    ]
+  }
+}

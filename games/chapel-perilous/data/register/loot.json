@@ -1,0 +1,24 @@
+{
+  "_note": "[SEED] M10 Part B — loot. Kills mostly drop nothing (mundane, per the ENCOUNTERS-LOCK spirit: no scaling, no pity — a fixed seeded chance reading only (foe, seed)); occasionally a salvaged weapon or a small trinket. Caches yield the named artifact relics from encounters/tables.json. All strings [SEED] until Ray's voice pass; stripped from every player surface at draw.",
+  "consumables": [
+    { "name": "[SEED] a field dressing", "effect": { "kind": "heal", "power": [2, 4] }, "charges": 1, "tags": ["consumable"] },
+    { "name": "[SEED] a grey swallow", "effect": { "kind": "heal", "power": [3, 5] }, "charges": 1, "tags": ["consumable"] }
+  ],
+  "trinkets": [
+    "[SEED] a brass token stamped with a closed eye",
+    "[SEED] a folded map of a city that isn't there",
+    "[SEED] a finger-bone worn smooth by counting",
+    "[SEED] a key that fits no lock you've met",
+    "[SEED] a coin that always lands on its edge",
+    "[SEED] a page torn from a book you were about to write",
+    "[SEED] a whistle that makes only silence",
+    "[SEED] a pocket watch stopped at 5:00"
+  ],
+  "found_cache": "[SEED] you turn out the cache",
+  "found_kill": "[SEED] you salvage what it leaves",
+  "_traversal_note": "[SEED] M12 E3 — traversal WORK-ITEMS seeded into the loot of biomes ADJACENT to a gate, so the loop reads loot → open the gate → richer biome. Tags match the gate's requiresTag; these are consumable world-work items, never equipment.",
+  "traversal": {
+    "salt-flats":   { "tag": "ford", "name": "[SEED] a bundle of ford stones", "chance": 0.30 },
+    "pine-barrens": { "tag": "ford", "name": "[SEED] a raft of lashed pine",    "chance": 0.22 }
+  }
+}

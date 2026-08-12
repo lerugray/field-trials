@@ -1,0 +1,53 @@
+{
+  "title": "[SEED] CHAPEL PERILOUS",
+  "subtitle": "[SEED] a recovered operations manual",
+  "boot": "[SEED] The map is not the territory. Neither, it turns out, is the territory.",
+  "prompt_enter_site": "[SEED] A door where the map insists there is none. Enter?",
+  "prompt_exit_site": "[SEED] Arrows crawl; Esc returns you to the surface, if it is still there.",
+  "npc_greetings": [
+    "[SEED] nods as if you had an appointment, and walks on.",
+    "[SEED] asks the time, then answers it themselves. Wrongly.",
+    "[SEED] presses a leaflet into your hand. It is blank on both sides.",
+    "[SEED] mistakes you for someone else, and is relieved to be wrong.",
+    "[SEED] mutters a number under their breath and keeps walking.",
+    "[SEED] tips a hat that isn't there and is gone before you answer."
+  ],
+  "beast_note": "[SEED] blocks the road — no words for this one.",
+  "rest_refused_wild": [
+    "[SEED] the open country offers no bed; rest waits for walls.",
+    "[SEED] you cannot make camp here — the ground is still watching.",
+    "[SEED] rest is a service of the town, not the field."
+  ],
+  "consumable_heal": "[SEED] you use ${item}; the stranger mends ${before}→${after} hp",
+  "onterrain": {
+    "DEEP": "[SEED] Deep water. It does not want you.",
+    "WATER": "[SEED] Shallows. Still not a road.",
+    "SAND": "[SEED] Sand. Someone raked a 23 into it and left.",
+    "GRASS": "[SEED] Grass. Ordinary, which is the suspicious part.",
+    "FOREST": "[SEED] Trees close ranks behind you.",
+    "HILL": "[SEED] High ground. The pattern is easier to see from here, or worse.",
+    "MOUNT": "[SEED] The peak refuses passage. Fnord."
+  },
+  "onblocked": {
+    "DEEP": [
+      "[SEED] The deep water declines your application to cross it.",
+      "[SEED] You step toward the dark water; the dark water steps back. Net zero.",
+      "[SEED] Below the surface, something keeps very still. You keep to the shore."
+    ],
+    "WATER": [
+      "[SEED] The shallows soak your boots and refuse the rest of you.",
+      "[SEED] Reed and standing water. Not a road, whatever the map alleges.",
+      "[SEED] Your foot finds mud where it wanted ground. You reconsider."
+    ],
+    "MOUNT": [
+      "[SEED] The peak refuses passage. Fnord.",
+      "[SEED] Stone the size of an argument. You lose the argument.",
+      "[SEED] The ridge is not interested in a shortcut today."
+    ],
+    "default": [
+      "[SEED] Something declines to let you pass here.",
+      "[SEED] The way is shut, in the ordinary, unremarkable manner of shut ways.",
+      "[SEED] You bump the edge of the possible and step back onto it."
+    ]
+  }
+}
