@@ -1,5 +1,7 @@
 # Field Trials
 
+[![suites](https://github.com/lerugray/field-trials/actions/workflows/ci.yml/badge.svg)](https://github.com/lerugray/field-trials/actions/workflows/ci.yml)
+
 Seven browser games. Each one is a complete, self-contained HTML file with no runtime
 dependencies, no network calls, and no third-party sprites or tilesets — every visual
 asset is drawn by the game's own code. Each ships its own test suite and the adversarial

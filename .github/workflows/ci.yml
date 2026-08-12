@@ -92,6 +92,8 @@ jobs:
 
       - name: Suite (browser gates unskip once Playwright is present)
         run: npm test
+        env:
+          FT_BROWSER: "1"
 
       - name: Browser / artifact probes
         run: |
