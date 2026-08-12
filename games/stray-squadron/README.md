@@ -46,7 +46,12 @@ scripts/proofs.sh <label> "<url-query>"  # dated proof captures at fixed viewpor
 - `src/` — flight, combat, economy, world, WebGL renderer, UI, audio, run state.
 - `test/` — the suite, including the build contract and a wingmate lifecycle gate.
 - `scripts/` — build, soak, instrumentation and proof capture.
-- `DESIGN-SEED.md` — the founding contract and the clean-room law for the reference form.
+- **`DESIGN-SEED.md` is withheld here.** Every game in this portfolio was built from one —
+  a founding contract naming the reference work, the clean-room law, the register laws and
+  the milestones — and this game's seed governed its build exactly as the other six did.
+  It is not published because it also carries personal biographical material about the
+  designer's family, which does not belong in a public repository. The six published seeds
+  show the form.
 - `docs/AUDIT-M9.md` — genre table-stakes audit: every rail-shooter expectation either
   shipped or is a named, reasoned cut. Verdict: **no silent gaps**.
 - `docs/audits/AUDIT-20260808-kimi.md` — an independent adversarial finishedness audit by

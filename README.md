@@ -32,7 +32,9 @@ founding contract naming the *specific* reference work rather than a genre, the 
 law governing it (characterise and rebuild the mechanics; never copy assets, names, or
 trade dress), the register laws the art and prose answer to, the non-negotiables, and a
 milestone list with an explicit stop line. The builder is not asked what to make. It is
-given a contract and held to it.
+given a contract and held to it. Six of the seven seeds are published here verbatim;
+Stray Squadron's is withheld because it carries personal biographical material, and its
+game directory says so.
 
 **2. Bounded autonomous build sessions.** A builder runs against that contract
 unattended, for a fixed span, on an always-on machine — then stops, whether or not it is
