@@ -1,0 +1,154 @@
+// Single-file build (hard rule 10): inline the whole ES-module graph rooted at
+// src/main.js into dist/stray-squadron.html — file:// double-click, zero
+// third-party deps. Each module is wrapped in its own IIFE and its imports are
+// re-bound at the top of that scope, so there are NO cross-module global name
+// collisions (vec3's `sub`, craft's `sub`, etc. stay isolated). Contract the
+// source must follow: named imports `{ a, b }` or namespace `* as ns` only, no
+// default exports, no `export { ... }` re-export blocks.
+
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(here, '..');
+const entry = path.join(root, 'src', 'main.js');
+const musicModule = path.join(root, 'src', 'audio', 'music.js');
+const musicDir = path.join(root, 'assets', 'music');
+
+const musicSources = Object.fromEntries(
+  fs.readdirSync(musicDir, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.ogg'))
+    .map((entry) => entry.name)
+    .sort()
+    .map((name) => [
+      name,
+      `data:audio/ogg;base64,${fs.readFileSync(path.join(musicDir, name)).toString('base64')}`,
+    ]),
+);
+
+const IMPORT_RE =
+  /^import\s+(?:\*\s+as\s+(\w+)|\{([^}]*)\})\s+from\s+['"]([^'"]+)['"];?[ \t]*$/gm;
+const EXPORT_DECL_RE = /^export\s+(?:async\s+)?(?:function|const|let|var|class)\s+([A-Za-z0-9_$]+)/gm;
+
+const modules = new Map(); // absPath -> { code, imports, exports }
+
+function load(absPath) {
+  if (modules.has(absPath)) return;
+  const src = fs.readFileSync(absPath, 'utf8');
+
+  const imports = [];
+  let m;
+  IMPORT_RE.lastIndex = 0;
+  while ((m = IMPORT_RE.exec(src)) !== null) {
+    const [, ns, named, rel] = m;
+    const dep = path.resolve(path.dirname(absPath), rel);
+    imports.push({ ns: ns || null, named: named || null, dep });
+  }
+
+  const exports = [];
+  EXPORT_DECL_RE.lastIndex = 0;
+  while ((m = EXPORT_DECL_RE.exec(src)) !== null) exports.push(m[1]);
+
+  modules.set(absPath, { code: src, imports, exports });
+  for (const im of imports) load(im.dep);
+}
+
+load(entry);
+
+// Topological (post-order DFS) so a module appears after its dependencies.
+const order = [];
+const seen = new Set();
+function visit(absPath) {
+  if (seen.has(absPath)) return;
+  seen.add(absPath);
+  for (const im of modules.get(absPath).imports) visit(im.dep);
+  order.push(absPath);
+}
+visit(entry);
+
+const varName = new Map();
+order.forEach((p, i) => varName.set(p, `__mod_${i}`));
+
+function emitModule(absPath) {
+  const mod = modules.get(absPath);
+  // Strip import lines and the `export` keyword from declarations.
+  let body = mod.code.replace(IMPORT_RE, '').replace(/^export\s+/gm, '');
+  if (absPath === musicModule) {
+    body = body.replace(
+      'const MUSIC_SOURCES = {};',
+      `const MUSIC_SOURCES = ${JSON.stringify(musicSources)};`,
+    );
+  }
+
+  // Re-bind imports inside this module's scope.
+  const binds = mod.imports
+    .map((im) => {
+      const v = varName.get(im.dep);
+      if (im.ns) return `  const ${im.ns} = ${v};`;
+      const names = im.named.split(',').map((s) => s.trim()).filter(Boolean).join(', ');
+      return `  const { ${names} } = ${v};`;
+    })
+    .join('\n');
+
+  const ret = `  return { ${mod.exports.join(', ')} };`;
+  const rel = path.relative(root, absPath);
+  return [
+    `// ---- ${rel} ----`,
+    `const ${varName.get(absPath)} = (function () {`,
+    binds,
+    body,
+    ret,
+    `})();`,
+  ]
+    .filter((s) => s.length)
+    .join('\n');
+}
+
+const bundle = order.map(emitModule).join('\n\n');
+
+const html = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>STRAY SQUADRON</title>
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Stray Squadron" />
+<meta property="og:title" content="Stray Squadron" />
+<meta property="og:description" content="A browser-native rail shooter with short seeded runs, a branching sector map, and a permanent flight log." />
+<meta property="og:url" content="https://ss-preview.pages.dev/" />
+<meta property="og:image" content="https://ss-preview.pages.dev/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Stray Squadron" />
+<meta name="twitter:description" content="A browser-native rail shooter with short seeded runs, a branching sector map, and a permanent flight log." />
+<meta name="twitter:image" content="https://ss-preview.pages.dev/og.png" />
+<style>
+  html, body { margin: 0; height: 100%; background: #0b0f16; overflow: hidden; }
+  * { box-sizing: border-box; }
+</style>
+</head>
+<body>
+<script>
+"use strict";
+/* STRAY SQUADRON — single-file build (M1 substrate). Generated by scripts/build.js.
+   Zero third-party dependencies. Every module below is our own code. */
+(function () {
+${bundle}
+})();
+</script>
+</body>
+</html>
+`;
+
+const outDir = path.join(root, 'dist');
+fs.mkdirSync(outDir, { recursive: true });
+const outFile = path.join(outDir, 'stray-squadron.html');
+fs.writeFileSync(outFile, html);
+
+const bytes = Buffer.byteLength(html);
+console.log(
+  `built ${path.relative(root, outFile)} — ${order.length} modules, ${(bytes / 1024).toFixed(1)} KiB`,
+);

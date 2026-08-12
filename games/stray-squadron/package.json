@@ -1,0 +1,14 @@
+{
+  "name": "stray-squadron",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A streamlined, browser-native rail-shooter roguelite. Hand-rolled WebGL2, zero third-party runtime dependencies, single-file build.",
+  "scripts": {
+    "pretest": "node scripts/build.js",
+    "test": "node --test",
+    "build": "node scripts/build.js",
+    "instrument": "node scripts/instrument.mjs"
+  },
+  "license": "MIT"
+}
