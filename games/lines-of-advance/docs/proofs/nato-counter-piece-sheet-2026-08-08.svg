@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="390" viewBox="0 0 1120 390" role="img" aria-labelledby="title desc">
+  <title id="title">LINES OF ADVANCE — NATO counter piece proof</title>
+  <desc id="desc">All six unit classes and the arsenal mark for North and South.</desc>
+  <style>
+    .bg{fill:#f4f1ea}.ink{fill:#1a1a1a}.muted{fill:#6b6b6b}.rule{stroke:#c4c0b5}
+    .label{font:600 14px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.small{font:12px ui-monospace,SFMono-Regular,Menlo,monospace}
+    .north{--piece:#b83c3c}.south{--piece:#2c2c2c}.body{fill:var(--piece);stroke:#1a1a1a;stroke-width:1.2}
+    .mark{fill:none;stroke:#f4f1ea;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}.solid{fill:#f4f1ea;stroke:none}
+    .route{fill:none;stroke:#3a7ca5;stroke-width:5;stroke-linecap:round}.offline{stroke:#d95d39;stroke-width:6;stroke-linecap:round}.offline-dot{fill:#d95d39;stroke:#f4f1ea;stroke-width:3}
+  </style>
+  <defs>
+    <g id="counter"><rect class="body" x="-35" y="-30" width="70" height="60" rx="3"/></g>
+    <g id="infantry"><use href="#counter"/><path class="mark" d="M-25-22L25 22M25-22L-25 22"/></g>
+    <g id="cavalry"><use href="#counter"/><path class="mark" d="M-25 22L25-22"/></g>
+    <g id="artillery"><use href="#counter"/><circle class="solid" r="13"/></g>
+    <g id="mounted-artillery"><use href="#artillery"/><circle class="solid" cx="-14" cy="23" r="3.5"/><circle class="solid" cx="14" cy="23" r="3.5"/></g>
+    <g id="relay"><use href="#counter"/><path class="mark" d="M0 22V-14M-14-3Q0-18 14-3M-22-13Q0-34 22-13"/></g>
+    <g id="mounted-relay"><use href="#relay"/><circle class="solid" cx="-14" cy="23" r="3.5"/><circle class="solid" cx="14" cy="23" r="3.5"/></g>
+    <g id="arsenal"><use href="#counter"/><circle class="solid" r="13"/><path class="mark" d="M-25 0H25"/></g>
+  </defs>
+  <rect class="bg" width="1120" height="390"/>
+  <text class="ink label" x="40" y="42" style="font-size:22px;letter-spacing:2px">NATO COUNTERS</text>
+  <text class="muted small" x="40" y="66">RENDER PROOF · 2026-08-08 · ALL TYPES / BOTH SIDES</text>
+  <line class="rule" x1="40" y1="84" x2="1080" y2="84"/>
+  <text class="ink label" x="40" y="157">NORTH</text>
+  <text class="ink label" x="40" y="287">SOUTH</text>
+  <path class="route" d="M155 145H1055M155 275H1055"/>
+  <g class="north">
+    <g transform="translate(210 145)"><use href="#infantry"/></g>
+    <g transform="translate(345 145)"><use href="#cavalry"/></g>
+    <g transform="translate(480 145)"><use href="#artillery"/></g>
+    <g transform="translate(615 145)"><use href="#mounted-artillery"/></g>
+    <g transform="translate(750 145)"><use href="#relay"/></g>
+    <g transform="translate(885 145)"><use href="#mounted-relay"/></g>
+    <g transform="translate(1020 145)"><use href="#arsenal"/></g>
+  </g>
+  <g class="south">
+    <g transform="translate(210 275)"><use href="#infantry"/></g>
+    <g transform="translate(345 275)"><use href="#cavalry"/></g>
+    <g transform="translate(480 275)"><use href="#artillery"/></g>
+    <g transform="translate(615 275)"><use href="#mounted-artillery"/></g>
+    <g transform="translate(750 275)"><use href="#relay"/></g>
+    <g transform="translate(885 275)"><use href="#mounted-relay"/></g>
+    <g transform="translate(1020 275)"><use href="#arsenal"/></g>
+  </g>
+  <path class="offline" d="M858 248L912 302"/><circle class="offline-dot" cx="916" cy="244" r="9"/>
+  <g class="muted small" text-anchor="middle">
+    <text x="210" y="365">INFANTRY</text><text x="345" y="365">CAVALRY</text>
+    <text x="480" y="365">FOOT ART.</text><text x="615" y="365">MOUNTED ART.</text>
+    <text x="750" y="365">FOOT RELAY</text><text x="885" y="365">MOUNTED RELAY</text>
+    <text x="1020" y="365">ARSENAL</text>
+  </g>
+</svg>

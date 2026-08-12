@@ -31,6 +31,8 @@ jobs:
           - innsmouth-2000
           - stray-squadron
           - oddseedz
+          - lines-of-advance
+          - capriole
           - adversary
     defaults:
       run:
@@ -73,6 +75,8 @@ jobs:
           - stray-squadron
           - oddseedz
           - adversary
+          - lines-of-advance
+          - capriole
     defaults:
       run:
         working-directory: games/${{ matrix.game }}
@@ -109,4 +113,6 @@ jobs:
             stray-squadron)  node scripts/soak-stray-squadron.mjs ;;
             oddseedz)        npm run smoke ;;
             adversary)       node scripts/smoke.mjs ;;
+            lines-of-advance) node scripts/interaction-check.js ;;
+            capriole)        node scripts/probe.js ;;
           esac
