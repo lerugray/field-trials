@@ -1,0 +1,11 @@
+{
+  "name": "office-of-the-road",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "THE OFFICE OF THE ROAD — a streamlined JRPG roguelite. The party marches itself; you are the desk it reports to.",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "test": "node --test"
+  }
+}

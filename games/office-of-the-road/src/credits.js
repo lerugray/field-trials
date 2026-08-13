@@ -1,0 +1,26 @@
+// Player-facing credits. ATTRIBUTION.md remains the complete shipped legal
+// inventory; this copy omits builder notes and internal file references.
+export const PLAYER_CREDITS = [
+  'CREDITS & LICENSING',
+  '',
+  'Visual art',
+  '',
+  'Willibab / Monsteretrope: CC BY',
+  'Overworld, Town, Castle, and Dungeon tilesets; Retro Icons; Simple 8-bit Sideview Battlers;',
+  'Retro 8-bit Monster Pack; Humanoid and Monster Faces; Human Empires NPCs; Weapon Pack.',
+  'Art by Willibab / Monsteretrope, used under CC BY.',
+  'Creative Commons Attribution: https://creativecommons.org/licenses/by/4.0/',
+  '',
+  'GuttyKreum: FULL Pixel Tarot Deck',
+  'The 22 major-arcana faces and card back are used under a commercial itch.io licence.',
+  'Tarot art by GuttyKreum (itch.io), used under commercial licence.',
+  '',
+  'RonnyG: character-creator tool',
+  'If derived composite character art is used: tool by RonnyG, art by Willibab.',
+  '',
+  'Score',
+  'Music and sound are code-composed WebAudio with zero audio files.',
+  'No third-party audio attribution is required.',
+  '',
+  'Licensing contact: Ray Weiss. Pixel Tarot licence scope will be reconfirmed before paid release.',
+].join('\n');

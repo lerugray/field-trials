@@ -32,6 +32,7 @@ jobs:
           - stray-squadron
           - oddseedz
           - lines-of-advance
+          - office-of-the-road
           - capriole
           - adversary
     defaults:
@@ -76,6 +77,7 @@ jobs:
           - oddseedz
           - adversary
           - lines-of-advance
+          - office-of-the-road
           - capriole
     defaults:
       run:
@@ -114,5 +116,6 @@ jobs:
             oddseedz)        npm run smoke ;;
             adversary)       node scripts/smoke.mjs ;;
             lines-of-advance) node scripts/interaction-check.js ;;
+            office-of-the-road) node scripts/gold-at-town.mjs ;;
             capriole)        node scripts/probe.js ;;
           esac

@@ -2,7 +2,7 @@
 
 [![suites](https://github.com/lerugray/field-trials/actions/workflows/ci.yml/badge.svg)](https://github.com/lerugray/field-trials/actions/workflows/ci.yml)
 
-Nine browser games. Each one is a complete, self-contained HTML file with no network
+Ten browser games. Each one is a complete, self-contained HTML file with no network
 calls and nothing fetched at runtime. Every visual asset is either drawn by the game's
 own code or is licensed pixel art, credited in-game and in that game's README — never
 generated imagery. Each ships its own test suite and the adversarial audit that was run
@@ -22,10 +22,11 @@ method here, and the method is documented, gated, and inspectable.
 | [STRAY SQUADRON](games/stray-squadron) | SNES-era rail shooter rebuilt as a roguelite, with a permanent flight log | 497 | Genre audit: **no silent gaps**. Independent finishedness audit: **NEEDS-A-ROUND** | [play](https://ss-preview.pages.dev/) |
 | [ODDSEEDZ](games/oddseedz) | Cozy monster-ranching toy, 70 species, no death anywhere in it | 305 | **NEEDS-A-ROUND**, followed by a documented fix round | [play](https://lerugray.github.io/field-trials/oddseedz/) |
 | [LINES OF ADVANCE](games/lines-of-advance) | Supply lines and massed attacks — Debord's Kriegspiel, modernised, with an engine that fights | 156 | **Release audit** — every finding verified landed, 156/156 independent re-run | [play](https://lerugray.github.io/field-trials/lines-of-advance/) |
+| [THE OFFICE OF THE ROAD](games/office-of-the-road) | You are the desk the heroes report to; the party marches itself, tarot is your only intervention | 187 | **Release gate** — 9-step run; QA verdict SHIP, 3 disclosed blemishes, in-gate fixes landed | [play](https://lerugray.github.io/field-trials/office-of-the-road/) |
 | [CAPRIOLE](games/capriole) | First-person hop-and-bop roguelite: a clockwork goat ascends islands a 1995 PlayStation dreamed | 188 | **Spawn-safety sweep** — 8,000 cases, zero death loops | [play](https://lerugray.github.io/field-trials/capriole/) |
 | [ADVERSARY](games/adversary) | Six-stage action-RPG with a Souls death loop | 300 | **FIX-FIRST**, followed by two documented fix rounds | pulled 2026-08-12 — in the shop |
 
-3,008 tests across the nine on the shelf; ADVERSARY's 300 keep running in CI while it is
+3,195 tests across the ten on the shelf; ADVERSARY's 300 keep running in CI while it is
 in the shop. Every suite runs with `npm test` and needs nothing but Node.
 
 ADVERSARY was pulled from the shelf on 2026-08-12 after play caught what its gates had
