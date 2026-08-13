@@ -276,7 +276,7 @@ export function buildTextCatalog() {
     const provision = Math.round(TUNING.startSupplies * TUNING.mandateProvisionFrac);
     add('mandate:clause:frugal', `Clause (frugality): the haul is to field no more than ${frugal} matters.`, FULL, 2, SMALL_FONT_PX);
     add('mandate:clause:provision', `Clause (provisioning): the terminus is to be reached with supplies at or above ${provision}.`, FULL, 2, SMALL_FONT_PX);
-    add('mandate:meta-worst', `terminus leg 99 · 5 legs to go · discharge ≥ ${TUNING.mandateRewardFloor + maxSpan * TUNING.mandateRewardPerLeg + TUNING.mandateRewardBase}¤`, MANDATE_META_W, 2, SMALL_FONT_PX);
+    add('mandate:meta-worst', `terminus leg 99 · 5 legs to go · discharge ≥ ${TUNING.mandateRewardFloor + maxSpan * TUNING.mandateRewardPerLeg + TUNING.mandateRewardBase}¤`, MANDATE_META_W, 1, SMALL_FONT_PX);
     add('mandate:ref', 'MANDATE 9999-F', 90, 1, BODY_FONT_PX);
   }
 

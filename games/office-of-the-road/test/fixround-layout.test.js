@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { JOBS } from '../src/jobs.js';
 import { PLAYER_CREDITS } from '../src/credits.js';
 import { pixelTextWidth } from '../src/pixel-font.js';
-import { CONTROL_BAND_Y, CONTROL_BAND_BOTTOM, CORE_TEXT_HEIGHT, CONTENT_TEXT_MAX_Y, contentTextY, boxesIntersect } from '../src/layout.js';
+import { CONTROL_BAND_Y, CONTROL_BAND_BOTTOM, CORE_TEXT_HEIGHT, CONTENT_TEXT_MAX_Y, contentTextY, boxesIntersect, TEXT_LEADING, MIN_INTERLINE_GAP, findTightInterlineGaps } from '../src/layout.js';
 
 test('content-row rule keeps both audited y=178 rows wholly above controls', () => {
   const band = { x: 0, y: CONTROL_BAND_Y, w: 320, h: CONTROL_BAND_BOTTOM - CONTROL_BAND_Y };
@@ -13,6 +13,32 @@ test('content-row rule keeps both audited y=178 rows wholly above controls', () 
     assert.equal(box.y, CONTENT_TEXT_MAX_Y, `${name} is clamped by the shared rule`);
     assert.equal(boxesIntersect(box, band), false, `${name} does not intersect controls`);
   }
+});
+
+test('TEXT_LEADING law: ≥1.35× cap and ≥3px visible gap at 1×', () => {
+  assert.equal(CORE_TEXT_HEIGHT, 7);
+  assert.equal(MIN_INTERLINE_GAP, 3);
+  assert.ok(TEXT_LEADING >= Math.ceil(CORE_TEXT_HEIGHT * 1.35));
+  assert.ok(TEXT_LEADING - CORE_TEXT_HEIGHT >= MIN_INTERLINE_GAP);
+  assert.equal(TEXT_LEADING, 10);
+});
+
+test('findTightInterlineGaps flags bunched stacked lines the collision gate misses', () => {
+  const bunched = [
+    { text: 'title', x: 16, y: 3, w: 100, h: 7, stack: 'mandate-strip' },
+    { text: 'terminus', x: 16, y: 10, w: 200, h: 7, stack: 'mandate-strip' },
+  ];
+  assert.equal(findTightInterlineGaps(bunched).length, 1);
+  const air = [
+    { text: 'title', x: 16, y: 3, w: 100, h: 7, stack: 'mandate-strip' },
+    { text: 'terminus', x: 16, y: 3 + TEXT_LEADING, w: 200, h: 7, stack: 'mandate-strip' },
+  ];
+  assert.equal(findTightInterlineGaps(air).length, 0);
+  const crossColumn = [
+    { text: 'Server', x: 104, y: 100, w: 35, h: 7, stack: null },
+    { text: 'Bailiff: Distrain', x: 12, y: 109, w: 132, h: 7, stack: null },
+  ];
+  assert.equal(findTightInterlineGaps(crossColumn).length, 0);
 });
 
 test('every camp job description is a complete sentence that fits its owned row', () => {

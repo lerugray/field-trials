@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Live layout probe for GATE 7b — text bbox collisions on shipped dist."""
+"""Live layout probe for GATE 7b — text bbox collisions + inter-line gaps on shipped dist."""
 
 import json
 import subprocess
@@ -29,6 +29,34 @@ STATES = {
 }
 
 
+def collect_failures(label, data):
+    failures = []
+    tc = data.get('textCollisions') or []
+    oob = data.get('outOfBounds') or []
+    tight = data.get('tightGaps') or []
+    cc = []
+    for hit in data.get('collisions') or []:
+        tb = hit.get('textBox') or {}
+        cb = hit.get('controlBox') or {}
+        owned = (
+            tb.get('x', 0) >= cb.get('x', 0)
+            and tb.get('y', 0) >= cb.get('y', 0)
+            and tb.get('x', 0) + tb.get('w', 0) <= cb.get('x', 0) + cb.get('w', 0)
+            and tb.get('y', 0) + tb.get('h', 0) <= cb.get('y', 0) + cb.get('h', 0)
+        )
+        if not owned:
+            cc.append(hit)
+    if tc:
+        failures.append({'state': label, 'kind': 'text-vs-text', 'hits': tc[:5], 'count': len(tc)})
+    if cc:
+        failures.append({'state': label, 'kind': 'text-vs-control-unowned', 'hits': cc[:5], 'count': len(cc)})
+    if oob:
+        failures.append({'state': label, 'kind': 'out-of-bounds', 'hits': oob[:5], 'count': len(oob)})
+    if tight:
+        failures.append({'state': label, 'kind': 'tight-interline', 'hits': tight[:8], 'count': len(tight)})
+    return failures
+
+
 def probe_state(page, dist_url, query):
     page.goto(dist_url + '?' + query)
     page.wait_for_timeout(500)
@@ -46,26 +74,7 @@ def main():
 
         for label, query in STATES.items():
             data = probe_state(page, dist_url, query)
-            tc = data.get('textCollisions') or []
-            oob = data.get('outOfBounds') or []
-            cc = []
-            for hit in data.get('collisions') or []:
-                tb = hit.get('textBox') or {}
-                cb = hit.get('controlBox') or {}
-                owned = (
-                    tb.get('x', 0) >= cb.get('x', 0)
-                    and tb.get('y', 0) >= cb.get('y', 0)
-                    and tb.get('x', 0) + tb.get('w', 0) <= cb.get('x', 0) + cb.get('w', 0)
-                    and tb.get('y', 0) + tb.get('h', 0) <= cb.get('y', 0) + cb.get('h', 0)
-                )
-                if not owned:
-                    cc.append(hit)
-            if tc:
-                failures.append({'state': label, 'kind': 'text-vs-text', 'hits': tc[:5], 'count': len(tc)})
-            if cc:
-                failures.append({'state': label, 'kind': 'text-vs-control-unowned', 'hits': cc[:5], 'count': len(cc)})
-            if oob:
-                failures.append({'state': label, 'kind': 'out-of-bounds', 'hits': oob[:5], 'count': len(oob)})
+            failures.extend(collect_failures(label, data))
 
         # Credits via real control click (same path as fixround proof).
         probe_state(page, dist_url, 'fresh=1&intake=1')
@@ -74,23 +83,7 @@ def main():
         page.mouse.click(box['x'] + (238 + 33) * scale, box['y'] + (176 + 8) * scale)
         page.wait_for_timeout(250)
         data = page.evaluate('window.__office.layoutProbe()')
-        tc = data.get('textCollisions') or []
-        oob = data.get('outOfBounds') or []
-        cc = []
-        for hit in data.get('collisions') or []:
-            tb = hit.get('textBox') or {}
-            cb = hit.get('controlBox') or {}
-            owned = (
-                tb.get('x', 0) >= cb.get('x', 0)
-                and tb.get('y', 0) >= cb.get('y', 0)
-                and tb.get('x', 0) + tb.get('w', 0) <= cb.get('x', 0) + cb.get('w', 0)
-                and tb.get('y', 0) + tb.get('h', 0) <= cb.get('y', 0) + cb.get('h', 0)
-            )
-            if not owned:
-                cc.append(hit)
-        for kind, hits in [('text-vs-text', tc), ('text-vs-control-unowned', cc), ('out-of-bounds', oob)]:
-            if hits:
-                failures.append({'state': 'credits', 'kind': kind, 'hits': hits[:5], 'count': len(hits)})
+        failures.extend(collect_failures('credits', data))
 
         browser.close()
 
@@ -100,7 +93,7 @@ def main():
             print(json.dumps(f), file=sys.stderr)
         sys.exit(1)
 
-    print(f'  layout probe: {len(STATES) + 1} states · text collisions 0 · control collisions 0')
+    print(f'  layout probe: {len(STATES) + 1} states · text collisions 0 · control collisions 0 · tight interline 0')
     sys.exit(0)
 
 

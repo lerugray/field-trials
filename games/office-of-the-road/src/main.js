@@ -35,13 +35,21 @@ import { installSoak } from './soak.js';
 import { pixelText, pixelTextWidth } from './pixel-font.js';
 import { wrapLinesNoEllipsis, wrapLines, truncateText } from './text-wrap.js';
 import { PLAYER_CREDITS } from './credits.js';
-import { CONTROL_BAND_Y, CONTENT_TEXT_MAX_Y, contentTextY, TEXT_LEADING, CORE_TEXT_HEIGHT, computeDisplayFit, pointerToNative } from './layout.js';
+import { CONTROL_BAND_Y, CONTENT_TEXT_MAX_Y, contentTextY, TEXT_LEADING, CORE_TEXT_HEIGHT, MIN_INTERLINE_GAP, findTightInterlineGaps, computeDisplayFit, pointerToNative, presentBackingSize } from './layout.js';
 import { TITLE_NAME, TITLE_TAG, TITLE_SUB, TITLE_BATTLERS, TITLE_TAROT, HOWTO_PAGES, titleMenuRects, howtoMenuRects } from './title-layout.js';
 
 const VW = 320, VH = 200;
 const COMBAT_STATUS_W = 140; // owned left column — party roster begins x=156
-const CAMP_PANEL_Y = 40 + TEXT_LEADING * 4 + 6; // intro 2 + detail 2 at max leading
-const ROUTE_CARD_Y = 40 + TEXT_LEADING * 3 + 6; // intro 2 + supplies 1 + gap
+const CAMP_ROW = 16; // name + stats share a row; pitch clears the leading floor
+const CAMP_PANEL_Y = 40 + TEXT_LEADING * 3 + 4; // intro ≤2 + detail 1; grow detail by dropping wrap
+const ROUTE_CARD_Y = 40 + TEXT_LEADING * 3 + 4; // intro 2 + supplies 1 + gap
+const SHOP_FRAME_PITCH = TEXT_LEADING + CORE_TEXT_HEIGHT + MIN_INTERLINE_GAP; // name + stats stack
+const SHOP_BUY_PITCH = TEXT_LEADING + MIN_INTERLINE_GAP; // one instrument line per buy row
+const MANDATE_BOX_H = TEXT_LEADING * 2 + CORE_TEXT_HEIGHT + 4; // title≤2 + terminus + pad
+const MANDATE_Y = 36;
+const MARCH_ROUTE_Y = MANDATE_Y + MANDATE_BOX_H + 12;
+/** First content row below masthead title + optional sub (sub ends ~32). */
+const AFTER_MASTHEAD_Y = 36;
 const C = PALETTE; // single source of truth (legibility gate asserts its contrast)
 const TERRAIN_LABEL = {
   'chalk-flat': 'Chalk Flat', fen: 'The Fen', 'toll-wood': 'Toll Wood',
@@ -131,13 +139,16 @@ function boot() {
   log.info('boot: opening the file');
 
   const canvas = document.getElementById('stage');
-  const ctx = canvas.getContext('2d', { alpha: false });
+  const present = canvas.getContext('2d', { alpha: false });
   const banner = document.getElementById('boot-error');
-  if (!ctx) {
+  if (!present) {
     if (banner) { banner.style.display = 'block'; banner.textContent = 'No 2D canvas context available.'; }
     log.error('boot: no 2D context'); return;
   }
-  canvas.width = VW; canvas.height = VH; ctx.imageSmoothingEnabled = false;
+  const native = document.createElement('canvas');
+  native.width = VW; native.height = VH;
+  const ctx = native.getContext('2d', { alpha: false });
+  ctx.imageSmoothingEnabled = false;
   initArt(log);
 
   log.onError((entry) => {
@@ -147,18 +158,32 @@ function boot() {
       `[tick ${entry.tick}] ${entry.msg}\n\n(press E to export the full debug log)`;
   });
 
+  function presentFrame() {
+    present.imageSmoothingEnabled = false;
+    present.drawImage(native, 0, 0, VW, VH, 0, 0, canvas.width, canvas.height);
+  }
   function fit() {
-    // Largest integer multiple of the native buffer that fits the window,
-    // centered with letterboxing (CLAUDE.md #9 — crispness beats fractional fill).
+    // Fractional-crisp best-fit (CLAUDE.md #9): one axis fills, the other
+    // letterboxes. Native 320×200 stays the draw buffer; the stage is a
+    // DPR-snapped present target blit with nearest-neighbour (no CSS blur).
     const f = computeDisplayFit(window.innerWidth || VW, window.innerHeight || VH, VW, VH);
-    canvas.style.width = f.cssW + 'px';
-    canvas.style.height = f.cssH + 'px';
-    canvas.style.left = f.offX + 'px';
-    canvas.style.top = f.offY + 'px';
+    const dpr = (typeof window !== 'undefined' && window.devicePixelRatio) || 1;
+    const snap = (v) => Math.round(v * dpr) / dpr;
+    const back = presentBackingSize(f.cssW, f.cssH, dpr);
+    canvas.style.width = (back.bw / dpr) + 'px';
+    canvas.style.height = (back.bh / dpr) + 'px';
+    canvas.style.left = snap(f.offX) + 'px';
+    canvas.style.top = snap(f.offY) + 'px';
     canvas.style.imageRendering = 'pixelated';
+    if (canvas.width !== back.bw || canvas.height !== back.bh) {
+      canvas.width = back.bw;
+      canvas.height = back.bh;
+    }
+    present.imageSmoothingEnabled = false;
     canvas.dataset.scale = String(f.scale);
-    canvas.dataset.offx = String(f.offX);
-    canvas.dataset.offy = String(f.offY);
+    canvas.dataset.offx = String(snap(f.offX));
+    canvas.dataset.offy = String(snap(f.offY));
+    presentFrame();
   }
   window.addEventListener('resize', fit); fit();
 
@@ -640,6 +665,7 @@ function boot() {
     if (ui.cvd) log.guard('cvd', () => applyCVD(ctx, ui.cvd));
     updateScore(); // crossfade the band to match the screen
     if (typeof window !== 'undefined' && window.__soak) log.guard('soak', () => drawSoak(ctx, window.__soak));
+    presentFrame();
   }
   function applyCVD(context, type) {
     const img = context.getImageData(0, 0, VW, VH), d = img.data;
@@ -666,7 +692,7 @@ function boot() {
     { id: 'credits', label: 'CREDITS', rect: { x: 212, y: 150, w: 76, h: 18 }, activate: () => openCredits('docket') },
   ];
   const defeatControls = [
-    { id: 'again', label: 'FILE A NEW EXPEDITION', rect: { x: 90, y: 180, w: 140, h: 15 }, activate: () => discardSaved() },
+    { id: 'again', label: 'FILE A NEW EXPEDITION', rect: { x: 90, y: CONTROL_BAND_Y, w: 140, h: 14 }, activate: () => discardSaved() },
   ];
   // Orientation Mandate (M5): Expedition 0 may still open this intake form via
   // deep-link; START from the title is the ordinary door. Opening march is
@@ -741,13 +767,13 @@ function boot() {
   function buildCampControls() {
     const arr = [];
     for (let i = 0; i < party.frames.length; i++) {
-      arr.push({ id: 'f' + i, frameIndex: i, cycle: true, rect: { x: 16, y: CAMP_PANEL_Y + i * 18, w: 288, h: 18 }, activate: () => cycleFrameJob(i, 1) });
+      arr.push({ id: 'f' + i, frameIndex: i, cycle: true, rect: { x: 16, y: CAMP_PANEL_Y + i * CAMP_ROW, w: 288, h: CAMP_ROW }, activate: () => cycleFrameJob(i, 1) });
     }
-    const actionY = CAMP_PANEL_Y + party.frames.length * 18 + 6;
-    arr.push({ id: 'rest', label: () => 'REST', rect: { x: 16, y: actionY, w: 58, h: 16 }, activate: () => doRest() });
-    arr.push({ id: 'deck', label: 'REVIEW DECK', rect: { x: 80, y: actionY, w: 86, h: 16 }, activate: () => openDeck() });
-    if (ui.camp && ui.camp.isTown) arr.push({ id: 'shop', label: 'QUARTERMASTER', rect: { x: 172, y: actionY, w: 132, h: 16 }, activate: () => openShop() });
-    const marchY = actionY + 22;
+    const actionY = CAMP_PANEL_Y + party.frames.length * CAMP_ROW + 4;
+    arr.push({ id: 'rest', label: () => 'REST', rect: { x: 16, y: actionY, w: 58, h: 14 }, activate: () => doRest() });
+    arr.push({ id: 'deck', label: 'REVIEW DECK', rect: { x: 80, y: actionY, w: 86, h: 14 }, activate: () => openDeck() });
+    if (ui.camp && ui.camp.isTown) arr.push({ id: 'shop', label: 'QUARTERMASTER', rect: { x: 172, y: actionY, w: 132, h: 14 }, activate: () => openShop() });
+    const marchY = actionY + 18;
     arr.push({ id: 'march', label: 'MARCH ON: ROUTE THE NEXT LEG', rect: { x: 16, y: marchY, w: 190, h: 14 }, activate: () => openRoute() });
     arr.push({ id: 'return', label: 'EARLY RETURN', warn: ui.noProgress, rect: { x: 212, y: marchY, w: 92, h: 14 }, activate: () => fileEarlyReturn() });
     return arr;
@@ -770,20 +796,25 @@ function boot() {
     const arr = [];
     const shop = ui.shop; if (!shop) return arr;
     // Buy lines
+    const buyH = SHOP_BUY_PITCH;
+    const buyY0 = AFTER_MASTHEAD_Y + TEXT_LEADING;
     shop.lines.forEach((l, i) => {
-      arr.push({ id: 'buy' + i, kind: 'buy', line: i, rect: { x: 10, y: 42 + i * 15, w: 150, h: 14 }, activate: () => shopBuy(i) });
+      arr.push({ id: 'buy' + i, kind: 'buy', line: i, rect: { x: 10, y: buyY0 + i * buyH, w: 150, h: buyH - MIN_INTERLINE_GAP }, activate: () => shopBuy(i) });
     });
     // Always-open resupply sink
-    arr.push({ id: 'resupply', kind: 'resupply', rect: { x: 10, y: 42 + shop.lines.length * 15 + 4, w: 150, h: 13 }, activate: () => shopResupply() });
+    const resupplyY = buyY0 + shop.lines.length * buyH + 4;
+    arr.push({ id: 'resupply', kind: 'resupply', rect: { x: 10, y: resupplyY, w: 150, h: 13 }, activate: () => shopResupply() });
     // Per-frame slot chips (right column): two per frame (arm, guard)
+    const frameY0 = AFTER_MASTHEAD_Y + TEXT_LEADING;
     party.frames.forEach((f, i) => {
       SLOTS.forEach((slot, si) => {
-        arr.push({ id: 'slot' + i + slot, kind: 'slot', frameIndex: i, slot, rect: { x: 236 + si * 38, y: 44 + i * 18, w: 36, h: 15 }, activate: () => shopSlot(i, slot) });
+        arr.push({ id: 'slot' + i + slot, kind: 'slot', frameIndex: i, slot, rect: { x: 236 + si * 38, y: frameY0 + i * SHOP_FRAME_PITCH, w: 36, h: 15 }, activate: () => shopSlot(i, slot) });
       });
     });
-    // Loose inventory (pick to equip or sell) — a horizontal chip grid, wraps.
+    // Loose inventory below both the frame column and the resupply row.
+    const invY = Math.max(frameY0 + party.frames.length * SHOP_FRAME_PITCH, resupplyY + 16) + TEXT_LEADING;
     (party.inventory || []).forEach((id, i) => {
-      arr.push({ id: 'inv' + i, kind: 'inv', itemId: id, rect: { x: 10 + (i % 6) * 50, y: 130 + Math.floor(i / 6) * 13, w: 48, h: 11 }, activate: () => shopPick(id) });
+      arr.push({ id: 'inv' + i, kind: 'inv', itemId: id, rect: { x: 62 + (i % 5) * 50, y: invY - TEXT_LEADING, w: 48, h: 11 }, activate: () => shopPick(id) });
     });
     // Sell the picked item; back to camp
     arr.push({ id: 'sell', kind: 'sell', rect: { x: 10, y: 168, w: 80, h: 14 }, activate: () => shopSellPicked() });
@@ -1000,8 +1031,9 @@ function boot() {
             if (hit) textCollisions.push({ a: a.text, b: b.text, aBox: a, bBox: b });
           }
         }
+        const tightGaps = findTightInterlineGaps(texts, MIN_INTERLINE_GAP, TEXT_LEADING);
         const outOfBounds = texts.filter((t) => t.x < 0 || t.y < 0 || t.x + t.w > VW || t.y + t.h > VH);
-        return { screen: ui.screen, texts: texts.length, textBoxes: texts, controls: controlsNow.length, collisions, textCollisions, outOfBounds };
+        return { screen: ui.screen, texts: texts.length, textBoxes: texts, controls: controlsNow.length, collisions, textCollisions, tightGaps, outOfBounds };
       },
       // Fast-forward the AUTOMATED resolution of the live fight (not a player verb —
       // it's the beat-by-beat the player would watch). Card plays remain real events.
@@ -1118,9 +1150,9 @@ export function render(ctx, s) {
 
 function masthead(ctx, sub) {
   ctx.fillStyle = C.paper; ctx.font = '10px ui-monospace, monospace';
-  pixelText(ctx, 'THE OFFICE OF THE ROAD', 12, 9);
-  ctx.strokeStyle = C.rule; line(ctx, 12, 23, VW - 12, 23);
-  if (sub) { ctx.font = '7px ui-monospace, monospace'; ctx.fillStyle = C.faint; pixelText(ctx, sub, 12, 26); }
+  pixelText(ctx, 'THE OFFICE OF THE ROAD', 12, 8);
+  ctx.strokeStyle = C.rule; line(ctx, 12, 22, VW - 12, 22);
+  if (sub) { ctx.font = '7px ui-monospace, monospace'; ctx.fillStyle = C.faint; pixelText(ctx, sub, 12, 25); }
 }
 
 // Composed title: pack terrain floor + party battlers + tarot fan + register name + menu.
@@ -1132,12 +1164,15 @@ function renderTitle(ctx, s) {
 
   ctx.fillStyle = C.paper; ctx.font = '10px ui-monospace, monospace';
   const tw = pixelTextWidth(ctx, TITLE_NAME);
+  const prev = ctx.__pixelTextStack;
+  ctx.__pixelTextStack = 'title-brand';
   pixelText(ctx, TITLE_NAME, Math.max(12, (VW - tw) >> 1), 8);
   ctx.font = '7px ui-monospace, monospace'; ctx.fillStyle = C.focus;
   const tagW = pixelTextWidth(ctx, TITLE_TAG);
-  pixelText(ctx, TITLE_TAG, Math.max(12, (VW - tagW) >> 1), 24);
+  pixelText(ctx, TITLE_TAG, Math.max(12, (VW - tagW) >> 1), 8 + 14 + MIN_INTERLINE_GAP);
   ctx.fillStyle = C.dim; ctx.font = '6px ui-monospace, monospace';
-  drawTextLines(ctx, TITLE_SUB, 24, 36, VW - 48, 1, TEXT_LEADING);
+  drawTextLines(ctx, TITLE_SUB, 24, 8 + 14 + MIN_INTERLINE_GAP + TEXT_LEADING, VW - 48, 1, TEXT_LEADING);
+  ctx.__pixelTextStack = prev;
 
   // Party line — shipped battlers only
   const bs = 36;
@@ -1175,17 +1210,18 @@ function renderMarch(ctx, s) {
   ctx.font = '7px ui-monospace, monospace'; ctx.fillStyle = C.dim;
   pixelText(ctx, `LEG ${march.leg} · pace ${String(march.paces).padStart(3)}/${TUNING.legLengthPaces} · enc ${march.encounterCount} · ¤${party.gold}${ui.escLevel ? ` · esc L${ui.escLevel}` : ''}`, 12, 27);
 
-  drawMandateStrip(ctx, mandate, march, 34);
-  drawRoute(ctx, march, 66);
-  drawParty(ctx, party, 184, 94, 68);
-  drawTicker(ctx, ui, 12, 94, 164, 68);
+  drawMandateStrip(ctx, mandate, march, MANDATE_Y);
+  drawRoute(ctx, march, MARCH_ROUTE_Y);
+  const panelsY = MARCH_ROUTE_Y + 24;
+  drawParty(ctx, party, 184, panelsY, Math.min(68, CONTROL_BAND_Y - panelsY - 20));
+  drawTicker(ctx, ui, 12, panelsY, 164, Math.min(68, CONTROL_BAND_Y - panelsY - 20));
 
   // Road omen — the last tarot the road showed (an omen, resolving nothing).
   if (ui.omen) {
     const ox = VW - 30, oy = 26;
     drawCard(ctx, ui.omen.arcana, ox, oy, 18, 25);
     ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace';
-    pixelText(ctx, 'OMEN', ox - 22, oy + 2); pixelText(ctx, ui.omen.name.slice(0, 9), ox - 40, oy + 10);
+    pixelText(ctx, 'OMEN', ox - 22, oy + 2); pixelText(ctx, ui.omen.name.slice(0, 9), ox - 40, oy + 2 + TEXT_LEADING);
   }
 
   ctx.font = '7px ui-monospace, monospace';
@@ -1209,12 +1245,12 @@ function renderCombat(ctx, s) {
   // has LEFT routine says so (intervention is wanted).
   ctx.font = '6px ui-monospace, monospace';
   ctx.fillStyle = cb.left ? C.stamp : C.ok; ctx.textAlign = 'right';
-  pixelText(ctx, cb.left ? '[left routine · intervene]' : '[routine · no cards required]', VW - 12, 27);
+  pixelText(ctx, cb.left ? '[left routine · intervene]' : '[routine · no cards required]', VW - 12, 25);
   ctx.textAlign = 'left';
 
-  const bs = 34;
+  const bs = 30;
   cb.st.enemyW.forEach((w, i) => drawCombatantW(ctx, w, 16 + i * 44, 34, bs, true, cb, battlerForEnemy(i)));
-  cb.st.partyW.forEach((w, i) => drawCombatantW(ctx, w, 156 + i * 40, 40, bs, false, cb, battlerForJob(w.e.jobId)));
+  cb.st.partyW.forEach((w, i) => drawCombatantW(ctx, w, 156 + i * 40, 38, bs, false, cb, battlerForJob(w.e.jobId)));
 
   ctx.font = '7px ui-monospace, monospace'; ctx.fillStyle = C.paper;
   // Owned left-column resolver strip — roster column (x≥156) stays clear.
@@ -1231,7 +1267,7 @@ function renderCombat(ctx, s) {
     // Resolving band below the hand; combatant rows end above y=108.
     ctx.fillStyle = C.ink; ctx.fillRect(114, 124, VW - 126, 8);
     ctx.fillStyle = paused ? C.stamp : C.ok; ctx.font = '7px ui-monospace, monospace';
-    drawTextLines(ctx, paused ? '[ PAUSED: play a card; Space runs ]' : '[ RESOLVING ]', 118, 126, VW - 130, 2, 8);
+    drawTextLines(ctx, paused ? '[ PAUSED: play a card; Space runs ]' : '[ RESOLVING ]', 118, 126, VW - 130, 2, TEXT_LEADING);
   }
 
   drawControls(ctx, controls, ui);
@@ -1252,7 +1288,7 @@ function drawCombatantW(ctx, w, x, y, size, flip, cb, battler) {
   let nameX = bx;
   if (nameX + nameW > VW - 12) nameX = Math.max(0, VW - 12 - nameW);
   const hpY = by + 4;
-  const nameY = hpY + CORE_TEXT_HEIGHT * (1 + (w.idx | 0));
+  const nameY = hpY + TEXT_LEADING * (1 + (w.idx | 0));
   if (!dead) {
     ctx.fillStyle = C.faint;
     pixelText(ctx, `${w.e.hp}/${w.e.max.hp}`, bx, hpY);
@@ -1264,8 +1300,8 @@ function drawCombatantW(ctx, w, x, y, size, flip, cb, battler) {
   for (let i = 0; i < floats.length && i < visibleFloats; i++) {
     const f = floats[i];
     const floatX = x + size / 2 - 4;
-    const floatY = by - 12 - i * 8;
-    if (floatY < 0) break;
+    const floatY = by - 12 - i * TEXT_LEADING;
+    if (floatY < AFTER_MASTHEAD_Y) break;
     ctx.fillStyle = f.color; ctx.font = '7px ui-monospace, monospace';
     pixelText(ctx, f.text, floatX, floatY);
   }
@@ -1304,7 +1340,7 @@ function drawDraft(ctx, cb, ui) {
     drawTextFit(ctx, getCard(foc).text, 12, 118, VW - 24);
   }
   ctx.font = '7px ui-monospace, monospace'; ctx.fillStyle = C.faint;
-  drawTextLines(ctx, 'OFFERED FOR THE FILE: take one, or decline', 12, 125, VW - 24, 2, TEXT_LEADING);
+  drawTextLines(ctx, 'OFFERED FOR THE FILE: take one, or decline', 12, 118 + TEXT_LEADING, VW - 24, 1, TEXT_LEADING);
   const cw = 32, ch = 32, y = 142, gap = 10;
   cb.draftRects = [];
   cb.draft.options.forEach((id, i) => {
@@ -1338,7 +1374,7 @@ function drawParty(ctx, party, x, y, h = 78) {
   ctx.font = '7px ui-monospace, monospace'; ctx.fillStyle = C.faint; pixelText(ctx, 'THE PARTY', x, y - 9);
   ctx.strokeStyle = C.rule; ctx.strokeRect(x, y, VW - x - 12, h);
   party.frames.forEach((f, i) => {
-    const fy = y + 4 + i * 15;
+    const fy = y + 4 + i * TEXT_LEADING + i * MIN_INTERLINE_GAP;
     const dead = !f.alive || f.hp <= 0;
     // battler thumbnail
     drawBattler(ctx, battlerForJob(f.jobId), x + 3, fy, 13, false);
@@ -1364,28 +1400,29 @@ function renderDocket(ctx, s) {
   masthead(ctx, 'RETURNED DOCKET');
   ctx.font = '7px ui-monospace, monospace'; ctx.fillStyle = C.dim;
   pixelText(ctx, 'An expedition remains open on file. It may be resumed', 12, 40);
-  pixelText(ctx, 'exactly where it was left, or filed anew.', 12, 49);
+  pixelText(ctx, 'exactly where it was left, or filed anew.', 12, 40 + TEXT_LEADING);
   const m = previewSave && previewSave.march, pty = previewSave && previewSave.party;
   // ON FILE (left column) — the open expedition.
-  ctx.strokeStyle = C.rule; ctx.strokeRect(12, 66, 168, 74);
-  ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace'; pixelText(ctx, 'ON FILE', 18, 70);
+  const fileTop = 40 + TEXT_LEADING * 2 + MIN_INTERLINE_GAP + 4; // 67
+  ctx.strokeStyle = C.rule; ctx.strokeRect(12, fileTop, 168, 74);
+  ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace'; pixelText(ctx, 'ON FILE', 18, fileTop + 4);
   ctx.fillStyle = C.dim;
   if (m) {
-    pixelText(ctx, `world seed ${previewSave.config.seed}`, 20, 82);
-    pixelText(ctx, `leg ${m.leg} · pace ${m.paces}/${TUNING.legLengthPaces}`, 20, 92);
-    pixelText(ctx, `encounters ${m.encounterCount} · tick ${previewSave.savedAtTick}`, 20, 102);
-    if (pty) pixelText(ctx, `${pty.frames.map((f) => JOBS[f.jobId] ? JOBS[f.jobId].name.slice(0, 3) : '?').join('/')} · sup ${pty.supplies} · ¤${pty.gold | 0}`, 20, 112);
-  } else { ctx.fillStyle = C.stamp; pixelText(ctx, '(the file could not be read)', 20, 92); }
+    pixelText(ctx, `world seed ${previewSave.config.seed}`, 20, fileTop + 16);
+    pixelText(ctx, `leg ${m.leg} · pace ${m.paces}/${TUNING.legLengthPaces}`, 20, fileTop + 16 + TEXT_LEADING);
+    pixelText(ctx, `encounters ${m.encounterCount} · tick ${previewSave.savedAtTick}`, 20, fileTop + 16 + TEXT_LEADING * 2);
+    if (pty) pixelText(ctx, `${pty.frames.map((f) => JOBS[f.jobId] ? JOBS[f.jobId].name.slice(0, 3) : '?').join('/')} · sup ${pty.supplies} · ¤${pty.gold | 0}`, 20, fileTop + 16 + TEXT_LEADING * 3);
+  } else { ctx.fillStyle = C.stamp; pixelText(ctx, '(the file could not be read)', 20, fileTop + 16 + TEXT_LEADING); }
   // RECORD (right column) — the certification ledger's rolling run-history (M8).
-  ctx.strokeStyle = C.rule; ctx.strokeRect(188, 66, VW - 12 - 188, 74);
-  ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace'; pixelText(ctx, 'EXPEDITIONS FILED', 194, 70);
+  ctx.strokeStyle = C.rule; ctx.strokeRect(188, fileTop, VW - 12 - 188, 74);
+  ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace'; pixelText(ctx, 'EXPEDITIONS FILED', 194, fileTop + 4);
   const hist = (meta && meta.history) || [];
-  if (!hist.length) { ctx.fillStyle = C.faint; drawTextLines(ctx, '(no expeditions on record)', 194, 84, VW - 200, 2, 7); }
+  if (!hist.length) { ctx.fillStyle = C.faint; drawTextLines(ctx, '(no expeditions on record)', 194, fileTop + 18, VW - 200, 1, TEXT_LEADING); }
   ctx.fillStyle = C.dim;
   hist.slice(0, 5).forEach((hh, i) => {
-    drawTextLines(ctx, `#${hh.run} L${hh.leg} ${hh.cause === 'abandoned' ? 'return' : 'reduced'} ¤${hh.gold}`, 194, 82 + i * 9, VW - 200, 1, 7);
+    drawTextLines(ctx, `#${hh.run} L${hh.leg} ${hh.cause === 'abandoned' ? 'return' : 'reduced'} ¤${hh.gold}`, 194, fileTop + 16 + i * TEXT_LEADING, VW - 200, 1, TEXT_LEADING);
   });
-  if (meta) { ctx.fillStyle = C.faint; pixelText(ctx, `${meta.runs | 0} filed · deepest leg ${meta.deepestLeg | 0}`, 194, 132); }
+  if (meta) { ctx.fillStyle = C.faint; pixelText(ctx, `${meta.runs | 0} filed · deepest leg ${meta.deepestLeg | 0}`, 194, fileTop + 16 + 5 * TEXT_LEADING); }
   drawControls(ctx, docketControls, ui, true);
   ctx.fillStyle = C.faint; ctx.font = '7px ui-monospace, monospace'; pixelText(ctx, 'Tab / ← →  choose   ·   Enter  file', 12, 176);
 }
@@ -1408,7 +1445,7 @@ function attributionPages(ctx, raw) {
     if (!cleaned.trim()) { if (lines.length && lines[lines.length - 1] !== '') lines.push(''); continue; }
     lines.push(...wrapLines(ctx, cleaned, VW - 24));
   }
-  const perPage = 15, pages = [];
+  const perPage = 12, pages = [];
   for (let i = 0; i < lines.length; i += perPage) pages.push(lines.slice(i, i + perPage));
   return pages.length ? pages : [['(No attribution notice was embedded.)']];
 }
@@ -1420,8 +1457,8 @@ function renderCredits(ctx, s) {
   const pages = attributionPages(ctx, s.attributionText || ATTRIBUTION_CONTENT);
   ui.creditsPage = Math.max(0, Math.min(ui.creditsPage | 0, pages.length - 1));
   ctx.fillStyle = C.faint;
-  pixelText(ctx, `CREDITS · page ${ui.creditsPage + 1}/${pages.length}`, 12, 34);
-  let y = 44;
+  pixelText(ctx, `CREDITS · page ${ui.creditsPage + 1}/${pages.length}`, 12, AFTER_MASTHEAD_Y);
+  let y = AFTER_MASTHEAD_Y + TEXT_LEADING;
   for (const lineStr of pages[ui.creditsPage]) {
     ctx.fillStyle = /^ATTRIBUTION|^Visual art$|^Score$|^Willibab|^GuttyKreum|^RonnyG/.test(lineStr) ? C.paper : C.dim;
     if (lineStr) drawTextLines(ctx, lineStr, 12, y, VW - 24, 1, TEXT_LEADING);
@@ -1437,12 +1474,12 @@ function renderCamp(ctx, s) {
   ctx.font = '7px ui-monospace, monospace'; ctx.fillStyle = C.dim;
   const introLines = drawTextLines(ctx, town ? 'A town is reached. A quartermaster is in attendance; reassignment is permitted.'
                     : 'Camp is made. Reassignment is permitted; rest is billed to the file.', 12, 40, VW - 24, 2, TEXT_LEADING);
-  const detailY = 40 + introLines * TEXT_LEADING + 2;
+  const detailY = 40 + introLines * TEXT_LEADING + MIN_INTERLINE_GAP;
   if (ui.noProgress) {
-    ctx.fillStyle = C.stamp; drawTextLines(ctx, '⚠ NO PROGRESS ON FILE: two legs without gain. Early return is available (below).', 12, detailY, VW - 24, 2, TEXT_LEADING);
+    ctx.fillStyle = C.stamp; drawTextLines(ctx, '⚠ NO PROGRESS ON FILE: two legs without gain. Early return is available (below).', 12, detailY, VW - 24, 1, TEXT_LEADING);
   } else {
     ctx.fillStyle = C.faint;
-    drawTextLines(ctx, 'supplies ' + party.supplies + '  ·  ¤ ' + party.gold + '  ·  rest: −' + TUNING.campRecoverSupplyCost + ' supplies restores half of missing HP', 12, detailY, VW - 24, 2, TEXT_LEADING);
+    drawTextLines(ctx, 'supplies ' + party.supplies + '  ·  ¤ ' + party.gold + '  ·  rest: −' + TUNING.campRecoverSupplyCost + ' supplies restores half of missing HP', 12, detailY, VW - 24, 1, TEXT_LEADING);
   }
 
   for (let i = 0; i < campControls.length; i++) {
@@ -1456,16 +1493,16 @@ function renderCamp(ctx, s) {
       ctx.font = '8px ui-monospace, monospace'; ctx.fillStyle = C.dim; pixelText(ctx, '◄', r.x + 20, r.y + 4);
       pixelText(ctx, '►', r.x + r.w - 12, r.y + 4);
       ctx.font = '7px ui-monospace, monospace'; ctx.fillStyle = dead ? C.stamp : C.paper;
-      drawTextLines(ctx, f.name, r.x + 32, r.y + 5, 70, 1, 7);
+      drawTextLines(ctx, f.name, r.x + 32, r.y + 4, 70, 1, TEXT_LEADING);
       const jb = JOBS[f.jobId];
       ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace';
       const jobTextW = r.w - 126; // reserve both job-cycle arrows and the right inset
-      drawTextFit(ctx, `hp ${f.hp}/${f.max.hp}  atk ${f.max.atk} def ${f.max.def} mag ${f.max.mag} spd ${f.max.spd}`, r.x + 108, r.y + 11, jobTextW);
+      drawTextFit(ctx, `hp ${f.hp}/${f.max.hp}  atk ${f.max.atk} def ${f.max.def} mag ${f.max.mag} spd ${f.max.spd}`, r.x + 108, r.y + 4, jobTextW);
     } else {
       // The early-return valve draws the eye (stamp border + label) when stalled.
       if (c.warn) { ctx.strokeStyle = C.stamp; ctx.strokeRect(r.x, r.y, r.w, r.h); }
       ctx.fillStyle = c.warn ? C.stamp : C.paper; ctx.font = '7px ui-monospace, monospace';
-      drawTextLines(ctx, typeof c.label === 'function' ? c.label() : c.label, r.x + 6, r.y + 5, r.w - 12, 2, 7);
+      drawTextLines(ctx, typeof c.label === 'function' ? c.label() : c.label, r.x + 6, r.y + 4, r.w - 12, 2, TEXT_LEADING);
     }
     if (focused) { ctx.strokeStyle = C.focus; ctx.lineWidth = 1; ctx.strokeRect(r.x - 2, r.y - 2, r.w + 4, r.h + 4); }
   }
@@ -1480,7 +1517,7 @@ function renderRoute(ctx, s) {
   masthead(ctx, 'ROUTE THE NEXT LEG: LEG ' + r.legIndex);
   ctx.font = '7px ui-monospace, monospace'; ctx.fillStyle = C.dim;
   const introLines = drawTextLines(ctx, 'The next stretch is routed. The tradeoff is on file; choose the road.', 12, 40, VW - 24, 2, TEXT_LEADING);
-  const routeDetailY = 40 + introLines * TEXT_LEADING + 2;
+  const routeDetailY = 40 + introLines * TEXT_LEADING + MIN_INTERLINE_GAP;
   ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace';
   pixelText(ctx, `supplies ${party.supplies}  ·  ¤ ${party.gold}  ·  terminus leg ${mandate ? mandate.destinationLeg : '?'}`, 12, routeDetailY);
 
@@ -1491,25 +1528,27 @@ function renderRoute(ctx, s) {
     ctx.strokeStyle = C.edge; ctx.strokeRect(rect.x, rect.y, rect.w, rect.h);
     // road-name + safety word (non-colour channel)
     ctx.font = '7px ui-monospace, monospace'; ctx.fillStyle = C.paper;
-    drawTextLines(ctx, b.label, rect.x + 5, rect.y + 6, rect.w - 10, 2, 8);
+    const labelRows = drawTextLines(ctx, b.label, rect.x + 5, rect.y + 6, rect.w - 10, 2, TEXT_LEADING);
+    const safeY = rect.y + 6 + labelRows * TEXT_LEADING + MIN_INTERLINE_GAP;
     const safeCol = b.safety === 'guarded' ? C.ok : b.safety === 'exposed' ? C.stamp : C.dim;
     ctx.fillStyle = safeCol; ctx.font = '6px ui-monospace, monospace';
-    pixelText(ctx, '[' + b.safety + ']', rect.x + 5, rect.y + 26);
+    pixelText(ctx, '[' + b.safety + ']', rect.x + 5, safeY);
     // exact instruments
     ctx.fillStyle = C.dim; ctx.font = '6px ui-monospace, monospace';
-    pixelText(ctx, `enc ×${b.encounterMult}`, rect.x + 5, rect.y + 40);
-    pixelText(ctx, `pay ×${b.goldMult}`, rect.x + 5, rect.y + 50);
+    pixelText(ctx, `enc ×${b.encounterMult}`, rect.x + 5, safeY + TEXT_LEADING);
+    pixelText(ctx, `pay ×${b.goldMult}`, rect.x + 5, safeY + TEXT_LEADING * 2);
     ctx.fillStyle = b.supplyToll > 0 ? C.stamp : C.faint;
-    pixelText(ctx, b.supplyToll > 0 ? `toll −${b.supplyToll} supp.` : 'no toll', rect.x + 5, rect.y + 60);
-    // note
+    pixelText(ctx, b.supplyToll > 0 ? `toll −${b.supplyToll} supp.` : 'no toll', rect.x + 5, safeY + TEXT_LEADING * 3);
+    // note — drop to 1 line if the card is short of air
     ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace';
-    drawTextLines(ctx, b.note, rect.x + 5, rect.y + 72, rect.w - 10, 2, 8);
+    const noteY = safeY + TEXT_LEADING * 4 + MIN_INTERLINE_GAP;
+    drawTextLines(ctx, b.note, rect.x + 5, noteY, rect.w - 10, 1, TEXT_LEADING);
     ctx.fillStyle = C.filed; ctx.font = '6px ui-monospace, monospace';
-    drawTextLines(ctx, '▸ TAKE ROAD', rect.x + 5, rect.y + rect.h - 8, rect.w - 10, 2, TEXT_LEADING);
+    drawTextLines(ctx, '▸ TAKE ROAD', rect.x + 5, rect.y + rect.h - 8, rect.w - 10, 1, TEXT_LEADING);
     if (focused) { ctx.strokeStyle = C.focus; ctx.lineWidth = 1; ctx.strokeRect(rect.x - 2, rect.y - 2, rect.w + 4, rect.h + 4); }
   }
   ctx.fillStyle = C.faint; ctx.font = '7px ui-monospace, monospace';
-  drawTextLines(ctx, 'Tab / ← → compare · Enter take road · Esc back', 12, 176, VW - 24, 2, 7);
+  drawTextLines(ctx, 'Tab / ← → compare · Enter take road · Esc back', 12, 176, VW - 24, 1, TEXT_LEADING);
 }
 
 // The quartermaster board (M4). Buy lines + always-open resupply (left), party
@@ -1520,11 +1559,11 @@ function renderShop(ctx, s) {
   const shop = ui.shop; if (!shop) return;
   masthead(ctx, 'QUARTERMASTER: LEG ' + shop.legIndex);
   ctx.font = '7px ui-monospace, monospace'; ctx.fillStyle = C.dim; ctx.textAlign = 'right';
-  pixelText(ctx, `ledger ¤${party.gold} · supplies ${party.supplies} · sell ${Math.round(TUNING.shopSellFraction * 100)}%`, VW - 12, 26);
+  pixelText(ctx, `ledger ¤${party.gold} · supplies ${party.supplies} · sell ${Math.round(TUNING.shopSellFraction * 100)}%`, VW - 12, 25);
   ctx.textAlign = 'left';
   ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace';
-  pixelText(ctx, 'ISSUE (requisition)', 10, 35);
-  pixelText(ctx, 'THE PARTY · ITEM THEN SLOT', 166, 35);
+  pixelText(ctx, 'ISSUE (requisition)', 10, AFTER_MASTHEAD_Y);
+  pixelText(ctx, 'THE PARTY · ITEM THEN SLOT', 166, AFTER_MASTHEAD_Y);
 
   const arr = shopControls || [];
   const pick = shop.pick;
@@ -1535,10 +1574,12 @@ function renderShop(ctx, s) {
       ctx.fillStyle = l.sold ? C.ink : C.panel; ctx.fillRect(r.x, r.y, r.w, r.h);
       ctx.strokeStyle = C.edge; ctx.strokeRect(r.x, r.y, r.w, r.h);
       ctx.font = '6px ui-monospace, monospace'; ctx.fillStyle = l.sold ? C.faint : C.paper;
-      pixelText(ctx, it.name.slice(0, 16), r.x + 3, r.y);
-      ctx.fillStyle = l.sold ? C.faint : C.dim; pixelText(ctx, modsLine(l.id), r.x + 3, r.y + 7);
+      const prev = ctx.__pixelTextStack;
+      ctx.__pixelTextStack = `shop-buy:${c.line}`;
+      drawTextFit(ctx, `${it.name.slice(0, 12)} ${modsLine(l.id)}`, r.x + 3, r.y + 3, r.w - 56);
+      ctx.__pixelTextStack = prev;
       ctx.textAlign = 'right'; ctx.fillStyle = l.sold ? C.faint : C.filed;
-      pixelText(ctx, l.sold ? 'REQUISITIONED' : l.price + '¤', r.x + r.w - 3, r.y + 4); ctx.textAlign = 'left';
+      pixelText(ctx, l.sold ? 'TAKEN' : l.price + '¤', r.x + r.w - 3, r.y + 3); ctx.textAlign = 'left';
     } else if (c.kind === 'resupply') {
       ctx.fillStyle = C.panel2; ctx.fillRect(r.x, r.y, r.w, r.h);
       ctx.strokeStyle = C.edge; ctx.strokeRect(r.x, r.y, r.w, r.h);
@@ -1571,18 +1612,24 @@ function renderShop(ctx, s) {
   }
 
   // Party frame labels + stats to the left of each frame's slot chips.
+  const frameY0 = AFTER_MASTHEAD_Y + TEXT_LEADING;
   party.frames.forEach((f, i) => {
-    const y = 44 + i * 18;
+    const y = frameY0 + i * SHOP_FRAME_PITCH;
+    const prev = ctx.__pixelTextStack;
+    ctx.__pixelTextStack = `shop-frame:${i}`;
     ctx.font = '6px ui-monospace, monospace'; ctx.fillStyle = (!f.alive || f.hp <= 0) ? C.stamp : C.paper;
     drawTextLines(ctx, f.name, 166, y + 1, 68, 1, TEXT_LEADING);
-    ctx.fillStyle = C.faint; pixelText(ctx, `a${f.max.atk} d${f.max.def} m${f.max.mag}`, 166, y + 8);
+    ctx.fillStyle = C.faint; pixelText(ctx, `a${f.max.atk} d${f.max.def} m${f.max.mag}`, 166, y + 1 + TEXT_LEADING);
+    ctx.__pixelTextStack = prev;
   });
-  ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace'; pixelText(ctx, 'STORES', 10, 122);
-  if (!(party.inventory || []).length) { ctx.fillStyle = C.faint; pixelText(ctx, '(stores empty; requisition above)', 62, 122); }
-  ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace';
-  pixelText(ctx, 'Tab · Enter act · a filled slot un-issues · Esc back', 12, 160);
-  // A cobblestone street floors the quartermaster (M6 — town tiles): the office
-  // stands somewhere. Native 16px Willibab town tiles, tiled + clipped.
+  const storesBase = Math.max(
+    frameY0 + party.frames.length * SHOP_FRAME_PITCH,
+    AFTER_MASTHEAD_Y + TEXT_LEADING + (shop.lines ? shop.lines.length : 0) * SHOP_BUY_PITCH + 4 + 16,
+  );
+  const storesY = storesBase;
+  ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace'; pixelText(ctx, 'STORES', 10, storesY);
+  if (!(party.inventory || []).length) { ctx.fillStyle = C.faint; pixelText(ctx, '(stores empty; requisition above)', 62, storesY); }
+  // hint dropped: sell/back own the bottom band; Esc remains wired
   ctx.fillStyle = C.townGround; ctx.fillRect(0, 184, VW, 16);
   tileFillCell(ctx, TOWN_KEY, TOWN_TILE.cobble, 0, 184, VW, 16, 'saturate(30%) brightness(48%) sepia(20%)');
   ctx.fillStyle = C.townWash; ctx.fillRect(0, 184, VW, 16);
@@ -1609,8 +1656,8 @@ function renderDeck(ctx, s) {
     if (focused) { ctx.strokeStyle = C.focus; ctx.lineWidth = c.cardId != null ? 2 : 1; ctx.strokeRect(r.x - 2, r.y - 2, r.w + 4, r.h + 4); }
   }
   const foc = arr[ui.focus];
-  if (foc && foc.cardId != null) { ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace'; wrapText(ctx, getCard(foc.cardId).text + '  (Enter strikes it)', 120, 168, 190, 7, 3); }
-  else { ctx.fillStyle = C.faint; ctx.font = '7px ui-monospace, monospace'; drawTextLines(ctx, 'Tab / ← →  select · Enter strike · Esc back', 120, 184, 190, 2, 7); }
+  if (foc && foc.cardId != null) { ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace'; wrapText(ctx, getCard(foc.cardId).text + '  (Enter strikes it)', 120, 168, 190, TEXT_LEADING, 2); }
+  else { ctx.fillStyle = C.faint; ctx.font = '7px ui-monospace, monospace'; drawTextLines(ctx, 'Tab / ← →  select · Enter strike · Esc back', 120, 184, 190, 1, TEXT_LEADING); }
 }
 
 // The Orientation Mandate (M5): Expedition 0's intake form. Each intervention
@@ -1630,13 +1677,13 @@ function renderIntake(ctx, s) {
   masthead(ctx, 'INTAKE FORM: THE ORIENTATION MANDATE');
   ctx.font = '7px ui-monospace, monospace'; ctx.fillStyle = C.dim;
   pixelText(ctx, 'Expedition 0. Every box below is required.', 12, 40);
-  pixelText(ctx, 'The desk may make each intervention. File to proceed.', 12, 50);
-  let y = 66;
+  pixelText(ctx, 'The desk may make each intervention. File to proceed.', 12, 40 + TEXT_LEADING);
+  let y = 40 + TEXT_LEADING * 2 + MIN_INTERLINE_GAP;
   for (const [name, desc] of INTAKE_BOXES) {
     ctx.fillStyle = C.filed; ctx.font = '7px ui-monospace, monospace'; pixelText(ctx, '[x]', 16, y);
     ctx.fillStyle = C.paper; pixelText(ctx, name, 36, y);
-    ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace'; drawTextLines(ctx, desc, 116, y + 1, VW - 128, 2, TEXT_LEADING);
-    y += 14;
+    ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace'; drawTextLines(ctx, desc, 116, y, VW - 128, 1, TEXT_LEADING);
+    y += TEXT_LEADING + MIN_INTERLINE_GAP;
   }
   const arr = intakeControls || [];
   for (let i = 0; i < arr.length; i++) {
@@ -1644,7 +1691,7 @@ function renderIntake(ctx, s) {
     ctx.fillStyle = C.panel; ctx.fillRect(r.x, r.y, r.w, r.h);
     ctx.strokeStyle = ui.focus === i ? C.focus : C.edge; ctx.lineWidth = ui.focus === i ? 2 : 1; ctx.strokeRect(r.x, r.y, r.w, r.h);
     ctx.fillStyle = C.paper; ctx.font = '7px ui-monospace, monospace';
-    drawTextLines(ctx, c.label, r.x + 8, r.y + 5, r.w - 16, 2, 7);
+    drawTextLines(ctx, c.label, r.x + 8, r.y + 5, r.w - 16, 2, TEXT_LEADING);
   }
 }
 
@@ -1668,27 +1715,27 @@ function drawSoak(ctx, S) {
   ctx.font = '6px ui-monospace, monospace';
   const labels = { cardPlay: 'live card play', jobChange: 'camp job change', shopTxn: 'shop transaction', routeBranch: 'route branch', saveRoundTrip: 'save round-trip', deathCycle: 'death→report→cert' };
   let y = 48;
-  ctx.fillStyle = C.faint; pixelText(ctx, 'PLAYER-PATH MINIMUM:', 12, y); y += 9;
+  ctx.fillStyle = C.faint; pixelText(ctx, 'PLAYER-PATH MINIMUM:', 12, y); y += TEXT_LEADING;
   for (const [k, lab] of Object.entries(labels)) {
     ctx.fillStyle = S.verbs[k] ? C.ok : C.stamp;
-    pixelText(ctx, (S.verbs[k] ? '[✓] ' : '[✗] ') + lab, 18, y); y += 8;
+    pixelText(ctx, (S.verbs[k] ? '[✓] ' : '[✗] ') + lab, 18, y); y += TEXT_LEADING;
   }
   // Watch/act metrics
   const m = S.metrics;
   ctx.fillStyle = C.faint; pixelText(ctx, 'WATCH / ACT METRICS:', 168, 48);
   ctx.fillStyle = C.dim;
-  pixelText(ctx, `interventions: ${m.interventions}`, 174, 57);
-  pixelText(ctx, `interventions/min: ${(m.interventionsPerMin || 0).toFixed(1)}`, 174, 66);
-  pixelText(ctx, `longest passive: ${(m.maxPassiveSec || 0).toFixed(1)}s (floor 25s)`, 174, 75);
-  pixelText(ctx, `soak steps: ${S.steps} · expeditions: ${(S.expeditions | 0) + 1}`, 174, 84);
-  ctx.fillStyle = C.faint; pixelText(ctx, '(every verb via real input events)', 174, 95);
+  pixelText(ctx, `interventions: ${m.interventions}`, 174, 48 + TEXT_LEADING);
+  pixelText(ctx, `interventions/min: ${(m.interventionsPerMin || 0).toFixed(1)}`, 174, 48 + TEXT_LEADING * 2);
+  pixelText(ctx, `longest passive: ${(m.maxPassiveSec || 0).toFixed(1)}s (floor 25s)`, 174, 48 + TEXT_LEADING * 3);
+  pixelText(ctx, `soak steps: ${S.steps} · expeditions: ${(S.expeditions | 0) + 1}`, 174, 48 + TEXT_LEADING * 4);
+  ctx.fillStyle = C.faint; pixelText(ctx, '(every verb via real input events)', 174, 48 + TEXT_LEADING * 5);
   // Findings
   ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace'; pixelText(ctx, 'FINDINGS:', 12, 118);
   y = 128;
   if (!S.findings.length) { ctx.fillStyle = C.ok; pixelText(ctx, '(none; clean run)', 18, y); }
   for (const f of S.findings.slice(0, 8)) {
     ctx.fillStyle = f.sev === 'BLOCKER' ? C.stamp : f.sev === 'DEFECT' ? C.hplow : C.dim;
-    wrapText(ctx, `[${f.sev}] ${f.text}`, 18, y, VW - 30, 8); y += (wrapCount(ctx, `[${f.sev}] ${f.text}`, VW - 30)) * 8 + 2;
+    wrapText(ctx, `[${f.sev}] ${f.text}`, 18, y, VW - 30, TEXT_LEADING); y += (wrapCount(ctx, `[${f.sev}] ${f.text}`, VW - 30)) * TEXT_LEADING + MIN_INTERLINE_GAP;
   }
 }
 
@@ -1701,15 +1748,18 @@ function renderDefeat(ctx, s) {
   // decision that produced it. Tone colours: a decision, a suffered deduction,
   // the desk's one credit. (Passive voice for suffering; active for the desk.)
   ctx.font = '6px ui-monospace, monospace'; ctx.fillStyle = C.faint;
-  pixelText(ctx, 'INCIDENT LEDGER: the chain that closed the file:', 12, 34);
-  let y = 44;
+  pixelText(ctx, 'INCIDENT LEDGER: the chain that closed the file:', 12, AFTER_MASTHEAD_Y);
+  let y = AFTER_MASTHEAD_Y + TEXT_LEADING;
   const lines = rep && rep.filed ? rep.filed.lines : [];
+  const maxLedgerY = 118;
   for (const ln of lines) {
+    if (y + CORE_TEXT_HEIGHT > maxLedgerY) break;
     ctx.fillStyle = ln.tone === 'credit' ? C.ok : ln.tone === 'suffer' ? C.stamp : C.paper;
     ctx.font = '7px ui-monospace, monospace';
     const rows = wrapCount(ctx, ln.text, VW - 28);
-    wrapText(ctx, ln.text, 16, y, VW - 28, 8);
-    y += rows * 8 + 3;
+    if (y + rows * TEXT_LEADING > maxLedgerY) break;
+    wrapText(ctx, ln.text, 16, y, VW - 28, TEXT_LEADING);
+    y += rows * TEXT_LEADING + MIN_INTERLINE_GAP;
   }
 
   // Certifications persist — a compact banked summary (flat, numeric, never proud).
@@ -1724,17 +1774,18 @@ function renderDefeat(ctx, s) {
     const g = gains[jid], nm = (JOBS[jid] ? JOBS[jid].name : jid);
     return g.leveled ? `${nm}→Lv${g.after} (+${g.xp})` : `${nm} +${g.xp}`;
   }) : ['(no mastery earned this expedition)'];
-  ctx.fillStyle = C.dim; wrapText(ctx, parts.join('  ·  '), 16, y + 9, VW - 28, 8);
+  ctx.fillStyle = C.dim; wrapText(ctx, parts.join('  ·  '), 16, y + TEXT_LEADING, VW - 28, TEXT_LEADING);
   // New clearances (M5): what banking this run bought on the certification wall.
   const cleared = rep && rep.cleared ? rep.cleared : [];
-  let cy = y + 19;
+  let cy = y + TEXT_LEADING * 2 + MIN_INTERLINE_GAP;
   for (const c of cleared) {
+    if (cy + TEXT_LEADING > CONTROL_BAND_Y - 4) break;
     ctx.fillStyle = C.ok; ctx.font = '6px ui-monospace, monospace';
-    cy += drawTextLines(ctx, `NEW CLEARANCE. ${c.name}: ${c.desc}`, 16, cy, VW - 28, 2, 8) * 8 + 1;
+    cy += drawTextLines(ctx, `NEW CLEARANCE. ${c.name}: ${c.desc}`, 16, cy, VW - 28, 1, TEXT_LEADING) * TEXT_LEADING + MIN_INTERLINE_GAP;
   }
-  if (rep) {
+  if (rep && cy + CORE_TEXT_HEIGHT <= CONTROL_BAND_Y - 4) {
     ctx.fillStyle = C.faint; ctx.font = '6px ui-monospace, monospace';
-    drawTextLines(ctx, `expeditions filed: ${rep.runs} · deepest leg: ${rep.deepestLeg} · escalation L${rep.escLevel}`, 16, cy, VW - 28, 2, 8);
+    drawTextLines(ctx, `expeditions filed: ${rep.runs} · deepest leg: ${rep.deepestLeg} · escalation L${rep.escLevel}`, 16, cy, VW - 28, 1, TEXT_LEADING);
   }
 
   drawControls(ctx, defeatControls, ui, true);
@@ -1745,16 +1796,20 @@ function renderDefeat(ctx, s) {
 // legs remaining, disbursement on discharge.
 function drawMandateStrip(ctx, mandate, march, y) {
   const x0 = 12, x1 = VW - 12;
-  ctx.strokeStyle = C.rule; ctx.strokeRect(x0, y, x1 - x0, 18);
+  ctx.strokeStyle = C.rule; ctx.strokeRect(x0, y, x1 - x0, MANDATE_BOX_H);
   if (!mandate) { ctx.fillStyle = C.faint; ctx.font = '7px ui-monospace, monospace'; pixelText(ctx, 'NO MANDATE ON FILE', x0 + 4, y + 4); return; }
   const rem = legsRemaining(mandate, march.leg);
+  const prev = ctx.__pixelTextStack;
+  ctx.__pixelTextStack = 'mandate-strip';
   drawIcon(ctx, 'mandate', x0 + 3, y + 2, 11); // the rolled instrument (pack art)
   ctx.font = '7px ui-monospace, monospace';
   ctx.fillStyle = C.focus; pixelText(ctx, 'MANDATE ' + mandate.ref, x0 + 16, y + 3);
-  ctx.fillStyle = C.paper; drawTextLines(ctx, mandate.title, x0 + 110, y + 3, x1 - (x0 + 110) - 4, 2, 7);
+  ctx.fillStyle = C.paper;
+  const titleRows = drawTextLines(ctx, mandate.title, x0 + 110, y + 3, x1 - (x0 + 110) - 4, 2, TEXT_LEADING);
   ctx.font = '6px ui-monospace, monospace'; ctx.fillStyle = C.dim;
   const remTxt = rem === 0 ? 'at terminus' : rem + ' leg' + (rem > 1 ? 's' : '') + ' to go';
-  drawTextLines(ctx, `terminus leg ${mandate.destinationLeg} · ${remTxt} · discharge ≥ ${mandate.reward}¤`, x0 + 16, y + 10, x1 - (x0 + 16) - 4, 2, TEXT_LEADING);
+  drawTextLines(ctx, `terminus leg ${mandate.destinationLeg} · ${remTxt} · discharge ≥ ${mandate.reward}¤`, x0 + 16, y + 3 + Math.max(1, titleRows) * TEXT_LEADING, x1 - (x0 + 16) - 4, 1, TEXT_LEADING);
+  ctx.__pixelTextStack = prev;
 }
 
 function drawRoute(ctx, march, y) {
@@ -1782,9 +1837,12 @@ function drawTicker(ctx, ui, x, y, w, h = 78) {
   ctx.fillStyle = C.faint; ctx.font = '7px ui-monospace, monospace'; pixelText(ctx, 'DAY BOOK', x, y - 9);
   ctx.strokeStyle = C.rule; ctx.strokeRect(x, y, w, h);
   ctx.fillStyle = C.dim; ctx.font = '6px ui-monospace, monospace';
-  const rows = ui.ticker.slice(-Math.floor((h - 6) / 9));
-  rows.forEach((t, i) => pixelText(ctx, t.slice(0, 30), x + 3, y + 4 + i * 9));
+  const rows = ui.ticker.slice(-Math.floor((h - 6) / TEXT_LEADING));
+  const prev = ctx.__pixelTextStack;
+  ctx.__pixelTextStack = 'day-book';
+  rows.forEach((t, i) => pixelText(ctx, t.slice(0, 30), x + 3, y + 4 + i * TEXT_LEADING));
   if (rows.length === 0) pixelText(ctx, '(nothing yet to record)', x + 3, y + 4);
+  ctx.__pixelTextStack = prev;
 }
 
 function drawSaveIndicator(ctx, ui) {
@@ -1819,7 +1877,10 @@ function drawTextFit(ctx, text, x, y, maxW) {
 
 function drawTextLines(ctx, text, x, y, maxW, maxLines = Infinity, lineHeight = TEXT_LEADING) {
   const lines = wrapLinesNoEllipsis(ctx, text, maxW, maxLines);
+  const prev = ctx.__pixelTextStack;
+  if (!prev) ctx.__pixelTextStack = `wrap:${Math.round(x)}:${Math.round(y)}:${Math.round(maxW)}`;
   for (let i = 0; i < lines.length; i++) pixelText(ctx, lines[i], x, y + i * lineHeight);
+  ctx.__pixelTextStack = prev;
   return lines.length;
 }
 
@@ -1830,7 +1891,10 @@ function wrapCount(ctx, text, maxW, maxLines = Infinity) {
 
 function wrapText(ctx, text, x, y, maxW, lh, maxLines = Infinity) {
   const lines = wrapLines(ctx, text, maxW, maxLines);
+  const prev = ctx.__pixelTextStack;
+  if (!prev) ctx.__pixelTextStack = `wrap:${Math.round(x)}:${Math.round(y)}:${Math.round(maxW)}`;
   for (let i = 0; i < lines.length; i++) pixelText(ctx, lines[i], x, y + i * lh);
+  ctx.__pixelTextStack = prev;
   return lines.length;
 }
 

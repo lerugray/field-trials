@@ -74,9 +74,9 @@ export function howtoMenuRects(pageIndex) {
  */
 export function buildTitleDrawList() {
   const rows = [];
-  rows.push({ region: 'brand', text: TITLE_NAME, x: 12, y: 8, w: FULL, h: 10 });
-  rows.push({ region: 'brand', text: TITLE_TAG, x: 12, y: 24, w: FULL, h: CORE_TEXT_HEIGHT });
-  rows.push({ region: 'brand', text: TITLE_SUB, x: 24, y: 36, w: FULL - 24, h: CORE_TEXT_HEIGHT });
+  rows.push({ region: 'brand', text: TITLE_NAME, x: 12, y: 8, w: FULL, h: 14 });
+  rows.push({ region: 'brand', text: TITLE_TAG, x: 12, y: 25, w: FULL, h: CORE_TEXT_HEIGHT });
+  rows.push({ region: 'brand', text: TITLE_SUB, x: 24, y: 35, w: FULL - 24, h: CORE_TEXT_HEIGHT });
   for (const c of titleMenuRects()) {
     rows.push({
       region: 'menu', text: c.label,

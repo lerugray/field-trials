@@ -11,7 +11,7 @@ import {
 import { TUNING } from '../src/tuning.js';
 import { createMarch, runTicks } from '../src/engine.js';
 
-test('computeDisplayFit uses largest integer scale and centers', () => {
+test('computeDisplayFit uses best-fit scale and centers', () => {
   const a = computeDisplayFit(1280, 800);
   assert.equal(a.scale, 4);
   assert.equal(a.cssW, NATIVE_W * 4);
@@ -19,19 +19,19 @@ test('computeDisplayFit uses largest integer scale and centers', () => {
   assert.ok(a.fillW >= 0.85 && a.fillH >= 0.85);
 
   const b = computeDisplayFit(1440, 900);
-  assert.equal(b.scale, 4);
+  assert.equal(b.scale, 4.5);
   assert.ok(b.fillW >= 0.85 && b.fillH >= 0.85);
-  assert.equal(b.offX, Math.floor((1440 - b.cssW) / 2));
-  assert.equal(b.offY, Math.floor((900 - b.cssH) / 2));
+  assert.equal(b.offX, (1440 - b.cssW) / 2);
+  assert.equal(b.offY, (900 - b.cssH) / 2);
 
   const mid = computeDisplayFit(900, 600);
-  assert.equal(mid.scale, 2);
-  assert.equal(mid.cssW, 640);
-  assert.equal(mid.offX, 130);
+  assert.equal(mid.scale, 900 / NATIVE_W);
+  assert.equal(mid.cssW, 900);
+  assert.equal(mid.offX, 0);
 
   const maxed = computeDisplayFit(1920, 1080);
-  assert.equal(maxed.scale, 5);
-  assert.ok(Number.isInteger(maxed.scale));
+  assert.equal(maxed.scale, 1080 / NATIVE_H);
+  assert.ok(Math.max(maxed.fillW, maxed.fillH) >= 0.99);
 });
 
 test('pointerToNative remaps through letterbox offsets', () => {

@@ -8,9 +8,10 @@
 import { buildTextCatalog } from '../src/text-catalog.js';
 import { pixelText, pixelTextWidth, PIXEL_FONT } from '../src/pixel-font.js';
 import { wrapLinesNoEllipsis } from '../src/text-wrap.js';
-import { TEXT_LEADING } from '../src/layout.js';
+import { TEXT_LEADING, MIN_INTERLINE_GAP, CORE_TEXT_HEIGHT } from '../src/layout.js';
 
 const OVERFLOW_SLACK = 0.5;
+const LEADING_FLOOR = TEXT_LEADING;
 
 function measureCtx(fontPx) {
   return { font: `${fontPx}px monospace`, textAlign: 'left', fillStyle: '#fff' };
@@ -27,7 +28,7 @@ function droppedContent(text, lines) {
 }
 
 function lineHeightFor(fontPx) {
-  return fontPx >= 9 ? PIXEL_FONT.cellHeight * 2 + 2 : TEXT_LEADING;
+  return fontPx >= 9 ? Math.max(PIXEL_FONT.cellHeight * 2 + MIN_INTERLINE_GAP, Math.ceil(PIXEL_FONT.cellHeight * 2 * 1.35)) : TEXT_LEADING;
 }
 
 /** True when a wrapped line is a strict fragment of a source word (mid-word split). */
@@ -91,8 +92,11 @@ function main() {
     const ctx = measureCtx(c.fontPx);
     const lines = wrapLinesNoEllipsis(ctx, c.text, c.maxWidth, c.maxLines);
     const lh = lineHeightFor(c.fontPx);
-    if (c.maxLines > 1 && lh < PIXEL_FONT.cellHeight + 1) {
-      leadingFails.push({ id: c.id, lineHeight: lh, floor: PIXEL_FONT.cellHeight + 1 });
+    if (c.maxLines > 1 && lh < LEADING_FLOOR) {
+      leadingFails.push({ id: c.id, lineHeight: lh, floor: LEADING_FLOOR, gap: lh - CORE_TEXT_HEIGHT, minGap: MIN_INTERLINE_GAP });
+    }
+    if (c.maxLines > 1 && lh - (c.fontPx >= 9 ? PIXEL_FONT.cellHeight * 2 : CORE_TEXT_HEIGHT) < MIN_INTERLINE_GAP) {
+      leadingFails.push({ id: c.id, kind: 'gap', lineHeight: lh, gap: lh - CORE_TEXT_HEIGHT, minGap: MIN_INTERLINE_GAP });
     }
     const splits = intraWordSplits(c.text, lines);
     if (splits.length) splitFails.push({ id: c.id, splits, text: c.text });
@@ -147,7 +151,7 @@ function main() {
   console.log(`  catalog cases: ${catalog.cases.length}`);
   console.log(`  face: code-drawn ${PIXEL_FONT.cellWidth}×${PIXEL_FONT.cellHeight} bitmap @ shipped ${catalog.bodyFontPx}px (heading ${catalog.headingFontPx}px)`);
   console.log(`  right-edge overflow: 0; dropped words: 0; intra-word splits: 0`);
-  console.log(`  leading floor: ${TEXT_LEADING}px (cell+1) on multi-line surfaces`);
+  console.log(`  leading floor: ${TEXT_LEADING}px (≥1.35×${CORE_TEXT_HEIGHT} / gap≥${MIN_INTERLINE_GAP}px) on multi-line surfaces`);
   console.log(`  ink x-height: body ${bodyInk.height}px (≥${bodyInk.floor}) · heading ${headInk.height}px (≥${headInk.floor}) · partials 0`);
   process.exit(0);
 }

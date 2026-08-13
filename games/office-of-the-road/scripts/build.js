@@ -141,6 +141,13 @@ function build() {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="The Office of the Road" />
+<meta property="og:title" content="The Office of the Road" />
+<meta property="og:description" content="You are the desk the heroes report to. An expedition is issued, the party marches itself, and tarot from the hand is your only intervention." />
+<meta property="og:url" content="https://lerugray.github.io/field-trials/office-of-the-road/" />
+<meta property="og:image" content="https://lerugray.github.io/field-trials/office-of-the-road/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
 <title>THE OFFICE OF THE ROAD</title>
 <style>
   html, body { margin: 0; padding: 0; background: #0d0b0a; color: #e8dfce; overflow: hidden;

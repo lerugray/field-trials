@@ -154,6 +154,7 @@ export function pixelText(ctx, text, x, y) {
   const top = Math.round(y);
   if (Array.isArray(ctx.__pixelTextEvents)) ctx.__pixelTextEvents.push({
     text: String(text == null ? '' : text), x: left, y: top, w: width, h: 7 * scale,
+    stack: ctx.__pixelTextStack || null,
   });
   let cursor = 0;
   for (let ci = 0; ci < chars.length; ci++) {
