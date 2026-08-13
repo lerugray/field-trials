@@ -3,9 +3,10 @@
 [![suites](https://github.com/lerugray/field-trials/actions/workflows/ci.yml/badge.svg)](https://github.com/lerugray/field-trials/actions/workflows/ci.yml)
 
 Nine browser games. Each one is a complete, self-contained HTML file with no network
-calls, nothing fetched at runtime, and no third-party sprites or tilesets — every visual
-asset is drawn by the game's own code. Each ships its own test suite and the adversarial
-audit that was run against it before release.
+calls and nothing fetched at runtime. Every visual asset is either drawn by the game's
+own code or is licensed pixel art, credited in-game and in that game's README — never
+generated imagery. Each ships its own test suite and the adversarial audit that was run
+against it before release.
 
 They were built by LLM builders working under written direction from a human designer.
 That is the point of this repository: not that the games exist, but that there is a
