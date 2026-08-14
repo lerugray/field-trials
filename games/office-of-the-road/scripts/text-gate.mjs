@@ -149,7 +149,8 @@ function main() {
 
   console.log('TEXT GATE PASSED');
   console.log(`  catalog cases: ${catalog.cases.length}`);
-  console.log(`  face: code-drawn ${PIXEL_FONT.cellWidth}×${PIXEL_FONT.cellHeight} bitmap @ shipped ${catalog.bodyFontPx}px (heading ${catalog.headingFontPx}px)`);
+  console.log(`  face: ${PIXEL_FONT.name} (${PIXEL_FONT.author}, ${PIXEL_FONT.license}) — ${PIXEL_FONT.cellHeight}-row bitmap, `
+    + `cap ${PIXEL_FONT.capHeight} / x-height ${PIXEL_FONT.xHeight}, body 1× · title 2×`);
   console.log(`  right-edge overflow: 0; dropped words: 0; intra-word splits: 0`);
   console.log(`  leading floor: ${TEXT_LEADING}px (≥1.35×${CORE_TEXT_HEIGHT} / gap≥${MIN_INTERLINE_GAP}px) on multi-line surfaces`);
   console.log(`  ink x-height: body ${bodyInk.height}px (≥${bodyInk.floor}) · heading ${headInk.height}px (≥${headInk.floor}) · partials 0`);

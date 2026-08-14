@@ -1,0 +1,17 @@
+Pixel Tarot Deck ("FULL Pixel Tarot Deck", itch.io asset pack)
+
+License: purchased on itch.io by Ray Weiss; commercial use confirmed okay
+by the seller (cleared 2026-06-10, see repo commit ffa63a1 "tarot deck
+license cleared per Ray"). The pack ships no license text or credits file
+of its own; the seller's itch.io page is the licensing source of record.
+
+Artist / seller: GuttyKreum (itch.io), per Ray from the purchase page
+(2026-06-10). The pack itself ships no README or credits file; this line
+and the README credit are the record.
+
+Files vendored here: the 22 major arcana card faces plus one card back
+(back_of_card.png), all 57x79 px, used unmodified. The minor arcana, the
+full-page sheet, and the .clip/.psd sources were NOT vendored.
+
+Used by: the supernatural omen-reading event ("The Card Reader",
+data/events.json) via scripts/events/tarot_deck.gd.

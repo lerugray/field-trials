@@ -10,7 +10,7 @@ import { ROUTE_ARCHETYPES } from './route.js';
 import { MANDATE_SUBJECTS, MANDATE_OBJECTS } from './mandate.js';
 import { CERTIFICATIONS } from './certifications.js';
 import { PLAYER_CREDITS } from './credits.js';
-import { ENEMY_NAMES, ENEMY_VERBS } from './combat.js';
+import { ENEMY_NAMES, ENEMY_VERBS, WINDOW_LABEL } from './combat.js';
 import { TUNING } from './tuning.js';
 import { createLedger, recordRoute, recordMissedWindow, recordReduction, recordCredit, composeReport } from './report.js';
 import { PIXEL_FONT } from './pixel-font.js';
@@ -32,11 +32,13 @@ const SHOP_BUY_NAME_W = 100;
 const SHOP_MODS_W = 140;
 const DRAFT_NAME_W = 32; // one draft card column
 const DRAFT_TEXT_W = VW - (16 + 3 * (32 + 10)) - 8; // 170
-const HAND_STATE_W = 30;
+const HAND_STATE_W = 30 - 2; // the plate is 32px; the label is inset 3px and sits 1px clear
 const COMBAT_NAME_W = 58; // Chirurgeon at 6px; combat roster never ellipsizes
 const DECK_CARD_NAME_W = 50;
 const INTAKE_DESC_W = VW - 128;
 const DOCKET_HIST_W = VW - 200;
+const DOCKET_FILE_W = 168 - 8 - 4; // the ON FILE panel's inner text column
+const SCORE_LINE_W = 110; // the march score/mute line, right-aligned at VW-12
 const COMBAT_LINE_W = 140; // owned left resolver column (roster begins x=156)
 const COMBAT_LINE_LINES = 2;
 
@@ -143,8 +145,10 @@ export function buildTextCatalog() {
   add('combat:decline', 'DECLINE', 48, 1, BODY_FONT_PX);
   add('combat:left', '[left routine · intervene]', 160, 1, SMALL_FONT_PX);
   add('combat:routine', '[routine · no cards required]', 160, 1, SMALL_FONT_PX);
-  for (const state of ['DEC', 'ok', '-']) {
-    add(`combat:hand-state:${state}`, state, HAND_STATE_W, 1, SMALL_FONT_PX);
+  // The plate carries the input key AND the window word, which is the string
+  // the gate has to clear — not the word on its own.
+  for (const state of Object.values(WINDOW_LABEL)) {
+    add(`combat:hand-state:${state}`, `9 ${state}`, HAND_STATE_W, 1, SMALL_FONT_PX);
   }
   for (const [tier, label] of Object.entries(TIER_LABEL)) {
     add(`combat:tier:${tier}`, label, 90, 1, SMALL_FONT_PX);
@@ -158,7 +162,9 @@ export function buildTextCatalog() {
   add('docket:filed', 'EXPEDITIONS FILED', 120, 1, SMALL_FONT_PX);
   add('docket:none', '(no expeditions on record)', DOCKET_HIST_W, 2, SMALL_FONT_PX);
   add('docket:nav', 'Tab / ← →  choose   ·   Enter  file', FULL, 1, BODY_FONT_PX);
-  add('docket:history-worst', '#99 L99 return ¤9999', DOCKET_HIST_W, 1, BODY_FONT_PX);
+  add('docket:history-worst', '#99 leg 99 return 9999¤', DOCKET_HIST_W, 1, BODY_FONT_PX);
+  add('docket:roster-worst', 'Chirurgeon · Chirurgeon · Chirurgeon · Chirurgeon', DOCKET_FILE_W, 2, SMALL_FONT_PX);
+  add('docket:stores', 'supplies 999  ·', DOCKET_FILE_W, 1, SMALL_FONT_PX);
 
   // ---- Credits (pages are pre-wrapped to FULL by attributionPages) ----------
   {
@@ -178,7 +184,7 @@ export function buildTextCatalog() {
   add('camp:intro-town', 'A town is reached. A quartermaster is in attendance; reassignment is permitted.', FULL, 2, BODY_FONT_PX);
   add('camp:intro-camp', 'Camp is made. Reassignment is permitted; rest is billed to the file.', FULL, 2, BODY_FONT_PX);
   add('camp:no-progress', '⚠ NO PROGRESS ON FILE: two legs without gain. Early return is available (below).', FULL, 2, BODY_FONT_PX);
-  add('camp:supplies', `supplies 999  ·  ¤ 9999  ·  rest: −${TUNING.campRecoverSupplyCost} supplies restores half of missing HP`, FULL, 2, BODY_FONT_PX);
+  add('camp:supplies', `supplies 999  ·  9999¤  ·  rest: −${TUNING.campRecoverSupplyCost} supplies restores half of missing HP`, FULL, 2, BODY_FONT_PX);
   add('camp:nav', 'Tab focus · ◄ ► change job · Enter act', FULL, 1, SMALL_FONT_PX);
   for (const id of Object.keys(JOBS)) {
     const s = deriveStats(id);
@@ -188,25 +194,26 @@ export function buildTextCatalog() {
 
   // ---- Route ----------------------------------------------------------------
   add('route:intro', 'The next stretch is routed. The tradeoff is on file; choose the road.', FULL, 2, BODY_FONT_PX);
-  add('route:meta', 'supplies 999  ·  ¤ 9999  ·  terminus leg 99', FULL, 1, SMALL_FONT_PX);
+  add('route:meta', 'supplies 999  ·  9999¤  ·  terminus leg 99', FULL, 1, SMALL_FONT_PX);
   add('route:nav', 'Tab / ← → compare · Enter take road · Esc back', FULL, 2, BODY_FONT_PX);
   for (const a of ROUTE_ARCHETYPES) {
     add(`route:label:${a.id}`, a.label, ROUTE_CARD_W, 2, BODY_FONT_PX);
     add(`route:note:${a.id}`, a.note, ROUTE_CARD_W, 2, SMALL_FONT_PX);
     add(`route:safety:${a.id}`, '[' + a.safety + ']', ROUTE_CARD_W, 1, SMALL_FONT_PX);
   }
-  add('route:enc', 'enc ×9.99', ROUTE_CARD_W, 1, SMALL_FONT_PX);
+  add('route:enc', 'encounters ×9.99', ROUTE_CARD_W, 1, SMALL_FONT_PX);
   add('route:pay', 'pay ×9.99', ROUTE_CARD_W, 1, SMALL_FONT_PX);
-  add('route:toll', 'toll −99 supp.', ROUTE_CARD_W, 1, SMALL_FONT_PX);
+  add('route:toll', 'toll −99 supplies', ROUTE_CARD_W, 1, SMALL_FONT_PX);
   add('route:no-toll', 'no toll', ROUTE_CARD_W, 1, SMALL_FONT_PX);
 
   // ---- Shop -----------------------------------------------------------------
-  add('shop:ledger', 'ledger ¤9999 · supplies 999 · sell 50%', FULL, 1, BODY_FONT_PX);
+  add('shop:ledger', 'ledger 9999¤ · supplies 999 · sell 50%', FULL, 1, BODY_FONT_PX);
   add('shop:resupply', `RESUPPLY  +${TUNING.resupplyBlock} supplies`, 120, 1, SMALL_FONT_PX);
   add('shop:requisitioned', 'REQUISITIONED', 150, 1, SMALL_FONT_PX);
   add('shop:empty', '(stores empty; requisition above)', 200, 1, SMALL_FONT_PX);
   add('shop:nav', 'Tab · Enter act · a filled slot un-issues · Esc back', FULL, 1, SMALL_FONT_PX);
   add('shop:sell', 'SELL (+999¤)', 80 - 4, 1, BODY_FONT_PX);
+  add('shop:slot-empty', 'none', 36 - 16, 1, SMALL_FONT_PX);
   for (const it of Object.values(ITEMS)) {
     add(`shop:name:${it.id}`, it.name.slice(0, 16), SHOP_BUY_NAME_W, 1, SMALL_FONT_PX);
     add(`shop:mods:${it.id}`, modsLine(it.id), SHOP_MODS_W, 1, SMALL_FONT_PX);
@@ -244,7 +251,7 @@ export function buildTextCatalog() {
   add('defeat:ledger-head', 'INCIDENT LEDGER: the chain that closed the file:', FULL, 1, SMALL_FONT_PX);
   add('defeat:certs-head', 'CERTIFICATIONS BANKED TO THE PERMANENT RECORD:', FULL, 1, SMALL_FONT_PX);
   add('defeat:no-mastery', '(no mastery earned this expedition)', DEFEAT, 1, SMALL_FONT_PX);
-  add('defeat:meta', 'expeditions filed: 99 · deepest leg: 99 · escalation L9', DEFEAT, 2, SMALL_FONT_PX);
+  add('defeat:meta', 'expeditions filed: 99 · deepest leg: 99 · escalation 9', DEFEAT, 2, SMALL_FONT_PX);
   {
     const L = createLedger();
     recordRoute(L, 12, { id: 'verge', label: 'The Unassessed Verge', safety: 'exposed', encounterMult: 1.75 });
@@ -343,9 +350,9 @@ export function buildTextCatalog() {
   for (const [id, text, w] of controls) add(id, text, w, 2, BODY_FONT_PX);
 
   add('misc:nothing', '(nothing yet to record)', 140, 1, SMALL_FONT_PX);
-  add('misc:score-muted', 'score muted (M)', 90, 1, SMALL_FONT_PX);
+  add('misc:score-muted', 'score muted · M restores', SCORE_LINE_W, 1, SMALL_FONT_PX);
   for (const track of ['office', 'march', 'town', 'combat', 'report']) {
-    add(`misc:score-${track}`, `score: ${track} (M)`, 90, 1, SMALL_FONT_PX);
+    add(`misc:score-${track}`, `score: ${track} · M mutes`, SCORE_LINE_W, 1, SMALL_FONT_PX);
   }
   add('misc:omen', 'OMEN', 30, 1, SMALL_FONT_PX);
 

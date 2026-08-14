@@ -1,0 +1,10 @@
+To get a different graphic in RPG Maker MV/MZ for each weapon you need a plugin.
+
+The ones I use is either Visustella Weapon Animation (MZ) or Yanfly Weapon Animation (Made for MV but can be used With FOSSIL plugin). 
+
+Unfortunatley, I dont think either is free anymore. But I dont know of another Method to make this work.
+
+You can try https://gabe-plugins.itch.io/akea-visual-weapons but I have never tried it myself so have no Clue how it Works.
+
+Another invalueable plugin is CAE_WeaponSpritesAdjust, this just Works (for me at least)
+Link: https://forums.rpgmakerweb.com/index.php?threads/resizing-repositioning-weapon-animation-sheet.159779/

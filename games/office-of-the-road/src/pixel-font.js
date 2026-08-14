@@ -1,146 +1,117 @@
-// pixel-font.js — a code-drawn 5×7 bitmap face for the 320×200 game raster.
+// pixel-font.js — the game's single type face.
+//
+// THE FACE: "Undead Pixel 8" by Not Jam (CC0). A real, designed pixel font —
+// not a hand-rolled glyph table. The sheet, its metrics and its licence ship in
+// materials/fonts/not-jam-undead-pixel-8/; scripts/extract-font.mjs slices it
+// into src/font-data.js, which is what this module renders.
+//
 // Canvas font rasterization is deliberately absent: every lit glyph cell is an
-// integer fillRect, so nearest-neighbour display scaling stays two-colour crisp.
+// integer fillRect, so nearest-neighbour display scaling stays two-colour crisp
+// at any window size. No fillText, no @font-face, no antialiasing, ever.
+//
+// ONE family, integer scales only. Type roles live in TYPE below; call sites use
+// setType(ctx, 'body') rather than inventing pixel sizes.
 
-const G = {
-  ' ': ['00000','00000','00000','00000','00000','00000','00000'],
-  '!': ['00100','00100','00100','00100','00100','00000','00100'],
-  '"': ['01010','01010','01010','00000','00000','00000','00000'],
-  '#': ['01010','11111','01010','01010','11111','01010','00000'],
-  '$': ['00100','01111','10100','01110','00101','11110','00100'],
-  '%': ['11001','11010','00100','01000','10110','00110','00000'],
-  '&': ['01100','10010','10100','01000','10101','10010','01101'],
-  "'": ['00100','00100','01000','00000','00000','00000','00000'],
-  '(': ['00010','00100','01000','01000','01000','00100','00010'],
-  ')': ['01000','00100','00010','00010','00010','00100','01000'],
-  '*': ['00000','10101','01110','11111','01110','10101','00000'],
-  '+': ['00000','00100','00100','11111','00100','00100','00000'],
-  ',': ['00000','00000','00000','00000','00110','00100','01000'],
-  '-': ['00000','00000','00000','11111','00000','00000','00000'],
-  '.': ['00000','00000','00000','00000','00000','01100','01100'],
-  '/': ['00001','00010','00100','01000','10000','00000','00000'],
-  '0': ['01110','10001','10011','10101','11001','10001','01110'],
-  '1': ['00100','01100','00100','00100','00100','00100','01110'],
-  '2': ['01110','10001','00001','00010','00100','01000','11111'],
-  '3': ['11110','00001','00001','01110','00001','00001','11110'],
-  '4': ['00010','00110','01010','10010','11111','00010','00010'],
-  '5': ['11111','10000','10000','11110','00001','00001','11110'],
-  '6': ['01110','10000','10000','11110','10001','10001','01110'],
-  '7': ['11111','00001','00010','00100','01000','01000','01000'],
-  '8': ['01110','10001','10001','01110','10001','10001','01110'],
-  '9': ['01110','10001','10001','01111','00001','00001','01110'],
-  ':': ['00000','01100','01100','00000','01100','01100','00000'],
-  ';': ['00000','01100','01100','00000','01100','00100','01000'],
-  '<': ['00010','00100','01000','10000','01000','00100','00010'],
-  '=': ['00000','00000','11111','00000','11111','00000','00000'],
-  '>': ['01000','00100','00010','00001','00010','00100','01000'],
-  '?': ['01110','10001','00001','00010','00100','00000','00100'],
-  '@': ['01110','10001','10111','10101','10111','10000','01110'],
-  'A': ['01110','10001','10001','11111','10001','10001','10001'],
-  'B': ['11110','10001','10001','11110','10001','10001','11110'],
-  'C': ['01110','10001','10000','10000','10000','10001','01110'],
-  'D': ['11110','10001','10001','10001','10001','10001','11110'],
-  'E': ['11111','10000','10000','11110','10000','10000','11111'],
-  'F': ['11111','10000','10000','11110','10000','10000','10000'],
-  'G': ['01110','10001','10000','10111','10001','10001','01110'],
-  'H': ['10001','10001','10001','11111','10001','10001','10001'],
-  'I': ['01110','00100','00100','00100','00100','00100','01110'],
-  'J': ['00111','00010','00010','00010','10010','10010','01100'],
-  'K': ['10001','10010','10100','11000','10100','10010','10001'],
-  'L': ['10000','10000','10000','10000','10000','10000','11111'],
-  'M': ['10001','11011','10101','10101','10001','10001','10001'],
-  'N': ['10001','11001','10101','10011','10001','10001','10001'],
-  'O': ['01110','10001','10001','10001','10001','10001','01110'],
-  'P': ['11110','10001','10001','11110','10000','10000','10000'],
-  'Q': ['01110','10001','10001','10001','10101','10010','01101'],
-  'R': ['11110','10001','10001','11110','10100','10010','10001'],
-  'S': ['01111','10000','10000','01110','00001','00001','11110'],
-  'T': ['11111','00100','00100','00100','00100','00100','00100'],
-  'U': ['10001','10001','10001','10001','10001','10001','01110'],
-  'V': ['10001','10001','10001','10001','10001','01010','00100'],
-  'W': ['10001','10001','10001','10101','10101','10101','01010'],
-  'X': ['10001','10001','01010','00100','01010','10001','10001'],
-  'Y': ['10001','10001','01010','00100','00100','00100','00100'],
-  'Z': ['11111','00001','00010','00100','01000','10000','11111'],
-  '[': ['01110','01000','01000','01000','01000','01000','01110'],
-  '\\': ['10000','01000','00100','00010','00001','00000','00000'],
-  ']': ['01110','00010','00010','00010','00010','00010','01110'],
-  '^': ['00100','01010','10001','00000','00000','00000','00000'],
-  '_': ['00000','00000','00000','00000','00000','00000','11111'],
-  '`': ['01000','00100','00010','00000','00000','00000','00000'],
-  'a': ['00000','00000','01110','00001','01111','10001','01111'],
-  'b': ['10000','10000','10110','11001','10001','10001','11110'],
-  'c': ['00000','00000','01110','10001','10000','10001','01110'],
-  'd': ['00001','00001','01101','10011','10001','10001','01111'],
-  'e': ['00000','00000','01110','10001','11111','10000','01110'],
-  'f': ['00110','01001','01000','11100','01000','01000','01000'],
-  'g': ['00000','00000','01110','10001','10001','01111','10100'],
-  'h': ['10000','10000','10110','11001','10001','10001','10001'],
-  'i': ['00100','00000','01100','00100','00100','00100','01110'],
-  'j': ['00010','00000','00110','00010','00010','10010','01100'],
-  'k': ['10000','10000','10010','10100','11000','10100','10010'],
-  'l': ['01100','00100','00100','00100','00100','00100','01110'],
-  'm': ['00000','00000','11010','10101','10101','10101','10101'],
-  'n': ['00000','00000','10110','11001','10001','10001','10001'],
-  'o': ['00000','00000','01110','10001','10001','10001','01110'],
-  'p': ['00000','00000','11110','10001','11110','10000','10100'],
-  'q': ['00000','00000','01101','10011','01111','00001','00110'],
-  'r': ['00000','00000','10110','11001','10000','10000','10000'],
-  's': ['00000','00000','01111','10000','01110','00001','11110'],
-  't': ['01000','01000','11100','01000','01000','01001','00110'],
-  'u': ['00000','00000','10001','10001','10001','10011','01101'],
-  'v': ['00000','00000','10001','10001','10001','01010','00100'],
-  'w': ['00000','00000','10001','10001','10101','10101','01010'],
-  'x': ['00000','00000','10001','01010','00100','01010','10001'],
-  'y': ['00000','00000','10001','10001','01111','00001','11100'],
-  'z': ['00000','00000','11111','00010','00100','01000','11111'],
-  '{': ['00010','00100','00100','01000','00100','00100','00010'],
-  '|': ['00100','00100','00100','00100','00100','00100','00100'],
-  '}': ['01000','00100','00100','00010','00100','00100','01000'],
-  '~': ['00000','00000','01001','10110','00000','00000','00000'],
-};
+// NOTE: one line. scripts/build.js strips imports line-by-line, so a wrapped
+// import statement would survive into the single-file bundle and break it.
+import { FONT_GLYPHS, FONT_CELL_H, FONT_CAP_H, FONT_X_H, FONT_SPACE_ADVANCE, FONT_NAME, FONT_AUTHOR, FONT_LICENSE } from './font-data.js';
 
+const G = FONT_GLYPHS;
+
+/** Letter-spacing, in face pixels, between adjacent glyph inks. */
+const TRACKING = 1;
+
+/**
+ * THE TYPE SCALE. Three roles, one family, hierarchy by size and colour.
+ *
+ * `title` is the face at an integer 2× — the only enlarged tier, reserved for
+ * the brand and screen mastheads. `body` and `caption` share the 1× raster:
+ * this face's cap height is 6px on a 200px-tall canvas (3% — the brief's title
+ * band), so a genuinely smaller caption raster would need a second family
+ * (forbidden) and would land under the text gate's ink floor. The caption tier
+ * is therefore a colour + usage tier, per ROLE.caption in ui.js.
+ */
+export const TYPE = Object.freeze({
+  title: 2,
+  body: 1,
+  caption: 1,
+});
+
+/** Canvas font strings the scale reader understands (kept for legacy call sites). */
+const TYPE_FONT = Object.freeze({
+  title: '16px pixel',
+  body: '8px pixel',
+  caption: '8px pixel',
+});
+
+/** Set the active type role on a context. Returns the scale for layout maths. */
+export function setType(ctx, role) {
+  const scale = TYPE[role] || TYPE.body;
+  ctx.font = TYPE_FONT[role] || TYPE_FONT.body;
+  return scale;
+}
+
+/** Rendered line box height for a role, in canvas pixels. */
+export function typeHeight(role) {
+  return FONT_CELL_H * (TYPE[role] || TYPE.body);
+}
+
+// Characters the face does not carry, mapped to ones it does. '·' IS carried
+// natively and is left alone.
+//
+// '¤' is the exception that is carried and still substituted: the face draws it
+// as a 4-row ring-and-rays that collapses into two blobs at native size — it
+// read as "xx" beside every figure in the ledger, which is a legibility defect,
+// not a style. The authored copy keeps '¤' (it is the register's mark); it
+// renders as the genre's gold suffix, and the headline ledger figures carry the
+// licensed gold ICON instead of any glyph at all.
 const REPLACE = {
   '‘': "'", '’': "'", '“': '"', '”': '"', '–': '-', '—': '-', '−': '-',
-  '·': '.', '•': '*', '×': 'x', '¤': '$', '→': '>', '←': '<', '►': '>',
+  '•': '*', '×': 'x', '→': '>', '←': '<', '►': '>',
   '◄': '<', '✓': 'V', '✗': 'X', '⚠': '!', '…': '...', '≥': '>', '≤': '<',
+  '▸': '>', '∎': '#', '¤': 'G',
 };
 
 function expanded(text) {
   let out = '';
   for (const raw of String(text == null ? '' : text)) {
-    const clean = REPLACE[raw] || raw.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    for (const ch of clean) out += G[ch] ? ch : '?';
+    const clean = REPLACE[raw] !== undefined ? REPLACE[raw] : raw;
+    for (const ch of clean) {
+      if (G[ch]) { out += ch; continue; }
+      // Fold an accent away before giving up; '?' is the loud last resort.
+      const folded = ch.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      out += (folded && G[folded[0]]) ? folded[0] : '?';
+    }
   }
   return out;
 }
 
+/**
+ * Read the scale off a context. Any font ≥9px is the 2× title tier; everything
+ * else renders 1×. (The pre-font-swap call sites used 6/7/8/10px strings and
+ * still resolve correctly through this rule.)
+ */
 function pixelScale(ctx) {
-  const match = /([0-9.]+)px/.exec(String(ctx && ctx.font || '7px'));
+  const match = /([0-9.]+)px/.exec(String(ctx && ctx.font || '8px'));
   return match && Number(match[1]) >= 9 ? 2 : 1;
 }
 
+/** Ink width + advance for one character. Glyphs arrive pre-trimmed. */
 function bounds(ch) {
-  if (ch === ' ') return { left: 0, width: 3, advance: 3 };
-  const rows = G[ch] || G['?'];
-  let left = 5, right = -1;
-  for (const row of rows) for (let col = 0; col < 5; col++) if (row[col] === '1') {
-    left = Math.min(left, col); right = Math.max(right, col);
-  }
-  const width = right >= left ? right - left + 1 : 3;
-  return { left: right >= left ? left : 0, width, advance: width + 1 };
+  const rows = G[ch];
+  if (!rows || rows.length === 0 || !rows[0]) return { width: FONT_SPACE_ADVANCE, advance: FONT_SPACE_ADVANCE };
+  const width = rows[0].length;
+  return { width, advance: width + TRACKING };
 }
 
 function logicalWidth(chars) {
   let width = 0;
   for (const ch of chars) width += bounds(ch).advance;
-  return width ? width - 1 : 0;
+  return width ? width - TRACKING : 0;
 }
 
 export function pixelTextWidth(ctx, text) {
-  const chars = expanded(text);
-  const scale = pixelScale(ctx);
-  return logicalWidth(chars) * scale;
+  return logicalWidth(expanded(text)) * pixelScale(ctx);
 }
 
 export function pixelText(ctx, text, x, y) {
@@ -153,21 +124,25 @@ export function pixelText(ctx, text, x, y) {
   else if (ctx.textAlign === 'center') left -= Math.floor(width / 2);
   const top = Math.round(y);
   if (Array.isArray(ctx.__pixelTextEvents)) ctx.__pixelTextEvents.push({
-    text: String(text == null ? '' : text), x: left, y: top, w: width, h: 7 * scale,
+    text: String(text == null ? '' : text), x: left, y: top, w: width, h: FONT_CELL_H * scale,
     stack: ctx.__pixelTextStack || null,
   });
   let cursor = 0;
   for (let ci = 0; ci < chars.length; ci++) {
-    const rows = G[chars[ci]] || G['?'];
+    const rows = G[chars[ci]];
     const metric = bounds(chars[ci]);
-    for (let row = 0; row < 7; row++) {
-      let col = metric.left;
-      const right = metric.left + metric.width;
-      while (col < right) {
-        while (col < right && rows[row][col] !== '1') col++;
-        const start = col;
-        while (col < right && rows[row][col] === '1') col++;
-        if (start < col) ctx.fillRect(left + (cursor + start - metric.left) * scale, top + row * scale, (col - start) * scale, scale);
+    if (rows && rows.length) {
+      for (let row = 0; row < rows.length; row++) {
+        const bits = rows[row];
+        let col = 0;
+        while (col < bits.length) {
+          while (col < bits.length && bits[col] !== '1') col++;
+          const start = col;
+          while (col < bits.length && bits[col] === '1') col++;
+          if (start < col) {
+            ctx.fillRect(left + (cursor + start) * scale, top + row * scale, (col - start) * scale, scale);
+          }
+        }
       }
     }
     cursor += metric.advance;
@@ -175,8 +150,19 @@ export function pixelText(ctx, text, x, y) {
   return width;
 }
 
-export const PIXEL_FONT = Object.freeze({ cellWidth: 5, cellHeight: 7, proportional: true });
+export const PIXEL_FONT = Object.freeze({
+  name: FONT_NAME,
+  author: FONT_AUTHOR,
+  license: FONT_LICENSE,
+  cellWidth: 5, // the modal advance; widths are proportional per glyph
+  cellHeight: FONT_CELL_H,
+  capHeight: FONT_CAP_H,
+  xHeight: FONT_X_H,
+  proportional: true,
+});
 
+/** The raw bitmap rows for one character (used by the face's regression tests). */
 export function glyphRows(ch) {
-  return (G[ch] || G['?']).slice();
+  const rows = G[ch] || G['?'];
+  return rows.slice();
 }

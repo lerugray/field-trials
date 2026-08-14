@@ -3,6 +3,13 @@
 export const PLAYER_CREDITS = [
   'CREDITS & LICENSING',
   '',
+  'Type',
+  '',
+  'Not Jam: Undead Pixel 8, CC0',
+  'Every character on screen is drawn from the Undead Pixel 8 bitmap face by Not Jam,',
+  'released CC0 into the public domain. No font is loaded and no text is rasterized:',
+  'the glyphs ship as a bitmap table and every lit cell is an integer pixel.',
+  '',
   'Visual art',
   '',
   'Willibab / Monsteretrope: CC BY',

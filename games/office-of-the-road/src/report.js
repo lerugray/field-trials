@@ -57,7 +57,9 @@ export function composeReport(L, ctx) {
   const route = L.routeByLeg[fatalLeg];
   const matters = L.matterByLeg[fatalLeg] | 0;
   if (route) {
-    lines.push({ tone: 'cause', text: `Leg ${fatalLeg} was routed via ${route.label} [${route.safety}]. Matters ×${route.enc}; ${matters} fielded.` });
+    // `Matters ×1.7` read as a multiplier on nothing nameable — it is the leg's
+    // encounter rate, which the unrouted sibling line below already spells.
+    lines.push({ tone: 'cause', text: `Leg ${fatalLeg} was routed via ${route.label} [${route.safety}]. Encounters ×${route.enc}; ${matters} fielded.` });
   } else {
     lines.push({ tone: 'cause', text: `Leg ${fatalLeg} was marched unrouted; ${matters} matters fielded.` });
   }

@@ -27,4 +27,19 @@ export const PALETTE = {
   hpback: '#241f1a', // health bar track
   townGround: '#2b2420', // warm base beneath transparent town-tile mortar
   townWash: 'rgba(43,36,32,0.82)', // pulls bright cobble into the warm-ink register
+
+  // ---- CONTROL CHIPS (the affordance layer) --------------------------------
+  // A control is a raised object, not a stroked rectangle: it carries a fill, a
+  // border in a darker shade of that fill, a top bevel, a bottom shade and a
+  // 1px drop shadow. Static text carries none of those, so "touchable" and
+  // "printed" never look alike. See src/ui.js for the drawing.
+  //
+  // PRIMARY reads as a paper form laid on the dark desk — the register's own
+  // image, and light enough that the chip's own edge is the >=3:1 boundary
+  // (8.2:1), so no borrowed grey keyline is needed.
+  control: '#b8a67d', // primary chip fill (labelled in `ink`, 8.2:1)
+  control2: '#39322a', // secondary chip fill (labelled in `paper`, 9.5:1)
+  controlOff: '#2b2823', // disabled chip — desaturated IN PLACE, no reflow
+  controlOffInk: '#7d786f', // disabled label (3.3:1 on its own chip)
+  shadow: '#070605', // the 1px drop under every raised element (never pure black)
 };

@@ -258,6 +258,19 @@ function healAlly(t, amt, entry) {
   entry.targets.push({ side: 'party', idx: t.idx, name: t.e.name, heal: t.e.hp - before });
 }
 
+/**
+ * The window states as the PLAYER reads them, one plain word each. Shared with
+ * the text catalog so the gate measures the string the plate actually draws.
+ * The strip used to read `DEC` / `ok` / `-`: `DEC` was explained nowhere in the
+ * game and the hyphen labelled nothing. The plate is 32px and shares it with
+ * the input key, so `decisive` (33px in the shipped face) cannot fit however it
+ * is set — these three are the audit's second choice, inside the budget.
+ *   now  — playing this card here would turn the matter
+ *   ok   — playable, but it decides nothing yet
+ *   none — nothing on the board for it to act on
+ */
+export const WINDOW_LABEL = Object.freeze({ decisive: 'now', playable: 'ok', wasted: 'none' });
+
 // evaluateCard: the per-card live window state (DESIGN-SEED M3) — 'decisive' |
 // 'playable' | 'wasted' vs the resolver's next action. Pure, read-only.
 export function evaluateCard(s, cardId) {

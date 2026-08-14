@@ -8,6 +8,19 @@ No art in this game is AI-generated, downloaded ad hoc, or code-drawn in place o
 All visual assets come from the licensed packs credited here. The score is code-composed
 WebAudio (no audio files); it requires no third-party attribution.
 
+## Type
+
+### Not Jam — "Undead Pixel 8" — Licence: CC0 (public domain)
+
+Every character on screen is drawn from the **Undead Pixel 8** bitmap face by **Not Jam**,
+released **CC0**. The glyph sheet, its metrics and the CC0 deed ship in the repository at
+`materials/fonts/not-jam-undead-pixel-8/`; `scripts/extract-font.mjs` slices the sheet into the
+bitmap table the game renders, so no font file is loaded at runtime and no text is ever
+rasterized by the browser.
+
+> Type: **Undead Pixel 8** by **Not Jam**, released under **CC0** (public domain).
+> https://not-jam.itch.io/not-jam-font-pack
+
 ## Visual art
 
 ### Willibab / Monsteretrope — Licence: CC BY

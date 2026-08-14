@@ -1,21 +1,71 @@
 // Shared bottom-band ownership. Content rows are clamped wholly above the live
 // march/combat controls; control labels are rendered inside their own rectangles.
+import { PIXEL_FONT } from './pixel-font.js';
+
 export const CONTROL_BAND_Y = 182;
 export const CONTROL_BAND_BOTTOM = 196;
-export const CORE_TEXT_HEIGHT = 7;
+/**
+ * The face's full line box — ascender through descender. DERIVED from the
+ * shipped font rather than typed, so swapping the face can never leave the
+ * leading law asserting an old cell. ("Undead Pixel 8": 8 rows = 6 cap + 2
+ * descender; the previous hand-drawn face was 7.)
+ */
+export const CORE_TEXT_HEIGHT = PIXEL_FONT.cellHeight;
 /** Visible air between stacked glyph cells at 1× native (display-px). */
 export const MIN_INTERLINE_GAP = 3;
 /** Baseline-to-baseline must be ≥ this × cap height (or cell+gap, whichever larger). */
 export const TEXT_LEADING_RATIO = 1.35;
 /**
- * Minimum line spacing for the 5×7 face: ceil(1.35×7)=10 → 3px clear air under
- * each 7-row cell. Never re-tighten below this; grow the box instead.
+ * Minimum line spacing: ceil(1.35×8)=11 → 3px clear air under each 8-row cell,
+ * measured on the FULL box so a descender on one line can never touch a cap on
+ * the next. Never re-tighten below this; grow the box instead.
  */
 export const TEXT_LEADING = Math.max(
   Math.ceil(CORE_TEXT_HEIGHT * TEXT_LEADING_RATIO),
   CORE_TEXT_HEIGHT + MIN_INTERLINE_GAP,
 );
 export const CONTENT_TEXT_MAX_Y = CONTROL_BAND_Y - CORE_TEXT_HEIGHT;
+
+/**
+ * THE DRAFT TILE — geometry of one offered card on the combat draft screen,
+ * shared with test/card-no-truncation.test.js so the renderer and the law can
+ * never drift (the same arrangement TITLE_BAND has with the overlap test).
+ *
+ * A name plate is sized to the CATALOG, never to the art it hangs under. The
+ * overhaul hung the plate on the 32px card and drew the name into 32px, which
+ * ellipsized five of the twelve card names. Card names are not truncatable by
+ * line-breaking either: "Temperance" is a single 47px token, so a 32px zone
+ * cannot hold it on one line or on ten. The ZONE was the defect. Deck review
+ * had already sized its tile at 50 — 48px of name, which clears every name in
+ * the deck — and the draft now matches its sibling.
+ *
+ * The block is budgeted upward from the control band: the plate's last row is
+ * CONTROL_BAND_Y - 8 and the name's cell bottom lands on CONTENT_TEXT_MAX_Y,
+ * so neither can grow into the live control row.
+ */
+const DRAFT_ART_Y = 134;
+const DRAFT_ART_H = 28;
+export const DRAFT_TILE = Object.freeze({
+  x0: 16, // left edge of the first tile; the pointer clears the frame edge
+  w: 54, // tile width: the 48px name + 2px of air each side, plus the plate edge
+  gap: 10, // the focus pointer (4px wide, drawn 8px left) lives in this gutter
+  artW: 32,
+  artH: DRAFT_ART_H,
+  artY: DRAFT_ART_Y,
+  plateH: 11,
+  plateY: DRAFT_ART_Y + DRAFT_ART_H + 1,
+  nameY: DRAFT_ART_Y + DRAFT_ART_H + 3,
+  nameW: 52,
+  declineX: 210,
+  declineY: DRAFT_ART_Y + 14,
+  declineW: 60,
+  declineH: 18,
+});
+
+/** Left edge of the i-th draft tile. */
+export function draftTileX(i) {
+  return DRAFT_TILE.x0 + i * (DRAFT_TILE.w + DRAFT_TILE.gap);
+}
 
 /**
  * Find stacked text pairs whose ink gap is under MIN_INTERLINE_GAP.

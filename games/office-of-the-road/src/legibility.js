@@ -23,9 +23,16 @@ export const CONTRAST_CHECKS = {
     ['paper', 'ink'], ['dim', 'ink'], ['dim', 'panel'], ['dim', 'panel2'],
     ['faint', 'ink'], ['faint', 'panel'], ['ok', 'ink'], ['stamp', 'ink'],
     ['filed', 'ink'], ['focus', 'ink'],
+    // Control-chip labels sit on their chip, not on the page.
+    ['ink', 'control'], ['paper', 'control2'], ['focus', 'control2'],
   ],
   edge: [ // interactive borders + state-bearing bars -> 3:1
     ['edge', 'ink'], ['focus', 'ink'], ['hp', 'hpback'], ['hplow', 'hpback'], ['paper', 'ink'],
+    // A primary chip's own fill IS its boundary against the page; a secondary
+    // chip borrows the asserted `edge` keyline for the same job. A disabled
+    // chip is exempt from WCAG 1.4.11, but its label still clears 3:1 so
+    // "inert" never means "unreadable".
+    ['control', 'ink'], ['controlOffInk', 'controlOff'],
   ],
 };
 

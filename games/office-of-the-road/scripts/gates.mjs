@@ -128,7 +128,7 @@ console.log('  -> ' + (scoreOk ? 'SCORE VOICED & DISTINCT (register: Weiss to di
 // TEXT — objective readability gate (Pickett M10 pattern; shipped bitmap face)
 // ---------------------------------------------------------------------------
 console.log('THE OFFICE OF THE ROAD — text readability gate\n');
-console.log('GATE 7 — complete catalog wrap/clip + ink x-height + layout probe:');
+console.log('GATE 7 — complete catalog wrap/clip + ink x-height + layout probe + legibility lint:');
 const textRun = spawnSync(process.execPath, ['scripts/text-gate.mjs'], { cwd: GROOT, encoding: 'utf8' });
 if (textRun.stdout) process.stdout.write(textRun.stdout);
 if (textRun.stderr) process.stderr.write(textRun.stderr);
@@ -137,8 +137,15 @@ const layoutRun = spawnSync(process.execPath, ['scripts/layout-gate.mjs'], { cwd
 if (layoutRun.stdout) process.stdout.write(layoutRun.stdout);
 if (layoutRun.stderr) process.stderr.write(layoutRun.stderr);
 const layoutOk = layoutRun.status === 0;
-console.log('  -> ' + (textOk && layoutOk ? 'TEXT READABILITY GREEN' : 'TEXT READABILITY FAILED') + '\n');
+// GATE 7c — THE LEGIBILITY LINT. Runs over the rendered-text dump the layout
+// probe just extracted, so it costs no second browser run and lints what the
+// game DREW. Order matters: the probe writes the dump this reads.
+const lintRun = spawnSync(process.execPath, ['scripts/legibility-lint.mjs'], { cwd: GROOT, encoding: 'utf8' });
+if (lintRun.stdout) process.stdout.write(lintRun.stdout);
+if (lintRun.stderr) process.stderr.write(lintRun.stderr);
+const lintOk = lintRun.status === 0;
+console.log('  -> ' + (textOk && layoutOk && lintOk ? 'TEXT READABILITY GREEN' : 'TEXT READABILITY FAILED') + '\n');
 
-const allOk = m2Ok && m4Ok && idiom.ok && scoreOk && textOk && layoutOk;
+const allOk = m2Ok && m4Ok && idiom.ok && scoreOk && textOk && layoutOk && lintOk;
 console.log(allOk ? 'ALL GATES (M2 + M4 + M6 + M7 + TEXT): GREEN' : 'GATES: ATTENTION NEEDED');
 process.exit(allOk ? 0 : 1);

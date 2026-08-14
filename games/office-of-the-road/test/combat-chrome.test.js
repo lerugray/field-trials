@@ -139,7 +139,7 @@ test('four Chirurgeons still read in full without colliding', () => {
 test('march score label keeps a 12px trailing margin for every track', () => {
   const catalog = buildTextCatalog();
   for (const track of Object.keys(TRACKS)) {
-    const label = `score: ${track} (M)`;
+    const label = `score: ${track} · M mutes`;
     const w = pixelTextWidth(ctx6, label);
     const x = VW - EDGE - w;
     assert.ok(x >= EDGE, `${label} too wide for the march row`);
@@ -160,7 +160,7 @@ test('march score label keeps a 12px trailing margin for every track', () => {
   });
   const score = (ctx.__pixelTextEvents || []).find((t) => String(t.text).startsWith('score:'));
   assert.ok(score, 'march score label missing');
-  assert.equal(score.text, 'score: ' + trackForScreen('march') + ' (M)');
+  assert.equal(score.text, 'score: ' + trackForScreen('march') + ' · M mutes');
   assert.ok(score.x + score.w <= VW - EDGE, `score flush/clipped: x=${score.x} w=${score.w}`);
   assert.ok(score.x >= EDGE);
 });

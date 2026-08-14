@@ -1,0 +1,541 @@
+{
+  "date": "2026-08-11",
+  "states": {
+    "title": {
+      "screen": "intake",
+      "errors": []
+    },
+    "draft": {
+      "screen": "combat",
+      "errors": []
+    },
+    "march": {
+      "screen": "march",
+      "errors": []
+    },
+    "combat": {
+      "screen": "combat",
+      "errors": []
+    },
+    "shop": {
+      "screen": "shop",
+      "errors": []
+    },
+    "route": {
+      "screen": "route",
+      "errors": []
+    },
+    "credits": {
+      "screen": "credits",
+      "errors": []
+    }
+  },
+  "measurements": {
+    "textProbe": {
+      "ink": 208,
+      "solid": 208,
+      "partial": 0,
+      "solidShare": 1,
+      "antialiasedShare": 0
+    },
+    "routeTiles": {
+      "meanSat": 0.14900345595930858,
+      "p95Sat": 0.36111111111111116,
+      "meanLum": 65.04951435810811
+    },
+    "shopBand": {
+      "meanSat": 0.2422193486805094,
+      "p95Sat": 0.3220338983050847,
+      "meanLum": 43.73046875
+    },
+    "layoutSweep": {
+      "docket": {
+        "screen": "docket",
+        "texts": 18,
+        "controls": 3,
+        "collisions": []
+      },
+      "intake": {
+        "screen": "intake",
+        "texts": 27,
+        "controls": 2,
+        "collisions": []
+      },
+      "march": {
+        "screen": "march",
+        "texts": 35,
+        "controls": 7,
+        "collisions": [
+          {
+            "text": "SPEED",
+            "textBox": {
+              "text": "SPEED",
+              "x": 12,
+              "y": 185,
+              "w": 29,
+              "h": 7
+            },
+            "control": "spd0",
+            "controlBox": {
+              "id": "spd0",
+              "x": 40,
+              "y": 182,
+              "w": 30,
+              "h": 14
+            }
+          }
+        ]
+      },
+      "combat": {
+        "screen": "combat",
+        "texts": 35,
+        "controls": 7,
+        "collisions": [
+          {
+            "text": "play\u2026",
+            "textBox": {
+              "text": "play\u2026",
+              "x": 12,
+              "y": 176,
+              "w": 30,
+              "h": 7
+            },
+            "control": "spd0",
+            "controlBox": {
+              "id": "spd0",
+              "x": 40,
+              "y": 182,
+              "w": 30,
+              "h": 14
+            }
+          },
+          {
+            "text": "deci\u2026",
+            "textBox": {
+              "text": "deci\u2026",
+              "x": 46,
+              "y": 176,
+              "w": 30,
+              "h": 7
+            },
+            "control": "spd0",
+            "controlBox": {
+              "id": "spd0",
+              "x": 40,
+              "y": 182,
+              "w": 30,
+              "h": 14
+            }
+          },
+          {
+            "text": "deci\u2026",
+            "textBox": {
+              "text": "deci\u2026",
+              "x": 46,
+              "y": 176,
+              "w": 30,
+              "h": 7
+            },
+            "control": "spd1",
+            "controlBox": {
+              "id": "spd1",
+              "x": 74,
+              "y": 182,
+              "w": 30,
+              "h": 14
+            }
+          },
+          {
+            "text": "play\u2026",
+            "textBox": {
+              "text": "play\u2026",
+              "x": 80,
+              "y": 176,
+              "w": 30,
+              "h": 7
+            },
+            "control": "spd1",
+            "controlBox": {
+              "id": "spd1",
+              "x": 74,
+              "y": 182,
+              "w": 30,
+              "h": 14
+            }
+          },
+          {
+            "text": "play\u2026",
+            "textBox": {
+              "text": "play\u2026",
+              "x": 80,
+              "y": 176,
+              "w": 30,
+              "h": 7
+            },
+            "control": "spd2",
+            "controlBox": {
+              "id": "spd2",
+              "x": 108,
+              "y": 182,
+              "w": 30,
+              "h": 14
+            }
+          },
+          {
+            "text": "SPEED",
+            "textBox": {
+              "text": "SPEED",
+              "x": 12,
+              "y": 185,
+              "w": 29,
+              "h": 7
+            },
+            "control": "spd0",
+            "controlBox": {
+              "id": "spd0",
+              "x": 40,
+              "y": 182,
+              "w": 30,
+              "h": 14
+            }
+          }
+        ]
+      },
+      "draft": {
+        "screen": "combat",
+        "texts": 63,
+        "controls": 7,
+        "collisions": [
+          {
+            "text": "SPEED",
+            "textBox": {
+              "text": "SPEED",
+              "x": 12,
+              "y": 185,
+              "w": 29,
+              "h": 7
+            },
+            "control": "spd0",
+            "controlBox": {
+              "id": "spd0",
+              "x": 40,
+              "y": 182,
+              "w": 30,
+              "h": 14
+            }
+          }
+        ]
+      },
+      "camp": {
+        "screen": "camp",
+        "texts": 29,
+        "controls": 8,
+        "collisions": [
+          {
+            "text": "FILE EARLY RETURN",
+            "textBox": {
+              "text": "FILE EARLY RETURN",
+              "x": 218,
+              "y": 175,
+              "w": 93,
+              "h": 7
+            },
+            "control": "return",
+            "controlBox": {
+              "id": "return",
+              "x": 212,
+              "y": 170,
+              "w": 92,
+              "h": 14
+            }
+          }
+        ]
+      },
+      "deck": {
+        "screen": "deck",
+        "texts": 11,
+        "controls": 6,
+        "collisions": [
+          {
+            "text": "The Towe",
+            "textBox": {
+              "text": "The Towe",
+              "x": 16,
+              "y": 94,
+              "w": 44,
+              "h": 7
+            },
+            "control": "dc0",
+            "controlBox": {
+              "id": "dc0",
+              "x": 16,
+              "y": 48,
+              "w": 40,
+              "h": 54
+            }
+          },
+          {
+            "text": "The Star",
+            "textBox": {
+              "text": "The Star",
+              "x": 64,
+              "y": 94,
+              "w": 44,
+              "h": 7
+            },
+            "control": "dc1",
+            "controlBox": {
+              "id": "dc1",
+              "x": 64,
+              "y": 48,
+              "w": 40,
+              "h": 54
+            }
+          },
+          {
+            "text": "Strength",
+            "textBox": {
+              "text": "Strength",
+              "x": 112,
+              "y": 94,
+              "w": 47,
+              "h": 7
+            },
+            "control": "dc2",
+            "controlBox": {
+              "id": "dc2",
+              "x": 112,
+              "y": 48,
+              "w": 40,
+              "h": 54
+            }
+          },
+          {
+            "text": "Temperan",
+            "textBox": {
+              "text": "Temperan",
+              "x": 160,
+              "y": 94,
+              "w": 47,
+              "h": 7
+            },
+            "control": "dc3",
+            "controlBox": {
+              "id": "dc3",
+              "x": 160,
+              "y": 48,
+              "w": 40,
+              "h": 54
+            }
+          }
+        ]
+      },
+      "shop": {
+        "screen": "shop",
+        "texts": 41,
+        "controls": 17,
+        "collisions": [
+          {
+            "text": "+3 mag",
+            "textBox": {
+              "text": "+3 mag",
+              "x": 13,
+              "y": 49,
+              "w": 32,
+              "h": 7
+            },
+            "control": "buy0",
+            "controlBox": {
+              "id": "buy0",
+              "x": 10,
+              "y": 42,
+              "w": 150,
+              "h": 13
+            }
+          },
+          {
+            "text": "+3 atk",
+            "textBox": {
+              "text": "+3 atk",
+              "x": 13,
+              "y": 64,
+              "w": 31,
+              "h": 7
+            },
+            "control": "buy1",
+            "controlBox": {
+              "id": "buy1",
+              "x": 10,
+              "y": 57,
+              "w": 150,
+              "h": 13
+            }
+          },
+          {
+            "text": "+2 def +6 hp",
+            "textBox": {
+              "text": "+2 def +6 hp",
+              "x": 13,
+              "y": 79,
+              "w": 62,
+              "h": 7
+            },
+            "control": "buy2",
+            "controlBox": {
+              "id": "buy2",
+              "x": 10,
+              "y": 72,
+              "w": 150,
+              "h": 13
+            }
+          },
+          {
+            "text": "+1 def +2 spd",
+            "textBox": {
+              "text": "+1 def +2 spd",
+              "x": 13,
+              "y": 94,
+              "w": 66,
+              "h": 7
+            },
+            "control": "buy3",
+            "controlBox": {
+              "id": "buy3",
+              "x": 10,
+              "y": 87,
+              "w": 150,
+              "h": 13
+            }
+          },
+          {
+            "text": "atk19 def7 mag4",
+            "textBox": {
+              "text": "atk19 def7 mag4",
+              "x": 166,
+              "y": 52,
+              "w": 80,
+              "h": 7
+            },
+            "control": "slot0arm",
+            "controlBox": {
+              "id": "slot0arm",
+              "x": 236,
+              "y": 44,
+              "w": 36,
+              "h": 15
+            }
+          },
+          {
+            "text": "atk6 def5 mag13",
+            "textBox": {
+              "text": "atk6 def5 mag13",
+              "x": 166,
+              "y": 70,
+              "w": 80,
+              "h": 7
+            },
+            "control": "slot1arm",
+            "controlBox": {
+              "id": "slot1arm",
+              "x": 236,
+              "y": 62,
+              "w": 36,
+              "h": 15
+            }
+          },
+          {
+            "text": "atk13 def4 mag7",
+            "textBox": {
+              "text": "atk13 def4 mag7",
+              "x": 166,
+              "y": 88,
+              "w": 80,
+              "h": 7
+            },
+            "control": "slot2arm",
+            "controlBox": {
+              "id": "slot2arm",
+              "x": 236,
+              "y": 80,
+              "w": 36,
+              "h": 15
+            }
+          },
+          {
+            "text": "atk9 def9 mag5",
+            "textBox": {
+              "text": "atk9 def9 mag5",
+              "x": 166,
+              "y": 106,
+              "w": 76,
+              "h": 7
+            },
+            "control": "slot3arm",
+            "controlBox": {
+              "id": "slot3arm",
+              "x": 236,
+              "y": 98,
+              "w": 36,
+              "h": 15
+            }
+          },
+          {
+            "text": "STORES",
+            "textBox": {
+              "text": "STORES",
+              "x": 10,
+              "y": 124,
+              "w": 35,
+              "h": 7
+            },
+            "control": "inv0",
+            "controlBox": {
+              "id": "inv0",
+              "x": 10,
+              "y": 130,
+              "w": 48,
+              "h": 11
+            }
+          }
+        ]
+      },
+      "route": {
+        "screen": "route",
+        "texts": 31,
+        "controls": 3,
+        "collisions": [
+          {
+            "text": "encounters \u00d70.62",
+            "textBox": {
+              "text": "encounters \u00d70.62",
+              "x": 19,
+              "y": 98,
+              "w": 89,
+              "h": 7
+            },
+            "control": "br0",
+            "controlBox": {
+              "id": "br0",
+              "x": 14,
+              "y": 58,
+              "w": 92,
+              "h": 100
+            }
+          }
+        ]
+      },
+      "defeat": {
+        "screen": "defeat",
+        "texts": 16,
+        "controls": 1,
+        "collisions": []
+      },
+      "credits": {
+        "screen": "credits",
+        "texts": 22,
+        "controls": 4,
+        "collisions": []
+      }
+    }
+  }
+}

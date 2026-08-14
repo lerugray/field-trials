@@ -44,6 +44,17 @@ export function getCard(id) {
   return c;
 }
 
+/**
+ * The name as it is printed on a card's name plate (draft offers, deck review).
+ * The leading article is dropped and NOTHING else — a plate never abbreviates,
+ * slices or ellipsizes a name. Both plate surfaces read it from here, so the
+ * two can never disagree about what a card is called, and the no-truncation
+ * regression has one string to measure.
+ */
+export function cardPlateName(id) {
+  return getCard(id).name.replace(/^The /, '');
+}
+
 // Fisher–Yates using a stream (deterministic). Returns a new array.
 export function shuffle(arr, stream) {
   const a = arr.slice();

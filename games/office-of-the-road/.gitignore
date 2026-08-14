@@ -1,0 +1,6 @@
+node_modules/
+runs/
+.DS_Store
+snap-*.diff
+.bot-worktree/
+materials/art-packs/My_Character_Creator_Pack/
