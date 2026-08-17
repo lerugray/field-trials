@@ -1,6 +1,6 @@
 // Verify basic interaction: select a piece, move it, screenshot result.
 
-import { chromium } from '/opt/homebrew/lib/node_modules/playwright/index.mjs';
+import { chromium } from 'playwright';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
