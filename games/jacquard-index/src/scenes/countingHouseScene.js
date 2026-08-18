@@ -12,10 +12,11 @@ import { computeCHLayout, hitTestCH, drawCHBoard } from '../render/countingHouse
 import { drawReveal } from '../render/reveal.js';
 import { Framebuffer } from '../gfx/framebuffer.js';
 import { PALETTE } from '../gfx/palette.js';
-import { drawText, drawTextCentered, measureText } from '../gfx/font.js';
+import { drawText, drawTextCentered, measureText, textHeight } from '../gfx/font.js';
 import { drawBodyTextCentered, measureBodyText } from '../gfx/bodyFont.js';
 import {
   composePatternRoomWorkSurface, drawPatternRoomRulePlate, patternRoomWorkLayout,
+  drawHintStrip as hintStrip,
 } from '../render/patternRoom.js';
 
 const LMB = 0, RMB = 2;
@@ -25,14 +26,11 @@ function ringCell(fb, l, cx, cy, color) {
   fb.strokeRect(x - 1, y - 1, l.cell + 2, l.cell + 2, color[0], color[1], color[2]);
   fb.strokeRect(x, y, l.cell, l.cell, color[0], color[1], color[2]);
 }
-function hintStrip(fb, text, color) {
-  const y = fb.height - 32;
-  fb.fillRect(0, y - 4, fb.width, 16, PALETTE.oilDeep[0], PALETTE.oilDeep[1], PALETTE.oilDeep[2], 220);
-  drawBodyTextCentered(fb, 0, fb.width, y, text, color);
-}
 
 export function makeCountingHouseScene(card, opts = {}) {
   const board = new Board(card.puzzle, { autoX: false });
+  const resumed = opts.resume || null;
+  if (resumed) board.restoreState(resumed.board);
   const leave = typeof opts.onExit === 'function' ? opts.onExit : (typeof opts.onAdvance === 'function' ? opts.onAdvance : null);
   const { colClues, pairClues } = countingHouseClues(card.puzzle);
   const band = cardBand(card);
@@ -40,10 +38,12 @@ export function makeCountingHouseScene(card, opts = {}) {
   let layoutSize = '';
   let artCache = null;
   const artStats = { builds: 0 };
-  const cursor = { x: 0, y: 0 };
+  const cursor = resumed ? { ...resumed.cursor } : { x: 0, y: 0 };
   let activeButton = null, lastCell = null;
-  let solved = false, solvedLogged = false;
-  let hint = null, hintStage = 0, enterElapsed = 0;
+  let solved = resumed ? resumed.solved : false;
+  let solvedLogged = resumed ? resumed.solvedLogged : false;
+  let hint = resumed ? resumed.hint : null;
+  let hintStage = resumed ? resumed.hintStage : 0, enterElapsed = 0;
 
   function ensureLayout(fb) {
     const size = `${fb.width}x${fb.height}`;
@@ -78,6 +78,14 @@ export function makeCountingHouseScene(card, opts = {}) {
   return {
     _board: board,
     _artStats: artStats,
+    saveState() {
+      const boardState = board.saveState();
+      if (!boardState || activeButton !== null) return null;
+      return {
+        scene: 'counting-house', cardId: card.id, board: boardState, cursor: { ...cursor },
+        solved, solvedLogged, hint, hintStage,
+      };
+    },
     enter(app) { ensureLayout(app.fb); enterElapsed = app.elapsed; app.log.info(`counting-house: ${card.name} loaded`, Math.round(app.elapsed)); },
 
     update(app, _dt, frame) {
@@ -142,12 +150,13 @@ export function makeCountingHouseScene(card, opts = {}) {
         : 'LMB FILL  RMB CROSS  Z UNDO  H HINT  ESC INDEX';
       if (solved) {
         const w = measureText(help, 2, 1), px = Math.round((fb.width - w) / 2) - 8, py = patternRoomWorkLayout(fb).footerY - 2;
-        fb.fillRect(px, py - 4, w + 16, 20, PALETTE.brassDark[0], PALETTE.brassDark[1], PALETTE.brassDark[2], 230);
-        fb.strokeRect(px, py - 4, w + 16, 20, PALETTE.brassLit[0], PALETTE.brassLit[1], PALETTE.brassLit[2]);
+        const ph = textHeight(2) + 8;
+        fb.fillRect(px, py - 4, w + 16, ph, PALETTE.brassDark[0], PALETTE.brassDark[1], PALETTE.brassDark[2], 230);
+        fb.strokeRect(px, py - 4, w + 16, ph, PALETTE.brassLit[0], PALETTE.brassLit[1], PALETTE.brassLit[2]);
         drawTextCentered(fb, 0, fb.width, py, help, PALETTE.brassLit, 2, 1);
       } else {
         const wl = patternRoomWorkLayout(fb);
-        drawTextCentered(fb, wl.frame.x, wl.frame.w, wl.footerY, help, PALETTE.inkSoft, 1, 1);
+        drawTextCentered(fb, wl.frame.x, wl.frame.w, wl.footerY, help, PALETTE.ink, 1, 1);
       }
 
       if (card.blurb && !solved && app.elapsed - enterElapsed < 3600) {

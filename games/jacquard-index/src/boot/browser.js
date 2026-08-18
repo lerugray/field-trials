@@ -8,6 +8,12 @@
 import { App } from '../engine/app.js';
 import { fillViewport, screenToNative } from '../engine/viewport.js';
 import { makeTitleScene } from '../scenes/titleScene.js';
+import { makeIndexScene, makeIndexSceneAt } from '../scenes/indexScene.js';
+import { makePlayScene } from '../scenes/playScene.js';
+import { makeTwoThreadScene } from '../scenes/twoThreadScene.js';
+import { makeCountingHouseScene } from '../scenes/countingHouseScene.js';
+import { allCatalogueCardsById, SHELVES, shelfCards } from '../content/shelves.js';
+import { loadSave, writeSave, clearSave } from '../engine/save.js';
 import { PALETTE } from '../gfx/palette.js';
 
 export const BASE_W = 640;
@@ -15,6 +21,60 @@ export const BASE_H = 360;
 
 export function boot(doc, win) {
   const app = new App(BASE_W, BASE_H);
+  let storage = null;
+  try {
+    if (win.localStorage && typeof win.localStorage.getItem === 'function') storage = win.localStorage;
+  } catch (_) { /* some privacy modes expose localStorage through a throwing getter */ }
+  const cardsById = allCatalogueCardsById();
+  const knownCardIds = new Set(Object.keys(cardsById));
+  let loaded = storage ? loadSave(storage, knownCardIds) : { status: 'empty', data: null, notice: null };
+  let resumeScene = null;
+  const indexOptions = { onExitToTitle: (a) => showSavedTitle(a) };
+
+  function indexReturnFor(cardId) {
+    const shelfIndex = SHELVES.findIndex((shelf) => shelf.memberIds.includes(cardId));
+    const cards = shelfIndex >= 0 ? shelfCards(SHELVES[shelfIndex]) : [];
+    const cardIndex = cards.findIndex((card) => card.id === cardId);
+    return { shelf: Math.max(0, shelfIndex), card: Math.max(0, cardIndex) };
+  }
+
+  function sceneFromLocation(location) {
+    if (location.scene === 'index') return makeIndexSceneAt(location.view, location.shelf, location.card, indexOptions);
+    const card = cardsById[location.cardId];
+    if (!card) throw new Error('saved pattern card is no longer in the index');
+    const expectedScene = card.twist === 'two-thread' ? 'two-thread'
+      : (card.twist === 'counting-house' ? 'counting-house' : 'play');
+    if (location.scene !== expectedScene) throw new Error('saved pattern uses the wrong loom');
+    const ret = indexReturnFor(card.id);
+    const back = (a) => a.setScene(makeIndexSceneAt('cards', ret.shelf, ret.card, indexOptions));
+    if (location.scene === 'two-thread') return makeTwoThreadScene(card, { onExit: back, resume: location });
+    if (location.scene === 'counting-house') return makeCountingHouseScene(card, { onExit: back, resume: location });
+    return makePlayScene(card, { onExit: back, resume: location });
+  }
+
+  if (loaded.status === 'ok') {
+    try {
+      resumeScene = sceneFromLocation(loaded.data.location);
+      if (resumeScene._board) {
+        if (resumeScene._board.isSolved() !== loaded.data.location.solved) {
+          throw new Error('saved completion state conflicts with its marks');
+        }
+        if (loaded.data.location.solvedLogged
+          && !loaded.data.progress.includes(loaded.data.location.cardId)) {
+          throw new Error('saved completion is missing from the master index');
+        }
+      }
+    } catch (_) {
+      try { clearSave(storage); } catch (_) { /* the visible recovery notice still wins */ }
+      loaded = { status: 'corrupt', data: null, notice: 'SAVE COULD NOT BE READ - FRESH INDEX STARTED' };
+    }
+  }
+
+  if (storage) {
+    app.configureSaving((progress, location) => writeSave(storage, progress, location), {
+      suspended: loaded.status === 'ok',
+    });
+  }
 
   // Loud-failure law: browser-level errors also land in the exportable log.
   win.addEventListener('error', (e) => {
@@ -84,7 +144,59 @@ export function boot(doc, win) {
     }
   }
 
-  app.setScene(makeTitleScene());
+  function startFresh(a) {
+    if (storage) {
+      try { clearSave(storage); } catch (err) { a.log.error(`save clear: ${err.message}`, Math.round(a.elapsed)); }
+    }
+    a.progress = new Set();
+    a.suspendSaving(false);
+    a.setScene(makeIndexScene(indexOptions));
+    a.checkpointSave(true);
+  }
+
+  function continueSaved(a, saved = loaded, scene = resumeScene) {
+    a.progress = new Set(saved.data.progress);
+    a.suspendSaving(false);
+    a.setScene(scene);
+    a.checkpointSave(true);
+  }
+
+  function showSavedTitle(a) {
+    let saved = storage ? loadSave(storage, knownCardIds)
+      : { status: 'empty', data: null, notice: null };
+    let scene = null;
+    if (saved.status === 'ok') {
+      try {
+        scene = sceneFromLocation(saved.data.location);
+        if (scene._board && scene._board.isSolved() !== saved.data.location.solved) {
+          throw new Error('saved completion state conflicts with its marks');
+        }
+        if (saved.data.location.solvedLogged
+          && !saved.data.progress.includes(saved.data.location.cardId)) {
+          throw new Error('saved completion is missing from the master index');
+        }
+      } catch (_) {
+        try { clearSave(storage); } catch (_) { /* the visible recovery notice still wins */ }
+        saved = { status: 'corrupt', data: null, notice: 'SAVE COULD NOT BE READ - FRESH INDEX STARTED' };
+        scene = null;
+      }
+    }
+    a.suspendSaving(true);
+    a.setScene(makeTitleScene({
+      resumeAvailable: saved.status === 'ok',
+      notice: saved.notice,
+      onContinue: (nextApp) => continueSaved(nextApp, saved, scene),
+      onNew: startFresh,
+    }));
+  }
+
+  if (loaded.notice) app.log.info(`save: ${loaded.notice}`, Math.round(app.elapsed));
+  app.setScene(makeTitleScene({
+    resumeAvailable: loaded.status === 'ok',
+    notice: loaded.notice,
+    onContinue: continueSaved,
+    onNew: startFresh,
+  }));
 
   // ---- Frame loop ----
   const [or, og, ob] = PALETTE.oilDeep;

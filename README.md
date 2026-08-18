@@ -15,7 +15,7 @@ method here, and the method is documented, gated, and inspectable.
 | Game | Register | Tests | Pre-release audit | Play |
 |---|---|---|---|---|
 | [SHOELEATHER](games/shoeleather) | 1970s inverted TV mystery — you watch the murder, then you prove it | 373 | **FIX-FIRST** — 18 findings, one ship-blocker | [play](https://lerugray.github.io/field-trials/shoeleather/) |
-| [THE JACQUARD INDEX](games/jacquard-index) | Nonograms that never ask you to guess, in a defunct mill's pattern library | 252 | **FIX-FIRST** — 8 findings; 7 fixed, 1 named omission | [play](https://lerugray.github.io/field-trials/jacquard-index/) |
+| [THE JACQUARD INDEX](games/jacquard-index) | Nonograms that never ask you to guess, in a defunct mill's pattern library | 274 | **FIX-FIRST** — 8 findings; 7 fixed, 1 named omission | [play](https://lerugray.github.io/field-trials/jacquard-index/) |
 | [ALKAHEST](games/alkahest) | A match-panel machine on an alchemist's bench; the register is the physics | 215 | **FIX-FIRST** — 6 findings; 4 fixed, 1 disclosed unfixed | [play](https://lerugray.github.io/field-trials/alkahest/) |
 | [CHAPEL PERILOUS](games/chapel-perilous) | First-person grid dungeon crawler in Illuminatus! conspiracy static | 605 | Five-role studio audit; the build contract itself was refuted before it was built | [play](https://lerugray.github.io/chp-preview/) |
 | [INNSMOUTH 2000](games/innsmouth-2000) | The 1993 city-builder format, Lovecraftian — five gods are the disasters menu | 417 | **Defects found** — 1 blocker, 3 defects, 3 friction, each with a repro | [play](https://i2-preview.pages.dev/) |
@@ -28,7 +28,7 @@ method here, and the method is documented, gated, and inspectable.
 | [POPINJAY](games/popinjay) | A single-screen arcade roguelite on Pang's bouncing-balloon core — a 1900s World's Fair sharpshooter, wire-as-wall commitment, hand-tinted poster idiom. | 287 | **Release gate** — 9-step run 2026-08-18; a fused title-footer caught at step 2 and a false climb certification exposed, rebuilt, and independently looker-verified; 287/287 | [play](https://lerugray.github.io/field-trials/popinjay/) |
 | [ADVERSARY](games/adversary) | Six-stage action-RPG with a Souls death loop | 300 | **FIX-FIRST**, followed by two documented fix rounds | pulled 2026-08-12 — in the shop |
 
-3,725 tests across the twelve on the shelf; ADVERSARY's 300 keep running in CI while it is
+3,747 tests across the twelve on the shelf; ADVERSARY's 300 keep running in CI while it is
 in the shop. Every suite runs with `npm test` and needs nothing but Node.
 
 ADVERSARY was pulled from the shelf on 2026-08-12 after play caught what its gates had

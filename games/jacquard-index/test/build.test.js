@@ -1,8 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { readFileSync, mkdtempSync, cpSync, rmSync, realpathSync } from 'node:fs';
-import { tmpdir } from 'node:os';
+import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildBundleJS, buildHTML } from '../build.js';
@@ -69,24 +68,12 @@ test('the boot entry is required last in the bundle', () => {
 });
 
 test('build.js runs as a CLI from a path containing spaces and writes dist', () => {
-  // Regression: the bundler once broke when the checkout lived in a directory with a
-  // space in its name. The fixture used to demand such a path from the host; it now
-  // builds one itself so the property is exercised on any checkout location.
-  const spacedRoot = realpathSync(mkdtempSync(path.join(tmpdir(), 'jacquard space fixture-')));
-  try {
-    cpSync(ROOT, spacedRoot, {
-      recursive: true,
-      filter: (src) => !src.includes(`${path.sep}dist`) && !src.includes(`${path.sep}node_modules`),
-    });
-    assert.match(spacedRoot, /\s/, 'fixture directory must contain a space');
-    const stdout = execFileSync(process.execPath, [path.join(spacedRoot, 'build.js')], {
-      cwd: spacedRoot,
-      encoding: 'utf8',
-    });
-    const outputPath = path.join(spacedRoot, 'dist', 'jacquard-index.html');
-    assert.match(stdout, /^built dist\/jacquard-index\.html \([\d.]+ KB\)\n$/);
-    assert.equal(readFileSync(outputPath, 'utf8'), buildHTML());
-  } finally {
-    rmSync(spacedRoot, { recursive: true, force: true });
-  }
+  assert.match(ROOT, /\s/, 'regression fixture requires a repository path containing spaces');
+  const stdout = execFileSync(process.execPath, [path.join(ROOT, 'build.js')], {
+    cwd: ROOT,
+    encoding: 'utf8',
+  });
+  const outputPath = path.join(ROOT, 'dist', 'jacquard-index.html');
+  assert.match(stdout, /^built dist\/jacquard-index\.html \([\d.]+ KB\)\n$/);
+  assert.equal(readFileSync(outputPath, 'utf8'), buildHTML());
 });

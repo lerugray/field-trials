@@ -10,14 +10,15 @@ import { Board } from '../puzzle/board.js';
 import { computeLayout, hitTest, drawBoard } from '../render/boardview.js';
 import { Framebuffer } from '../gfx/framebuffer.js';
 import { PALETTE } from '../gfx/palette.js';
-import { drawText, drawTextCentered, measureText } from '../gfx/font.js';
-import { drawBodyTextCentered, measureBodyText } from '../gfx/bodyFont.js';
+import { drawText, drawTextCentered, measureText, textHeight } from '../gfx/font.js';
+import { drawBodyTextCentered, measureBodyText, BODY_LINE_HEIGHT } from '../gfx/bodyFont.js';
 import { twistFor, cardBand } from '../puzzle/twists.js';
 import { mirrorImage } from '../puzzle/mirror.js';
 import { FILLED as CELL_FILLED, CROSSED as CELL_CROSSED } from '../puzzle/board.js';
 import { drawReveal } from '../render/reveal.js';
 import {
   composePatternRoomWorkSurface, drawPatternRoomRulePlate, patternRoomWorkLayout,
+  drawHintStrip as hintStrip,
 } from '../render/patternRoom.js';
 import { completedPanelFor, composePanel } from '../content/panels.js';
 import { allCatalogueCardsById } from '../content/shelves.js';
@@ -57,12 +58,6 @@ function drawFoldLine(fb, layout, axis, puzzle) {
   if (axis === 'h' || axis === 'rot180') hLineAt(gridY + Math.round(h / 2) * cell);
 }
 
-function hintStrip(fb, text, color) {
-  const y = fb.height - 32;
-  fb.fillRect(0, y - 4, fb.width, 16, PALETTE.oilDeep[0], PALETTE.oilDeep[1], PALETTE.oilDeep[2], 220);
-  drawBodyTextCentered(fb, 0, fb.width, y, text, color);
-}
-
 // Progressive hint drawing: point -> name -> show, per the reveal stage.
 function drawHintOverlay(fb, layout, hint, stage) {
   if (hint.kind === 'solved') return;
@@ -90,6 +85,8 @@ function drawHintOverlay(fb, layout, hint, stage) {
 
 export function makePlayScene(motif, opts = {}) {
   const board = new Board(motif.puzzle);
+  const resumed = opts.resume || null;
+  if (resumed) board.restoreState(resumed.board);
   // The shelf's twist: what the margin counts mean, how a hint reasons, its in-world tag.
   const twist = twistFor(motif.twist);
   const displayClues = twist.displayClues(motif.puzzle);
@@ -106,19 +103,19 @@ export function makePlayScene(motif, opts = {}) {
   let artCache = null;
   const artStats = { builds: 0 };
   const drawer = DRAWER_BY_TWIST[motif.twist] ?? 0;
-  const cursor = { x: 0, y: 0 };
+  const cursor = resumed ? { ...resumed.cursor } : { x: 0, y: 0 };
   let activeButton = null;   // 0 or 2 while dragging
   let lastStrokeCell = null; // to avoid re-extending the same cell
-  let solved = false;
-  let solvedLogged = false;
+  let solved = resumed ? resumed.solved : false;
+  let solvedLogged = resumed ? resumed.solvedLogged : false;
   // Progressive hint state: H reveals point -> name -> show, uncapped and zero-penalty.
-  let hint = null;
-  let hintStage = 0;
+  let hint = resumed ? resumed.hint : null;
+  let hintStage = resumed ? resumed.hintStage : 0;
   let enterElapsed = 0; // when this card opened (for the blurb intro)
   // HOUSE RULES: opt-in mistake penalty (only when the shelf's twist carries the rule).
   const penalty = !!(twist.rules && twist.rules.penalty);
   const maxStrikes = penalty ? (twist.rules.maxStrikes || 3) : 0;
-  let strikes = 0;
+  let strikes = resumed ? resumed.strikes : 0;
   let strikeFlash = null; // { x, y, at } — the last wrong stitch, for a brief madder ring
   let tornAt = -1;        // elapsed when the cloth last tore (re-warp message window)
 
@@ -215,6 +212,15 @@ export function makePlayScene(motif, opts = {}) {
   return {
     _board: board, // exposed for tests + save/resume wiring later
     _artStats: artStats,
+
+    saveState() {
+      const boardState = board.saveState();
+      if (!boardState || activeButton !== null) return null;
+      return {
+        scene: 'play', cardId: motif.id, board: boardState, cursor: { ...cursor },
+        solved, solvedLogged, hint, hintStage, strikes,
+      };
+    },
 
     enter(app) {
       ensureLayout(app.fb);
@@ -342,14 +348,17 @@ export function makePlayScene(motif, opts = {}) {
       const help = solved
         ? (leave ? 'PATTERN WOVEN  -  ENTER OR ESC RETURNS TO THE INDEX' : 'PATTERN COMPLETE - WOVEN')
         : 'LMB FILL  RMB CROSS  P PENCIL  Z UNDO  H HINT  ESC INDEX';
-      const col = solved ? PALETTE.brassLit : PALETTE.inkSoft;
+      // ink, not inkSoft: the control legend sits on the manila job ticket, where
+      // inkSoft measures 3.55:1. Same graphite family, 5.59:1.
+      const col = solved ? PALETTE.brassLit : PALETTE.ink;
       if (solved) {
         // A brass completion plate over the board.
         const w = measureText(help, 2, 1);
         const px = Math.round((fb.width - w) / 2) - 8;
         const py = patternRoomWorkLayout(fb).footerY - 2;
-        fb.fillRect(px, py - 4, w + 16, 20, PALETTE.brassDark[0], PALETTE.brassDark[1], PALETTE.brassDark[2], 230);
-        fb.strokeRect(px, py - 4, w + 16, 20, PALETTE.brassLit[0], PALETTE.brassLit[1], PALETTE.brassLit[2]);
+        const ph = textHeight(2) + 8;
+        fb.fillRect(px, py - 4, w + 16, ph, PALETTE.brassDark[0], PALETTE.brassDark[1], PALETTE.brassDark[2], 230);
+        fb.strokeRect(px, py - 4, w + 16, ph, PALETTE.brassLit[0], PALETTE.brassLit[1], PALETTE.brassLit[2]);
         drawTextCentered(fb, 0, fb.width, py, help, col, 2, 1);
       } else {
         const wl = patternRoomWorkLayout(fb);

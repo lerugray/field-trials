@@ -128,7 +128,10 @@ export function drawColoredBoard(fb, board, layout, cursor, card) {
   for (let gy = 0; gy <= h; gy++) { const heavy = gy % 5 === 0; const c = heavy ? gm : gl; fb.hLine(layout.gridX, layout.gridY + gy * cell, w * cell, c[0], c[1], c[2], heavy ? 150 : 90); }
 
   // Coloured clues on the margins: number + shape swatch, in run order.
-  const ds = Math.max(1, Math.floor((cell - 3) / textHeight(1)));
+  const ds = (() => {
+    for (let s = 3; s >= 1; s--) if (textHeight(s) <= cell - 2) return s;
+    return 1;
+  })();
   const sw = Math.max(3, Math.floor(cell / 4));
   for (let y = 0; y < h; y++) {
     const clue = card.colored.rowClues[y];

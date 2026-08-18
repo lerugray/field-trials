@@ -12,7 +12,7 @@
 
 import { PALETTE } from '../gfx/palette.js';
 import { bayer, hash2 } from '../gfx/dither.js';
-import { drawTextCentered, measureText } from '../gfx/font.js';
+import { drawTextCentered, measureText, textHeight, fitText } from '../gfx/font.js';
 import { composePatternRoomTitleSurface } from '../render/patternRoom.js';
 
 // Invented house name (clean-room, our own expression) — a functional mill-town name;
@@ -119,16 +119,19 @@ export function composeTitle(fb) {
   drawPunchColumn(fb, daX + 8, daY + 12, daY + daH - 12);
 
   // Title block, stamped in graphite, centered on the card.
+  // Hero size tracks card height so half-res proof frames still read as manila stock.
+  const hero = cardH < 160 ? 3 : (cardH < 210 ? 4 : 5);
+  const sub = hero >= 4 ? 2 : 1;
   const cx = cardX, cw = cardW;
-  let ty = cardY + Math.round(cardH * 0.20);
-  drawTextCentered(fb, cx, cw, ty, 'THE', PALETTE.inkSoft, 2, 2);
-  ty += 22;
-  drawTextCentered(fb, cx, cw, ty, 'JACQUARD', PALETTE.ink, 5, 2);
-  ty += 44;
-  drawTextCentered(fb, cx, cw, ty, 'INDEX', PALETTE.ink, 5, 2);
-  ty += 52;
-  drawTextCentered(fb, cx, cw, ty, `PATTERN LIBRARY OF ${HOUSE_NAME}`, PALETTE.inkSoft, 2, 1);
-  ty += 16;
+  let ty = cardY + Math.round(cardH * 0.10);
+  drawTextCentered(fb, cx, cw, ty, 'THE', PALETTE.inkSoft, sub, 1);
+  ty += textHeight(sub) + 2;
+  drawTextCentered(fb, cx, cw, ty, 'JACQUARD', PALETTE.ink, hero, 1);
+  ty += textHeight(hero) + 2;
+  drawTextCentered(fb, cx, cw, ty, 'INDEX', PALETTE.ink, hero, 1);
+  ty += textHeight(hero) + 8;
+  drawTextCentered(fb, cx, cw, ty, `PATTERN LIBRARY OF ${HOUSE_NAME}`, PALETTE.inkSoft, 1, 1);
+  ty += textHeight(1) + 4;
   drawTextCentered(fb, cx, cw, ty, 'EST. 1889   -   NO GUESSING, PROVED', PALETTE.inkSoft, 1, 1);
   return fb;
 }
@@ -137,11 +140,14 @@ export function composeTitle(fb) {
 // `hot` brightens the brass plate for mouse hover affordance.
 export function titlePromptRect(fb) {
   const { cardX, cardY, cardW, cardH } = titleLayout(fb);
+  // Scale 1 (9px) keeps the CTA on the card; scale 2 overflows the manila stock.
   const text = 'CLICK OR PRESS ENTER TO OPEN THE INDEX';
-  const y = cardY + cardH - 34;
-  const w = measureText(text, 2, 1);
+  const scale = 1;
+  const th = textHeight(scale);
+  const y = cardY + cardH - (th + 16);
+  const w = measureText(text, scale, 1);
   const px = cardX + Math.round((cardW - w) / 2) - 8;
-  return { x: px, y: y - 4, w: w + 16, h: 20, text, textY: y };
+  return { x: px, y: y - 5, w: w + 16, h: th + 10, text, textY: y, scale };
 }
 
 export function hitTestTitlePrompt(fb, px, py) {
@@ -156,8 +162,48 @@ export function drawPrompt(fb, on, hot = false) {
   if (!on && !hot) return;
   const plate = hot ? PALETTE.brass : PALETTE.brassDark;
   const edge = hot ? PALETTE.brassLit : PALETTE.brassLit;
-  fb.fillRect(r.x, r.y, r.w, r.h, plate[0], plate[1], plate[2], hot ? 230 : 200);
+  // Opaque: at alpha 200 the pale card showed through and lifted the plate to
+  // [135, 110, 61], dropping the call-to-action's measured contrast to 3.36:1. A brass
+  // plate is not translucent anyway; solid brass restores the full 4.27:1.
+  fb.fillRect(r.x, r.y, r.w, r.h, plate[0], plate[1], plate[2], 255);
   fb.strokeRect(r.x, r.y, r.w, r.h, edge[0], edge[1], edge[2]);
   const { cardX, cardW } = titleLayout(fb);
-  drawTextCentered(fb, cardX, cardW, r.textY, r.text, PALETTE.linen, 2, 1);
+  drawTextCentered(fb, cardX, cardW, r.textY, r.text, PALETTE.linen, r.scale || 1, 1);
+}
+
+export function titleChoiceRects(fb) {
+  const { cardX, cardY, cardW, cardH } = titleLayout(fb);
+  const gap = 8;
+  const w = Math.floor((cardW - 40 - gap) / 2);
+  const h = textHeight(1) + 10;
+  const y = cardY + cardH - h - 10;
+  return [
+    { x: cardX + 20, y, w, h, text: 'CONTINUE SAVED WORK' },
+    { x: cardX + 20 + w + gap, y, w, h, text: 'NEW INDEX' },
+  ];
+}
+
+export function hitTestTitleChoice(fb, px, py) {
+  return titleChoiceRects(fb).findIndex((r) => px >= r.x && px < r.x + r.w && py >= r.y && py < r.y + r.h);
+}
+
+export function drawSaveChoice(fb, selected = 0, hot = -1) {
+  const rects = titleChoiceRects(fb);
+  for (let i = 0; i < rects.length; i++) {
+    const r = rects[i];
+    const on = i === selected || i === hot;
+    const plate = on ? PALETTE.brass : PALETTE.brassDark;
+    fb.fillRect(r.x, r.y, r.w, r.h, plate[0], plate[1], plate[2], 230);
+    fb.strokeRect(r.x, r.y, r.w, r.h, PALETTE.brassLit[0], PALETTE.brassLit[1], PALETTE.brassLit[2]);
+    drawTextCentered(fb, r.x, r.w, r.y + 5, r.text, PALETTE.linen, 1, 1);
+  }
+}
+
+export function drawSaveNotice(fb, notice) {
+  if (!notice) return;
+  const { cardX, cardY, cardW, cardH } = titleLayout(fb);
+  const y = cardY + cardH - 46;
+  fb.fillRect(cardX + 12, y - 4, cardW - 24, 17, PALETTE.madder[0], PALETTE.madder[1], PALETTE.madder[2], 225);
+  fb.strokeRect(cardX + 12, y - 4, cardW - 24, 17, PALETTE.oilDeep[0], PALETTE.oilDeep[1], PALETTE.oilDeep[2]);
+  drawTextCentered(fb, cardX + 12, cardW - 24, y, fitText(notice, cardW - 36, 1, 1), PALETTE.linen, 1, 1);
 }

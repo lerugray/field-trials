@@ -29,7 +29,7 @@ test('proof-critical punctuation renders as itself, not as ?', () => {
   assert.notDeepEqual(Array.from(fbApos.data), Array.from(fbQ.data));
 });
 
-test('pixel mill font still owns the T* proof badge glyph path', () => {
+test('display face still owns the T* proof badge glyph path', () => {
   const a = new Framebuffer(40, 16);
   const b = new Framebuffer(40, 16);
   drawText(a, 1, 1, 'T*', [0, 0, 0], 1, 1);

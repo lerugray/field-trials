@@ -153,3 +153,15 @@ test('no-op verbs do not push an undo entry', () => {
   b.togglePencilFill(0, 0); // primary FILLED -> pencil ignored -> no change
   assert.equal(b._undo.length, undosBefore);
 });
+
+test('undo and serialized history stay bounded after 1,000 operations', () => {
+  const b = new Board(Puzzle.fromAscii(['..........']), { autoX: false });
+  for (let i = 0; i < 1000; i++) b.toggleFill(i % 10, 0);
+
+  const state = b.saveState();
+  assert.equal(b._undo.length, 100, 'live undo history is capped at 100 atomic actions');
+  assert.equal(state.undo.length, 100, 'the save blob carries at most the same 100 actions');
+  for (let i = 0; i < 100; i++) assert.equal(b.undo(), true);
+  assert.equal(b.undo(), false, 'the cap keeps undo available for the most recent 100 actions');
+  assert.equal(b.saveState().redo.length, 100, 'redo history is capped too');
+});

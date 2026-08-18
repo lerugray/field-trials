@@ -8,6 +8,7 @@
 // SHAPE in the view (hard-rule 6); here the threads are just A and B.
 
 import { A, B, BARE } from './twothread.js';
+import { HISTORY_LIMIT } from './board.js';
 
 export const CB_BLANK = 0;
 export const CB_A = A;      // 1
@@ -69,6 +70,7 @@ export class ColoredBoard {
     this._pending = null;
     if (changes.length === 0) return false;
     this._undo.push(changes);
+    if (this._undo.length > HISTORY_LIMIT) this._undo.shift();
     this._redo.length = 0;
     return true;
   }
@@ -81,6 +83,7 @@ export class ColoredBoard {
     if (!changes) return false;
     for (const c of changes) this.marks[c.index] = c.prev;
     this._redo.push(changes);
+    if (this._redo.length > HISTORY_LIMIT) this._redo.shift();
     return true;
   }
 
@@ -89,7 +92,29 @@ export class ColoredBoard {
     if (!changes) return false;
     for (const c of changes) this.marks[c.index] = c.next;
     this._undo.push(changes);
+    if (this._undo.length > HISTORY_LIMIT) this._undo.shift();
     return true;
+  }
+
+  saveState() {
+    if (this._pending) return null;
+    return {
+      kind: 'colored', width: this.width, height: this.height,
+      marks: Array.from(this.marks),
+      undo: this._undo.slice(-HISTORY_LIMIT).map((entry) => entry.map((c) => ({ ...c }))),
+      redo: this._redo.slice(-HISTORY_LIMIT).map((entry) => entry.map((c) => ({ ...c }))),
+    };
+  }
+
+  restoreState(state) {
+    if (!state || state.kind !== 'colored' || state.width !== this.width || state.height !== this.height) {
+      throw new Error('saved board does not match this two-thread card');
+    }
+    this.marks.set(state.marks);
+    this._undo = state.undo.slice(-HISTORY_LIMIT).map((entry) => entry.map((c) => ({ ...c })));
+    this._redo = state.redo.slice(-HISTORY_LIMIT).map((entry) => entry.map((c) => ({ ...c })));
+    this._pending = null;
+    return this;
   }
 
   reset() {

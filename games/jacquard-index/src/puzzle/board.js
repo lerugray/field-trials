@@ -4,7 +4,7 @@
 // (BLANK / FILLED / CROSSED) and an independent PENCIL overlay (tentative fill/cross,
 // shown only while the primary is blank). It implements the seed's QoL set as law:
 // drag-painting with the studio drag semantics, auto-X on satisfied lines (that never
-// overwrites a pencil mark), unlimited atomic undo/redo, and pencil marks of distinct
+// overwrites a pencil mark), bounded atomic undo/redo, and pencil marks of distinct
 // weight. It exposes line-satisfaction (for clue dimming) and win detection.
 //
 // Pure and DOM-free: the scene layer maps input to these verbs; this is tested directly.
@@ -20,6 +20,8 @@ export const CROSSED = 2;
 export const PENCIL_NONE = 0;
 export const PENCIL_FILL = 1;
 export const PENCIL_CROSS = 2;
+
+export const HISTORY_LIMIT = 100;
 
 export class Board {
   constructor(puzzle, opts = {}) {
@@ -98,6 +100,7 @@ export class Board {
         else this._undo.pop();
       } else {
         this._undo.push(changes);
+        if (this._undo.length > HISTORY_LIMIT) this._undo.shift();
       }
       this._redo.length = 0;
     }
@@ -215,11 +218,38 @@ export class Board {
   canUndo() { return this._undo.length > 0; }
   canRedo() { return this._redo.length > 0; }
 
+  // Stable, JSON-safe player state for save/resume. Active pointer strokes are never
+  // serialized: the scene waits for release, so every saved history entry remains atomic.
+  saveState() {
+    if (this._pending) return null;
+    return {
+      kind: 'base', width: this.width, height: this.height, autoX: this.autoX,
+      primary: Array.from(this.primary), pencil: Array.from(this.pencil),
+      undo: this._undo.slice(-HISTORY_LIMIT).map((entry) => entry.map((c) => ({ ...c }))),
+      redo: this._redo.slice(-HISTORY_LIMIT).map((entry) => entry.map((c) => ({ ...c }))),
+    };
+  }
+
+  restoreState(state) {
+    if (!state || state.kind !== 'base' || state.width !== this.width || state.height !== this.height) {
+      throw new Error('saved board does not match this pattern card');
+    }
+    this.primary.set(state.primary);
+    this.pencil.set(state.pencil);
+    this.autoX = state.autoX;
+    this._undo = state.undo.slice(-HISTORY_LIMIT).map((entry) => entry.map((c) => ({ ...c })));
+    this._redo = state.redo.slice(-HISTORY_LIMIT).map((entry) => entry.map((c) => ({ ...c })));
+    this._pending = null;
+    this._strokeTouched = null;
+    return this;
+  }
+
   undo() {
     const changes = this._undo.pop();
     if (!changes) return false;
     for (const c of changes) { this.primary[c.index] = c.prevP; this.pencil[c.index] = c.prevPen; }
     this._redo.push(changes);
+    if (this._redo.length > HISTORY_LIMIT) this._redo.shift();
     return true;
   }
 
@@ -228,6 +258,7 @@ export class Board {
     if (!changes) return false;
     for (const c of changes) { this.primary[c.index] = c.newP; this.pencil[c.index] = c.newPen; }
     this._undo.push(changes);
+    if (this._undo.length > HISTORY_LIMIT) this._undo.shift();
     return true;
   }
 

@@ -26,10 +26,10 @@ const cardW = (c) => (c.puzzle ? c.puzzle.width : c.width);
 const cardH = (c) => (c.puzzle ? c.puzzle.height : c.height);
 const LMB = 0;
 
-export function makeIndexScene() { return makeIndexSceneAt('shelves', 0, 0); }
+export function makeIndexScene(opts = {}) { return makeIndexSceneAt('shelves', 0, 0, opts); }
 
 // view: 'shelves' (drawer list) | 'cards' (open drawer). shelfSel/cardSel restore position.
-export function makeIndexSceneAt(view = 'shelves', shelfSel = 0, cardSel = 0) {
+export function makeIndexSceneAt(view = 'shelves', shelfSel = 0, cardSel = 0, opts = {}) {
   let mode = view;
   let sSel = Math.max(0, Math.min(SHELVES.length - 1, shelfSel));
   let cSel = cardSel;
@@ -59,7 +59,7 @@ export function makeIndexSceneAt(view = 'shelves', shelfSel = 0, cardSel = 0) {
     const card = cards[cSel];
     app.log.info(`index: open ${card.name}`, Math.round(app.elapsed));
     const sReturn = sSel, cReturn = cSel;
-    const back = (a) => a.setScene(makeIndexSceneAt('cards', sReturn, cReturn));
+    const back = (a) => a.setScene(makeIndexSceneAt('cards', sReturn, cReturn, opts));
     const t = twistFor(card.twist);
     if (t.coloredScene) app.setScene(makeTwoThreadScene(card, { onExit: back }));
     else if (t.ledgerScene) app.setScene(makeCountingHouseScene(card, { onExit: back }));
@@ -68,6 +68,7 @@ export function makeIndexSceneAt(view = 'shelves', shelfSel = 0, cardSel = 0) {
 
   return {
     _artStats: artStats,
+    saveState() { return { scene: 'index', view: mode, shelf: sSel, card: cSel }; },
     enter(app) {
       // Re-derive the open drawer's cards after returning from a card.
       if (mode === 'cards') {
@@ -121,7 +122,10 @@ export function makeIndexSceneAt(view = 'shelves', shelfSel = 0, cardSel = 0) {
             case 'ArrowUp': sSel = (sSel - 1 + SHELVES.length) % SHELVES.length; break;
             case 'ArrowDown': sSel = (sSel + 1) % SHELVES.length; break;
             case 'Enter': case 'Space': openDrawer(app); return;
-            case 'Escape': app.setScene(makeTitleScene()); return;
+            case 'Escape':
+              if (typeof opts.onExitToTitle === 'function') opts.onExitToTitle(app);
+              else app.setScene(makeTitleScene());
+              return;
             default: break;
           }
         } else {

@@ -41,10 +41,12 @@ test('the card region is lit manila, distinct from the oil floor corners', () =>
   const fb = new Framebuffer(320, 180);
   composeTitle(fb);
   const { cardX, cardY, cardW, cardH } = titleLayout(fb);
-  const center = fb.getPixel(cardX + (cardW >> 1), cardY + (cardH >> 1));
+  // Sample the lower drafting band (below the stamped title), not the geometric center —
+  // display-face ink can land on the midpoint without the stock going dark.
+  const center = fb.getPixel(cardX + (cardW >> 1), cardY + Math.round(cardH * 0.65));
   const corner = fb.getPixel(2, 2);
-  // Card center is warm/bright manila; corner is dark oil.
-  assert.ok(center[0] > 140, `card center too dark: ${center}`);
+  // Card stock is warm/bright manila; corner is dark oil.
+  assert.ok(center[0] > 140, `card stock too dark: ${center}`);
   assert.ok(corner[0] < 90, `corner too bright (light rig should fall off): ${corner}`);
   assert.ok(center[0] > corner[0] + 60, 'card should stand out from the floor');
 });

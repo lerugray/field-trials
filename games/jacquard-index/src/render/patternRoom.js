@@ -7,14 +7,32 @@
 
 import { PALETTE } from '../gfx/palette.js';
 import { bayer, hash2 } from '../gfx/dither.js';
-import { drawText, measureText } from '../gfx/font.js';
-import { drawBodyText, wrapBodyText, BODY_LINE_HEIGHT } from '../gfx/bodyFont.js';
+import { drawText, measureText, textHeight, fitText } from '../gfx/font.js';
+import {
+  drawBodyText, drawBodyTextCentered, wrapBodyText, fitBodyLines, BODY_LINE_HEIGHT,
+} from '../gfx/bodyFont.js';
 
 export const PATTERN_ROOM_DRAWER_COLS = 4;
 
-// Shelf teaching blurbs wrap in the readable body face (pixel font stays for stamps/HUD).
+// Shelf teaching blurbs wrap in the readable body face (Oswald for stamps/HUD).
 export function wrapPatternRoomText(text, maxWidth, _scale = 1, _tracking = 1) {
   return wrapBodyText(text, maxWidth);
+}
+
+// How much blurb a closed-cabinet drawer FACE can hold. Exported so the fit battery
+// asserts the number the renderer actually uses, not a copy of the arithmetic: a fixed
+// 2 lines used to run 5px past a 29px face and the next drawer painted over the spill.
+export function drawerFaceBlurbFit(rowH) {
+  const top = 12;
+  const pitch = BODY_LINE_HEIGHT - 2;
+  return { top, pitch, maxLines: Math.max(1, Math.floor((rowH - 1 - top) / pitch)) };
+}
+
+// The open drawer's job ticket, which must carry each blurb WHOLE.
+export function drawerTicketBlurbFit(blurbH) {
+  const top = 4;
+  const pitch = BODY_LINE_HEIGHT - 1;
+  return { top, pitch, maxLines: Math.max(1, Math.floor((blurbH - 5) / pitch)) };
 }
 
 export function hitTestPatternRoomShelf(fb, px, py, count = 8) {
@@ -211,19 +229,45 @@ function drawCompactCabinet(fb, x, y, w, h, activeDrawer) {
 }
 
 export function patternRoomWorkLayout(fb) {
-  const frame = { x: 91, y: 25, w: fb.width - 192, h: fb.height - 50 };
+  // Centered: the old fixed x:91 left the frame 91/101 on the 640 canvas — a
+  // ~10px bias on every work surface (Ray caught it by eye 2026-08-14; measured
+  // board margins 105 left / 115 right). Symmetric insets keep the board true.
+  const w = fb.width - 192;
+  const frame = { x: Math.floor((fb.width - w) / 2), y: 25, w, h: fb.height - 50 };
   const board = { x: frame.x + 14, y: frame.y + 59, w: frame.w - 28, h: frame.h - 91 };
   return { frame, board, footerY: frame.y + frame.h - 16 };
+}
+
+// The hint / torn-cloth strip. ONE implementation: the play, two-thread, and
+// counting-house scenes each carried their own copy pinned to fb.height - 32, which put
+// the band at y 324..340 while the footer control plate occupies 314..332 - the strip
+// sliced the control legend in half horizontally. Derived from the work layout so the two
+// can never overlap again at any canvas size, and shared so a fix cannot miss a scene.
+export function hintStripRect(fb) {
+  const l = patternRoomWorkLayout(fb);
+  const plateTop = l.footerY - 5;
+  const plateBottom = plateTop + textHeight(1) + 6;
+  const h = BODY_LINE_HEIGHT + 3;
+  return { y: Math.min(plateBottom + 2, fb.height - h), h, plateTop, plateBottom };
+}
+
+export function drawHintStrip(fb, text, color) {
+  const r = hintStripRect(fb);
+  fb.fillRect(0, r.y, fb.width, r.h, PALETTE.oilDeep[0], PALETTE.oilDeep[1], PALETTE.oilDeep[2], 220);
+  drawBodyTextCentered(fb, 0, fb.width, r.y + 2, text, color);
+  return r;
 }
 
 export function drawPatternRoomRulePlate(fb, text) {
   if (!text) return fb;
   const l = patternRoomWorkLayout(fb);
   const rw = measureText(text, 1, 1);
+  const th = textHeight(1);
   const rx = l.board.x + Math.floor((l.board.w - rw) / 2);
-  fb.fillRect(rx - 6, l.board.y - 14, rw + 12, 12, PALETTE.brassDark[0], PALETTE.brassDark[1], PALETTE.brassDark[2], 255);
-  fb.strokeRect(rx - 6, l.board.y - 14, rw + 12, 12, PALETTE.brass[0], PALETTE.brass[1], PALETTE.brass[2], 255);
-  drawText(fb, rx, l.board.y - 12, text, PALETTE.linen, 1, 1);
+  const plateH = th + 4;
+  fb.fillRect(rx - 6, l.board.y - plateH - 2, rw + 12, plateH, PALETTE.brassDark[0], PALETTE.brassDark[1], PALETTE.brassDark[2], 255);
+  fb.strokeRect(rx - 6, l.board.y - plateH - 2, rw + 12, plateH, PALETTE.brass[0], PALETTE.brass[1], PALETTE.brass[2], 255);
+  drawText(fb, rx, l.board.y - plateH, text, PALETTE.linen, 1, 1);
   return fb;
 }
 
@@ -255,10 +299,11 @@ export function composePatternRoomWorkSurface(fb, {
   const plateX = l.frame.x + 12;
   const plateY = l.frame.y + 8;
   const plateW = l.frame.w - 24;
-  fb.fillRect(plateX, plateY, plateW, 24, ROOM.iron[0], ROOM.iron[1], ROOM.iron[2], 245);
-  fb.strokeRect(plateX, plateY, plateW, 24, PALETTE.brassDark[0], PALETTE.brassDark[1], PALETTE.brassDark[2], 255);
+  const plateH = 28;
+  fb.fillRect(plateX, plateY, plateW, plateH, ROOM.iron[0], ROOM.iron[1], ROOM.iron[2], 245);
+  fb.strokeRect(plateX, plateY, plateW, plateH, PALETTE.brassDark[0], PALETTE.brassDark[1], PALETTE.brassDark[2], 255);
   drawText(fb, plateX + 8, plateY + 5, title, PALETTE.linen, 2, 1);
-  drawText(fb, plateX + plateW - measureText(band, 1, 1) - 8, plateY + 8, band, PALETTE.brassLit, 1, 1);
+  drawText(fb, plateX + plateW - measureText(band, 1, 1) - 8, plateY + 9, band, PALETTE.brassLit, 1, 1);
 
   drawPatternRoomRulePlate(fb, rule);
 
@@ -268,8 +313,8 @@ export function composePatternRoomWorkSurface(fb, {
   fb.hLine(0, benchY, fb.width, ROOM.timberLit[0], ROOM.timberLit[1], ROOM.timberLit[2], 230);
 
   // Recessed job ticket for controls: graphite stays legible instead of sinking into timber.
-  fb.fillRect(l.frame.x + 12, l.footerY - 4, l.frame.w - 24, 15, PALETTE.manilaShade[0], PALETTE.manilaShade[1], PALETTE.manilaShade[2], 255);
-  fb.strokeRect(l.frame.x + 12, l.footerY - 4, l.frame.w - 24, 15, ROOM.timberDeep[0], ROOM.timberDeep[1], ROOM.timberDeep[2], 255);
+  fb.fillRect(l.frame.x + 12, l.footerY - 5, l.frame.w - 24, textHeight(1) + 6, PALETTE.manilaShade[0], PALETTE.manilaShade[1], PALETTE.manilaShade[2], 255);
+  fb.strokeRect(l.frame.x + 12, l.footerY - 5, l.frame.w - 24, textHeight(1) + 6, ROOM.timberDeep[0], ROOM.timberDeep[1], ROOM.timberDeep[2], 255);
 
   applyRoomLights(fb);
   drawLamp(fb, Math.round(fb.width * 0.63));
@@ -314,13 +359,13 @@ function drawDrawer(fb, l, drawer, index, selected) {
 
   // Brass catalogue plate and a recessed iron finger pull.
   const plateX = x + 7;
-  const plateY = y + Math.floor((h - 15) / 2);
+  const plateY = y + Math.floor((h - 17) / 2);
   const plate = drawer.unlocked ? PALETTE.brass : PALETTE.brassDark;
-  fb.fillRect(plateX, plateY, 30, 15, plate[0], plate[1], plate[2], 255);
+  fb.fillRect(plateX, plateY, 30, 17, plate[0], plate[1], plate[2], 255);
   fb.hLine(plateX, plateY, 30, PALETTE.brassLit[0], PALETTE.brassLit[1], PALETTE.brassLit[2], 210);
-  fb.strokeRect(plateX, plateY, 30, 15, PALETTE.brassDark[0], PALETTE.brassDark[1], PALETTE.brassDark[2], 255);
+  fb.strokeRect(plateX, plateY, 30, 17, PALETTE.brassDark[0], PALETTE.brassDark[1], PALETTE.brassDark[2], 255);
   const number = String(drawer.order);
-  drawText(fb, plateX + Math.floor((30 - measureText(number, 1, 1)) / 2), plateY + 4, number, PALETTE.oilDeep, 1, 1);
+  drawText(fb, plateX + Math.floor((30 - measureText(number, 1, 1)) / 2), plateY + 3, number, PALETTE.oilDeep, 1, 1);
 
   const pullX = x + w - 38;
   fb.fillRect(pullX, y + 7, 22, h - 14, ROOM.iron[0], ROOM.iron[1], ROOM.iron[2], 255);
@@ -329,19 +374,30 @@ function drawDrawer(fb, l, drawer, index, selected) {
 
   const labelX = x + 47;
   const nameColor = drawer.unlocked ? PALETTE.ink : PALETTE.manilaShade;
-  const detailColor = drawer.unlocked ? PALETTE.inkSoft : PALETTE.brassDark;
-  drawText(fb, labelX, y + 4, drawer.name, nameColor, 1, 1);
+  // A locked drawer's tagline and blurb are dimmed on purpose, but brassDark on the dark
+  // timber face measured 2.29:1 in the render - text nobody can read, which is worse than
+  // no text. One step to brass is 5.37:1 and still reads plainly dimmer than an unlocked
+  // row's graphite on manila (9.34:1), so the locked state still speaks.
+  const detailColor = drawer.unlocked ? PALETTE.inkSoft : PALETTE.brass;
+  const hudH = textHeight(1);
+  const labelW = pullX - labelX - 9;
+  drawText(fb, labelX, y + 3, fitText(drawer.name, labelW, 1, 1), nameColor, 1, 1);
   const statusX = pullX - measureText(drawer.status, 1, 1) - 10;
   const statusColor = selected && drawer.unlocked ? PALETTE.ink
     : (selected ? PALETTE.brassLit : detailColor);
-  drawText(fb, statusX, selected ? y + 4 : y + Math.floor((h - 7) / 2), drawer.status, statusColor, 1, 1);
+  drawText(fb, statusX, selected ? y + 3 : y + Math.floor((h - hudH) / 2), drawer.status, statusColor, 1, 1);
   if (selected && drawer.blurb) {
-    const lines = wrapPatternRoomText(drawer.blurb, pullX - labelX - 9);
-    for (let i = 0; i < Math.min(2, lines.length); i++) {
-      drawBodyText(fb, labelX, y + 12 + i * (BODY_LINE_HEIGHT - 2), lines[i], detailColor);
+    // Only as many blurb lines as the drawer face actually holds. The old fixed
+    // 2 lines ran 5px past the row and the NEXT drawer painted over the overflow,
+    // leaving a sentence sliced through the middle. The full teaching text is
+    // presented on the open drawer's job ticket (composePatternRoomDrawer).
+    const fit = drawerFaceBlurbFit(h);
+    const lines = fitBodyLines(drawer.blurb, labelW, fit.maxLines);
+    for (let i = 0; i < lines.length; i++) {
+      drawBodyText(fb, labelX, y + fit.top + i * fit.pitch, lines[i], detailColor);
     }
   } else {
-    drawText(fb, labelX, y + 14, drawer.tagline, detailColor, 1, 1);
+    drawText(fb, labelX, y + 14, fitText(drawer.tagline, labelW, 1, 1), detailColor, 1, 1);
   }
 }
 
@@ -369,12 +425,14 @@ function drawCardSlip(fb, x, y, w, h, card, selected) {
     }
   }
 
-  const name = card.name.length > 14 ? card.name.slice(0, 14) : card.name;
-  drawText(fb, x + 6, y + 14, name, PALETTE.ink, 1, 1);
-  drawText(fb, x + 6, y + h - 11, card.detail, PALETTE.inkSoft, 1, 1);
+  // Fit the name to the slip, not to an arbitrary 14 characters: that cut turned
+  // THE FOLDED CROSS into "THE FOLDED CRO" with 18px of empty slip to its right.
+  const name = fitText(card.name, w - 12, 1, 1);
+  drawText(fb, x + 6, y + 12, name, PALETTE.ink, 1, 1);
+  drawText(fb, x + 6, y + h - textHeight(1) - 3, card.detail, PALETTE.inkSoft, 1, 1);
   const status = card.woven ? 'WOVEN' : '- - -';
   drawText(
-    fb, x + w - measureText(status, 1, 1) - 6, y + h - 11, status,
+    fb, x + w - measureText(status, 1, 1) - 6, y + h - textHeight(1) - 3, status,
     card.woven ? PALETTE.brassDark : PALETTE.inkSoft, 1, 1,
   );
 }
@@ -407,19 +465,24 @@ export function composePatternRoomDrawer(fb, drawers, shelfIndex, totalWoven, sh
   const plateX = l.x + 14;
   const plateY = l.y + 8;
   const plateW = l.w - 28;
-  fb.fillRect(plateX, plateY, plateW, 20, ROOM.iron[0], ROOM.iron[1], ROOM.iron[2], 245);
-  fb.strokeRect(plateX, plateY, plateW, 20, PALETTE.brassDark[0], PALETTE.brassDark[1], PALETTE.brassDark[2], 255);
-  drawText(fb, plateX + 8, plateY + 6, `${shelf.order}  ${shelf.name}`, PALETTE.linen, 1, 1);
+  fb.fillRect(plateX, plateY, plateW, 22, ROOM.iron[0], ROOM.iron[1], ROOM.iron[2], 245);
+  fb.strokeRect(plateX, plateY, plateW, 22, PALETTE.brassDark[0], PALETTE.brassDark[1], PALETTE.brassDark[2], 255);
   const count = `${shelf.woven} / ${cards.length} WOVEN`;
-  drawText(fb, plateX + plateW - measureText(count, 1, 1) - 8, plateY + 6, count, PALETTE.brassLit, 1, 1);
+  const countW = measureText(count, 1, 1);
+  const title = fitText(`${shelf.order}  ${shelf.name}`, plateW - countW - 24, 1, 1);
+  drawText(fb, plateX + 8, plateY + 5, title, PALETTE.linen, 1, 1);
+  drawText(fb, plateX + plateW - countW - 8, plateY + 5, count, PALETTE.brassLit, 1, 1);
 
   // The shelf's authored house voice is a fixed job ticket on the open drawer. It is
   // visible before any card opens; THE LOOM's ticket is consequently the base tutorial.
   fb.fillRect(l.blurb.x, l.blurb.y, l.blurb.w, l.blurb.h, PALETTE.manilaShade[0], PALETTE.manilaShade[1], PALETTE.manilaShade[2], 255);
   fb.strokeRect(l.blurb.x, l.blurb.y, l.blurb.w, l.blurb.h, ROOM.timberDeep[0], ROOM.timberDeep[1], ROOM.timberDeep[2], 255);
-  const blurbLines = wrapPatternRoomText(shelf.blurb, l.blurb.w - 12);
-  for (let i = 0; i < Math.min(2, blurbLines.length); i++) {
-    drawBodyText(fb, l.blurb.x + 6, l.blurb.y + 4 + i * (BODY_LINE_HEIGHT - 1), blurbLines[i], PALETTE.ink);
+  // Fit-driven rather than a fixed 2: every authored blurb fits the ticket today, and a
+  // longer one must ellipsise honestly rather than stop mid-sentence.
+  const ticket = drawerTicketBlurbFit(l.blurb.h);
+  const blurbLines = fitBodyLines(shelf.blurb, l.blurb.w - 12, ticket.maxLines);
+  for (let i = 0; i < blurbLines.length; i++) {
+    drawBodyText(fb, l.blurb.x + 6, l.blurb.y + ticket.top + i * ticket.pitch, blurbLines[i], PALETTE.ink);
   }
 
   const cols = PATTERN_ROOM_DRAWER_COLS;
@@ -441,10 +504,11 @@ export function composePatternRoomDrawer(fb, drawers, shelfIndex, totalWoven, sh
 
   const instruction = 'CLICK OR ARROWS SELECT   ENTER OPEN   ESC CLOSE';
   const tw = measureText(instruction, 1, 1);
+  const th = textHeight(1);
   const tx = fb.width - tw - 18;
   const ty = fb.height - 16;
-  fb.fillRect(tx - 7, ty - 4, tw + 14, 15, PALETTE.manilaShade[0], PALETTE.manilaShade[1], PALETTE.manilaShade[2], 245);
-  fb.strokeRect(tx - 7, ty - 4, tw + 14, 15, ROOM.timberDeep[0], ROOM.timberDeep[1], ROOM.timberDeep[2], 255);
+  fb.fillRect(tx - 7, ty - 4, tw + 14, th + 4, PALETTE.manilaShade[0], PALETTE.manilaShade[1], PALETTE.manilaShade[2], 245);
+  fb.strokeRect(tx - 7, ty - 4, tw + 14, th + 4, ROOM.timberDeep[0], ROOM.timberDeep[1], ROOM.timberDeep[2], 255);
   drawText(fb, tx, ty, instruction, PALETTE.ink, 1, 1);
   return fb;
 }
@@ -458,21 +522,22 @@ export function composePatternRoomIndex(fb, drawers, selected, totalWoven) {
   const plateX = l.cabinetX + 18;
   const plateY = l.cabinetY + 9;
   const plateW = l.cabinetW - 36;
-  fb.fillRect(plateX, plateY, plateW, 24, ROOM.iron[0], ROOM.iron[1], ROOM.iron[2], 235);
-  fb.strokeRect(plateX, plateY, plateW, 24, PALETTE.brassDark[0], PALETTE.brassDark[1], PALETTE.brassDark[2], 255);
+  fb.fillRect(plateX, plateY, plateW, 28, ROOM.iron[0], ROOM.iron[1], ROOM.iron[2], 235);
+  fb.strokeRect(plateX, plateY, plateW, 28, PALETTE.brassDark[0], PALETTE.brassDark[1], PALETTE.brassDark[2], 255);
   drawText(fb, plateX + 9, plateY + 5, 'THE JACQUARD INDEX', PALETTE.linen, 2, 1);
   const count = `${totalWoven} WOVEN`;
-  drawText(fb, plateX + plateW - measureText(count, 1, 1) - 8, plateY + 8, count, PALETTE.brassLit, 1, 1);
+  drawText(fb, plateX + plateW - measureText(count, 1, 1) - 8, plateY + 9, count, PALETTE.brassLit, 1, 1);
 
   drawers.forEach((drawer, i) => drawDrawer(fb, l, drawer, i, i === selected));
 
   // Instruction is stamped on a narrow job ticket resting on the bench.
   const instruction = 'CLICK OR ARROWS SELECT   ENTER OPEN DRAWER';
   const tw = measureText(instruction, 1, 1);
+  const th = textHeight(1);
   const tx = fb.width - tw - 18;
   const ty = fb.height - 16;
-  fb.fillRect(tx - 7, ty - 4, tw + 14, 15, PALETTE.manilaShade[0], PALETTE.manilaShade[1], PALETTE.manilaShade[2], 245);
-  fb.strokeRect(tx - 7, ty - 4, tw + 14, 15, ROOM.timberDeep[0], ROOM.timberDeep[1], ROOM.timberDeep[2], 255);
+  fb.fillRect(tx - 7, ty - 4, tw + 14, th + 4, PALETTE.manilaShade[0], PALETTE.manilaShade[1], PALETTE.manilaShade[2], 245);
+  fb.strokeRect(tx - 7, ty - 4, tw + 14, th + 4, ROOM.timberDeep[0], ROOM.timberDeep[1], ROOM.timberDeep[2], 255);
   drawText(fb, tx, ty, instruction, PALETTE.ink, 1, 1);
   return fb;
 }

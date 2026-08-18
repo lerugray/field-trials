@@ -60,7 +60,11 @@ export function hitTest(layout, px, py) {
 }
 
 function digitScale(cell) {
-  return Math.max(1, Math.floor((cell - 3) / textHeight(1)));
+  // Largest scale role whose line box still fits the clue gutter.
+  for (let s = 3; s >= 1; s--) {
+    if (textHeight(s) <= cell - 2) return s;
+  }
+  return 1;
 }
 
 function drawStitch(fb, cx, cy, cell) {
@@ -152,7 +156,17 @@ export function drawBoard(fb, board, layout, cursor = null, displayClues = null)
   }
 
   // Clue counts on the selvedge margins, dimmed when the line is satisfied.
+  //
+  // The margin reserves exactly `cell` px per clue entry (computeLayout sizes it from the
+  // longest clue), so an entry may never consume more than that. The gaps below used a
+  // flat cell/3 and cell/4 on top of the glyph box, which overran the reservation and
+  // pushed the topmost digit of a long column clue off the pattern paper and across the
+  // board's ink frame on 18 of 78 cards (worst: THE SETT, 7px). Clamping the gap to the
+  // space actually left in the cell keeps the usual spacing where it already fits and
+  // only tightens where the stack would otherwise escape its box.
   const ds = digitScale(cell);
+  const digitH = textHeight(ds);
+  const colGap = Math.min(Math.floor(cell / 4), Math.max(1, cell - digitH));
   for (let y = 0; y < p.height; y++) {
     const clue = displayClue(rowClues[y]);
     const dim = board.isRowSatisfied(y);
@@ -163,21 +177,22 @@ export function drawBoard(fb, board, layout, cursor = null, displayClues = null)
       const s = String(clue[i]);
       const w = measureText(s, ds, 1);
       rx -= w;
-      drawText(fb, rx, layout.gridY + y * cell + Math.floor((cell - textHeight(ds)) / 2), s, col, ds, 1);
-      rx -= Math.floor(cell / 3);
+      drawText(fb, rx, layout.gridY + y * cell + Math.floor((cell - digitH) / 2), s, col, ds, 1);
+      rx -= Math.min(Math.floor(cell / 3), Math.max(1, cell - w));
     }
   }
   for (let x = 0; x < p.width; x++) {
     const clue = displayClue(colClues[x]);
     const dim = board.isColSatisfied(x);
     const col = dim ? PALETTE.gridMajor : PALETTE.ink;
-    let by = layout.gridY - 3;
+    // The 3px breathing gap before the grid also has to come out of the reservation.
+    let by = layout.gridY - Math.min(3, Math.max(1, cell - digitH - 1));
     for (let i = clue.length - 1; i >= 0; i--) {
       const s = String(clue[i]);
-      by -= textHeight(ds);
+      by -= digitH;
       const w = measureText(s, ds, 1);
       drawText(fb, layout.gridX + x * cell + Math.floor((cell - w) / 2), by, s, col, ds, 1);
-      by -= Math.floor(cell / 4);
+      by -= colGap;
     }
   }
 

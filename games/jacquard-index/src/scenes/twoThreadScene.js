@@ -14,10 +14,11 @@ import {
 } from '../render/coloredBoardView.js';
 import { Framebuffer } from '../gfx/framebuffer.js';
 import { PALETTE } from '../gfx/palette.js';
-import { drawText, drawTextCentered, measureText } from '../gfx/font.js';
+import { drawText, drawTextCentered, measureText, textHeight } from '../gfx/font.js';
 import { drawBodyTextCentered, measureBodyText } from '../gfx/bodyFont.js';
 import {
   composePatternRoomWorkSurface, drawPatternRoomRulePlate, patternRoomWorkLayout,
+  drawHintStrip as hintStrip,
 } from '../render/patternRoom.js';
 
 const LMB = 0, RMB = 2;
@@ -28,26 +29,25 @@ function ringCell(fb, layout, cx, cy, color) {
   fb.strokeRect(x, y, layout.cell, layout.cell, color[0], color[1], color[2]);
 }
 
-function hintStrip(fb, text, color) {
-  const y = fb.height - 32;
-  fb.fillRect(0, y - 4, fb.width, 16, PALETTE.oilDeep[0], PALETTE.oilDeep[1], PALETTE.oilDeep[2], 220);
-  drawBodyTextCentered(fb, 0, fb.width, y, text, color);
-}
 
 export function makeTwoThreadScene(card, opts = {}) {
   const board = new ColoredBoard(card);
+  const resumed = opts.resume || null;
+  if (resumed) board.restoreState(resumed.board);
   const leave = typeof opts.onExit === 'function' ? opts.onExit : (typeof opts.onAdvance === 'function' ? opts.onAdvance : null);
   const band = cardBand(card);
   let layout = null;
   let layoutSize = '';
   let artCache = null;
   const artStats = { builds: 0 };
-  const cursor = { x: 0, y: 0 };
-  let active = CB_A;         // the selected thread
+  const cursor = resumed ? { ...resumed.cursor } : { x: 0, y: 0 };
+  let active = resumed ? resumed.activeThread : CB_A; // the selected thread
   let activeButton = null;
   let lastCell = null;
-  let solved = false, solvedLogged = false;
-  let hint = null, hintStage = 0;
+  let solved = resumed ? resumed.solved : false;
+  let solvedLogged = resumed ? resumed.solvedLogged : false;
+  let hint = resumed ? resumed.hint : null;
+  let hintStage = resumed ? resumed.hintStage : 0;
   let enterElapsed = 0;
 
   function ensureLayout(fb) {
@@ -89,6 +89,15 @@ export function makeTwoThreadScene(card, opts = {}) {
   return {
     _board: board,
     _artStats: artStats,
+
+    saveState() {
+      const boardState = board.saveState();
+      if (!boardState || activeButton !== null) return null;
+      return {
+        scene: 'two-thread', cardId: card.id, board: boardState, cursor: { ...cursor },
+        activeThread: active, solved, solvedLogged, hint, hintStage,
+      };
+    },
 
     enter(app) {
       ensureLayout(app.fb);
@@ -158,7 +167,10 @@ export function makeTwoThreadScene(card, opts = {}) {
         const ax = swX + measureText('LAYING', 1, 1) + 5;
         if (active === CB_A) { fb.fillRect(ax, swY, sw, sw, PALETTE.indigo[0], PALETTE.indigo[1], PALETTE.indigo[2], 255); }
         else { fb.fillRect(ax, swY, sw, sw, PALETTE.madder[0], PALETTE.madder[1], PALETTE.madder[2], 255); const hh = 3, h0 = Math.floor((sw - hh) / 2); fb.fillRect(ax + h0, swY + h0, hh, hh, PALETTE.manila[0], PALETTE.manila[1], PALETTE.manila[2], 255); }
-        drawText(fb, ax + sw + 4, swY + 1, active === CB_A ? 'ONE' : 'TWO', PALETTE.linen, 1, 1);
+        // inkSoft, not linen: linen on the pattern paper measured 1.15:1 contrast, which is
+        // functionally invisible - and this is the one label telling the player which
+        // thread the loom will lay. inkSoft matches the LAYING label beside it, at 5.93:1.
+        drawText(fb, ax + sw + 4, swY + 1, active === CB_A ? 'ONE' : 'TWO', PALETTE.inkSoft, 1, 1);
 
         if (hint) {
           if (hint.kind === 'mistake') { ringCell(fb, l, hint.cell.x, hint.cell.y, PALETTE.madder); hintStrip(fb, hint.message, [230, 150, 140]); }
@@ -191,12 +203,13 @@ export function makeTwoThreadScene(card, opts = {}) {
         : '1 / 2 PICK THREAD  LMB LAY  RMB CROSS  Z UNDO  H HINT  ESC INDEX';
       if (solved) {
         const w = measureText(help, 2, 1), px = Math.round((fb.width - w) / 2) - 8, py = patternRoomWorkLayout(fb).footerY - 2;
-        fb.fillRect(px, py - 4, w + 16, 20, PALETTE.brassDark[0], PALETTE.brassDark[1], PALETTE.brassDark[2], 230);
-        fb.strokeRect(px, py - 4, w + 16, 20, PALETTE.brassLit[0], PALETTE.brassLit[1], PALETTE.brassLit[2]);
+        const ph = textHeight(2) + 8;
+        fb.fillRect(px, py - 4, w + 16, ph, PALETTE.brassDark[0], PALETTE.brassDark[1], PALETTE.brassDark[2], 230);
+        fb.strokeRect(px, py - 4, w + 16, ph, PALETTE.brassLit[0], PALETTE.brassLit[1], PALETTE.brassLit[2]);
         drawTextCentered(fb, 0, fb.width, py, help, PALETTE.brassLit, 2, 1);
       } else {
         const wl = patternRoomWorkLayout(fb);
-        drawTextCentered(fb, wl.frame.x, wl.frame.w, wl.footerY, help, PALETTE.inkSoft, 1, 1);
+        drawTextCentered(fb, wl.frame.x, wl.frame.w, wl.footerY, help, PALETTE.ink, 1, 1);
       }
 
       if (card.blurb && !solved && app.elapsed - enterElapsed < 3600) {

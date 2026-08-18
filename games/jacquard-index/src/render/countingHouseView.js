@@ -93,7 +93,10 @@ export function drawCHBoard(fb, board, layout, cursor, puzzle, colClues, pairClu
   for (let gx = 0; gx <= w; gx++) { const heavy = gx % 5 === 0; const c = heavy ? gm : gl; fb.vLine(layout.gridX + gx * cell, layout.gridY, h * cell, c[0], c[1], c[2], heavy ? 150 : 90); }
   for (let gy = 0; gy <= h; gy++) { const heavy = gy % 2 === 0; const c = heavy ? gm : gl; fb.hLine(layout.gridX, layout.gridY + gy * cell, w * cell, c[0], c[1], c[2], heavy ? 150 : 80); }
 
-  const ds = Math.max(1, Math.floor((cell - 3) / textHeight(1)));
+  const ds = (() => {
+    for (let s = 3; s >= 1; s--) if (textHeight(s) <= cell - 2) return s;
+    return 1;
+  })();
   // Column clues (top), dimmed when the column is satisfied.
   for (let x = 0; x < w; x++) {
     const clue = displayClue(colClues[x]);

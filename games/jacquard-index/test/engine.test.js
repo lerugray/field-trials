@@ -108,3 +108,45 @@ test('App render paints the fault overlay when errors exist', () => {
   const top = app.fb.getPixel(2, 0);
   assert.ok(top[0] > 120 && top[1] < 90, `expected madder border, got ${top}`);
 });
+
+test('save write failure warns once, clears its banner, and retries after a mutation', () => {
+  const app = new App(120, 60);
+  let revision = 0;
+  let attempts = 0;
+  let fail = true;
+  app.setScene({
+    saveState: () => ({ scene: 'index', revision }),
+    render: (_app, fb) => fb.clear(20, 20, 20, 255),
+  });
+  app.configureSaving(() => {
+    attempts++;
+    if (fail) {
+      const error = new Error('quota full');
+      error.name = 'QuotaExceededError';
+      throw error;
+    }
+  });
+
+  for (let frame = 0; frame < 120; frame++) app.step(1000 / 60);
+  assert.equal(attempts, 1, 'an unchanged failed snapshot is latched instead of retried every frame');
+  assert.equal(app.log.errorCount, 0, 'storage failure is recoverable and must not create a permanent FAULT');
+  assert.equal(app.log.entries.filter((entry) => entry.level === 'WARN').length, 1);
+  app.render();
+  assert.notDeepEqual(app.fb.getPixel(2, 0), [20, 20, 20, 255], 'save warning is visible during its bounded lifetime');
+
+  app.step(5001);
+  app.render();
+  assert.deepEqual(app.fb.getPixel(2, 0), [20, 20, 20, 255], 'save warning clears after five seconds');
+
+  revision++;
+  app.step(16);
+  assert.equal(attempts, 2, 'a changed snapshot retries the writer');
+  assert.equal(app.log.entries.filter((entry) => entry.level === 'WARN').length, 1,
+    'repeated failures during the same outage do not flood the log');
+
+  revision++;
+  fail = false;
+  app.step(16);
+  assert.equal(attempts, 3);
+  assert.equal(app._saveFailureMessage, null, 'a successful retry clears the warning immediately');
+});
