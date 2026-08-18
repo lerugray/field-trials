@@ -1,0 +1,65 @@
+{
+  "record": {
+    "midTenure": {
+      "cycle": 2,
+      "treasury": 412,
+      "cornerstone": 100,
+      "status": "active"
+    },
+    "savePresent": true,
+    "saveBytes": 35148,
+    "onReload": {
+      "overlay": "title",
+      "resumable": true,
+      "buttons": [
+        "enter",
+        "options",
+        "provenance",
+        "newtenure"
+      ]
+    },
+    "resumed": {
+      "cycle": 2,
+      "treasury": 412,
+      "cornerstone": 100
+    },
+    "terminalStatus": "condemned",
+    "terminalCycle": 9,
+    "closedSurface": {
+      "overlay": "closed",
+      "buttons": [
+        "newtenure"
+      ],
+      "rubric": {
+        "finished": true,
+        "mastered": false,
+        "secret": false,
+        "reasons": {
+          "finished": "the tenure closed as condemned at cycle 8 and the closing report was filed",
+          "mastered": "no Licensing Inspector was answered; 1 instrument(s) stood unanswered at close",
+          "secret": "no condemnation order was withdrawn administratively"
+        }
+      }
+    },
+    "afterRestart": {
+      "status": "active",
+      "cycle": 1,
+      "overlay": null,
+      "cornerstone": 100,
+      "treasury": 400
+    },
+    "afterCorrupt": {
+      "overlay": "title",
+      "resumable": false,
+      "status": "active",
+      "buttons": [
+        "enter",
+        "options",
+        "provenance"
+      ]
+    },
+    "quit": true
+  },
+  "findings": [],
+  "errors": []
+}

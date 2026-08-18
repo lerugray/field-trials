@@ -1,0 +1,135 @@
+{
+ "manifest": [
+  {
+   "name": "S6a-title-to-orientation",
+   "count": 18,
+   "stride": 2,
+   "frames": 18
+  },
+  {
+   "name": "S6b-orientation-to-admin",
+   "count": 18,
+   "stride": 2,
+   "frames": 18
+  },
+  {
+   "name": "S4-hover-selection",
+   "count": 14,
+   "stride": 6,
+   "frames": 14
+  },
+  {
+   "name": "S3a-cornerstone-pulse-healthy",
+   "count": 16,
+   "stride": 1,
+   "frames": 16
+  },
+  {
+   "name": "S2-admin-to-checklist",
+   "count": 16,
+   "stride": 2,
+   "frames": 16
+  },
+  {
+   "name": "S1-incident-replay",
+   "count": 26,
+   "stride": 3,
+   "frames": 26
+  },
+  {
+   "name": "S5-replay-end-dwell",
+   "count": 22,
+   "stride": 4,
+   "frames": 22
+  },
+  {
+   "name": "S7b-checklist-held-open",
+   "count": 12,
+   "stride": 8,
+   "frames": 12
+  },
+  {
+   "name": "S1b-replay-skip",
+   "count": 16,
+   "stride": 2,
+   "frames": 16
+  },
+  {
+   "name": "S3b-cornerstone-pulse-stressed",
+   "count": 16,
+   "stride": 1,
+   "frames": 16
+  },
+  {
+   "name": "S6c-pause-transition",
+   "count": 16,
+   "stride": 2,
+   "frames": 16
+  },
+  {
+   "name": "S8b-closed-surface",
+   "count": 10,
+   "stride": 4,
+   "frames": 10
+  }
+ ],
+ "counterLog": [
+  {
+   "tag": "a-checklist-cycle-N",
+   "cycle": 2,
+   "ordersOpen": 1
+  },
+  {
+   "tag": "b-checklist-cycle-N+1",
+   "cycle": 3,
+   "ordersOpen": 0
+  }
+ ],
+ "pageErrors": [],
+ "final": {
+  "geo": {
+   "cell": 17,
+   "ox": 15,
+   "oy": 33
+  },
+  "status": "condemned",
+  "cycle": 10,
+  "cornerstone": 0,
+  "overlay": "raid",
+  "treasury": 368,
+  "ordersOpen": 0,
+  "excavated": 7,
+  "rooms": 0,
+  "tool": "excavate",
+  "audio": {
+   "live": true,
+   "muted": false,
+   "scene": "closed"
+  },
+  "resumable": false,
+  "buttons": [
+   {
+    "id": "skip-replay",
+    "x": 67,
+    "y": 247,
+    "w": 220,
+    "h": 22,
+    "enabled": true
+   }
+  ],
+  "rubric": {
+   "finished": true,
+   "mastered": false,
+   "secret": false,
+   "reasons": {
+    "finished": "the tenure closed as condemned at cycle 9 and the closing report was filed",
+    "mastered": "no Licensing Inspector was answered; 1 instrument(s) stood unanswered at close",
+    "secret": "no condemnation order was withdrawn administratively"
+   }
+  },
+  "ladderRung": "surveyor",
+  "noticesServed": 1,
+  "captives": 1,
+  "score": 458
+ }
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "severity": "MAJOR",
+    "summary": "Corrupted localStorage save is silently ignored; no LOUD notice surfaced",
+    "repro": "Set material-breach:save to malformed JSON and reload the game.",
+    "detail": "The load() helper returns ok:false and logs, but the player sees only the title.",
+    "evidence": [
+      "17-s3-corrupt-silent.png"
+    ]
+  }
+]

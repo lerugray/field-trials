@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+.bot-worktree/
+runs/*.log
+runs/kimi-snap-*/
+STOP
+docs/listen/**/_wav/

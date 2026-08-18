@@ -1,0 +1,138 @@
+{
+ "gate": "PUBLIC-RELEASE-GATE-2026-08-12 step 4 (motion looker)",
+ "game": "MATERIAL BREACH",
+ "artifact": "dist/index.html",
+ "artifactVerified": "pulse expression + REPLAY_FRAMES_PER_STEP=5 + REPLAY_END_DWELL=45 read back out of dist/index.html, not just src/",
+ "method": "consecutive requestAnimationFrame canvas captures off the shipped build driven with real mouse/keyboard; frame sequences read by eye at 2-8x nearest-neighbour",
+ "elements": [
+  {
+   "id": "E1",
+   "what": "incident replay \u2014 party marker crawling the cutaway",
+   "frames": "S1-incident-replay, S9-facing-by-direction, S10-label-clip",
+   "verdict": "PASS with one defect (D1)",
+   "notes": "cursor advances monotonically 1 step / 5 presentation frames; trail dots accumulate; no pop, tear or flicker"
+  },
+  {
+   "id": "E2",
+   "what": "replay head label 'strength N'",
+   "frames": "S10-label-clip/cycle-1-clip-sequence.png",
+   "verdict": "DEFECT D1",
+   "notes": "clipped mid-word at the section's right edge on 6 of 8 raids, 4-14 consecutive frames"
+  },
+  {
+   "id": "E3",
+   "what": "Cornerstone pulse (healthy)",
+   "frames": "S3a",
+   "verdict": "PASS",
+   "notes": "teal ring, 19x19 box, smooth contraction, no pop"
+  },
+  {
+   "id": "E4",
+   "what": "Cornerstone pulse (stressed)",
+   "frames": "S3b",
+   "verdict": "PASS",
+   "notes": "rust ring, 47x47 box, measured radius 16.3-20.4px, smooth sine, no pop"
+  },
+  {
+   "id": "E5",
+   "what": "hover selection box + hover read line",
+   "frames": "S4",
+   "verdict": "PASS with note N2",
+   "notes": "box only on legal cells; read line swaps in one frame"
+  },
+  {
+   "id": "E6",
+   "what": "dashed works-order markers",
+   "frames": "S4",
+   "verdict": "PASS",
+   "notes": "static dashed rect, no marching-ants animation"
+  },
+  {
+   "id": "E7",
+   "what": "title -> orientation -> admin",
+   "frames": "S6a, S6b",
+   "verdict": "PASS",
+   "notes": "single-frame hard cuts, zero change after"
+  },
+  {
+   "id": "E8",
+   "what": "admin -> checklist",
+   "frames": "S2",
+   "verdict": "PASS",
+   "notes": "single-frame cut; checklist is fully frozen (0 changed px for 88 frames)"
+  },
+  {
+   "id": "E9",
+   "what": "replay end dwell -> auto-dismiss",
+   "frames": "S5",
+   "verdict": "PASS",
+   "notes": "skip bar becomes 'Continue [Enter]' at the end; dismissal clears trail, label, raiders in one frame; nothing stranded"
+  },
+  {
+   "id": "E10",
+   "what": "replay skip",
+   "frames": "S1b",
+   "verdict": "PASS",
+   "notes": "mid-crawl skip clears everything in one frame"
+  },
+  {
+   "id": "E11",
+   "what": "pause overlay in/out",
+   "frames": "S6c",
+   "verdict": "PASS",
+   "notes": "188718 px in / 0,0,0,0 frozen / 188718 px out \u2014 symmetric, no residue"
+  },
+  {
+   "id": "E12",
+   "what": "tenure-close transition",
+   "frames": "S8b",
+   "verdict": "PASS",
+   "notes": "replay clears, header reverts, TENURE CLOSED panel lays over cleanly"
+  },
+  {
+   "id": "E13",
+   "what": "counting indicators (notice deadline, works-order lead time)",
+   "frames": "S7-counter-cadence",
+   "verdict": "PASS",
+   "notes": "ledger byte-identical across 150 consecutive presentation frames while the pulse animated; deadline steps 4 -> 3 cycles across exactly one sign-over"
+  },
+  {
+   "id": "E14",
+   "what": "text reveals / screen shake / flash",
+   "frames": "none",
+   "verdict": "N/A",
+   "notes": "the build has none; report and ledger draw complete in one frame"
+  }
+ ],
+ "defects": [
+  {
+   "id": "D1",
+   "severity": "blocker (cosmetic, one-line fix)",
+   "what": "the replay's 'strength N' head label is drawn at a fixed (+12,-18) offset inside the section clip rect, so a party entering near the right edge shows the label cut mid-word \u2014 the number itself is off-panel",
+   "measured": "6 of 8 raids; 4-14 consecutive presentation frames (65-235ms); worst case cycle 1, only a 4px sliver of the first letter visible for 7 frames",
+   "proof": "frames/S10-label-clip/cycle-1-clip-sequence.png, frames/S10-label-clip/label-clip-analysis.json",
+   "fix": "clamp the label x by its measured width to SECTION, or mirror it to the left of the head when it would overrun"
+  }
+ ],
+ "notes": [
+  {
+   "id": "N1",
+   "what": "scene.js hardcodes flip:true on raider and raiderB, so the party sprite always renders mirrored regardless of travel direction, while cast-data.js states every pack figure is drawn facing right",
+   "checked": "captured a rightward-travelling raid (cycle 6) and a leftward one (cycle 1) and compared the sprites at 8x",
+   "verdict": "NOT a wrong-reading motion today \u2014 the pack sprite is a front-facing figure with a shouldered spear; there is no profile to contradict. It becomes a real moonwalk the moment a side-view sprite or the walk frame is swapped in",
+   "proof": "frames/S9-facing-by-direction/, sprite-facing-reference.png, direction-analysis.json"
+  },
+  {
+   "id": "N2",
+   "what": "the hover 'carve here' highlight survives into the incident replay when the pointer is left still \u2014 input.js clears hoverCell only on a mousemove",
+   "verdict": "cosmetic; an affordance shown during a phase that ignores clicks; self-clears on any pointer movement",
+   "proof": "frames/S1b-replay-skip frames 2-3"
+  },
+  {
+   "id": "N3",
+   "what": "blitFigure always uses fig.frames[0]; the prepared walk frame (frames[1]) is never rendered, so every figure is a standing idle that translates",
+   "verdict": "consistent with the register (annotations on a section drawing, and the seed CUTs the RTS layer); flagged only because the art for it exists"
+  }
+ ],
+ "verdict": "ONE BLOCKER (D1). Everything else in the motion inventory reads clean."
+}

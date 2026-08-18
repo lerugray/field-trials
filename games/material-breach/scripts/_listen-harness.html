@@ -1,0 +1,142 @@
+<!doctype html>
+<meta charset="utf-8" />
+<title>MATERIAL BREACH listen-set render harness</title>
+<body style="background:#111;color:#ccc;font:12px monospace">
+  <p>render harness</p>
+  <script type="module">
+    // Pull the REAL game modules over http (file:// blocks module imports in Chromium), so the
+    // listen set is rendered by exactly the code the game ships, not by a copy of it.
+    import {
+      createScoredBand,
+      FORM,
+      CLOSING_FORM,
+      SECTIONS,
+      BPM,
+      CLOSING_BPM,
+      STEPS_PER_BAR,
+      LOBBY_STEPS,
+      CLOSING_STEPS,
+      voicing,
+    } from '/src/score.js';
+    import { createAudio, SFX } from '/src/audio.js';
+
+    const SEED = 0x4d42;
+
+    // Pre-schedule a track into an OfflineAudioContext.
+    //
+    // The kit schedules against a clock it is handed. Offline, ctx.currentTime stays frozen at zero
+    // until startRendering, so a band using the default clock would pile every note onto t=0. We
+    // therefore drive a VIRTUAL clock forward in slices smaller than the lookahead window, calling
+    // tick() at each step, which lays the whole piece down before a single sample is rendered.
+    async function renderTrack({ track, seconds, sourAt, rate = 44100 }) {
+      const ctx = new OfflineAudioContext(2, Math.ceil(rate * seconds), rate);
+      let vnow = 0;
+      const band = createScoredBand({ ctx, seed: SEED, gain: 0.5, nowFn: () => vnow, disconnectRetired: false });
+      band.setTrack(track, { now: 0, fadeIn: 0.6 });
+      const slice = 0.08;
+      while (vnow < seconds) {
+        band.setParams(sourAt(vnow, seconds));
+        band.tick(vnow);
+        vnow += slice;
+      }
+      return ctx.startRendering();
+    }
+
+    // The effects, laid out with room between them so each is heard as itself.
+    async function renderSfx({ rate = 44100 } = {}) {
+      const gap = 2.2;
+      const seconds = SFX.length * gap + 2;
+      const ctx = new OfflineAudioContext(2, Math.ceil(rate * seconds), rate);
+      const audio = createAudio({ seed: SEED, contextFactory: () => ctx });
+      audio.unlock();
+      SFX.forEach((name, i) => audio.play(name, 0.5 + i * gap));
+      return ctx.startRendering();
+    }
+
+    // AudioBuffer -> a 16-bit PCM WAV. Written here rather than in node so the bytes can be posted
+    // straight back to the driver without crossing the CDP bridge as JSON.
+    function toWav(buf) {
+      const chans = buf.numberOfChannels;
+      const len = buf.length;
+      const rate = buf.sampleRate;
+      const data = new DataView(new ArrayBuffer(44 + len * chans * 2));
+      const str = (o, s) => { for (let i = 0; i < s.length; i++) data.setUint8(o + i, s.charCodeAt(i)); };
+      str(0, 'RIFF');
+      data.setUint32(4, 36 + len * chans * 2, true);
+      str(8, 'WAVE');
+      str(12, 'fmt ');
+      data.setUint32(16, 16, true);
+      data.setUint16(20, 1, true);
+      data.setUint16(22, chans, true);
+      data.setUint32(24, rate, true);
+      data.setUint32(28, rate * chans * 2, true);
+      data.setUint16(32, chans * 2, true);
+      data.setUint16(34, 16, true);
+      str(36, 'data');
+      data.setUint32(40, len * chans * 2, true);
+      const ch = [];
+      for (let c = 0; c < chans; c++) ch.push(buf.getChannelData(c));
+      let o = 44;
+      for (let i = 0; i < len; i++) {
+        for (let c = 0; c < chans; c++) {
+          const v = Math.max(-1, Math.min(1, ch[c][i]));
+          data.setInt16(o, v < 0 ? v * 0x8000 : v * 0x7fff, true);
+          o += 2;
+        }
+      }
+      return data.buffer;
+    }
+
+    // Peak and RMS, measured in the page, so the driver can report real numbers rather than claims.
+    function measure(buf) {
+      let peak = 0;
+      let sum = 0;
+      let n = 0;
+      for (let c = 0; c < buf.numberOfChannels; c++) {
+        const d = buf.getChannelData(c);
+        for (let i = 0; i < d.length; i++) {
+          const a = Math.abs(d[i]);
+          if (a > peak) peak = a;
+          sum += d[i] * d[i];
+          n++;
+        }
+      }
+      return { peak, rms: Math.sqrt(sum / Math.max(1, n)), seconds: buf.duration };
+    }
+
+    async function post(name, ab) {
+      const res = await fetch('/out/' + name, { method: 'PUT', body: ab });
+      if (!res.ok) throw new Error('write failed: ' + name);
+    }
+
+    window.__renderOne = async (job) => {
+      const buf = job.kind === 'sfx' ? await renderSfx({}) : await renderTrack(job);
+      const m = measure(buf);
+      await post(job.file, toWav(buf));
+      return m;
+    };
+
+    // The form, as data, so the WHAT-TO-LISTEN-FOR document is generated from the score itself and
+    // cannot drift away from what actually plays.
+    window.__formData = () => {
+      const describe = (form, bpm) =>
+        form.map((b, i) => ({
+          bar: i + 1,
+          section: b.sec,
+          sectionName: (SECTIONS[b.sec] || {}).name || b.sec,
+          chord: b.ch.name,
+          rootMidi: b.ch.root,
+          sweet: voicing(b.ch, 0),
+          sour: voicing(b.ch, 1),
+        }));
+      return {
+        lobby: { bpm: BPM, stepsPerBar: STEPS_PER_BAR, steps: LOBBY_STEPS, bars: describe(FORM, BPM) },
+        closing: { bpm: CLOSING_BPM, stepsPerBar: STEPS_PER_BAR, steps: CLOSING_STEPS, bars: describe(CLOSING_FORM, CLOSING_BPM) },
+        sections: SECTIONS,
+        sfx: SFX,
+      };
+    };
+
+    window.__READY = true;
+  </script>
+</body>

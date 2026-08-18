@@ -1,0 +1,110 @@
+[
+ {
+  "i": 0,
+  "rafFrame": 0,
+  "overlay": "checklist",
+  "cycle": 2,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 1,
+  "rafFrame": 8,
+  "overlay": "checklist",
+  "cycle": 2,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 2,
+  "rafFrame": 16,
+  "overlay": "checklist",
+  "cycle": 2,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 3,
+  "rafFrame": 24,
+  "overlay": "checklist",
+  "cycle": 2,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 4,
+  "rafFrame": 32,
+  "overlay": "checklist",
+  "cycle": 2,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 5,
+  "rafFrame": 40,
+  "overlay": "checklist",
+  "cycle": 2,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 6,
+  "rafFrame": 48,
+  "overlay": "checklist",
+  "cycle": 2,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 7,
+  "rafFrame": 56,
+  "overlay": "checklist",
+  "cycle": 2,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 8,
+  "rafFrame": 64,
+  "overlay": "checklist",
+  "cycle": 2,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 9,
+  "rafFrame": 72,
+  "overlay": "checklist",
+  "cycle": 2,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 10,
+  "rafFrame": 80,
+  "overlay": "checklist",
+  "cycle": 2,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 11,
+  "rafFrame": 88,
+  "overlay": "checklist",
+  "cycle": 2,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ }
+]

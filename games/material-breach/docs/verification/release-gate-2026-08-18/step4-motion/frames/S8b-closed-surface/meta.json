@@ -1,0 +1,92 @@
+[
+ {
+  "i": 0,
+  "rafFrame": 0,
+  "overlay": "raid",
+  "cycle": 10,
+  "cornerstone": 0,
+  "ordersOpen": 0,
+  "status": "condemned"
+ },
+ {
+  "i": 1,
+  "rafFrame": 4,
+  "overlay": "raid",
+  "cycle": 10,
+  "cornerstone": 0,
+  "ordersOpen": 0,
+  "status": "condemned"
+ },
+ {
+  "i": 2,
+  "rafFrame": 8,
+  "overlay": "raid",
+  "cycle": 10,
+  "cornerstone": 0,
+  "ordersOpen": 0,
+  "status": "condemned"
+ },
+ {
+  "i": 3,
+  "rafFrame": 12,
+  "overlay": "raid",
+  "cycle": 10,
+  "cornerstone": 0,
+  "ordersOpen": 0,
+  "status": "condemned"
+ },
+ {
+  "i": 4,
+  "rafFrame": 16,
+  "overlay": "raid",
+  "cycle": 10,
+  "cornerstone": 0,
+  "ordersOpen": 0,
+  "status": "condemned"
+ },
+ {
+  "i": 5,
+  "rafFrame": 20,
+  "overlay": "raid",
+  "cycle": 10,
+  "cornerstone": 0,
+  "ordersOpen": 0,
+  "status": "condemned"
+ },
+ {
+  "i": 6,
+  "rafFrame": 24,
+  "overlay": "raid",
+  "cycle": 10,
+  "cornerstone": 0,
+  "ordersOpen": 0,
+  "status": "condemned"
+ },
+ {
+  "i": 7,
+  "rafFrame": 28,
+  "overlay": "raid",
+  "cycle": 10,
+  "cornerstone": 0,
+  "ordersOpen": 0,
+  "status": "condemned"
+ },
+ {
+  "i": 8,
+  "rafFrame": 32,
+  "overlay": "raid",
+  "cycle": 10,
+  "cornerstone": 0,
+  "ordersOpen": 0,
+  "status": "condemned"
+ },
+ {
+  "i": 9,
+  "rafFrame": 36,
+  "overlay": "closed",
+  "cycle": 10,
+  "cornerstone": 0,
+  "ordersOpen": 0,
+  "status": "condemned"
+ }
+]

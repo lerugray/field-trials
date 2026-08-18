@@ -1,0 +1,951 @@
+{
+  "generated": "2026-08-14",
+  "files": [
+    {
+      "file": "01-the-lobby-two-full-cycles.wav",
+      "track": "lobby",
+      "seconds": 234.72727891156464,
+      "sourAt": "(t, total) => ({ sour: 0, pressure: 0 })",
+      "note": "the whole form, twice, with the facility in good order",
+      "peak": 0.2273004651069641,
+      "rms": 0.039789688929476284,
+      "lufs": -16.28
+    },
+    {
+      "file": "02-the-lobby-souring-across-a-tenure.wav",
+      "track": "lobby",
+      "seconds": 234.72727891156464,
+      "sourAt": "(t, total) => ({ sour: Math.min(1, t / (total * 0.85)), pressure: t / total * 0.5 })",
+      "note": "the same form and the same band, souring from 0 to 1 as the building fails",
+      "peak": 0.282667338848114,
+      "rms": 0.04863106217644089,
+      "lufs": -16.27
+    },
+    {
+      "file": "03-the-lobby-during-an-incident.wav",
+      "track": "lobby",
+      "seconds": 118.36365079365079,
+      "sourAt": "(t, total) => ({ sour: 1, pressure: 0.9 })",
+      "note": "pinned fully sour, the desk typing hard: what a raid sounds like",
+      "peak": 0.29975828528404236,
+      "rms": 0.056550006805802217,
+      "lufs": -16.29
+    },
+    {
+      "file": "04-tenure-closed.wav",
+      "track": "closed",
+      "seconds": 108.66666666666667,
+      "sourAt": "(t, total) => ({ sour: 0.8, pressure: 0 })",
+      "note": "the closing cue, twice through its three sections",
+      "peak": 0.2806595265865326,
+      "rms": 0.0496496096708344,
+      "lufs": -16.29
+    },
+    {
+      "file": "05-the-desk-sound-effects.wav",
+      "kind": "sfx",
+      "note": "stamp, drawer, structural, pen, refused",
+      "peak": 0.15475398302078247,
+      "rms": 0.006482380128734288,
+      "seconds": 13,
+      "lufs": -17.85
+    }
+  ],
+  "form": {
+    "lobby": {
+      "bpm": 66,
+      "stepsPerBar": 16,
+      "steps": 512,
+      "bars": [
+        {
+          "bar": 1,
+          "section": "A",
+          "sectionName": "THE LOBBY",
+          "chord": "Fmaj7",
+          "rootMidi": 53,
+          "sweet": [
+            53,
+            57,
+            60,
+            64
+          ],
+          "sour": [
+            53,
+            56,
+            60,
+            64
+          ]
+        },
+        {
+          "bar": 2,
+          "section": "A",
+          "sectionName": "THE LOBBY",
+          "chord": "Dm7",
+          "rootMidi": 50,
+          "sweet": [
+            50,
+            53,
+            57,
+            60
+          ],
+          "sour": [
+            50,
+            53,
+            56,
+            60
+          ]
+        },
+        {
+          "bar": 3,
+          "section": "A",
+          "sectionName": "THE LOBBY",
+          "chord": "Gm7",
+          "rootMidi": 55,
+          "sweet": [
+            55,
+            58,
+            62,
+            65
+          ],
+          "sour": [
+            55,
+            58,
+            61,
+            65
+          ]
+        },
+        {
+          "bar": 4,
+          "section": "A",
+          "sectionName": "THE LOBBY",
+          "chord": "C7",
+          "rootMidi": 48,
+          "sweet": [
+            48,
+            52,
+            55,
+            58
+          ],
+          "sour": [
+            48,
+            52,
+            54,
+            61
+          ]
+        },
+        {
+          "bar": 5,
+          "section": "A",
+          "sectionName": "THE LOBBY",
+          "chord": "Fmaj7",
+          "rootMidi": 53,
+          "sweet": [
+            53,
+            57,
+            60,
+            64
+          ],
+          "sour": [
+            53,
+            56,
+            60,
+            64
+          ]
+        },
+        {
+          "bar": 6,
+          "section": "A",
+          "sectionName": "THE LOBBY",
+          "chord": "Dm7",
+          "rootMidi": 50,
+          "sweet": [
+            50,
+            53,
+            57,
+            60
+          ],
+          "sour": [
+            50,
+            53,
+            56,
+            60
+          ]
+        },
+        {
+          "bar": 7,
+          "section": "A",
+          "sectionName": "THE LOBBY",
+          "chord": "Gm7",
+          "rootMidi": 55,
+          "sweet": [
+            55,
+            58,
+            62,
+            65
+          ],
+          "sour": [
+            55,
+            58,
+            61,
+            65
+          ]
+        },
+        {
+          "bar": 8,
+          "section": "A",
+          "sectionName": "THE LOBBY",
+          "chord": "C7",
+          "rootMidi": 48,
+          "sweet": [
+            48,
+            52,
+            55,
+            58
+          ],
+          "sour": [
+            48,
+            52,
+            54,
+            61
+          ]
+        },
+        {
+          "bar": 9,
+          "section": "B",
+          "sectionName": "THE CORRIDOR",
+          "chord": "Bbmaj7",
+          "rootMidi": 46,
+          "sweet": [
+            46,
+            50,
+            53,
+            57
+          ],
+          "sour": [
+            46,
+            49,
+            53,
+            57
+          ]
+        },
+        {
+          "bar": 10,
+          "section": "B",
+          "sectionName": "THE CORRIDOR",
+          "chord": "Bbm6",
+          "rootMidi": 46,
+          "sweet": [
+            46,
+            49,
+            53,
+            55
+          ],
+          "sour": [
+            46,
+            49,
+            52,
+            55
+          ]
+        },
+        {
+          "bar": 11,
+          "section": "B",
+          "sectionName": "THE CORRIDOR",
+          "chord": "Fmaj7",
+          "rootMidi": 53,
+          "sweet": [
+            53,
+            57,
+            60,
+            64
+          ],
+          "sour": [
+            53,
+            56,
+            60,
+            64
+          ]
+        },
+        {
+          "bar": 12,
+          "section": "B",
+          "sectionName": "THE CORRIDOR",
+          "chord": "D7",
+          "rootMidi": 50,
+          "sweet": [
+            50,
+            54,
+            57,
+            60
+          ],
+          "sour": [
+            50,
+            54,
+            56,
+            63
+          ]
+        },
+        {
+          "bar": 13,
+          "section": "B",
+          "sectionName": "THE CORRIDOR",
+          "chord": "Gm7",
+          "rootMidi": 55,
+          "sweet": [
+            55,
+            58,
+            62,
+            65
+          ],
+          "sour": [
+            55,
+            58,
+            61,
+            65
+          ]
+        },
+        {
+          "bar": 14,
+          "section": "B",
+          "sectionName": "THE CORRIDOR",
+          "chord": "C7",
+          "rootMidi": 48,
+          "sweet": [
+            48,
+            52,
+            55,
+            58
+          ],
+          "sour": [
+            48,
+            52,
+            54,
+            61
+          ]
+        },
+        {
+          "bar": 15,
+          "section": "B",
+          "sectionName": "THE CORRIDOR",
+          "chord": "Am7",
+          "rootMidi": 45,
+          "sweet": [
+            45,
+            48,
+            52,
+            55
+          ],
+          "sour": [
+            45,
+            48,
+            51,
+            55
+          ]
+        },
+        {
+          "bar": 16,
+          "section": "B",
+          "sectionName": "THE CORRIDOR",
+          "chord": "D7",
+          "rootMidi": 50,
+          "sweet": [
+            50,
+            54,
+            57,
+            60
+          ],
+          "sour": [
+            50,
+            54,
+            56,
+            63
+          ]
+        },
+        {
+          "bar": 17,
+          "section": "C",
+          "sectionName": "THE MEZZANINE",
+          "chord": "Gm7",
+          "rootMidi": 55,
+          "sweet": [
+            55,
+            58,
+            62,
+            65
+          ],
+          "sour": [
+            55,
+            58,
+            61,
+            65
+          ]
+        },
+        {
+          "bar": 18,
+          "section": "C",
+          "sectionName": "THE MEZZANINE",
+          "chord": "Gbdim7",
+          "rootMidi": 42,
+          "sweet": [
+            42,
+            45,
+            48,
+            51
+          ],
+          "sour": [
+            42,
+            45,
+            48,
+            50
+          ]
+        },
+        {
+          "bar": 19,
+          "section": "C",
+          "sectionName": "THE MEZZANINE",
+          "chord": "Fmaj7",
+          "rootMidi": 53,
+          "sweet": [
+            53,
+            57,
+            60,
+            64
+          ],
+          "sour": [
+            53,
+            56,
+            60,
+            64
+          ]
+        },
+        {
+          "bar": 20,
+          "section": "C",
+          "sectionName": "THE MEZZANINE",
+          "chord": "Em7b5",
+          "rootMidi": 40,
+          "sweet": [
+            40,
+            43,
+            46,
+            50
+          ],
+          "sour": [
+            40,
+            43,
+            46,
+            49
+          ]
+        },
+        {
+          "bar": 21,
+          "section": "C",
+          "sectionName": "THE MEZZANINE",
+          "chord": "Ebmaj7",
+          "rootMidi": 39,
+          "sweet": [
+            39,
+            43,
+            46,
+            50
+          ],
+          "sour": [
+            39,
+            42,
+            46,
+            50
+          ]
+        },
+        {
+          "bar": 22,
+          "section": "C",
+          "sectionName": "THE MEZZANINE",
+          "chord": "Dm7",
+          "rootMidi": 50,
+          "sweet": [
+            50,
+            53,
+            57,
+            60
+          ],
+          "sour": [
+            50,
+            53,
+            56,
+            60
+          ]
+        },
+        {
+          "bar": 23,
+          "section": "C",
+          "sectionName": "THE MEZZANINE",
+          "chord": "Db7",
+          "rootMidi": 37,
+          "sweet": [
+            37,
+            41,
+            44,
+            47
+          ],
+          "sour": [
+            37,
+            41,
+            45,
+            47
+          ]
+        },
+        {
+          "bar": 24,
+          "section": "C",
+          "sectionName": "THE MEZZANINE",
+          "chord": "C7",
+          "rootMidi": 48,
+          "sweet": [
+            48,
+            52,
+            55,
+            58
+          ],
+          "sour": [
+            48,
+            52,
+            54,
+            61
+          ]
+        },
+        {
+          "bar": 25,
+          "section": "D",
+          "sectionName": "THE HOLD",
+          "chord": "Dm7",
+          "rootMidi": 50,
+          "sweet": [
+            50,
+            53,
+            57,
+            60
+          ],
+          "sour": [
+            50,
+            53,
+            56,
+            60
+          ]
+        },
+        {
+          "bar": 26,
+          "section": "D",
+          "sectionName": "THE HOLD",
+          "chord": "Dm7",
+          "rootMidi": 50,
+          "sweet": [
+            50,
+            53,
+            57,
+            60
+          ],
+          "sour": [
+            50,
+            53,
+            56,
+            60
+          ]
+        },
+        {
+          "bar": 27,
+          "section": "D",
+          "sectionName": "THE HOLD",
+          "chord": "Bbmaj7",
+          "rootMidi": 46,
+          "sweet": [
+            46,
+            50,
+            53,
+            57
+          ],
+          "sour": [
+            46,
+            49,
+            53,
+            57
+          ]
+        },
+        {
+          "bar": 28,
+          "section": "D",
+          "sectionName": "THE HOLD",
+          "chord": "Bbmaj7",
+          "rootMidi": 46,
+          "sweet": [
+            46,
+            50,
+            53,
+            57
+          ],
+          "sour": [
+            46,
+            49,
+            53,
+            57
+          ]
+        },
+        {
+          "bar": 29,
+          "section": "D",
+          "sectionName": "THE HOLD",
+          "chord": "Gm7",
+          "rootMidi": 55,
+          "sweet": [
+            55,
+            58,
+            62,
+            65
+          ],
+          "sour": [
+            55,
+            58,
+            61,
+            65
+          ]
+        },
+        {
+          "bar": 30,
+          "section": "D",
+          "sectionName": "THE HOLD",
+          "chord": "Gm7",
+          "rootMidi": 55,
+          "sweet": [
+            55,
+            58,
+            62,
+            65
+          ],
+          "sour": [
+            55,
+            58,
+            61,
+            65
+          ]
+        },
+        {
+          "bar": 31,
+          "section": "D",
+          "sectionName": "THE HOLD",
+          "chord": "C7",
+          "rootMidi": 48,
+          "sweet": [
+            48,
+            52,
+            55,
+            58
+          ],
+          "sour": [
+            48,
+            52,
+            54,
+            61
+          ]
+        },
+        {
+          "bar": 32,
+          "section": "D",
+          "sectionName": "THE HOLD",
+          "chord": "C7",
+          "rootMidi": 48,
+          "sweet": [
+            48,
+            52,
+            55,
+            58
+          ],
+          "sour": [
+            48,
+            52,
+            54,
+            61
+          ]
+        }
+      ]
+    },
+    "closing": {
+      "bpm": 54,
+      "stepsPerBar": 16,
+      "steps": 192,
+      "bars": [
+        {
+          "bar": 1,
+          "section": "E",
+          "sectionName": "E",
+          "chord": "Fm(maj7)",
+          "rootMidi": 41,
+          "sweet": [
+            41,
+            44,
+            48,
+            52
+          ],
+          "sour": [
+            41,
+            44,
+            47,
+            52
+          ]
+        },
+        {
+          "bar": 2,
+          "section": "E",
+          "sectionName": "E",
+          "chord": "Dbmaj7",
+          "rootMidi": 37,
+          "sweet": [
+            37,
+            41,
+            44,
+            48
+          ],
+          "sour": [
+            37,
+            40,
+            44,
+            48
+          ]
+        },
+        {
+          "bar": 3,
+          "section": "E",
+          "sectionName": "E",
+          "chord": "Bbm7",
+          "rootMidi": 46,
+          "sweet": [
+            46,
+            49,
+            53,
+            56
+          ],
+          "sour": [
+            46,
+            49,
+            52,
+            56
+          ]
+        },
+        {
+          "bar": 4,
+          "section": "E",
+          "sectionName": "E",
+          "chord": "Eb7",
+          "rootMidi": 39,
+          "sweet": [
+            39,
+            43,
+            46,
+            49
+          ],
+          "sour": [
+            39,
+            43,
+            45,
+            52
+          ]
+        },
+        {
+          "bar": 5,
+          "section": "F",
+          "sectionName": "F",
+          "chord": "Abmaj7",
+          "rootMidi": 44,
+          "sweet": [
+            44,
+            48,
+            51,
+            55
+          ],
+          "sour": [
+            44,
+            47,
+            51,
+            55
+          ]
+        },
+        {
+          "bar": 6,
+          "section": "F",
+          "sectionName": "F",
+          "chord": "Gm7b5",
+          "rootMidi": 43,
+          "sweet": [
+            43,
+            46,
+            49,
+            53
+          ],
+          "sour": [
+            43,
+            46,
+            49,
+            52
+          ]
+        },
+        {
+          "bar": 7,
+          "section": "F",
+          "sectionName": "F",
+          "chord": "C7b9",
+          "rootMidi": 48,
+          "sweet": [
+            48,
+            52,
+            55,
+            61
+          ],
+          "sour": [
+            48,
+            52,
+            54,
+            61
+          ]
+        },
+        {
+          "bar": 8,
+          "section": "F",
+          "sectionName": "F",
+          "chord": "Fm7",
+          "rootMidi": 41,
+          "sweet": [
+            41,
+            44,
+            48,
+            51
+          ],
+          "sour": [
+            41,
+            44,
+            47,
+            51
+          ]
+        },
+        {
+          "bar": 9,
+          "section": "G",
+          "sectionName": "G",
+          "chord": "Bbm7",
+          "rootMidi": 46,
+          "sweet": [
+            46,
+            49,
+            53,
+            56
+          ],
+          "sour": [
+            46,
+            49,
+            52,
+            56
+          ]
+        },
+        {
+          "bar": 10,
+          "section": "G",
+          "sectionName": "G",
+          "chord": "Eb7",
+          "rootMidi": 39,
+          "sweet": [
+            39,
+            43,
+            46,
+            49
+          ],
+          "sour": [
+            39,
+            43,
+            45,
+            52
+          ]
+        },
+        {
+          "bar": 11,
+          "section": "G",
+          "sectionName": "G",
+          "chord": "Abmaj7",
+          "rootMidi": 44,
+          "sweet": [
+            44,
+            48,
+            51,
+            55
+          ],
+          "sour": [
+            44,
+            47,
+            51,
+            55
+          ]
+        },
+        {
+          "bar": 12,
+          "section": "G",
+          "sectionName": "G",
+          "chord": "C7b9",
+          "rootMidi": 48,
+          "sweet": [
+            48,
+            52,
+            55,
+            61
+          ],
+          "sour": [
+            48,
+            52,
+            54,
+            61
+          ]
+        }
+      ]
+    },
+    "sections": {
+      "A": {
+        "id": "A",
+        "name": "THE LOBBY",
+        "bass": "walk",
+        "bell": "tune",
+        "comp": "full",
+        "brush": "eighths",
+        "lead": false
+      },
+      "B": {
+        "id": "B",
+        "name": "THE CORRIDOR",
+        "bass": "walk",
+        "bell": "tune",
+        "comp": "full",
+        "brush": "eighths",
+        "lead": true
+      },
+      "C": {
+        "id": "C",
+        "name": "THE MEZZANINE",
+        "bass": "walk",
+        "bell": "sparse",
+        "comp": "sparse",
+        "brush": "half",
+        "lead": false
+      },
+      "D": {
+        "id": "D",
+        "name": "THE HOLD",
+        "bass": "half",
+        "bell": "sparse",
+        "comp": "none",
+        "brush": "none",
+        "lead": false
+      }
+    },
+    "sfx": [
+      "stamp",
+      "drawer",
+      "structural",
+      "pen",
+      "refused"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "material-breach",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "MATERIAL BREACH — a reverse dungeon crawl run as an administrative game. Single-file HTML5 canvas, zero runtime dependencies.",
+  "scripts": {
+    "test": "node --test",
+    "build": "node scripts/build-singlefile.mjs"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "playwright": "^1.62.1"
+  }
+}

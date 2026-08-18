@@ -1,0 +1,146 @@
+[
+ {
+  "i": 0,
+  "rafFrame": 0,
+  "overlay": null,
+  "cycle": 9,
+  "cornerstone": 28,
+  "ordersOpen": 0,
+  "status": "active"
+ },
+ {
+  "i": 1,
+  "rafFrame": 2,
+  "overlay": null,
+  "cycle": 9,
+  "cornerstone": 28,
+  "ordersOpen": 0,
+  "status": "active"
+ },
+ {
+  "i": 2,
+  "rafFrame": 4,
+  "overlay": null,
+  "cycle": 9,
+  "cornerstone": 28,
+  "ordersOpen": 0,
+  "status": "active"
+ },
+ {
+  "i": 3,
+  "rafFrame": 6,
+  "overlay": null,
+  "cycle": 9,
+  "cornerstone": 28,
+  "ordersOpen": 0,
+  "status": "active"
+ },
+ {
+  "i": 4,
+  "rafFrame": 8,
+  "overlay": "pause",
+  "cycle": 9,
+  "cornerstone": 28,
+  "ordersOpen": 0,
+  "status": "active"
+ },
+ {
+  "i": 5,
+  "rafFrame": 10,
+  "overlay": "pause",
+  "cycle": 9,
+  "cornerstone": 28,
+  "ordersOpen": 0,
+  "status": "active"
+ },
+ {
+  "i": 6,
+  "rafFrame": 12,
+  "overlay": "pause",
+  "cycle": 9,
+  "cornerstone": 28,
+  "ordersOpen": 0,
+  "status": "active"
+ },
+ {
+  "i": 7,
+  "rafFrame": 14,
+  "overlay": "pause",
+  "cycle": 9,
+  "cornerstone": 28,
+  "ordersOpen": 0,
+  "status": "active"
+ },
+ {
+  "i": 8,
+  "rafFrame": 16,
+  "overlay": "pause",
+  "cycle": 9,
+  "cornerstone": 28,
+  "ordersOpen": 0,
+  "status": "active"
+ },
+ {
+  "i": 9,
+  "rafFrame": 18,
+  "overlay": "pause",
+  "cycle": 9,
+  "cornerstone": 28,
+  "ordersOpen": 0,
+  "status": "active"
+ },
+ {
+  "i": 10,
+  "rafFrame": 20,
+  "overlay": null,
+  "cycle": 9,
+  "cornerstone": 28,
+  "ordersOpen": 0,
+  "status": "active"
+ },
+ {
+  "i": 11,
+  "rafFrame": 22,
+  "overlay": null,
+  "cycle": 9,
+  "cornerstone": 28,
+  "ordersOpen": 0,
+  "status": "active"
+ },
+ {
+  "i": 12,
+  "rafFrame": 24,
+  "overlay": null,
+  "cycle": 9,
+  "cornerstone": 28,
+  "ordersOpen": 0,
+  "status": "active"
+ },
+ {
+  "i": 13,
+  "rafFrame": 26,
+  "overlay": null,
+  "cycle": 9,
+  "cornerstone": 28,
+  "ordersOpen": 0,
+  "status": "active"
+ },
+ {
+  "i": 14,
+  "rafFrame": 28,
+  "overlay": null,
+  "cycle": 9,
+  "cornerstone": 28,
+  "ordersOpen": 0,
+  "status": "active"
+ },
+ {
+  "i": 15,
+  "rafFrame": 30,
+  "overlay": null,
+  "cycle": 9,
+  "cornerstone": 28,
+  "ordersOpen": 0,
+  "status": "active"
+ }
+]

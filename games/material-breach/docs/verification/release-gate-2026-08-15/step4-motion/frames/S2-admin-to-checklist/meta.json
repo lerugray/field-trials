@@ -1,0 +1,146 @@
+[
+ {
+  "i": 0,
+  "rafFrame": 0,
+  "overlay": null,
+  "cycle": 1,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 1,
+  "rafFrame": 2,
+  "overlay": null,
+  "cycle": 1,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 2,
+  "rafFrame": 4,
+  "overlay": null,
+  "cycle": 1,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 3,
+  "rafFrame": 6,
+  "overlay": null,
+  "cycle": 1,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 4,
+  "rafFrame": 8,
+  "overlay": "checklist",
+  "cycle": 1,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 5,
+  "rafFrame": 10,
+  "overlay": "checklist",
+  "cycle": 1,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 6,
+  "rafFrame": 12,
+  "overlay": "checklist",
+  "cycle": 1,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 7,
+  "rafFrame": 14,
+  "overlay": "checklist",
+  "cycle": 1,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 8,
+  "rafFrame": 16,
+  "overlay": "checklist",
+  "cycle": 1,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 9,
+  "rafFrame": 18,
+  "overlay": "checklist",
+  "cycle": 1,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 10,
+  "rafFrame": 20,
+  "overlay": "checklist",
+  "cycle": 1,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 11,
+  "rafFrame": 22,
+  "overlay": "checklist",
+  "cycle": 1,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 12,
+  "rafFrame": 24,
+  "overlay": "checklist",
+  "cycle": 1,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 13,
+  "rafFrame": 26,
+  "overlay": "checklist",
+  "cycle": 1,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 14,
+  "rafFrame": 28,
+  "overlay": "checklist",
+  "cycle": 1,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ },
+ {
+  "i": 15,
+  "rafFrame": 30,
+  "overlay": "checklist",
+  "cycle": 1,
+  "cornerstone": 100,
+  "ordersOpen": 1,
+  "status": "active"
+ }
+]

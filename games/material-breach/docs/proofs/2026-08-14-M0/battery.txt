@@ -1,0 +1,166 @@
+TAP version 13
+# Subtest: test/_logic-files.js
+ok 1 - test/_logic-files.js
+  ---
+  duration_ms: 36.674606
+  type: 'test'
+  ...
+# Subtest: Math.random appears nowhere in game-logic source
+ok 2 - Math.random appears nowhere in game-logic source
+  ---
+  duration_ms: 1.226322
+  type: 'test'
+  ...
+# Subtest: a founded facility opens in ADMIN on cycle 1 with the charter treasury
+ok 3 - a founded facility opens in ADMIN on cycle 1 with the charter treasury
+  ---
+  duration_ms: 2.713948
+  type: 'test'
+  ...
+# Subtest: founding is deterministic in the seed
+ok 4 - founding is deterministic in the seed
+  ---
+  duration_ms: 1.717636
+  type: 'test'
+  ...
+# Subtest: the loss object is a single Cornerstone at the centre, condition 100
+ok 5 - the loss object is a single Cornerstone at the centre, condition 100
+  ---
+  duration_ms: 0.189201
+  type: 'test'
+  ...
+# Subtest: the founding footprint is claimed and surveyed; the rest of the map is unknown rock
+ok 6 - the founding footprint is claimed and surveyed; the rest of the map is unknown rock
+  ---
+  duration_ms: 0.334278
+  type: 'test'
+  ...
+# Subtest: room size drives quality, and quality diminishes past the soft cap
+ok 7 - room size drives quality, and quality diminishes past the soft cap
+  ---
+  duration_ms: 0.390549
+  type: 'test'
+  ...
+# Subtest: treasury capacity is the charter base plus tiles times the per-tile rate
+ok 8 - treasury capacity is the charter base plus tiles times the per-tile rate
+  ---
+  duration_ms: 0.116404
+  type: 'test'
+  ...
+# Subtest: staff are hired at their archetype wage tier, not picked from a roster
+ok 9 - staff are hired at their archetype wage tier, not picked from a roster
+  ---
+  duration_ms: 0.323107
+  type: 'test'
+  ...
+# Subtest: a works order carries a lead time that has not yet elapsed
+ok 10 - a works order carries a lead time that has not yet elapsed
+  ---
+  duration_ms: 0.198572
+  type: 'test'
+  ...
+# Subtest: a served notice stamps its own deadline and cites its instrument
+ok 11 - a served notice stamps its own deadline and cites its instrument
+  ---
+  duration_ms: 0.494049
+  type: 'test'
+  ...
+# Subtest: rooms report their size from their claimed footprint
+ok 12 - rooms report their size from their claimed footprint
+  ---
+  duration_ms: 0.954133
+  type: 'test'
+  ...
+# Subtest: ids are minted deterministically, never randomly
+ok 13 - ids are minted deterministically, never randomly
+  ---
+  duration_ms: 0.2779
+  type: 'test'
+  ...
+# Subtest: no wall-clock or timer token appears in game-logic source
+ok 14 - no wall-clock or timer token appears in game-logic source
+  ---
+  duration_ms: 1.909908
+  type: 'test'
+  ...
+# Subtest: a facility left unsigned never advances: no clock ticks it
+ok 15 - a facility left unsigned never advances: no clock ticks it
+  ---
+  duration_ms: 1.024658
+  type: 'test'
+  ...
+# Subtest: the sim advances only inside commitCycle, and one call lands the next ADMIN
+ok 16 - the sim advances only inside commitCycle, and one call lands the next ADMIN
+  ---
+  duration_ms: 0.978294
+  type: 'test'
+  ...
+# Subtest: commitCycle does not mutate the facility it is given
+ok 17 - commitCycle does not mutate the facility it is given
+  ---
+  duration_ms: 2.467919
+  type: 'test'
+  ...
+# Subtest: signing over is deterministic in the seed: two identical runs match exactly
+ok 18 - signing over is deterministic in the seed: two identical runs match exactly
+  ---
+  duration_ms: 2.596877
+  type: 'test'
+  ...
+# Subtest: driving the cycle out of order fails loudly, it does not silently no-op
+ok 19 - driving the cycle out of order fails loudly, it does not silently no-op
+  ---
+  duration_ms: 0.532671
+  type: 'test'
+  ...
+# Subtest: the same seed replays the same run
+ok 20 - the same seed replays the same run
+  ---
+  duration_ms: 1.529698
+  type: 'test'
+  ...
+# Subtest: a different seed deals a different run
+ok 21 - a different seed deals a different run
+  ---
+  duration_ms: 0.259872
+  type: 'test'
+  ...
+# Subtest: numeric and string seeds are both accepted and reproducible
+ok 22 - numeric and string seeds are both accepted and reproducible
+  ---
+  duration_ms: 0.235806
+  type: 'test'
+  ...
+# Subtest: named streams are independent: drawing from one does not perturb another
+ok 23 - named streams are independent: drawing from one does not perturb another
+  ---
+  duration_ms: 0.285946
+  type: 'test'
+  ...
+# Subtest: stream(name) is memoised: the same name keeps advancing, it does not reset
+ok 24 - stream(name) is memoised: the same name keeps advancing, it does not reset
+  ---
+  duration_ms: 0.308182
+  type: 'test'
+  ...
+# Subtest: draws stay in their stated ranges
+ok 25 - draws stay in their stated ranges
+  ---
+  duration_ms: 1.330463
+  type: 'test'
+  ...
+# Subtest: hash32 is stable and unsigned
+ok 26 - hash32 is stable and unsigned
+  ---
+  duration_ms: 0.230442
+  type: 'test'
+  ...
+1..26
+# tests 26
+# suites 0
+# pass 26
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 92.76568

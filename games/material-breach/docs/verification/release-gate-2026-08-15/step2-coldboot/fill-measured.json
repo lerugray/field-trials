@@ -1,0 +1,50 @@
+[
+  {
+    "file": "title-1280x800.png",
+    "vp": "1280x800",
+    "playfield": "1268x708,",
+    "w_pct": 99.1,
+    "h_pct": 88.5,
+    "area_pct": 87.7
+  },
+  {
+    "file": "title-1440x812.png",
+    "vp": "1440x812",
+    "playfield": "1268x708,",
+    "w_pct": 88.1,
+    "h_pct": 87.2,
+    "area_pct": 76.8
+  },
+  {
+    "file": "title-1440x900.png",
+    "vp": "1440x900",
+    "playfield": "1268x708,",
+    "w_pct": 88.1,
+    "h_pct": 78.7,
+    "area_pct": 69.3
+  },
+  {
+    "file": "title-1920x1080.png",
+    "vp": "1920x1080",
+    "playfield": "1902x1062,",
+    "w_pct": 99.1,
+    "h_pct": 98.3,
+    "area_pct": 97.4
+  },
+  {
+    "file": "title-2560x1440.png",
+    "vp": "2560x1440",
+    "playfield": "2536x1416,",
+    "w_pct": 99.1,
+    "h_pct": 98.3,
+    "area_pct": 97.4
+  },
+  {
+    "file": "title-900x600.png",
+    "vp": "900x600",
+    "playfield": "634x354,",
+    "w_pct": 70.4,
+    "h_pct": 59.0,
+    "area_pct": 41.6
+  }
+]

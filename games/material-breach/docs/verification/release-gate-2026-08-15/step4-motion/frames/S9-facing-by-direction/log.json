@@ -1,0 +1,42 @@
+[
+ {
+  "cycle": 1,
+  "overlayAfter": "raid",
+  "cornerstone": 100
+ },
+ {
+  "cycle": 2,
+  "overlayAfter": "raid",
+  "cornerstone": 100
+ },
+ {
+  "cycle": 3,
+  "overlayAfter": "raid",
+  "cornerstone": 100
+ },
+ {
+  "cycle": 4,
+  "overlayAfter": "raid",
+  "cornerstone": 91
+ },
+ {
+  "cycle": 5,
+  "overlayAfter": "raid",
+  "cornerstone": 73
+ },
+ {
+  "cycle": 6,
+  "overlayAfter": "raid",
+  "cornerstone": 55
+ },
+ {
+  "cycle": 7,
+  "overlayAfter": "raid",
+  "cornerstone": 31
+ },
+ {
+  "cycle": 8,
+  "overlayAfter": "raid",
+  "cornerstone": 0
+ }
+]

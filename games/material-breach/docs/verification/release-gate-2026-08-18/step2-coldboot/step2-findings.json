@@ -1,0 +1,22 @@
+{
+  "findings": [
+    {
+      "level": "FRICTION",
+      "area": "fill@900x600",
+      "text": "canvas fills 84.4%"
+    }
+  ],
+  "drift": {
+    "cycle": [
+      1,
+      1
+    ],
+    "changed": false
+  },
+  "errors": [],
+  "menu": [
+    "enter",
+    "options",
+    "provenance"
+  ]
+}

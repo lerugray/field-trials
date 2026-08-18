@@ -1,0 +1,14 @@
+{
+  "generated": "2026-08-14",
+  "artifact": "dist/index.html",
+  "blockers": 0,
+  "defects": 0,
+  "friction": 1,
+  "findings": [
+    {
+      "level": "FRICTION",
+      "area": "rubric",
+      "text": "a Licensing Inspector never arrived in a 60-cycle driven run, so the secret tier was not exercised end to end"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "artifact": "/Users/rayweiss/Desktop/Dev Work/material-breach/dist/index.html",
+  "date": "2026-08-15T08:27:13.833Z",
+  "results": [
+    {
+      "scenario": "failure-condemnation",
+      "status": "condemned",
+      "cycle": 9,
+      "score": 496,
+      "rubric": {
+        "finished": true,
+        "mastered": false,
+        "secret": false,
+        "reasons": {
+          "finished": "the tenure closed as condemned at cycle 8 and the closing report was filed",
+          "mastered": "no Licensing Inspector was answered; 1 instrument(s) stood unanswered at close",
+          "secret": "no condemnation order was withdrawn administratively"
+        }
+      }
+    },
+    {
+      "scenario": "completion-tiers",
+      "status": "condemned",
+      "cycle": 23,
+      "score": 234,
+      "rubric": {
+        "finished": true,
+        "mastered": true,
+        "secret": true,
+        "reasons": {
+          "finished": "the tenure closed as condemned at cycle 22 and the closing report was filed",
+          "mastered": "a Licensing Inspector was answered, the treasury closed solvent and no instrument stood unanswered",
+          "secret": "a condemnation order was withdrawn administratively"
+        }
+      },
+      "restartCycle": 1
+    },
+    {
+      "scenario": "failure-insolvency",
+      "status": "insolvent",
+      "cycle": 18,
+      "score": 170,
+      "rubric": {
+        "finished": true,
+        "mastered": false,
+        "secret": false,
+        "reasons": {
+          "finished": "the tenure closed as insolvent at cycle 17 and the closing report was filed",
+          "mastered": "no Licensing Inspector was answered; the treasury closed at -3g",
+          "secret": "no condemnation order was withdrawn administratively"
+        }
+      }
+    },
+    {
+      "scenario": "save-continue",
+      "beforeReloadCycle": 4,
+      "resumableAfterReturn": true,
+      "resumedCycle": 4
+    }
+  ]
+}
