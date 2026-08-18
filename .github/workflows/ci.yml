@@ -35,6 +35,7 @@ jobs:
           - office-of-the-road
           - capriole
           - material-breach
+          - popinjay
           - adversary
     defaults:
       run:
@@ -81,6 +82,7 @@ jobs:
           - office-of-the-road
           - capriole
           - material-breach
+          - popinjay
     defaults:
       run:
         working-directory: games/${{ matrix.game }}
@@ -121,4 +123,5 @@ jobs:
             office-of-the-road) node scripts/gold-at-town.mjs ;;
             capriole)        node scripts/probe.js ;;
             material-breach) echo "covered by playwright tests in the suite step (unskip once Chromium is present)" ;;
+            popinjay)        echo "covered by playwright tests in the suite step (unskip once Chromium is present)" ;;
           esac

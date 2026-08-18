@@ -2,7 +2,7 @@
 
 [![suites](https://github.com/lerugray/field-trials/actions/workflows/ci.yml/badge.svg)](https://github.com/lerugray/field-trials/actions/workflows/ci.yml)
 
-Eleven browser games. Each one is a complete, self-contained HTML file with no network
+Twelve browser games. Each one is a complete, self-contained HTML file with no network
 calls and nothing fetched at runtime. Every visual asset is either drawn by the game's
 own code or is licensed pixel art, credited in-game and in that game's README — never
 generated imagery. Each ships its own test suite and the adversarial audit that was run
@@ -25,9 +25,10 @@ method here, and the method is documented, gated, and inspectable.
 | [THE OFFICE OF THE ROAD](games/office-of-the-road) | You are the desk the heroes report to; the party marches itself, tarot is your only intervention | 225 | **Release gate** — 9-step run; QA verdict SHIP, 3 disclosed blemishes, in-gate fixes landed | [play](https://lerugray.github.io/field-trials/office-of-the-road/) |
 | [CAPRIOLE](games/capriole) | First-person hop-and-bop roguelite: a clockwork goat ascends islands a 1995 PlayStation dreamed | 188 | **Spawn-safety sweep** — 8,000 cases, zero death loops | [play](https://lerugray.github.io/field-trials/capriole/) |
 | [MATERIAL BREACH](games/material-breach) | You run the dungeon. Adventurers are an occupational incident, filed with a root-cause analysis and a corrective-action owner. | 205 | **Release gate** — 9-step run 2026-08-18; a save-brick blocker and a phantom notice fix caught and closed in-gate; 205/205 | [play](https://lerugray.github.io/field-trials/material-breach/) |
+| [POPINJAY](games/popinjay) | A single-screen arcade roguelite on Pang's bouncing-balloon core — a 1900s World's Fair sharpshooter, wire-as-wall commitment, hand-tinted poster idiom. | 287 | **Release gate** — 9-step run 2026-08-18; a fused title-footer caught at step 2 and a false climb certification exposed, rebuilt, and independently looker-verified; 287/287 | [play](https://lerugray.github.io/field-trials/popinjay/) |
 | [ADVERSARY](games/adversary) | Six-stage action-RPG with a Souls death loop | 300 | **FIX-FIRST**, followed by two documented fix rounds | pulled 2026-08-12 — in the shop |
 
-3,438 tests across the eleven on the shelf; ADVERSARY's 300 keep running in CI while it is
+3,725 tests across the twelve on the shelf; ADVERSARY's 300 keep running in CI while it is
 in the shop. Every suite runs with `npm test` and needs nothing but Node.
 
 ADVERSARY was pulled from the shelf on 2026-08-12 after play caught what its gates had
@@ -45,7 +46,7 @@ founding contract naming the *specific* reference work rather than a genre, the 
 law governing it (characterise and rebuild the mechanics; never copy assets, names, or
 trade dress), the register laws the art and prose answer to, the non-negotiables, and a
 milestone list with an explicit stop line. The builder is not asked what to make. It is
-given a contract and held to it. Ten of the eleven seeds are published here verbatim;
+given a contract and held to it. Eleven of the twelve seeds are published here verbatim;
 Stray Squadron's is withheld because it carries personal biographical material, and its
 game directory says so.
 
@@ -148,7 +149,7 @@ written rather than tidied.
 `.github/workflows/ci.yml` has two jobs:
 
 - **suites** — runs on every push and pull request. A matrix over every game
-  directory (the eleven on the shelf plus ADVERSARY) on Node LTS, no browser, no
+  directory (the twelve on the shelf plus ADVERSARY) on Node LTS, no browser, no
   third-party dependencies. This is the required gate and it is meant to stay fast and green.
 - **browser** — weekly and on manual dispatch only. Installs Chromium, builds each game's
   single-file artifact, and runs its real-browser probes and soaks. It is deliberately
@@ -159,7 +160,8 @@ written rather than tidied.
 
 Code is MIT (see [LICENSE](LICENSE)). Assets shipped alongside it carry their own terms,
 documented in the game directory that contains them: the Atkinson Hyperlegible fonts in
-The Jacquard Index are under the SIL Open Font License 1.1; the music tracks in
+The Jacquard Index and the Rye / Old Standard TT faces in POPINJAY are under the SIL
+Open Font License 1.1; the music tracks in
 Innsmouth 2000, Stray Squadron and Oddseedz are operator-supplied and credited to the
 pseudonym **Abel Aeolian** — those are AI-rendered from prompts written to each game's
 register, and are the one music exemption to the everything-is-code-generated rule these
