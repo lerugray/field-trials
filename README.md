@@ -159,9 +159,9 @@ written rather than tidied.
 ## Licensing
 
 Code is MIT (see [LICENSE](LICENSE)). Assets shipped alongside it carry their own terms,
-documented in the game directory that contains them: the Atkinson Hyperlegible fonts in
-The Jacquard Index and the Rye / Old Standard TT faces in POPINJAY are under the SIL
-Open Font License 1.1; the music tracks in
+documented in the game directory that contains them: the Atkinson Hyperlegible and Oswald
+faces in The Jacquard Index and the Rye / Old Standard TT faces in POPINJAY are under the
+SIL Open Font License 1.1; the music tracks in
 Innsmouth 2000, Stray Squadron and Oddseedz are operator-supplied and credited to the
 pseudonym **Abel Aeolian** — those are AI-rendered from prompts written to each game's
 register, and are the one music exemption to the everything-is-code-generated rule these
