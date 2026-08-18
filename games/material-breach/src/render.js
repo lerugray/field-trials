@@ -26,6 +26,87 @@ import { composeSection, composePaper, composeDesk, composeButton, darkenPixels,
 import { FACE, SIZE, LEAD, font, MIN_TEXT_PX as TYPE_MIN } from './type.js';
 import { PROVENANCE, PROVENANCE_TITLE } from './provenance.js';
 
+// ---------------------------------------------------------------- text layer (display-resolution carve-out)
+//
+// Player-facing text is rastered at the DISPLAY resolution and composited after the 640x360 pixel-art
+// buffer is scaled, matching Popinjay's "print-class carve-out": the CRT register (pixelated scale +
+// dithered surfaces) stays on the facility, ledger paper and desk, while the words on top of them read
+// crisp. The queue captures logical 640x360 coordinates; paintTextLayer() scales by the text canvas's
+// own DPR-aware size, so tests that call render() directly (no beginTextLayer()) still see fillText on
+// the context they passed.
+//
+// Clips are tracked so text does not run off its paper: every `ctx.save/rect/clip/restore` site in the
+// renderer pushes the same rectangle to the text clip stack. The stack is intersected when a command is
+// enqueued, and reapplied when the layer is painted at display scale.
+let _textQ = null;
+let _textClipStack = [];
+
+export function beginTextLayer() {
+  _textQ = [];
+  _textClipStack = [];
+}
+
+export function takeTextLayer() {
+  const q = _textQ || [];
+  _textQ = null;
+  _textClipStack = [];
+  return q;
+}
+
+function enqueueText(cmd) {
+  if (!_textQ) return;
+  if (_textClipStack.length) {
+    let r = _textClipStack[0];
+    for (let i = 1; i < _textClipStack.length; i++) {
+      const c = _textClipStack[i];
+      const x1 = Math.max(r.x, c.x);
+      const y1 = Math.max(r.y, c.y);
+      const x2 = Math.min(r.x + r.w, c.x + c.w);
+      const y2 = Math.min(r.y + r.h, c.y + c.h);
+      r = { x: x1, y: y1, w: Math.max(0, x2 - x1), h: Math.max(0, y2 - y1) };
+    }
+    if (r.w > 0 && r.h > 0) cmd.clip = r;
+  }
+  _textQ.push(cmd);
+}
+
+export function pushTextClip(x, y, w, h) {
+  if (_textQ) _textClipStack.push({ x, y, w, h });
+}
+
+export function popTextClip() {
+  if (_textQ) _textClipStack.pop();
+}
+
+// Paint the queued text into a DPR-aware canvas whose logical coordinate system is still 640x360.
+// The caller only needs to create the canvas at display resolution; this function sets the transform.
+export function paintTextLayer(ctx, queue) {
+  if (!ctx || !queue || !queue.length) return;
+  const canvas = ctx.canvas;
+  if (!canvas || !canvas.width || !canvas.height) return;
+  const scale = canvas.width / 640;
+  ctx.save();
+  ctx.setTransform(scale, 0, 0, scale, 0, 0);
+  ctx.clearRect(0, 0, 640, 360);
+  ctx.textBaseline = 'top';
+  ctx.textRendering = 'optimizeLegibility';
+  ctx.fontKerning = 'normal';
+  ctx.imageSmoothingEnabled = true;
+  for (const cmd of queue) {
+    ctx.save();
+    if (cmd.clip) {
+      ctx.beginPath();
+      ctx.rect(cmd.clip.x, cmd.clip.y, cmd.clip.w, cmd.clip.h);
+      ctx.clip();
+    }
+    ctx.font = font(cmd.size, cmd.face);
+    ctx.fillStyle = cmd.color;
+    ctx.fillText(cmd.s, cmd.x, cmd.y);
+    ctx.restore();
+  }
+  ctx.restore();
+}
+
 // The section's drawing area, between the header strip and the title block. A section drawing has a
 // title block; putting the legend in one guarantees its contrast against whatever the drawing is
 // doing behind it, and is what the instrument would actually look like.
@@ -124,6 +205,10 @@ function deskSurface(ctx) {
 // ---- type helpers --------------------------------------------------------------------------------
 
 function text(ctx, str, x, y, color = C.sectionText, size = SIZE.body, face = FACE.body) {
+  if (_textQ) {
+    enqueueText({ s: str, x, y, color, size, face });
+    return;
+  }
   ctx.fillStyle = color;
   ctx.font = font(size, face);
   ctx.textBaseline = 'top';
@@ -249,6 +334,7 @@ function drawCutaway(ctx, view) {
   // The header strip: what this drawing is, and what a click does to it. Clipped to the panel, so
   // no caption can ever run under the sheet beside it whatever the numbers in it grow to.
   const hdr = { x: CUTAWAY.x, y: CUTAWAY.y, w: CUTAWAY.w, h: HEADER_H };
+  pushTextClip(hdr.x, hdr.y, hdr.w, hdr.h);
   ctx.save();
   ctx.beginPath();
   ctx.rect(hdr.x, hdr.y, hdr.w, hdr.h);
@@ -271,8 +357,10 @@ function drawCutaway(ctx, view) {
     text(ctx, 'click rock to carve', CUTAWAY.x + 14 + w, CUTAWAY.y + 3, C.sectionLabel);
   }
   ctx.restore();
+  popTextClip();
 
   // Annotations that change every frame sit on top of the composed picture, as lines on a drawing.
+  pushTextClip(SECTION.x, SECTION.y, SECTION.w, SECTION.h);
   ctx.save();
   ctx.beginPath();
   ctx.rect(SECTION.x, SECTION.y, SECTION.w, SECTION.h);
@@ -344,6 +432,7 @@ function drawCutaway(ctx, view) {
     }
   }
   ctx.restore();
+  popTextClip();
 
   // The title block: the drawing's legend, in plain language (LEGIBILITY LAW).
   const tb = { x: CUTAWAY.x, y: CUTAWAY.y + CUTAWAY.h - TITLEBLOCK_H, w: CUTAWAY.w, h: TITLEBLOCK_H };
@@ -351,6 +440,7 @@ function drawCutaway(ctx, view) {
   // to the drawing rather than as the drawing's own bottom edge.
   const plate = { x: tb.x + 3, y: tb.y + 2, w: tb.w - 6, h: tb.h - 4 };
   paperStrip(ctx, plate, 'titleblock');
+  pushTextClip(plate.x, plate.y, plate.w, plate.h);
   ctx.save();
   ctx.beginPath();
   ctx.rect(plate.x, plate.y, plate.w, plate.h);
@@ -366,6 +456,7 @@ function drawCutaway(ctx, view) {
   text(ctx, 'hatch = rock  ·  bright edge = floor', plate.x + 12 + legendW, plate.y + 3, C.inkBody);
   text(ctx, 'outline = a department  ·  ring = the Cornerstone', plate.x + 6, plate.y + 19, C.inkBody);
   ctx.restore();
+  popTextClip();
 }
 
 // ---- the ledger, as a document ------------------------------------------------------------------
@@ -382,6 +473,7 @@ function drawLedger(ctx, view) {
   }
   ctx.putImageData(paperCache.image, PAPER.x, PAPER.y);
 
+  pushTextClip(PAPER.x, PAPER.y, PAPER.w, PAPER.h);
   ctx.save();
   ctx.beginPath();
   ctx.rect(PAPER.x, PAPER.y, PAPER.w, PAPER.h);
@@ -492,6 +584,7 @@ function drawLedger(ctx, view) {
     view.reportMaxScroll = Math.max(0, contentH - reportLinesH);
     view.reportScroll = Math.max(0, Math.min(view.reportScroll || 0, view.reportMaxScroll));
 
+    pushTextClip(M.left - 2, reportLinesTop, COLUMN_W + 4, reportLinesH);
     ctx.save();
     ctx.beginPath();
     ctx.rect(M.left - 2, reportLinesTop, COLUMN_W + 4, reportLinesH);
@@ -505,8 +598,10 @@ function drawLedger(ctx, view) {
       ry += 5;
     }
     ctx.restore();
+    popTextClip();
   }
   ctx.restore();
+  popTextClip();
 }
 
 function drawButton(ctx, b) {
@@ -523,12 +618,14 @@ function drawButton(ctx, b) {
   }
   ctx.putImageData(face, b.x, b.y);
   const label = b.key ? `${b.label}  [${b.key}]` : b.label;
+  pushTextClip(b.x + 1, b.y + 1, b.w - 2, b.h - 2);
   ctx.save();
   ctx.beginPath();
   ctx.rect(b.x + 1, b.y + 1, b.w - 2, b.h - 2);
   ctx.clip();
   text(ctx, label, b.x + 6, b.y + (b.h - SIZE.body) / 2 - 1, b.enabled ? C.buttonText : C.buttonTextOff);
   ctx.restore();
+  popTextClip();
 }
 
 // describeCell(f, x, y) -> a plain-language label for a cell, at the point of reading (LEGIBILITY
@@ -561,12 +658,14 @@ function drawActionBar(ctx, view) {
   paperStrip(ctx, strip, 'statusstrip');
   const hover = view.hoverCell ? describeCell(view.facility, view.hoverCell.x, view.hoverCell.y) : '';
   const note = hover || view.lastActionNote;
+  pushTextClip(strip.x, strip.y, strip.w, strip.h);
   ctx.save();
   ctx.beginPath();
   ctx.rect(strip.x, strip.y, strip.w, strip.h);
   ctx.clip();
   if (note) text(ctx, note, strip.x + 8, strip.y + 3, C.inkBody);
   ctx.restore();
+  popTextClip();
 }
 
 // ---- the charter's letterhead ---------------------------------------------------------------
@@ -831,6 +930,18 @@ function drawOverlay(ctx, view) {
 
 // The single entry point. Draw one frame of the whole desk.
 export function render(ctx, view) {
+  const overlayActive = view.overlay && view.overlay !== null;
+  const hadLayer = _textQ !== null;
+
+  // When an overlay is open, the desk beneath it is dimmed. If a caller has opted into the crisp
+  // text layer, text drawn under the dim must not queue there or it would read crisp on top of a
+  // darkened scene. Flush the pre-overlay queue so that text falls back to the pixel-art buffer
+  // (and is hidden by the dim), then resume the crisp layer for the overlay's own text and buttons.
+  // Test callers that did not begin a layer keep drawing directly on `ctx` the whole time.
+  if (overlayActive && hadLayer) {
+    takeTextLayer();
+  }
+
   // The ground of the whole picture. Everything else is laid ON this rather than over a fill.
   ctx.putImageData(deskSurface(ctx), 0, 0);
   drawCutaway(ctx, view);
@@ -840,7 +951,10 @@ export function render(ctx, view) {
   // The overlay sheet goes down BEFORE the controls. computeButtons already returns only the
   // buttons belonging to the current overlay, so drawing them last puts them on top of the sheet
   // instead of underneath it.
-  if (view.overlay && view.overlay !== null) drawOverlay(ctx, view);
+  if (overlayActive) {
+    if (hadLayer) beginTextLayer(); // overlay/button text renders crisp above the sheet
+    drawOverlay(ctx, view);
+  }
 
   for (const b of computeButtons(view)) drawButton(ctx, b);
 }

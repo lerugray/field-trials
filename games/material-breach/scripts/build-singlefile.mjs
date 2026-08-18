@@ -210,10 +210,19 @@ ${attribution}
     display: block;
     background: #14141b;
   }
+  #text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    display: block;
+  }
 </style>
 </head>
 <body>
 <canvas id="screen" width="640" height="360"></canvas>
+<canvas id="text"></canvas>
 <script>
 ${script}
 </script>

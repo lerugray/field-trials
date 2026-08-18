@@ -205,21 +205,40 @@ test(
       // And it is legible where it landed. It used to be a paper ink set straight onto the dark
       // desk, which measured 1.27:1 against its own ground with this game's floor at 4.5:1. It is
       // now printed on a slip of manila, so the pairing is the ink-on-paper one Gate 5 measures.
+      //
+      // The text now lives on a separate DPR-aware layer above the 640x360 pixel-art buffer, so the
+      // measurement composites the two canvases at display resolution and samples ground from the
+      // paper strip (screen) and ink from the most contrasting pixel in the composite.
       const ratio = await page.evaluate(() => {
-        const c = document.getElementById('screen').getContext('2d');
-        const d = c.getImageData(92, 318, 456, 24).data;
-        const counts = new Map();
-        let ink = null;
-        let best = -999;
+        const screen = document.getElementById('screen');
+        const text = document.getElementById('text');
+        const scale = text.width / 640;
+        const out = document.createElement('canvas');
+        out.width = text.width;
+        out.height = text.height;
+        const c = out.getContext('2d');
+        c.drawImage(screen, 0, 0, out.width, out.height);
+        c.drawImage(text, 0, 0);
+        // Ground: a point inside the paper slip but clear of the text, read from the pixel-art layer.
+        const sc = screen.getContext('2d');
+        const groundPx = sc.getImageData(85, 321, 1, 1).data;
+        const ground = [groundPx[0], groundPx[1], groundPx[2]];
+        // Ink: the pixel in the composite that differs most from that ground.
+        const sx = Math.round(92 * scale);
+        const sy = Math.round(318 * scale);
+        const sw = Math.round(456 * scale);
+        const sh = Math.round(24 * scale);
+        const d = c.getImageData(sx, sy, sw, sh).data;
+        let ink = ground;
+        let bestDiff = 0;
         for (let i = 0; i < d.length; i += 4) {
           const px = [d[i], d[i + 1], d[i + 2]];
-          counts.set(px.join(','), (counts.get(px.join(',')) || 0) + 1);
-          if (px[0] - px[1] > best) {
-            best = px[0] - px[1];
+          const diff = Math.abs(px[0] - ground[0]) + Math.abs(px[1] - ground[1]) + Math.abs(px[2] - ground[2]);
+          if (diff > bestDiff) {
+            bestDiff = diff;
             ink = px;
           }
         }
-        const ground = [...counts.entries()].sort((a, b) => b[1] - a[1])[0][0].split(',').map(Number);
         const lum = ([r, g, b]) => {
           const f = (v) => {
             v /= 255;

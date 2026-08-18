@@ -2,7 +2,7 @@
 // wires the canvas, the view, real input, and the collection-contract host surface (window.__GAME,
 // window.__SHELL). The RAF loop DRAWS ONLY; it never advances the sim (the pacing law). This file
 // is in the presentation set, so it may legitimately touch requestAnimationFrame.
-import { render } from './render.js';
+import { render, beginTextLayer, takeTextLayer, paintTextLayer } from './render.js';
 import { attachInput } from './input.js';
 import { createView, tryResume, setMuted, advanceReplay, abandonTenure, corruptSaveNoticeFor } from './view.js';
 import { createDebugLog } from './debuglog.js';
@@ -27,6 +27,12 @@ export function boot() {
   const canvas = document.getElementById('screen');
   const ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = false;
+
+  // The text layer is a second canvas composited above the 640x360 pixel-art buffer. It is sized to
+  // the display resolution and scaled to the same CSS footprint, so player-facing type rasterises
+  // crisp while the facility/ledger/desk stay pixelated beneath it.
+  const textCanvas = document.getElementById('text');
+  const textCtx = textCanvas ? textCanvas.getContext('2d') : null;
 
   // Ask for the two embedded faces before anything is drawn with them. Canvas does not honour
   // font-display, so without this the first frames render in the fallback serif, and a screenshot
@@ -87,9 +93,18 @@ export function boot() {
     const iH = window.innerHeight;
     const raw = Math.min(iW / 640, iH / 360);
     const scale = Number.isFinite(raw) && raw > 0 ? raw : 1;
-    canvas.style.width = `${640 * scale}px`;
-    canvas.style.height = `${360 * scale}px`;
+    const cssW = `${640 * scale}px`;
+    const cssH = `${360 * scale}px`;
+    canvas.style.width = cssW;
+    canvas.style.height = cssH;
     canvas.style.imageRendering = 'pixelated';
+    if (textCanvas) {
+      textCanvas.style.width = cssW;
+      textCanvas.style.height = cssH;
+      const dpr = window.devicePixelRatio || 1;
+      textCanvas.width = Math.round(640 * scale * dpr);
+      textCanvas.height = Math.round(360 * scale * dpr);
+    }
   }
   rescale();
   window.addEventListener('resize', rescale);
@@ -156,7 +171,9 @@ export function boot() {
       reportCompletion('finished');
     }
     lastStatus = view.facility.status;
+    beginTextLayer();
     render(ctx, view);
+    if (textCtx) paintTextLayer(textCtx, takeTextLayer());
     // The audio scheduler rides THIS loop. band.js's port deleted the kit's setInterval driver so
     // that no timer token exists outside this file (the pacing law, hard rule 3), which means the
     // music advances on the same draw-only frame as the picture and can no more move the sim than a
@@ -229,6 +246,7 @@ export function boot() {
       audio.dispose();
       window.removeEventListener('resize', rescale);
       ctx.clearRect(0, 0, 640, 360);
+      if (textCtx) textCtx.clearRect(0, 0, textCanvas.width, textCanvas.height);
     },
   };
   if (typeof window !== 'undefined') window.__GAME = game;
