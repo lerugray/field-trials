@@ -1,0 +1,79 @@
+{
+  "head": "968b27b",
+  "url": "file:///Users/rayweiss/Desktop/Dev%20Work/popinjay/dist/popinjay.html",
+  "forkA": {
+    "dispatched": true,
+    "notice": {
+      "headline": "CONTROLLER CONNECTED",
+      "detail": "STANDARD GAMEPAD READY",
+      "ticks": 180
+    },
+    "connected": true,
+    "pinnedRight": false,
+    "clearsPlayerColumn": false,
+    "expected": "right-corner toast ~220x22 pinned right at native y56 (NOT a centred 320x28 banner at y60..90)"
+  },
+  "forkB": {
+    "paneAfterEnter": "binds",
+    "bindsRowsVisible": true,
+    "armedAction": "down",
+    "B1_keyboardRefuseAndTell": {
+      "offered": "ArrowUp (owned by CLIMB UP) onto CLIMB DOWN",
+      "feedbackShown": "UP ALREADY BINDS CLIMB UP - CHOOSE ANOTHER",
+      "downKeysAfter": [
+        "ArrowDown"
+      ],
+      "upKeysAfter": [
+        "ArrowUp"
+      ],
+      "previousBindSurvived": true,
+      "upStillOwnsArrowUp": true,
+      "namesOwningAction": true,
+      "silentStealAbsent": true
+    },
+    "B2_padCoverage": {
+      "armedAction": null,
+      "offered": "DPAD_UP (button 12, owned by CLIMB UP) onto CLIMB DOWN",
+      "feedbackShown": "UP ALREADY BINDS CLIMB UP - CHOOSE ANOTHER",
+      "downButtonsAfter": [
+        13
+      ],
+      "upButtonsAfter": [
+        12
+      ],
+      "padStealAbsent": true,
+      "upKeepsDpadUp": true
+    },
+    "B3_loadSanitize": {
+      "storageKey": "popinjay.binds",
+      "wrotePoisoned": {
+        "keys": [
+          "ArrowUp"
+        ],
+        "buttons": [
+          12
+        ]
+      },
+      "afterReload": {
+        "up": {
+          "keys": [
+            "ArrowUp"
+          ],
+          "buttons": [
+            12
+          ]
+        },
+        "down": {
+          "keys": [
+            "ArrowDown"
+          ],
+          "buttons": [
+            13
+          ]
+        }
+      },
+      "collisionHealed": true,
+      "padCollisionHealed": true
+    }
+  }
+}

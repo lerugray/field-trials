@@ -1,0 +1,187 @@
+{
+  "fire": {
+    "z": {
+      "sawWire": false,
+      "maxWires": 0,
+      "balloonsBefore": 2,
+      "balloonsAfter": 2
+    },
+    "space": {
+      "sawWire": false,
+      "maxWires": 0,
+      "balloonsBefore": 2,
+      "balloonsAfter": 2
+    },
+    "holdFire": {
+      "balloonsWhileHeld": 3,
+      "tick": 357
+    },
+    "errs": []
+  },
+  "currency": {
+    "steps": [
+      {
+        "at": "cleared 1-1",
+        "mode": "playing"
+      },
+      {
+        "at": "after Enter on clear",
+        "mode": "draft"
+      },
+      {
+        "at": "after draft pick",
+        "mode": "playing"
+      }
+    ],
+    "afterDraft": {
+      "runScore": 1050,
+      "runTickets": 1,
+      "souvenirs": [
+        "gallerySidearm"
+      ],
+      "stagesCleared": 1
+    },
+    "afterDecline": {
+      "runScore": 2400,
+      "runTickets": 2,
+      "souvenirs": [
+        "gallerySidearm"
+      ],
+      "stagesCleared": 2
+    },
+    "atDeath": {
+      "mode": "scorecard",
+      "recordedRun": {
+        "score": 2400,
+        "seed": 1,
+        "victory": false,
+        "locale": 1,
+        "stage": 1,
+        "culpritCls": "penny"
+      },
+      "topScore": {
+        "score": 2400,
+        "seed": 1,
+        "victory": false
+      },
+      "savedRun": {
+        "score": 2400,
+        "tickets": 2,
+        "souvenirs": [
+          "gallerySidearm"
+        ],
+        "dead": true
+      }
+    },
+    "afterRestart": {
+      "mode": "playing",
+      "newRun": {
+        "score": 0,
+        "tickets": 0,
+        "souvenirs": [],
+        "stagesCleared": 0,
+        "locale": 1,
+        "stage": 1
+      }
+    },
+    "secondDeath": {
+      "recordedRun": {
+        "score": 1050,
+        "seed": 1,
+        "victory": false,
+        "locale": 1,
+        "stage": 1,
+        "culpritCls": "penny"
+      },
+      "runsCount": 2
+    },
+    "afterRestart2": {
+      "score": 0,
+      "tickets": 0,
+      "souvenirs": []
+    },
+    "errs": []
+  },
+  "rehearsal": {
+    "mode": "rehearsal",
+    "modeAfterP": "rehearsal",
+    "modeAfterEscape": "rehearsal",
+    "modeAfter16s": "draft",
+    "errs": []
+  },
+  "hidden": {
+    "before": {
+      "hearts": 3,
+      "tick": 66,
+      "balloons": 2
+    },
+    "after": {
+      "hearts": 1,
+      "tick": 1010,
+      "balloons": 2,
+      "mode": "playing"
+    },
+    "ticksWhileHidden": 944,
+    "heartsLostWhileHidden": 2,
+    "hiddenState": "visible",
+    "errs": []
+  },
+  "fill": {
+    "rows": [
+      {
+        "label": "exact ratified viewport",
+        "win": "1440x900",
+        "scale": 3,
+        "playfield": "1440x900",
+        "areaFill": 1
+      },
+      {
+        "label": "Mac 1440x900 display, maximised Chrome (chrome eats ~88px)",
+        "win": "1440x812",
+        "scale": 2,
+        "playfield": "960x600",
+        "areaFill": 0.493
+      },
+      {
+        "label": "ratified viewport #2",
+        "win": "1280x800",
+        "scale": 2,
+        "playfield": "960x600",
+        "areaFill": 0.563
+      },
+      {
+        "label": "MacBook 13in maximised browser",
+        "win": "1280x672",
+        "scale": 2,
+        "playfield": "960x600",
+        "areaFill": 0.67
+      },
+      {
+        "label": "MacBook Pro 14in maximised",
+        "win": "1512x860",
+        "scale": 2,
+        "playfield": "960x600",
+        "areaFill": 0.443
+      },
+      {
+        "label": "1080p maximised",
+        "win": "1920x1080",
+        "scale": 3,
+        "playfield": "1440x900",
+        "areaFill": 0.625
+      },
+      {
+        "label": "small window",
+        "win": "1024x640",
+        "scale": 2,
+        "playfield": "960x600",
+        "areaFill": 0.879
+      }
+    ],
+    "native": {
+      "w": 480,
+      "h": 300
+    },
+    "errs": []
+  }
+}

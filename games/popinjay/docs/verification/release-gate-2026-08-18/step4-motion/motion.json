@@ -1,0 +1,414 @@
+{
+  "head": "54fe5f9",
+  "url": "file:///Users/rayweiss/Desktop/Dev%20Work/popinjay/dist/popinjay.html",
+  "strips": {
+    "A-walk-right": {
+      "frames": [
+        {
+          "tick": 121,
+          "x": 454,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 129,
+          "x": 479.3,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 138,
+          "x": 507.8,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 145,
+          "x": 530,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 154,
+          "x": 558.5,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 161,
+          "x": 580.7,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 169,
+          "x": 606,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 176,
+          "x": 628.2,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        }
+      ],
+      "netTravel": 174.2
+    },
+    "B-walk-left": {
+      "frames": [
+        {
+          "tick": 223,
+          "x": 653.5,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 230,
+          "x": 631.3,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 237,
+          "x": 609.2,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 246,
+          "x": 580.7,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 254,
+          "x": 564.8,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 261,
+          "x": 564.8,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 270,
+          "x": 562.3,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 278,
+          "x": 543.7,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        }
+      ],
+      "netTravel": -109.8
+    },
+    "C-wire-and-split": {
+      "frames": [
+        {
+          "tick": 19,
+          "x": 454,
+          "feetY": 740,
+          "wires": 1,
+          "balloons": 1
+        },
+        {
+          "tick": 28,
+          "x": 454,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 37,
+          "x": 454,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 46,
+          "x": 454,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 55,
+          "x": 454,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 64,
+          "x": 454,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 73,
+          "x": 454,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 82,
+          "x": 454,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 91,
+          "x": 454,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        },
+        {
+          "tick": 100,
+          "x": 454,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2
+        }
+      ],
+      "netTravel": 0
+    },
+    "D-balloon-arcs": {
+      "frames": [
+        {
+          "tick": 18,
+          "x": 961,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 1
+        },
+        {
+          "tick": 28,
+          "x": 961,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 1
+        },
+        {
+          "tick": 38,
+          "x": 961,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 1
+        },
+        {
+          "tick": 48,
+          "x": 961,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 1
+        },
+        {
+          "tick": 58,
+          "x": 961,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 1
+        },
+        {
+          "tick": 68,
+          "x": 961,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 1
+        },
+        {
+          "tick": 78,
+          "x": 961,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 1
+        },
+        {
+          "tick": 88,
+          "x": 961,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 1
+        },
+        {
+          "tick": 99,
+          "x": 961,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 1
+        },
+        {
+          "tick": 109,
+          "x": 961,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 1
+        }
+      ],
+      "netTravel": 0
+    },
+    "E-climb-ladder": {
+      "frames": [
+        {
+          "tick": 661,
+          "x": 391,
+          "feetY": 720,
+          "wires": 0,
+          "balloons": 1
+        },
+        {
+          "tick": 670,
+          "x": 391,
+          "feetY": 697.5,
+          "wires": 0,
+          "balloons": 1
+        },
+        {
+          "tick": 678,
+          "x": 391,
+          "feetY": 677.5,
+          "wires": 0,
+          "balloons": 1
+        },
+        {
+          "tick": 686,
+          "x": 391,
+          "feetY": 657.5,
+          "wires": 0,
+          "balloons": 1
+        },
+        {
+          "tick": 694,
+          "x": 391,
+          "feetY": 637.5,
+          "wires": 0,
+          "balloons": 1
+        },
+        {
+          "tick": 703,
+          "x": 391,
+          "feetY": 615,
+          "wires": 0,
+          "balloons": 1
+        },
+        {
+          "tick": 712,
+          "x": 391,
+          "feetY": 592.5,
+          "wires": 0,
+          "balloons": 1
+        },
+        {
+          "tick": 720,
+          "x": 391,
+          "feetY": 572.5,
+          "wires": 0,
+          "balloons": 1
+        }
+      ],
+      "netTravel": 0
+    },
+    "F-wind-drift": {
+      "frames": [
+        {
+          "tick": 18,
+          "x": 882,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 3
+        },
+        {
+          "tick": 29,
+          "x": 882,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 3
+        },
+        {
+          "tick": 41,
+          "x": 882,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 3
+        },
+        {
+          "tick": 52,
+          "x": 882,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 3
+        },
+        {
+          "tick": 63,
+          "x": 882,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 3
+        },
+        {
+          "tick": 74,
+          "x": 882,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 3
+        },
+        {
+          "tick": 85,
+          "x": 882,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 3
+        },
+        {
+          "tick": 96,
+          "x": 882,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 3
+        },
+        {
+          "tick": 107,
+          "x": 882,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 3
+        },
+        {
+          "tick": 118,
+          "x": 882,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 3
+        }
+      ],
+      "netTravel": 0
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "date": "2026-08-17",
+  "probe": "tower-top-pose-alpha",
+  "command": "node docs/verification/followups-2026-08-17/probe-tower-top-pose.mjs",
+  "fixture": {
+    "state": "climb",
+    "ladderTopWorld": 180,
+    "feetYWorld": 226,
+    "xWorld": 640
+  },
+  "noticeCardNative": {
+    "x0": 80,
+    "y0": 60,
+    "x1": 399,
+    "y1": 87,
+    "alpha": 0.68
+  },
+  "poseBoundsNative": {
+    "x0": 233,
+    "y0": 62,
+    "x1": 247,
+    "y1": 87
+  },
+  "poseInsideNotice": true,
+  "posePixels": 236,
+  "survivingPosePixels": 236,
+  "visibleRatio": 1,
+  "fullyCovered": false,
+  "pass": true,
+  "capture": "tower-top-connect-alpha.png"
+}

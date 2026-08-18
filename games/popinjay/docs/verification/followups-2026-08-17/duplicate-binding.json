@@ -1,0 +1,27 @@
+{
+  "date": "2026-08-17",
+  "probe": "duplicate-binding-refusal",
+  "command": "node docs/verification/followups-2026-08-17/probe-duplicate-binding.mjs",
+  "attempted": {
+    "action": "down",
+    "code": "KeyJ"
+  },
+  "beforeDuplicate": {
+    "up": ["KeyJ"],
+    "down": ["ArrowDown"]
+  },
+  "afterDuplicate": {
+    "up": ["KeyJ"],
+    "down": ["ArrowDown"],
+    "rebinding": null,
+    "feedback": "J ALREADY BINDS CLIMB UP - CHOOSE ANOTHER",
+    "storedDown": ["ArrowDown"]
+  },
+  "keyJMotion": {
+    "cursorBeforeJ": 3,
+    "cursorAfterJ": 2,
+    "delta": -1
+  },
+  "screenshot": "duplicate-binding-feedback.png",
+  "pass": true
+}

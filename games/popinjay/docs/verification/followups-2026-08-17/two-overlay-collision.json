@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-17",
+  "probe": "two-overlay-collision",
+  "command": "node docs/verification/followups-2026-08-17/probe-two-overlay-collision.mjs",
+  "native": {
+    "width": 480,
+    "height": 300
+  },
+  "rehearsal": {
+    "x0": 0,
+    "y0": 24,
+    "x1": 479,
+    "y1": 53,
+    "pixels": 14400
+  },
+  "controller": {
+    "x0": 80,
+    "y0": 60,
+    "x1": 402,
+    "y1": 90,
+    "pixels": 9652
+  },
+  "sharedY": 0,
+  "pass": true
+}

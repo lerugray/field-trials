@@ -1,0 +1,173 @@
+// build.js — the single-file build (DESIGN-SEED §Stack; hard rule 7). Bundles the
+// ES-module graph rooted at src/app.js into ONE inline module script and writes
+// dist/popinjay.html, which boots by double-click over file:// (everything is
+// inlined — there are zero cross-origin module fetches, which file:// would block).
+//
+// Zero dependencies. The bundler resolves static relative imports only, topo-sorts
+// the graph, strips import/export syntax, and concatenates into a shared module
+// scope (every module defines unique top-level names — see the source). It matches
+// import statements only at line start, so a module path MENTIONED in a comment
+// (band.js warns about exactly this) is never treated as a dependency.
+
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { dirname, resolve, relative } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const HERE = dirname(fileURLToPath(import.meta.url));
+const ROOT = resolve(HERE, '..');
+const ENTRY = resolve(ROOT, 'src/app.js');
+const OUT = resolve(ROOT, 'dist/popinjay.html');
+const OG_TITLE = "POPINJAY — The World's Fair Sharpshooter";
+const OG_DESCRIPTION = 'A World\'s Fair sharpshooter tours postcard stages where every balloon keeps its exact parabola.';
+const OG_URL = 'https://lerugray.github.io/field-trials/popinjay/';
+const OG_IMAGE = `${OG_URL}og-card.png`;
+
+// Match `import ... from '<path>';` ONLY when it begins a line (comments start with
+// // or * and never match). Captures the module specifier.
+const IMPORT_RE = /^\s*import\s+[^;]*?\s+from\s+['"]([^'"]+)['"]\s*;?\s*$/;
+// The bundler is LINE-BASED, so a multi-line `import { a,\n b } from '...'` is
+// invisible to it: the dependency edge is missed AND the statement survives into the
+// bundle as a syntax error. Both failures are silent at build time, so detect the
+// shape and fail LOUDLY instead (CLAUDE.md rule 4).
+const IMPORT_OPEN_RE = /^\s*import\s*(\{[^}]*)?$/;
+function assertSingleLineImports(src, file) {
+  const lines = src.split('\n');
+  for (let i = 0; i < lines.length; i++) {
+    if (IMPORT_OPEN_RE.test(lines[i])) {
+      throw new Error(
+        `multi-line import at ${rel(file)}:${i + 1} — this bundler resolves ONE-LINE ` +
+        `imports only. Put the whole \`import { ... } from '...';\` on a single line.`);
+    }
+  }
+}
+
+function collect(entry) {
+  const order = [];
+  const seen = new Set();
+  const visiting = new Set();
+
+  function visit(file) {
+    if (seen.has(file)) return;
+    if (visiting.has(file)) throw new Error(`import cycle at ${rel(file)}`);
+    visiting.add(file);
+    const src = readFileSync(file, 'utf8');
+    assertSingleLineImports(src, file);
+    for (const line of src.split('\n')) {
+      const m = IMPORT_RE.exec(line);
+      if (!m) continue;
+      const spec = m[1];
+      if (!spec.startsWith('.')) throw new Error(`non-relative import "${spec}" in ${rel(file)} — bundler resolves relative only`);
+      visit(resolve(dirname(file), spec));
+    }
+    visiting.delete(file);
+    seen.add(file);
+    order.push(file); // dependencies pushed before dependents (topo order)
+  }
+
+  visit(entry);
+  return order;
+}
+
+// Every module lands in ONE shared scope, so a top-level name declared in two files
+// is a hard error — and node's own message ("Identifier 'x' has already been
+// declared") points at the bundle, not at the two source files. Name them (rule 4).
+const TOPLEVEL_DECL_RE = /^(?:export\s+)?(?:async\s+)?(?:function|class|const|let|var)\s+([A-Za-z_$][\w$]*)/;
+function assertNoTopLevelCollisions(files) {
+  const owner = new Map();
+  const clashes = [];
+  for (const f of files) {
+    const src = readFileSync(f, 'utf8');
+    let depth = 0;
+    for (const raw of src.split('\n')) {
+      const line = raw.replace(/\/\/.*$/, '');
+      if (depth === 0) {
+        const m = TOPLEVEL_DECL_RE.exec(line);
+        if (m) {
+          const name = m[1];
+          if (owner.has(name)) clashes.push(`  "${name}" — ${rel(owner.get(name))} and ${rel(f)}`);
+          else owner.set(name, f);
+        }
+      }
+      for (const ch of line) { if (ch === '{') depth++; else if (ch === '}') depth = Math.max(0, depth - 1); }
+    }
+  }
+  if (clashes.length) {
+    throw new Error(`top-level name collisions (the bundle shares ONE scope):\n${clashes.join('\n')}`);
+  }
+}
+
+// Strip module syntax so concatenated files share one module scope.
+function strip(src, file) {
+  return src
+    .split('\n')
+    .filter((line) => !IMPORT_RE.test(line)) // drop import statements
+    .map((line) => line.replace(/^(\s*)export\s+(default\s+)?/, '$1')) // drop `export`
+    .join('\n');
+}
+
+function rel(f) { return relative(ROOT, f); }
+
+// Produce the bundle + html without touching disk (importable by tests).
+export function buildBundle() {
+  const files = collect(ENTRY);
+  assertNoTopLevelCollisions(files);
+  const banner = `/* POPINJAY single-file build — generated by scripts/build.js. Do not edit. */`;
+  const bundle = [banner, ...files.map((f) => `\n/* ==== ${rel(f)} ==== */\n${strip(readFileSync(f, 'utf8'), f)}`)].join('\n');
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${OG_TITLE}</title>
+<meta name="description" content="${OG_DESCRIPTION}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Field Trials">
+<meta property="og:title" content="${OG_TITLE}">
+<meta property="og:description" content="${OG_DESCRIPTION}">
+<meta property="og:url" content="${OG_URL}">
+<meta property="og:image" content="${OG_IMAGE}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${OG_TITLE}">
+<meta name="twitter:description" content="${OG_DESCRIPTION}">
+<meta name="twitter:image" content="${OG_IMAGE}">
+<style>
+  html, body { margin: 0; height: 100%; background: #1c1916; overflow: hidden; }
+  #stage {
+    display: block; width: 100vw; height: 100vh;
+    image-rendering: pixelated; image-rendering: crisp-edges;
+  }
+  /* Fallback if scripts fail entirely — LOUD, never a blank page (hard rule 4). */
+  #noscript { color: #faf1dc; font: 600 18px Georgia, serif; padding: 24px; }
+</style>
+</head>
+<body>
+  <canvas id="stage"></canvas>
+  <noscript><div id="noscript">POPINJAY needs JavaScript enabled.</div></noscript>
+  <!-- ATTRIBUTION: see ATTRIBUTION.md beside this build for the embedded OFL font licences. -->
+  <script type="module">
+${bundle}
+  </script>
+</body>
+</html>
+`;
+
+  return { files, bundle, html };
+}
+
+export function build() {
+  const { files, html } = buildBundle();
+  mkdirSync(dirname(OUT), { recursive: true });
+  writeFileSync(OUT, html);
+  const kb = (Buffer.byteLength(html) / 1024).toFixed(1);
+  console.log(`[build] ${rel(OUT)} — ${files.length} modules, ${kb} KB`);
+  console.log(`[build] order: ${files.map(rel).join(' -> ')}`);
+  return OUT;
+}
+
+// Auto-run only when invoked directly (`node scripts/build.js`), not on import.
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  build();
+}

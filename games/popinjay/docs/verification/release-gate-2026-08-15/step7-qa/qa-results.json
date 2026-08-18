@@ -1,0 +1,431 @@
+{
+  "input": {
+    "phase": "input",
+    "modeAfterEnter": "playing",
+    "walkLeftDelta": -95,
+    "walkRightDelta": 95,
+    "fireZ_wires": 0,
+    "fireSpace_wires": 0,
+    "tickAdvancing": true,
+    "maxWiresUnderMash": 1,
+    "opposingX": 482.46658711362903,
+    "opposingFinite": true,
+    "simAliveAfterAllKeys": true,
+    "mouseInert": true,
+    "modeAfterPauseMash": "playing",
+    "recoveredFromPauseMash": true,
+    "debugErrors": [],
+    "pageErrors": []
+  },
+  "menus": {
+    "phase": "menus",
+    "cycles": [
+      {
+        "menu": "options@title",
+        "i": 0,
+        "opened": "options",
+        "closed": "title"
+      },
+      {
+        "menu": "options@title",
+        "i": 1,
+        "opened": "options",
+        "closed": "title"
+      },
+      {
+        "menu": "options@title",
+        "i": 2,
+        "opened": "options",
+        "closed": "title"
+      },
+      {
+        "menu": "trunk@title",
+        "exit": "Escape",
+        "opened": "trunk",
+        "closed": "title"
+      },
+      {
+        "menu": "trunk@title",
+        "exit": "b",
+        "opened": "trunk",
+        "closed": "title"
+      },
+      {
+        "menu": "trunk@title",
+        "exit": "t",
+        "opened": "trunk",
+        "closed": "title"
+      }
+    ],
+    "settingsWritten": {
+      "before": {},
+      "after": {
+        "volume": 0.5,
+        "muted": false,
+        "sfx": 1,
+        "flashReduce": true,
+        "reduceMotion": false,
+        "gameSpeed": 1,
+        "composure": 3,
+        "parOff": false
+      }
+    },
+    "settingsPersisted": {
+      "volume": 0.5,
+      "muted": false,
+      "sfx": 1,
+      "flashReduce": true,
+      "reduceMotion": false,
+      "gameSpeed": 1,
+      "composure": 3,
+      "parOff": false
+    },
+    "pauseOptionsRoundTrip": {
+      "inOptsFromPause": "options",
+      "backToPlaying": "playing",
+      "resumed": true
+    },
+    "quitToTitleMode": "title",
+    "resumeMode": "playing",
+    "draftUntimed": true,
+    "draftDeclineExits": true,
+    "debugErrors": [],
+    "pageErrors": []
+  },
+  "edge": {
+    "phase": "edge",
+    "resize": [
+      {
+        "scale": 3,
+        "w": 1440,
+        "h": 900,
+        "frac": 1,
+        "win": [
+          1440,
+          900
+        ]
+      },
+      {
+        "scale": 2,
+        "w": 960,
+        "h": 600,
+        "frac": 0.5625,
+        "win": [
+          1280,
+          800
+        ]
+      },
+      {
+        "scale": 2,
+        "w": 960,
+        "h": 600,
+        "frac": 0.7481,
+        "win": [
+          1100,
+          700
+        ]
+      },
+      {
+        "scale": 3,
+        "w": 1440,
+        "h": 900,
+        "frac": 0.625,
+        "win": [
+          1920,
+          1080
+        ]
+      },
+      {
+        "scale": 1,
+        "w": 480,
+        "h": 300,
+        "frac": 0.2667,
+        "win": [
+          900,
+          600
+        ]
+      },
+      {
+        "scale": 3,
+        "w": 1440,
+        "h": 900,
+        "frac": 1,
+        "win": [
+          1440,
+          900
+        ]
+      }
+    ],
+    "resizeErrors": [],
+    "blur": {
+      "jumpOnRefocus": 250,
+      "ticksPerSecondAfter": 60,
+      "expected60": 60
+    },
+    "blurErrors": [],
+    "pause": {
+      "duringPlay": true,
+      "escapeUnpauses": true,
+      "duringCascade": true,
+      "duringClosingBell": true,
+      "duringFinale": true,
+      "tourmapModeAfterP": "tourmap",
+      "rehearsalMode": "rehearsal",
+      "rehearsalModeAfterP": "rehearsal",
+      "rehearsalAdvancesUnderP": false
+    },
+    "pauseErrors": [],
+    "storage": {
+      "available": true,
+      "savePresent": true,
+      "variants": {
+        "garbage": {
+          "noticeRendered": true,
+          "mode": "title",
+          "debugErrors": []
+        },
+        "truncated": {
+          "noticeRendered": true,
+          "mode": "title",
+          "debugErrors": []
+        },
+        "wrongShape": {
+          "noticeRendered": true,
+          "mode": "title",
+          "debugErrors": []
+        },
+        "versionSkew": {
+          "noticeRendered": true,
+          "mode": "title",
+          "debugErrors": []
+        },
+        "emptyString": {
+          "noticeRendered": true,
+          "mode": "title",
+          "debugErrors": []
+        }
+      },
+      "otherStores": {
+        "popinjay:scores:v1": {
+          "booted": true,
+          "err": null,
+          "debugErrors": [],
+          "pageErrors": []
+        },
+        "popinjay:runs:v1": {
+          "booted": true,
+          "err": null,
+          "debugErrors": [],
+          "pageErrors": []
+        },
+        "popinjay:settings:v1": {
+          "booted": true,
+          "err": null,
+          "debugErrors": [],
+          "pageErrors": []
+        },
+        "popinjay:trunk:v1": {
+          "booted": true,
+          "err": null,
+          "debugErrors": [],
+          "pageErrors": []
+        },
+        "popinjay:flags:v1": {
+          "booted": true,
+          "err": null,
+          "debugErrors": [],
+          "pageErrors": []
+        }
+      }
+    },
+    "storageErrors": []
+  },
+  "loops": {
+    "phase": "loops",
+    "runs": [
+      {
+        "loop": 0,
+        "modeAtEnd": "scorecard",
+        "waitedMs": 1000,
+        "lastRun": {
+          "score": 0,
+          "seed": 1,
+          "victory": false,
+          "locale": 1,
+          "stage": 1,
+          "culpritCls": "penny"
+        },
+        "runsCount": 1,
+        "scoresTop": [
+          {
+            "score": 0,
+            "seed": 1,
+            "victory": false
+          }
+        ],
+        "saveDead": true,
+        "savedRunScore": 0,
+        "savedRunTickets": 0,
+        "savedSouvenirs": [],
+        "probeHearts": 0,
+        "modeAfterRestart": "playing",
+        "saveClearedOnRestart": false
+      },
+      {
+        "loop": 1,
+        "modeAtEnd": "scorecard",
+        "waitedMs": 1000,
+        "lastRun": {
+          "score": 0,
+          "seed": 1,
+          "victory": false,
+          "locale": 1,
+          "stage": 1,
+          "culpritCls": "penny"
+        },
+        "runsCount": 2,
+        "scoresTop": [
+          {
+            "score": 0,
+            "seed": 1,
+            "victory": false
+          },
+          {
+            "score": 0,
+            "seed": 1,
+            "victory": false
+          }
+        ],
+        "saveDead": true,
+        "savedRunScore": 0,
+        "savedRunTickets": 0,
+        "savedSouvenirs": [],
+        "probeHearts": 0,
+        "modeAfterRestart": "playing",
+        "saveClearedOnRestart": false
+      },
+      {
+        "loop": 2,
+        "modeAtEnd": "scorecard",
+        "waitedMs": 1000,
+        "lastRun": {
+          "score": 0,
+          "seed": 1,
+          "victory": false,
+          "locale": 1,
+          "stage": 1,
+          "culpritCls": "penny"
+        },
+        "runsCount": 3,
+        "scoresTop": [
+          {
+            "score": 0,
+            "seed": 1,
+            "victory": false
+          },
+          {
+            "score": 0,
+            "seed": 1,
+            "victory": false
+          },
+          {
+            "score": 0,
+            "seed": 1,
+            "victory": false
+          }
+        ],
+        "saveDead": true,
+        "savedRunScore": 0,
+        "savedRunTickets": 0,
+        "savedSouvenirs": [],
+        "probeHearts": 0,
+        "modeAfterRestart": "playing",
+        "saveClearedOnRestart": false
+      },
+      {
+        "loop": 3,
+        "modeAtEnd": "scorecard",
+        "waitedMs": 1000,
+        "lastRun": {
+          "score": 0,
+          "seed": 1,
+          "victory": false,
+          "locale": 1,
+          "stage": 1,
+          "culpritCls": "penny"
+        },
+        "runsCount": 4,
+        "scoresTop": [
+          {
+            "score": 0,
+            "seed": 1,
+            "victory": false
+          },
+          {
+            "score": 0,
+            "seed": 1,
+            "victory": false
+          },
+          {
+            "score": 0,
+            "seed": 1,
+            "victory": false
+          }
+        ],
+        "saveDead": true,
+        "savedRunScore": 0,
+        "savedRunTickets": 0,
+        "savedSouvenirs": [],
+        "probeHearts": 0,
+        "modeAfterRestart": "playing",
+        "saveClearedOnRestart": false
+      },
+      {
+        "loop": 4,
+        "modeAtEnd": "scorecard",
+        "waitedMs": 1000,
+        "lastRun": {
+          "score": 0,
+          "seed": 1,
+          "victory": false,
+          "locale": 1,
+          "stage": 1,
+          "culpritCls": "penny"
+        },
+        "runsCount": 5,
+        "scoresTop": [
+          {
+            "score": 0,
+            "seed": 1,
+            "victory": false
+          },
+          {
+            "score": 0,
+            "seed": 1,
+            "victory": false
+          },
+          {
+            "score": 0,
+            "seed": 1,
+            "victory": false
+          }
+        ],
+        "saveDead": true,
+        "savedRunScore": 0,
+        "savedRunTickets": 0,
+        "savedSouvenirs": [],
+        "probeHearts": 0,
+        "modeAfterRestart": "playing",
+        "saveClearedOnRestart": false
+      }
+    ],
+    "deadSaveRebootMode": "scorecard",
+    "debugErrors": [],
+    "pageErrors": []
+  },
+  "look": {
+    "phase": "look",
+    "debugErrors": [],
+    "pageErrors": []
+  }
+}

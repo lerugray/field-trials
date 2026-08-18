@@ -1,0 +1,60 @@
+{
+  "version": "M1",
+  "tickHz": 60,
+  "classes": {
+    "grand": {
+      "period": 106,
+      "launchSpeed": 802.5,
+      "effectiveApex": 351.125,
+      "radius": 46,
+      "hspeed": 60
+    },
+    "parade": {
+      "period": 97,
+      "launchSpeed": 735,
+      "effectiveApex": 294,
+      "radius": 34,
+      "hspeed": 78
+    },
+    "fair": {
+      "period": 87,
+      "launchSpeed": 660,
+      "effectiveApex": 236.5,
+      "radius": 22,
+      "hspeed": 96
+    },
+    "penny": {
+      "period": 75,
+      "launchSpeed": 570,
+      "effectiveApex": 175.75,
+      "radius": 13,
+      "hspeed": 120
+    }
+  },
+  "split": {
+    "parent": "grand",
+    "child": "parade",
+    "childLaunchVy": -735,
+    "symmetric": true
+  },
+  "wire": {
+    "speedPxPerTick": 15,
+    "thickness": 4
+  },
+  "grandArc": [
+    0,
+    98,
+    180,
+    246,
+    296,
+    330,
+    348,
+    350,
+    336,
+    306,
+    260,
+    198,
+    120,
+    26
+  ]
+}

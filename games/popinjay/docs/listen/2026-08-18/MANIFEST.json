@@ -1,0 +1,56 @@
+{
+  "date": "2026-08-18",
+  "sourceRenderer": "listen/2026-08-15-humanize/render-listen-set.mjs",
+  "seed": 20260815,
+  "sampleRate": 44100,
+  "tailSeconds": 5,
+  "notes": "Each file is the current working-tree AFTER render for one track and contains the full AABB form, so both A and B strains are audible offline.",
+  "files": [
+    {
+      "filename": "title-aabb.wav",
+      "cue": "title",
+      "posture": "after",
+      "engine": "working tree",
+      "passes": 4,
+      "params": {},
+      "musicSeconds": 9.23076923076923,
+      "bytes": 2510352,
+      "sha256": "ef30b3ede1e21c725614b621c352df72cfc3be34fa3abc065790a2e5d5f7877e"
+    },
+    {
+      "filename": "stage-aabb.wav",
+      "cue": "stage",
+      "posture": "after",
+      "engine": "working tree",
+      "passes": 8,
+      "params": {},
+      "musicSeconds": 14.545454545454545,
+      "bytes": 3447864,
+      "sha256": "6737e207f58a1cab24152c45f8f894a9f1a93f370164375219d09637545c495d"
+    },
+    {
+      "filename": "waltz-aabb.wav",
+      "cue": "waltz",
+      "posture": "after",
+      "engine": "working tree",
+      "passes": 8,
+      "params": {},
+      "musicSeconds": 12,
+      "bytes": 2998844,
+      "sha256": "6adb4061b245b5f43c116bed3fd3f0bb66945e15f1dff0545a18ccc790d71ffc"
+    },
+    {
+      "filename": "galop-aabb.wav",
+      "cue": "galop",
+      "posture": "after",
+      "engine": "working tree",
+      "passes": 8,
+      "params": {
+        "heat": 0.75
+      },
+      "musicSeconds": 12.631578947368421,
+      "bytes": 3110256,
+      "sha256": "b8d0120031754c3e580c41944d0ea80c09d82e25673c2d99ef76a5e539450afb"
+    }
+  ]
+}

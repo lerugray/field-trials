@@ -1,0 +1,344 @@
+{
+  "label": "after",
+  "stamp": "20260816-072034",
+  "dist": "file:///Users/rayweiss/Desktop/Dev%20Work/popinjay/dist/popinjay.html",
+  "probeA": {
+    "opened": {
+      "mode": "options",
+      "pane": "binds",
+      "cursor": 0
+    },
+    "rebound": {
+      "ok": true,
+      "capturing": "down",
+      "rebindingAfter": null,
+      "keys": {
+        "keys": [
+          "KeyS"
+        ],
+        "buttons": [
+          13
+        ]
+      }
+    },
+    "cursorBeforeArrow": 3,
+    "cursorAfterArrowDown": 4,
+    "cursorAfterS": 5,
+    "arrowMoved": true,
+    "sMoved": true,
+    "hintPane": {
+      "pane": "binds",
+      "cursor": 5
+    }
+  },
+  "probeB": {
+    "bindings": {
+      "up": {
+        "keys": [
+          "KeyJ"
+        ],
+        "buttons": [
+          12
+        ]
+      },
+      "down": {
+        "keys": [
+          "KeyJ"
+        ],
+        "buttons": [
+          13
+        ]
+      }
+    },
+    "startCursor": 3,
+    "samples": [
+      {
+        "key": "ArrowDown",
+        "before": 3,
+        "after": 4,
+        "moved": true
+      },
+      {
+        "key": "ArrowUp",
+        "before": 4,
+        "after": 3,
+        "moved": true
+      },
+      {
+        "key": "j",
+        "before": 3,
+        "after": 3,
+        "moved": false
+      }
+    ],
+    "twentyArrowDownTrail": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "resetDefaultsReachable": true
+  },
+  "poisonedStorage": "{\"left\":{\"keys\":[\"ArrowLeft\"],\"buttons\":[14]},\"right\":{\"keys\":[\"ArrowRight\"],\"buttons\":[15]},\"up\":{\"keys\":[\"KeyJ\"],\"buttons\":[12]},\"down\":{\"keys\":[\"KeyJ\"],\"buttons\":[13]},\"fire\":{\"keys\":[\"KeyZ\",\"Space\"],\"buttons\":[0]},\"sidearm\":{\"keys\":[\"KeyX\"],\"buttons\":[2]},\"tuba\":{\"keys\":[\"KeyT\"],\"buttons\":[3]},\"pause\":{\"keys\":[\"Escape\",\"KeyP\"],\"buttons\":[9]},\"confirm\":{\"keys\":[\"Enter\",\"Space\"],\"buttons\":[0]},\"cancel\":{\"keys\":[\"Escape\"],\"buttons\":[1]},\"options\":{\"keys\":[\"KeyO\"],\"buttons\":[8]},\"quit\":{\"keys\":[\"KeyQ\"],\"buttons\":[4]}}",
+  "probeC": {
+    "loaded": {
+      "up": {
+        "keys": [
+          "KeyJ"
+        ],
+        "buttons": [
+          12
+        ]
+      },
+      "down": {
+        "keys": [
+          "KeyJ"
+        ],
+        "buttons": [
+          13
+        ]
+      }
+    },
+    "settingsTrail": [
+      {
+        "pane": "settings",
+        "cursor": 1
+      },
+      {
+        "pane": "settings",
+        "cursor": 2
+      },
+      {
+        "pane": "settings",
+        "cursor": 3
+      },
+      {
+        "pane": "settings",
+        "cursor": 4
+      },
+      {
+        "pane": "settings",
+        "cursor": 5
+      },
+      {
+        "pane": "settings",
+        "cursor": 6
+      },
+      {
+        "pane": "settings",
+        "cursor": 7
+      },
+      {
+        "pane": "settings",
+        "cursor": 8
+      }
+    ],
+    "reachedController": true,
+    "bindTrail": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "reachedReset": true,
+    "resetRoute": "ArrowDown on reserved menu codes after reload of poisoned binds"
+  },
+  "probeD": {
+    "beforeNotice": {
+      "present": {
+        "scale": 2.6666666666666665,
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 800,
+        "native": {
+          "w": 480,
+          "h": 300
+        }
+      },
+      "paused": false,
+      "mode": "playing",
+      "notice": null,
+      "playerWorld": {
+        "x": 454,
+        "feetY": 740
+      },
+      "playerNative": {
+        "x": 170.25,
+        "feetY": 277.5,
+        "headY": 256.5
+      },
+      "rows": {
+        "256": {
+          "canvasY": 684,
+          "rgbSum": 599971,
+          "panelRgbSum": 460999,
+          "panelCount": 854,
+          "panelMean": 539.811475409836
+        },
+        "266": {
+          "canvasY": 710,
+          "rgbSum": 593510,
+          "panelRgbSum": 454817,
+          "panelCount": 854,
+          "panelMean": 532.5725995316159
+        },
+        "274": {
+          "canvasY": 732,
+          "rgbSum": 553543,
+          "panelRgbSum": 411452,
+          "panelCount": 854,
+          "panelMean": 481.79391100702577
+        },
+        "277": {
+          "canvasY": 740,
+          "rgbSum": 398233,
+          "panelRgbSum": 265314,
+          "panelCount": 854,
+          "panelMean": 310.672131147541
+        },
+        "282": {
+          "canvasY": 753,
+          "rgbSum": 249379,
+          "panelRgbSum": 165846,
+          "panelCount": 854,
+          "panelMean": 194.19906323185012
+        },
+        "290": {
+          "canvasY": 774,
+          "rgbSum": 310493,
+          "panelRgbSum": 206765,
+          "panelCount": 854,
+          "panelMean": 242.1135831381733
+        }
+      },
+      "panelBand": {}
+    },
+    "withNotice": {
+      "present": {
+        "scale": 2.6666666666666665,
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 800,
+        "native": {
+          "w": 480,
+          "h": 300
+        }
+      },
+      "paused": false,
+      "mode": "playing",
+      "notice": {
+        "headline": "CONTROLLER CONNECTED",
+        "detail": "STANDARD GAMEPAD READY",
+        "ticks": 166
+      },
+      "playerWorld": {
+        "x": 454,
+        "feetY": 740
+      },
+      "playerNative": {
+        "x": 170.25,
+        "feetY": 277.5,
+        "headY": 256.5
+      },
+      "rows": {
+        "256": {
+          "canvasY": 684,
+          "rgbSum": 599971,
+          "panelRgbSum": 460999,
+          "panelCount": 854,
+          "panelMean": 539.811475409836
+        },
+        "266": {
+          "canvasY": 710,
+          "rgbSum": 593510,
+          "panelRgbSum": 454817,
+          "panelCount": 854,
+          "panelMean": 532.5725995316159
+        },
+        "274": {
+          "canvasY": 732,
+          "rgbSum": 553543,
+          "panelRgbSum": 411452,
+          "panelCount": 854,
+          "panelMean": 481.79391100702577
+        },
+        "277": {
+          "canvasY": 740,
+          "rgbSum": 398233,
+          "panelRgbSum": 265314,
+          "panelCount": 854,
+          "panelMean": 310.672131147541
+        },
+        "282": {
+          "canvasY": 753,
+          "rgbSum": 249379,
+          "panelRgbSum": 165846,
+          "panelCount": 854,
+          "panelMean": 194.19906323185012
+        },
+        "290": {
+          "canvasY": 774,
+          "rgbSum": 310493,
+          "panelRgbSum": 206765,
+          "panelCount": 854,
+          "panelMean": 242.1135831381733
+        }
+      },
+      "panelBand": {}
+    },
+    "captures": {
+      "beforeToast": "/Users/rayweiss/Desktop/Dev Work/popinjay/docs/verification/fix-20260816/connect-notice-unpaused-after-beforetoast_20260816-072034.png",
+      "liveCanvas": "/Users/rayweiss/Desktop/Dev Work/popinjay/docs/verification/fix-20260816/connect-notice-unpaused-after_20260816-072034.png"
+    },
+    "rowDeltas": {
+      "256": {
+        "rgbSumBefore": 599971,
+        "rgbSumAfter": 599971,
+        "panelMeanBefore": 539.811475409836,
+        "panelMeanAfter": 539.811475409836
+      },
+      "266": {
+        "rgbSumBefore": 593510,
+        "rgbSumAfter": 593510,
+        "panelMeanBefore": 532.5725995316159,
+        "panelMeanAfter": 532.5725995316159
+      },
+      "274": {
+        "rgbSumBefore": 553543,
+        "rgbSumAfter": 553543,
+        "panelMeanBefore": 481.79391100702577,
+        "panelMeanAfter": 481.79391100702577
+      },
+      "277": {
+        "rgbSumBefore": 398233,
+        "rgbSumAfter": 398233,
+        "panelMeanBefore": 310.672131147541,
+        "panelMeanAfter": 310.672131147541
+      },
+      "282": {
+        "rgbSumBefore": 249379,
+        "rgbSumAfter": 249379,
+        "panelMeanBefore": 194.19906323185012,
+        "panelMeanAfter": 194.19906323185012
+      },
+      "290": {
+        "rgbSumBefore": 310493,
+        "rgbSumAfter": 310493,
+        "panelMeanBefore": 242.1135831381733,
+        "panelMeanAfter": 242.1135831381733
+      }
+    }
+  }
+}

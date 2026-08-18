@@ -1,0 +1,194 @@
+{
+  "head": "968b27b",
+  "url": "file:///Users/rayweiss/Desktop/Dev%20Work/popinjay/dist/popinjay.html",
+  "endStates": {
+    "death": {
+      "mode": "scorecard",
+      "probe": {
+        "mode": "scorecard",
+        "playerX": 454,
+        "feetY": 740,
+        "wires": 0,
+        "balloons": 3,
+        "tick": 61,
+        "hearts": 0
+      }
+    },
+    "deathScorecard": {
+      "mode": "scorecard",
+      "card": {}
+    },
+    "scumProofRelaunch": {
+      "modeAfterRelaunch": "scorecard"
+    },
+    "resumeDeniedAfterDeath": {
+      "mode": "scorecard",
+      "probeHearts": 0
+    },
+    "freshRun": {
+      "mode": "playing",
+      "probe": {
+        "mode": "playing",
+        "playerX": 454,
+        "feetY": 740,
+        "wires": 0,
+        "balloons": 2,
+        "tick": 94,
+        "hearts": 3
+      }
+    },
+    "quitToTitle": {
+      "mode": "title"
+    },
+    "resume": {
+      "mode": "playing",
+      "beforeQuit": {
+        "mode": "playing",
+        "playerX": 454,
+        "feetY": 740,
+        "wires": 0,
+        "balloons": 2,
+        "tick": 101,
+        "hearts": 3
+      },
+      "afterResume": {
+        "mode": "playing",
+        "playerX": 471.9934584375,
+        "feetY": 740,
+        "wires": 0,
+        "balloons": 2,
+        "tick": 173,
+        "hearts": 2
+      },
+      "sameStage": true,
+      "noReRoll": true
+    },
+    "resumeAcrossRelaunch": {
+      "mode": "playing",
+      "probe": {
+        "mode": "playing",
+        "playerX": 482.46658711362903,
+        "feetY": 740,
+        "wires": 0,
+        "balloons": 2,
+        "tick": 255,
+        "hearts": 2
+      }
+    },
+    "clearedRibbon": {
+      "mode": "playing",
+      "cleared": {
+        "mode": "playing",
+        "playerX": 961,
+        "feetY": 740,
+        "wires": 0,
+        "balloons": 0,
+        "tick": 55,
+        "hearts": 3
+      }
+    },
+    "afterClearEnter": {
+      "mode": "draft"
+    },
+    "clearedRibbonQuitVoid": {
+      "modeAfterResume": "playing",
+      "probe": {
+        "mode": "playing",
+        "playerX": 961,
+        "feetY": 740,
+        "wires": 0,
+        "balloons": 0,
+        "tick": 122,
+        "hearts": 3
+      }
+    },
+    "draft": {
+      "mode": "draft",
+      "offerCount": 0
+    },
+    "draftDecline": {
+      "mode": "playing",
+      "souvenirsAfterDecline": []
+    },
+    "finale": {
+      "mode": "playing",
+      "entered": "playing"
+    },
+    "soakDriver": {
+      "active": false,
+      "mode": "scorecard",
+      "tours": 1,
+      "target": 1,
+      "stages": 12,
+      "drafts": 12,
+      "finales": 1,
+      "victories": 1,
+      "deaths": 0,
+      "sidearmShots": 72,
+      "loadout": "mixed",
+      "mortal": false,
+      "lastTick": 5360,
+      "stallTicks": 0,
+      "done": true,
+      "stalled": false,
+      "_lastMode": null
+    },
+    "afterSoakMode": "scorecard"
+  },
+  "qa": {
+    "corrupt_garbage": {
+      "booted": true,
+      "mode": "scorecard",
+      "errorsLogged": 0
+    },
+    "corrupt_truncated": {
+      "booted": true,
+      "mode": "scorecard",
+      "errorsLogged": 0
+    },
+    "corrupt_emptyString": {
+      "booted": true,
+      "mode": "scorecard",
+      "errorsLogged": 0
+    },
+    "corrupt_wrongShape": {
+      "booted": true,
+      "mode": "scorecard",
+      "errorsLogged": 0
+    },
+    "corrupt_versionSkew": {
+      "booted": true,
+      "mode": "scorecard",
+      "errorsLogged": 0
+    },
+    "lockoutRecovery": {
+      "modeAfterReservedEnter": "playing"
+    },
+    "lockoutRecoveryCancel": {
+      "paused": true
+    },
+    "inputMash": {
+      "before": {
+        "mode": "title",
+        "playerX": null,
+        "feetY": null,
+        "wires": 0,
+        "balloons": 0,
+        "tick": 0,
+        "hearts": 0
+      },
+      "after": {
+        "mode": "title",
+        "playerX": null,
+        "feetY": null,
+        "wires": 0,
+        "balloons": 0,
+        "tick": 0,
+        "hearts": 0
+      },
+      "tickAdvanced": false,
+      "errors": 0
+    }
+  },
+  "pageErrors": []
+}

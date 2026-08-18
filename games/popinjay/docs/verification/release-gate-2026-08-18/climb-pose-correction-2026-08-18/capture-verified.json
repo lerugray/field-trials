@@ -1,0 +1,16 @@
+{
+  "note": "Independently captured by the visual-verification pass (not the lane's capture-climb-evidence.mjs, which had a /4 crop bug at the time of this run). Uses the corrected world->native scale K = 480/1280 = 0.375, matching probe-facing.mjs's own fix comment.",
+  "head": "753b59a",
+  "url": "file:///Users/rayweiss/Desktop/Dev%20Work/popinjay/dist/popinjay.html",
+  "frames": [
+    { "i": 0, "tick": 619, "x": 391, "feetY": 720 },
+    { "i": 1, "tick": 629, "x": 391, "feetY": 695 },
+    { "i": 2, "tick": 637, "x": 391, "feetY": 675 },
+    { "i": 3, "tick": 645, "x": 391, "feetY": 655 },
+    { "i": 4, "tick": 653, "x": 391, "feetY": 635 },
+    { "i": 5, "tick": 661, "x": 391, "feetY": 615 },
+    { "i": 6, "tick": 669, "x": 391, "feetY": 595 },
+    { "i": 7, "tick": 677, "x": 391, "feetY": 575 }
+  ],
+  "verdict": "Frames genuinely differ (leg-cycle alternation confirmed by pixel diff, ~16-18k/18720px changed per adjacent pair vs 0 before). Character grips the ladder's side rails with both hands, feet land on alternating rungs, torso between rails. Coat/hat/head palette and proportions match the standing sprite."
+}

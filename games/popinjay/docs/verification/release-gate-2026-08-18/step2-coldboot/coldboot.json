@@ -1,0 +1,1354 @@
+{
+  "head": "54fe5f9",
+  "url": "file:///Users/rayweiss/Desktop/Dev%20Work/popinjay/dist/popinjay.html",
+  "fillThreshold": 0.9,
+  "viewports": [
+    {
+      "viewport": "900x600",
+      "stops": {
+        "title": {
+          "mode": "title",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 1.875,
+            "x": 0,
+            "y": 18,
+            "w": 900,
+            "h": 563,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9383,
+          "vp": {
+            "w": 900,
+            "h": 600
+          }
+        },
+        "options": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 1.875,
+            "x": 0,
+            "y": 18,
+            "w": 900,
+            "h": 563,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9383,
+          "vp": {
+            "w": 900,
+            "h": 600
+          }
+        },
+        "optionsBottom": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 1.875,
+            "x": 0,
+            "y": 18,
+            "w": 900,
+            "h": 563,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9383,
+          "vp": {
+            "w": 900,
+            "h": 600
+          }
+        },
+        "controls": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 1.875,
+            "x": 0,
+            "y": 18,
+            "w": 900,
+            "h": 563,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9383,
+          "vp": {
+            "w": 900,
+            "h": 600
+          },
+          "pane": "settings"
+        },
+        "gameplay": {
+          "mode": "playing",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 1.875,
+            "x": 0,
+            "y": 18,
+            "w": 900,
+            "h": 563,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9383,
+          "vp": {
+            "w": 900,
+            "h": 600
+          }
+        },
+        "pause": {
+          "mode": "playing",
+          "paused": true,
+          "errors": [],
+          "present": {
+            "scale": 1.875,
+            "x": 0,
+            "y": 18,
+            "w": 900,
+            "h": 563,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9383,
+          "vp": {
+            "w": 900,
+            "h": 600
+          }
+        }
+      },
+      "pageErrors": [],
+      "titleFooter": {
+        "promptTop": 520.5,
+        "promptBottom": 537,
+        "creditTop": 552.375,
+        "creditBottom": 568.875,
+        "gapRows": 15,
+        "bottomSlackRows": 12
+      },
+      "modeBeforeStart": "title",
+      "liveInput": {
+        "before": {
+          "mode": "playing",
+          "playerX": 454,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2,
+          "tick": 136,
+          "hearts": 3
+        },
+        "after": {
+          "mode": "playing",
+          "playerX": 590.1666666666661,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2,
+          "tick": 200,
+          "hearts": 3
+        },
+        "walked": 136.16666666666606,
+        "firedWire": true
+      },
+      "fillGate": {
+        "title": {
+          "fill": 0.9383,
+          "pass": true
+        },
+        "options": {
+          "fill": 0.9383,
+          "pass": true
+        },
+        "optionsBottom": {
+          "fill": 0.9383,
+          "pass": true
+        },
+        "controls": {
+          "fill": 0.9383,
+          "pass": true
+        },
+        "gameplay": {
+          "fill": 0.9383,
+          "pass": true
+        },
+        "pause": {
+          "fill": 0.9383,
+          "pass": true
+        }
+      },
+      "allErrors": []
+    },
+    {
+      "viewport": "1280x800",
+      "stops": {
+        "title": {
+          "mode": "title",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 2.6666666666666665,
+            "x": 0,
+            "y": 0,
+            "w": 1280,
+            "h": 800,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 1,
+          "vp": {
+            "w": 1280,
+            "h": 800
+          }
+        },
+        "options": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 2.6666666666666665,
+            "x": 0,
+            "y": 0,
+            "w": 1280,
+            "h": 800,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 1,
+          "vp": {
+            "w": 1280,
+            "h": 800
+          }
+        },
+        "optionsBottom": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 2.6666666666666665,
+            "x": 0,
+            "y": 0,
+            "w": 1280,
+            "h": 800,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 1,
+          "vp": {
+            "w": 1280,
+            "h": 800
+          }
+        },
+        "controls": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 2.6666666666666665,
+            "x": 0,
+            "y": 0,
+            "w": 1280,
+            "h": 800,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 1,
+          "vp": {
+            "w": 1280,
+            "h": 800
+          },
+          "pane": "settings"
+        },
+        "gameplay": {
+          "mode": "playing",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 2.6666666666666665,
+            "x": 0,
+            "y": 0,
+            "w": 1280,
+            "h": 800,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 1,
+          "vp": {
+            "w": 1280,
+            "h": 800
+          }
+        },
+        "pause": {
+          "mode": "playing",
+          "paused": true,
+          "errors": [],
+          "present": {
+            "scale": 2.6666666666666665,
+            "x": 0,
+            "y": 0,
+            "w": 1280,
+            "h": 800,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 1,
+          "vp": {
+            "w": 1280,
+            "h": 800
+          }
+        }
+      },
+      "pageErrors": [],
+      "titleFooter": {
+        "promptTop": 714.6666666666666,
+        "promptBottom": 738.1333333333333,
+        "creditTop": 760,
+        "creditBottom": 783.4666666666667,
+        "gapRows": 21,
+        "bottomSlackRows": 16
+      },
+      "modeBeforeStart": "title",
+      "liveInput": {
+        "before": {
+          "mode": "playing",
+          "playerX": 454,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2,
+          "tick": 137,
+          "hearts": 3
+        },
+        "after": {
+          "mode": "playing",
+          "playerX": 586.9999999999994,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2,
+          "tick": 200,
+          "hearts": 3
+        },
+        "walked": 132.99999999999943,
+        "firedWire": true
+      },
+      "fillGate": {
+        "title": {
+          "fill": 1,
+          "pass": true
+        },
+        "options": {
+          "fill": 1,
+          "pass": true
+        },
+        "optionsBottom": {
+          "fill": 1,
+          "pass": true
+        },
+        "controls": {
+          "fill": 1,
+          "pass": true
+        },
+        "gameplay": {
+          "fill": 1,
+          "pass": true
+        },
+        "pause": {
+          "fill": 1,
+          "pass": true
+        }
+      },
+      "allErrors": []
+    },
+    {
+      "viewport": "1366x768",
+      "stops": {
+        "title": {
+          "mode": "title",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 2.56,
+            "x": 68,
+            "y": 0,
+            "w": 1229,
+            "h": 768,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.8997,
+          "vp": {
+            "w": 1366,
+            "h": 768
+          }
+        },
+        "options": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 2.56,
+            "x": 68,
+            "y": 0,
+            "w": 1229,
+            "h": 768,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.8997,
+          "vp": {
+            "w": 1366,
+            "h": 768
+          }
+        },
+        "optionsBottom": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 2.56,
+            "x": 68,
+            "y": 0,
+            "w": 1229,
+            "h": 768,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.8997,
+          "vp": {
+            "w": 1366,
+            "h": 768
+          }
+        },
+        "controls": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 2.56,
+            "x": 68,
+            "y": 0,
+            "w": 1229,
+            "h": 768,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.8997,
+          "vp": {
+            "w": 1366,
+            "h": 768
+          },
+          "pane": "settings"
+        },
+        "gameplay": {
+          "mode": "playing",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 2.56,
+            "x": 68,
+            "y": 0,
+            "w": 1229,
+            "h": 768,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.8997,
+          "vp": {
+            "w": 1366,
+            "h": 768
+          }
+        },
+        "pause": {
+          "mode": "playing",
+          "paused": true,
+          "errors": [],
+          "present": {
+            "scale": 2.56,
+            "x": 68,
+            "y": 0,
+            "w": 1229,
+            "h": 768,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.8997,
+          "vp": {
+            "w": 1366,
+            "h": 768
+          }
+        }
+      },
+      "pageErrors": [],
+      "titleFooter": {
+        "promptTop": 686.08,
+        "promptBottom": 708.6080000000001,
+        "creditTop": 729.6,
+        "creditBottom": 752.128,
+        "gapRows": 20,
+        "bottomSlackRows": 15
+      },
+      "modeBeforeStart": "title",
+      "liveInput": {
+        "before": {
+          "mode": "playing",
+          "playerX": 454,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2,
+          "tick": 138,
+          "hearts": 3
+        },
+        "after": {
+          "mode": "playing",
+          "playerX": 586.9999999999994,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2,
+          "tick": 201,
+          "hearts": 3
+        },
+        "walked": 132.99999999999943,
+        "firedWire": true
+      },
+      "fillGate": {
+        "title": {
+          "fill": 0.8997,
+          "pass": false
+        },
+        "options": {
+          "fill": 0.8997,
+          "pass": false
+        },
+        "optionsBottom": {
+          "fill": 0.8997,
+          "pass": false
+        },
+        "controls": {
+          "fill": 0.8997,
+          "pass": false
+        },
+        "gameplay": {
+          "fill": 0.8997,
+          "pass": false
+        },
+        "pause": {
+          "fill": 0.8997,
+          "pass": false
+        }
+      },
+      "allErrors": []
+    },
+    {
+      "viewport": "1440x900",
+      "stops": {
+        "title": {
+          "mode": "title",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 3,
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 900,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 1,
+          "vp": {
+            "w": 1440,
+            "h": 900
+          }
+        },
+        "options": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 3,
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 900,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 1,
+          "vp": {
+            "w": 1440,
+            "h": 900
+          }
+        },
+        "optionsBottom": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 3,
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 900,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 1,
+          "vp": {
+            "w": 1440,
+            "h": 900
+          }
+        },
+        "controls": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 3,
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 900,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 1,
+          "vp": {
+            "w": 1440,
+            "h": 900
+          },
+          "pane": "settings"
+        },
+        "gameplay": {
+          "mode": "playing",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 3,
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 900,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 1,
+          "vp": {
+            "w": 1440,
+            "h": 900
+          }
+        },
+        "pause": {
+          "mode": "playing",
+          "paused": true,
+          "errors": [],
+          "present": {
+            "scale": 3,
+            "x": 0,
+            "y": 0,
+            "w": 1440,
+            "h": 900,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 1,
+          "vp": {
+            "w": 1440,
+            "h": 900
+          }
+        }
+      },
+      "pageErrors": [],
+      "titleFooter": {
+        "promptTop": 804,
+        "promptBottom": 830.4,
+        "creditTop": 855,
+        "creditBottom": 881.4,
+        "gapRows": 24,
+        "bottomSlackRows": 18
+      },
+      "modeBeforeStart": "title",
+      "liveInput": {
+        "before": {
+          "mode": "playing",
+          "playerX": 454,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2,
+          "tick": 136,
+          "hearts": 3
+        },
+        "after": {
+          "mode": "playing",
+          "playerX": 590.1666666666661,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2,
+          "tick": 200,
+          "hearts": 3
+        },
+        "walked": 136.16666666666606,
+        "firedWire": true
+      },
+      "fillGate": {
+        "title": {
+          "fill": 1,
+          "pass": true
+        },
+        "options": {
+          "fill": 1,
+          "pass": true
+        },
+        "optionsBottom": {
+          "fill": 1,
+          "pass": true
+        },
+        "controls": {
+          "fill": 1,
+          "pass": true
+        },
+        "gameplay": {
+          "fill": 1,
+          "pass": true
+        },
+        "pause": {
+          "fill": 1,
+          "pass": true
+        }
+      },
+      "allErrors": []
+    },
+    {
+      "viewport": "1512x860",
+      "stops": {
+        "title": {
+          "mode": "title",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 2.8666666666666667,
+            "x": 68,
+            "y": 0,
+            "w": 1376,
+            "h": 860,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9101,
+          "vp": {
+            "w": 1512,
+            "h": 860
+          }
+        },
+        "options": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 2.8666666666666667,
+            "x": 68,
+            "y": 0,
+            "w": 1376,
+            "h": 860,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9101,
+          "vp": {
+            "w": 1512,
+            "h": 860
+          }
+        },
+        "optionsBottom": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 2.8666666666666667,
+            "x": 68,
+            "y": 0,
+            "w": 1376,
+            "h": 860,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9101,
+          "vp": {
+            "w": 1512,
+            "h": 860
+          }
+        },
+        "controls": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 2.8666666666666667,
+            "x": 68,
+            "y": 0,
+            "w": 1376,
+            "h": 860,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9101,
+          "vp": {
+            "w": 1512,
+            "h": 860
+          },
+          "pane": "settings"
+        },
+        "gameplay": {
+          "mode": "playing",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 2.8666666666666667,
+            "x": 68,
+            "y": 0,
+            "w": 1376,
+            "h": 860,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9101,
+          "vp": {
+            "w": 1512,
+            "h": 860
+          }
+        },
+        "pause": {
+          "mode": "playing",
+          "paused": true,
+          "errors": [],
+          "present": {
+            "scale": 2.8666666666666667,
+            "x": 68,
+            "y": 0,
+            "w": 1376,
+            "h": 860,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9101,
+          "vp": {
+            "w": 1512,
+            "h": 860
+          }
+        }
+      },
+      "pageErrors": [],
+      "titleFooter": {
+        "promptTop": 768.2666666666667,
+        "promptBottom": 793.4933333333333,
+        "creditTop": 817,
+        "creditBottom": 842.2266666666667,
+        "gapRows": 23,
+        "bottomSlackRows": 17
+      },
+      "modeBeforeStart": "title",
+      "liveInput": {
+        "before": {
+          "mode": "playing",
+          "playerX": 454,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2,
+          "tick": 137,
+          "hearts": 3
+        },
+        "after": {
+          "mode": "playing",
+          "playerX": 586.9999999999994,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2,
+          "tick": 200,
+          "hearts": 3
+        },
+        "walked": 132.99999999999943,
+        "firedWire": true
+      },
+      "fillGate": {
+        "title": {
+          "fill": 0.9101,
+          "pass": true
+        },
+        "options": {
+          "fill": 0.9101,
+          "pass": true
+        },
+        "optionsBottom": {
+          "fill": 0.9101,
+          "pass": true
+        },
+        "controls": {
+          "fill": 0.9101,
+          "pass": true
+        },
+        "gameplay": {
+          "fill": 0.9101,
+          "pass": true
+        },
+        "pause": {
+          "fill": 0.9101,
+          "pass": true
+        }
+      },
+      "allErrors": []
+    },
+    {
+      "viewport": "1920x1080",
+      "stops": {
+        "title": {
+          "mode": "title",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 3.6,
+            "x": 96,
+            "y": 0,
+            "w": 1728,
+            "h": 1080,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9,
+          "vp": {
+            "w": 1920,
+            "h": 1080
+          }
+        },
+        "options": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 3.6,
+            "x": 96,
+            "y": 0,
+            "w": 1728,
+            "h": 1080,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9,
+          "vp": {
+            "w": 1920,
+            "h": 1080
+          }
+        },
+        "optionsBottom": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 3.6,
+            "x": 96,
+            "y": 0,
+            "w": 1728,
+            "h": 1080,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9,
+          "vp": {
+            "w": 1920,
+            "h": 1080
+          }
+        },
+        "controls": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 3.6,
+            "x": 96,
+            "y": 0,
+            "w": 1728,
+            "h": 1080,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9,
+          "vp": {
+            "w": 1920,
+            "h": 1080
+          },
+          "pane": "settings"
+        },
+        "gameplay": {
+          "mode": "playing",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 3.6,
+            "x": 96,
+            "y": 0,
+            "w": 1728,
+            "h": 1080,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9,
+          "vp": {
+            "w": 1920,
+            "h": 1080
+          }
+        },
+        "pause": {
+          "mode": "playing",
+          "paused": true,
+          "errors": [],
+          "present": {
+            "scale": 3.6,
+            "x": 96,
+            "y": 0,
+            "w": 1728,
+            "h": 1080,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9,
+          "vp": {
+            "w": 1920,
+            "h": 1080
+          }
+        }
+      },
+      "pageErrors": [],
+      "titleFooter": {
+        "promptTop": 964.8000000000001,
+        "promptBottom": 996.48,
+        "creditTop": 1026,
+        "creditBottom": 1057.68,
+        "gapRows": 29,
+        "bottomSlackRows": 22
+      },
+      "modeBeforeStart": "title",
+      "liveInput": {
+        "before": {
+          "mode": "playing",
+          "playerX": 454,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2,
+          "tick": 138,
+          "hearts": 3
+        },
+        "after": {
+          "mode": "playing",
+          "playerX": 586.9999999999994,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2,
+          "tick": 201,
+          "hearts": 3
+        },
+        "walked": 132.99999999999943,
+        "firedWire": true
+      },
+      "fillGate": {
+        "title": {
+          "fill": 0.9,
+          "pass": true
+        },
+        "options": {
+          "fill": 0.9,
+          "pass": true
+        },
+        "optionsBottom": {
+          "fill": 0.9,
+          "pass": true
+        },
+        "controls": {
+          "fill": 0.9,
+          "pass": true
+        },
+        "gameplay": {
+          "fill": 0.9,
+          "pass": true
+        },
+        "pause": {
+          "fill": 0.9,
+          "pass": true
+        }
+      },
+      "allErrors": []
+    },
+    {
+      "viewport": "2560x1440",
+      "stops": {
+        "title": {
+          "mode": "title",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 4.8,
+            "x": 128,
+            "y": 0,
+            "w": 2304,
+            "h": 1440,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9,
+          "vp": {
+            "w": 2560,
+            "h": 1440
+          }
+        },
+        "options": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 4.8,
+            "x": 128,
+            "y": 0,
+            "w": 2304,
+            "h": 1440,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9,
+          "vp": {
+            "w": 2560,
+            "h": 1440
+          }
+        },
+        "optionsBottom": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 4.8,
+            "x": 128,
+            "y": 0,
+            "w": 2304,
+            "h": 1440,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9,
+          "vp": {
+            "w": 2560,
+            "h": 1440
+          }
+        },
+        "controls": {
+          "mode": "options",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 4.8,
+            "x": 128,
+            "y": 0,
+            "w": 2304,
+            "h": 1440,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9,
+          "vp": {
+            "w": 2560,
+            "h": 1440
+          },
+          "pane": "settings"
+        },
+        "gameplay": {
+          "mode": "playing",
+          "paused": false,
+          "errors": [],
+          "present": {
+            "scale": 4.8,
+            "x": 128,
+            "y": 0,
+            "w": 2304,
+            "h": 1440,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9,
+          "vp": {
+            "w": 2560,
+            "h": 1440
+          }
+        },
+        "pause": {
+          "mode": "playing",
+          "paused": true,
+          "errors": [],
+          "present": {
+            "scale": 4.8,
+            "x": 128,
+            "y": 0,
+            "w": 2304,
+            "h": 1440,
+            "native": {
+              "w": 480,
+              "h": 300
+            }
+          },
+          "fill": 0.9,
+          "vp": {
+            "w": 2560,
+            "h": 1440
+          }
+        }
+      },
+      "pageErrors": [],
+      "titleFooter": {
+        "promptTop": 1286.3999999999999,
+        "promptBottom": 1328.6399999999999,
+        "creditTop": 1368,
+        "creditBottom": 1410.24,
+        "gapRows": 39,
+        "bottomSlackRows": 29
+      },
+      "modeBeforeStart": "title",
+      "liveInput": {
+        "before": {
+          "mode": "playing",
+          "playerX": 454,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2,
+          "tick": 140,
+          "hearts": 3
+        },
+        "after": {
+          "mode": "playing",
+          "playerX": 590.1666666666661,
+          "feetY": 740,
+          "wires": 0,
+          "balloons": 2,
+          "tick": 204,
+          "hearts": 3
+        },
+        "walked": 136.16666666666606,
+        "firedWire": true
+      },
+      "fillGate": {
+        "title": {
+          "fill": 0.9,
+          "pass": true
+        },
+        "options": {
+          "fill": 0.9,
+          "pass": true
+        },
+        "optionsBottom": {
+          "fill": 0.9,
+          "pass": true
+        },
+        "controls": {
+          "fill": 0.9,
+          "pass": true
+        },
+        "gameplay": {
+          "fill": 0.9,
+          "pass": true
+        },
+        "pause": {
+          "fill": 0.9,
+          "pass": true
+        }
+      },
+      "allErrors": []
+    }
+  ],
+  "verdict": {
+    "fillGateAllPass": false,
+    "zeroRuntimeErrors": true,
+    "footerGapRowsEverywhere": true,
+    "footerBottomSlackEverywhere": true,
+    "optionsDoorWorks": true,
+    "startsFromTitleByEnter": true,
+    "liveInputMoves": true,
+    "pauseWorks": true
+  }
+}

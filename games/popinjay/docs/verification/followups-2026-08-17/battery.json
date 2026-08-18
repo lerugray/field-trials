@@ -1,0 +1,42 @@
+{
+  "date": "2026-08-17",
+  "command": "npm run build && npm test",
+  "baseline": {
+    "head": "62e2fc7839ec8828f014ac4c676328a9e2d3338d",
+    "build": {
+      "modules": 28,
+      "sizeKB": 1353.1,
+      "output": "dist/popinjay.html"
+    },
+    "tests": 276,
+    "pass": 276,
+    "fail": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "final": {
+    "head": "d9224586d0fa8c995fc76ebf438870e61ceac80e",
+    "build": {
+      "modules": 28,
+      "sizeKB": 1354.6,
+      "output": "dist/popinjay.html"
+    },
+    "tests": 279,
+    "pass": 279,
+    "fail": 0,
+    "skipped": 0,
+    "todo": 0,
+    "durationMs": 25607.708267
+  },
+  "finalProbes": [
+    { "file": "two-overlay-collision.json", "pass": true },
+    { "file": "tower-top-pose.json", "pass": true },
+    { "file": "duplicate-binding.json", "pass": true }
+  ],
+  "scope": {
+    "base": "62e2fc7839ec8828f014ac4c676328a9e2d3338d",
+    "head": "d9224586d0fa8c995fc76ebf438870e61ceac80e",
+    "changedAudioPaths": [],
+    "audioUntouched": true
+  }
+}

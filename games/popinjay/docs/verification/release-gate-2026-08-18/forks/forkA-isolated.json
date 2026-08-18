@@ -1,0 +1,40 @@
+{
+  "head": "968b27b",
+  "method": "pad connected + notice expired => baseline; re-fire connect => only the toast differs",
+  "scale": 3,
+  "nativeW": 480,
+  "nativeH": 300,
+  "changedPx": 35658,
+  "box": {
+    "x0": 252,
+    "x1": 471.7,
+    "y0": 56,
+    "y1": 79.7,
+    "w": 220,
+    "h": 24
+  },
+  "blend": {
+    "interiorWithNotice": [
+      113,
+      101,
+      80
+    ],
+    "interiorWithout": [
+      120,
+      112,
+      95
+    ]
+  },
+  "noticeUpAtWith": true,
+  "noticeGoneAfter": true,
+  "paused": true,
+  "verdict": {
+    "rightEdgeAtNativeX472": true,
+    "topAtNativeY56": true,
+    "widthIs220NotBanner320": true,
+    "heightIs22NotBanner28": true,
+    "clearsPlayerColumn": true,
+    "isCornerToastNotCentredBanner": true
+  },
+  "expected": "FORK A (Ray): right-corner toast 220x22, right edge native x471, top native y56, alpha 0.58"
+}

@@ -1,0 +1,165 @@
+{
+  "tap": {
+    "trials": [
+      {
+        "tapMs": 0,
+        "firedOutOf5": 1
+      },
+      {
+        "tapMs": 10,
+        "firedOutOf5": 5
+      },
+      {
+        "tapMs": 20,
+        "firedOutOf5": 5
+      },
+      {
+        "tapMs": 34,
+        "firedOutOf5": 5
+      },
+      {
+        "tapMs": 60,
+        "firedOutOf5": 5
+      },
+      {
+        "tapMs": 120,
+        "firedOutOf5": 5
+      },
+      {
+        "tapMs": 200,
+        "firedOutOf5": 5
+      }
+    ],
+    "errs": []
+  },
+  "hidden": {
+    "timeline": [
+      {
+        "state": "visible",
+        "t": 1247,
+        "tick": 59,
+        "hearts": 3
+      },
+      {
+        "state": "visible",
+        "t": 2248,
+        "tick": 119,
+        "hearts": 3
+      },
+      {
+        "state": "visible",
+        "t": 3249,
+        "tick": 179,
+        "hearts": 2
+      },
+      {
+        "state": "visible",
+        "t": 4248,
+        "tick": 239,
+        "hearts": 2
+      },
+      {
+        "state": "visible",
+        "t": 5247,
+        "tick": 299,
+        "hearts": 2
+      },
+      {
+        "state": "visible",
+        "t": 6248,
+        "tick": 359,
+        "hearts": 2
+      },
+      {
+        "state": "visible",
+        "t": 7248,
+        "tick": 419,
+        "hearts": 2
+      },
+      {
+        "state": "visible",
+        "t": 8247,
+        "tick": 479,
+        "hearts": 2
+      },
+      {
+        "state": "visible",
+        "t": 9249,
+        "tick": 539,
+        "hearts": 2
+      },
+      {
+        "state": "visible",
+        "t": 10248,
+        "tick": 599,
+        "hearts": 2
+      },
+      {
+        "state": "visible",
+        "t": 11248,
+        "tick": 659,
+        "hearts": 2
+      },
+      {
+        "state": "visible",
+        "t": 12247,
+        "tick": 719,
+        "hearts": 1
+      },
+      {
+        "state": "visible",
+        "t": 13251,
+        "tick": 779,
+        "hearts": 1
+      }
+    ],
+    "hiddenSamples": 0,
+    "everActuallyHidden": false,
+    "finalMode": "playing",
+    "errs": []
+  },
+  "trunk": {
+    "cycles": [
+      {
+        "run": 1,
+        "bank": 1,
+        "owned": 12
+      },
+      {
+        "run": 2,
+        "bank": 2,
+        "owned": 12
+      },
+      {
+        "run": 3,
+        "bank": 3,
+        "owned": 12
+      }
+    ],
+    "trunkOpened": "trunk",
+    "purchase": {
+      "bankBefore": 40,
+      "bankAfter": 28,
+      "ownedBefore": 12,
+      "ownedAfter": 13
+    },
+    "errs": []
+  },
+  "title": {
+    "seedAfterEntry": 424,
+    "modeAfterSeedStart": "playing",
+    "endlessLocked": {
+      "before": "title",
+      "after": "title"
+    },
+    "afterLogAndMute": {
+      "mode": "title",
+      "errs": []
+    },
+    "seedOverflow": {
+      "seed": 999999999,
+      "mode": "playing"
+    },
+    "errs": []
+  }
+}

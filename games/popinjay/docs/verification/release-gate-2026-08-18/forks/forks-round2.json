@@ -1,0 +1,56 @@
+{
+  "head": "968b27b",
+  "url": "file:///Users/rayweiss/Desktop/Dev%20Work/popinjay/dist/popinjay.html",
+  "forkA": {
+    "method": "canvas diff (frame with notice) - (frame without) — independent of the card's colours",
+    "scale": 3,
+    "nativeW": 480,
+    "nativeH": 300,
+    "changedPx": 191223,
+    "box": {
+      "x0": 80,
+      "x1": 471.7,
+      "y0": 56,
+      "y1": 271.7,
+      "w": 392,
+      "h": 216
+    },
+    "notice": {
+      "headline": "CONTROLLER CONNECTED",
+      "detail": "STANDARD GAMEPAD READY",
+      "ticks": 149
+    },
+    "paused": true,
+    "verdict": {
+      "pinnedRight": true,
+      "widthIsToastNotBanner": false,
+      "heightIsToastNotBanner": false,
+      "topAtY56": true,
+      "clearsPlayerColumn": false,
+      "notCentredBanner": true
+    },
+    "expected": "right-corner toast 220x22, right edge at native x472, top at native y56, alpha 0.58"
+  },
+  "forkB2": {
+    "armedBeforeOffer": "down",
+    "feedbackBeforeOffer": null,
+    "offered": "DPAD_UP (button 12) — owned by CLIMB UP",
+    "feedbackAfterOffer": "D-UP ALREADY BINDS CLIMB UP - CHOOSE ANOTHER",
+    "downButtonsAfter": [
+      13
+    ],
+    "upButtonsAfter": [
+      12
+    ],
+    "REFUSED": true,
+    "feedbackIsFresh": true,
+    "controlCase": {
+      "armed": "down",
+      "offeredButton": 3,
+      "downButtonsAfter": [
+        3
+      ],
+      "ACCEPTED": true
+    }
+  }
+}

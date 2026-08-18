@@ -1,0 +1,57 @@
+{
+  "midTour": {
+    "locale": 1,
+    "stage": 2,
+    "score": 1050,
+    "tickets": 1,
+    "souvenirs": [
+      "gallerySidearm"
+    ],
+    "dead": false
+  },
+  "afterQuitMode": "title",
+  "afterReloadMode": "title",
+  "enterWithResumableSave": {
+    "before": {
+      "locale": 1,
+      "stage": 2,
+      "score": 1050,
+      "tickets": 1,
+      "souvenirs": [
+        "gallerySidearm"
+      ]
+    },
+    "after": {
+      "locale": 1,
+      "stage": 1,
+      "score": 0,
+      "tickets": 0,
+      "souvenirs": []
+    },
+    "mode": "playing"
+  },
+  "rPath": {
+    "before": {
+      "locale": 1,
+      "stage": 2,
+      "score": 1050,
+      "souvenirs": [
+        "gallerySidearm"
+      ]
+    },
+    "after": {
+      "locale": 1,
+      "stage": 2,
+      "score": 1050,
+      "souvenirs": [
+        "gallerySidearm"
+      ]
+    },
+    "mode": "playing"
+  },
+  "blurClearsHeld": {
+    "movedAfterBlur": 0,
+    "stuck": false
+  },
+  "errs": []
+}

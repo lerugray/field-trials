@@ -1,0 +1,137 @@
+{
+  "FACING-A-walk-right": {
+    "frames": [
+      {
+        "tick": 105,
+        "x": 454,
+        "nativeX": 170.3
+      },
+      {
+        "tick": 115,
+        "x": 485.7,
+        "nativeX": 182.1
+      },
+      {
+        "tick": 123,
+        "x": 511,
+        "nativeX": 191.6
+      },
+      {
+        "tick": 131,
+        "x": 536.3,
+        "nativeX": 201.1
+      },
+      {
+        "tick": 139,
+        "x": 561.7,
+        "nativeX": 210.6
+      },
+      {
+        "tick": 147,
+        "x": 587,
+        "nativeX": 220.1
+      },
+      {
+        "tick": 155,
+        "x": 612.3,
+        "nativeX": 229.6
+      },
+      {
+        "tick": 163,
+        "x": 637.7,
+        "nativeX": 239.1
+      }
+    ],
+    "netTravel": 183.7
+  },
+  "FACING-B-walk-left": {
+    "frames": [
+      {
+        "tick": 198,
+        "x": 663,
+        "nativeX": 248.6
+      },
+      {
+        "tick": 206,
+        "x": 637.7,
+        "nativeX": 239.1
+      },
+      {
+        "tick": 215,
+        "x": 609.2,
+        "nativeX": 228.4
+      },
+      {
+        "tick": 223,
+        "x": 583.8,
+        "nativeX": 218.9
+      },
+      {
+        "tick": 231,
+        "x": 558.5,
+        "nativeX": 209.4
+      },
+      {
+        "tick": 239,
+        "x": 533.2,
+        "nativeX": 199.9
+      },
+      {
+        "tick": 247,
+        "x": 507.8,
+        "nativeX": 190.4
+      },
+      {
+        "tick": 255,
+        "x": 492,
+        "nativeX": 184.5
+      }
+    ],
+    "netTravel": -171
+  },
+  "FACING-C-climb": {
+    "frames": [
+      {
+        "tick": 35,
+        "x": 599,
+        "nativeX": 224.6
+      },
+      {
+        "tick": 43,
+        "x": 599,
+        "nativeX": 224.6
+      },
+      {
+        "tick": 52,
+        "x": 599,
+        "nativeX": 224.6
+      },
+      {
+        "tick": 60,
+        "x": 599,
+        "nativeX": 224.6
+      },
+      {
+        "tick": 68,
+        "x": 599,
+        "nativeX": 224.6
+      },
+      {
+        "tick": 76,
+        "x": 599,
+        "nativeX": 224.6
+      },
+      {
+        "tick": 84,
+        "x": 599,
+        "nativeX": 224.6
+      },
+      {
+        "tick": 92,
+        "x": 599,
+        "nativeX": 224.6
+      }
+    ],
+    "netTravel": 0
+  }
+}

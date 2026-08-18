@@ -1,0 +1,392 @@
+{
+  "label": "before",
+  "stamp": "20260816-071601",
+  "dist": "file:///Users/rayweiss/Desktop/Dev%20Work/popinjay/dist/popinjay.html",
+  "probeA": {
+    "opened": {
+      "mode": "options",
+      "pane": "binds",
+      "cursor": 0
+    },
+    "rebound": {
+      "ok": true,
+      "capturing": "down",
+      "rebindingAfter": null,
+      "keys": {
+        "keys": [
+          "KeyS"
+        ],
+        "buttons": [
+          13
+        ]
+      }
+    },
+    "cursorBeforeArrow": 3,
+    "cursorAfterArrowDown": 3,
+    "cursorAfterS": 4,
+    "arrowMoved": false,
+    "sMoved": true,
+    "hintPane": {
+      "pane": "binds",
+      "cursor": 4
+    }
+  },
+  "probeB": {
+    "bindings": {
+      "up": {
+        "keys": [
+          "KeyJ"
+        ],
+        "buttons": [
+          12
+        ]
+      },
+      "down": {
+        "keys": [
+          "KeyJ"
+        ],
+        "buttons": [
+          13
+        ]
+      }
+    },
+    "startCursor": 3,
+    "samples": [
+      {
+        "key": "ArrowDown",
+        "before": 3,
+        "after": 3,
+        "moved": false
+      },
+      {
+        "key": "ArrowUp",
+        "before": 3,
+        "after": 3,
+        "moved": false
+      },
+      {
+        "key": "j",
+        "before": 3,
+        "after": 3,
+        "moved": false
+      }
+    ],
+    "twentyArrowDownTrail": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    "resetDefaultsReachable": false
+  },
+  "poisonedStorage": "{\"left\":{\"keys\":[\"ArrowLeft\"],\"buttons\":[14]},\"right\":{\"keys\":[\"ArrowRight\"],\"buttons\":[15]},\"up\":{\"keys\":[\"KeyJ\"],\"buttons\":[12]},\"down\":{\"keys\":[\"KeyJ\"],\"buttons\":[13]},\"fire\":{\"keys\":[\"KeyZ\",\"Space\"],\"buttons\":[0]},\"sidearm\":{\"keys\":[\"KeyX\"],\"buttons\":[2]},\"tuba\":{\"keys\":[\"KeyT\"],\"buttons\":[3]},\"pause\":{\"keys\":[\"Escape\",\"KeyP\"],\"buttons\":[9]},\"confirm\":{\"keys\":[\"Enter\",\"Space\"],\"buttons\":[0]},\"cancel\":{\"keys\":[\"Escape\"],\"buttons\":[1]},\"options\":{\"keys\":[\"KeyO\"],\"buttons\":[8]},\"quit\":{\"keys\":[\"KeyQ\"],\"buttons\":[4]}}",
+  "probeC": {
+    "loaded": {
+      "up": {
+        "keys": [
+          "KeyJ"
+        ],
+        "buttons": [
+          12
+        ]
+      },
+      "down": {
+        "keys": [
+          "KeyJ"
+        ],
+        "buttons": [
+          13
+        ]
+      }
+    },
+    "settingsTrail": [
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      },
+      {
+        "pane": "settings",
+        "cursor": 0
+      }
+    ],
+    "reachedController": false,
+    "reachedReset": false,
+    "resetRoute": "none — could not reach Controller"
+  },
+  "probeD": {
+    "beforeNotice": {
+      "present": {
+        "scale": 2.6666666666666665,
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 800,
+        "native": {
+          "w": 480,
+          "h": 300
+        }
+      },
+      "paused": false,
+      "mode": "playing",
+      "notice": null,
+      "playerWorld": {
+        "x": 454,
+        "feetY": 740
+      },
+      "playerNative": {
+        "x": 170.25,
+        "feetY": 277.5,
+        "headY": 256.5
+      },
+      "rows": {
+        "256": {
+          "canvasY": 684,
+          "rgbSum": 599971,
+          "panelRgbSum": 460999,
+          "panelCount": 854,
+          "panelMean": 539.811475409836
+        },
+        "266": {
+          "canvasY": 710,
+          "rgbSum": 593510,
+          "panelRgbSum": 454817,
+          "panelCount": 854,
+          "panelMean": 532.5725995316159
+        },
+        "274": {
+          "canvasY": 732,
+          "rgbSum": 553543,
+          "panelRgbSum": 411452,
+          "panelCount": 854,
+          "panelMean": 481.79391100702577
+        },
+        "277": {
+          "canvasY": 740,
+          "rgbSum": 398233,
+          "panelRgbSum": 265314,
+          "panelCount": 854,
+          "panelMean": 310.672131147541
+        },
+        "282": {
+          "canvasY": 753,
+          "rgbSum": 249379,
+          "panelRgbSum": 165846,
+          "panelCount": 854,
+          "panelMean": 194.19906323185012
+        },
+        "290": {
+          "canvasY": 774,
+          "rgbSum": 310493,
+          "panelRgbSum": 206765,
+          "panelCount": 854,
+          "panelMean": 242.1135831381733
+        }
+      },
+      "panelBand": {}
+    },
+    "withNotice": {
+      "present": {
+        "scale": 2.6666666666666665,
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 800,
+        "native": {
+          "w": 480,
+          "h": 300
+        }
+      },
+      "paused": false,
+      "mode": "playing",
+      "notice": {
+        "headline": "CONTROLLER CONNECTED",
+        "detail": "STANDARD GAMEPAD READY",
+        "ticks": 164
+      },
+      "playerWorld": {
+        "x": 454,
+        "feetY": 740
+      },
+      "playerNative": {
+        "x": 170.25,
+        "feetY": 277.5,
+        "headY": 256.5
+      },
+      "rows": {
+        "256": {
+          "canvasY": 684,
+          "rgbSum": 599971,
+          "panelRgbSum": 460999,
+          "panelCount": 854,
+          "panelMean": 539.811475409836
+        },
+        "266": {
+          "canvasY": 710,
+          "rgbSum": 558865,
+          "panelRgbSum": 420436,
+          "panelCount": 854,
+          "panelMean": 492.3138173302108
+        },
+        "274": {
+          "canvasY": 732,
+          "rgbSum": 657581,
+          "panelRgbSum": 515886,
+          "panelCount": 854,
+          "panelMean": 604.0819672131148
+        },
+        "277": {
+          "canvasY": 740,
+          "rgbSum": 651826,
+          "panelRgbSum": 519204,
+          "panelCount": 854,
+          "panelMean": 607.9672131147541
+        },
+        "282": {
+          "canvasY": 753,
+          "rgbSum": 549862,
+          "panelRgbSum": 466512,
+          "panelCount": 854,
+          "panelMean": 546.2669789227166
+        },
+        "290": {
+          "canvasY": 774,
+          "rgbSum": 616474,
+          "panelRgbSum": 512975,
+          "panelCount": 854,
+          "panelMean": 600.6733021077283
+        }
+      },
+      "panelBand": {}
+    },
+    "captures": {
+      "beforeToast": "/Users/rayweiss/Desktop/Dev Work/popinjay/docs/verification/fix-20260816/connect-notice-unpaused-before-beforetoast_20260816-071601.png",
+      "liveCanvas": "/Users/rayweiss/Desktop/Dev Work/popinjay/docs/verification/fix-20260816/connect-notice-unpaused-before_20260816-071601.png"
+    },
+    "rowDeltas": {
+      "256": {
+        "rgbSumBefore": 599971,
+        "rgbSumAfter": 599971,
+        "panelMeanBefore": 539.811475409836,
+        "panelMeanAfter": 539.811475409836
+      },
+      "266": {
+        "rgbSumBefore": 593510,
+        "rgbSumAfter": 558865,
+        "panelMeanBefore": 532.5725995316159,
+        "panelMeanAfter": 492.3138173302108
+      },
+      "274": {
+        "rgbSumBefore": 553543,
+        "rgbSumAfter": 657581,
+        "panelMeanBefore": 481.79391100702577,
+        "panelMeanAfter": 604.0819672131148
+      },
+      "277": {
+        "rgbSumBefore": 398233,
+        "rgbSumAfter": 651826,
+        "panelMeanBefore": 310.672131147541,
+        "panelMeanAfter": 607.9672131147541
+      },
+      "282": {
+        "rgbSumBefore": 249379,
+        "rgbSumAfter": 549862,
+        "panelMeanBefore": 194.19906323185012,
+        "panelMeanAfter": 546.2669789227166
+      },
+      "290": {
+        "rgbSumBefore": 310493,
+        "rgbSumAfter": 616474,
+        "panelMeanBefore": 242.1135831381733,
+        "panelMeanAfter": 600.6733021077283
+      }
+    }
+  }
+}
