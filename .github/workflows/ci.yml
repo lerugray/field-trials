@@ -34,6 +34,7 @@ jobs:
           - lines-of-advance
           - office-of-the-road
           - capriole
+          - material-breach
           - adversary
     defaults:
       run:
@@ -79,6 +80,7 @@ jobs:
           - lines-of-advance
           - office-of-the-road
           - capriole
+          - material-breach
     defaults:
       run:
         working-directory: games/${{ matrix.game }}
@@ -118,4 +120,5 @@ jobs:
             lines-of-advance) node scripts/interaction-check.js ;;
             office-of-the-road) node scripts/gold-at-town.mjs ;;
             capriole)        node scripts/probe.js ;;
+            material-breach) echo "covered by playwright tests in the suite step (unskip once Chromium is present)" ;;
           esac
