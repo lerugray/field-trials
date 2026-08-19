@@ -8,6 +8,7 @@ import {
   actRepair,
   actFabricate,
   actAnswerNotice,
+  actWithdrawLast,
   enterPremises,
   showOverlay,
   backToTitle,
@@ -37,6 +38,9 @@ export function dispatch(view, id) {
       return null;
     case 'answer':
       actAnswerNotice(view);
+      return null;
+    case 'withdraw':
+      actWithdrawLast(view);
       return null;
     case 'tool':
       cycleTool(view);

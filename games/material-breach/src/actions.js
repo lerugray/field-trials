@@ -144,3 +144,12 @@ export function cancelOrder(facility, orderId) {
   if (spec && typeof spec.cost === 'number') facility.treasury.gold += spec.cost;
   return { ok: true };
 }
+
+// lastQueuedOrder(facility) -> the order a single Withdraw control acts on: the most recently
+// raised order that has not yet begun (status 'queued'). An order only leaves 'queued' when a
+// cycle is signed over (COMMIT, cycle.js), so this is stable for the whole ADMIN phase it was
+// raised in, and it is exactly what cancelOrder(facility, order.id) above will accept.
+export function lastQueuedOrder(facility) {
+  const queued = facility.orders.filter((o) => o.status === 'queued');
+  return queued.length ? queued[queued.length - 1] : null;
+}

@@ -4,7 +4,16 @@
 // failure is recorded and shown, never swallowed.
 import { createFacility, facilityDefense, activeStaff, CONFIG } from './model.js';
 import { commitCycle } from './cycle.js';
-import { queueFortify, cancelOrder, queueExcavate, designate, queueRepair, queueFabricate, answerNotice } from './actions.js';
+import {
+  queueFortify,
+  cancelOrder,
+  lastQueuedOrder,
+  queueExcavate,
+  designate,
+  queueRepair,
+  queueFabricate,
+  answerNotice,
+} from './actions.js';
 import { ROOM } from './model.js';
 import { save, load, clear } from './persistence.js';
 import { surface } from './debuglog.js';
@@ -174,9 +183,31 @@ export function actExcavate(view, x, y) {
 }
 
 export function actCancelOrder(view, orderId) {
+  const order = view.facility.orders.find((o) => o.id === orderId);
+  const kind = order ? order.kind : null;
+  const spec = kind && CONFIG.orders[kind];
   const res = cancelOrder(view.facility, orderId);
-  view.lastActionNote = res.ok ? 'Works order withdrawn and its cost returned.' : `Not withdrawn: ${res.reason}.`;
+  const label = kind ? kind.charAt(0).toUpperCase() + kind.slice(1) : 'Works';
+  view.lastActionNote = res.ok
+    ? `${label} order withdrawn. ${spec && typeof spec.cost === 'number' ? `${spec.cost}g returned.` : 'Cost returned.'}`
+    : `Not withdrawn: ${res.reason}.`;
+  view.sfx = res.ok ? 'pen' : 'refused';
+  if (view.log) view.log.info('action: cancel order', view.lastActionNote);
   return res;
+}
+
+// actWithdrawLast(view): the action bar's Withdraw control. There is no per-order picklist (the
+// player queues orders one at a time from this same bar, so "the one I just raised" is always
+// unambiguous); this withdraws the most recently raised order still in 'queued' status and returns
+// its cost, per cancelOrder's contract above.
+export function actWithdrawLast(view) {
+  const order = lastQueuedOrder(view.facility);
+  if (!order) {
+    view.lastActionNote = 'No works order stands to be withdrawn.';
+    view.sfx = 'refused';
+    return { ok: false, reason: 'no queued order' };
+  }
+  return actCancelOrder(view, order.id);
 }
 
 // The pre-commit checklist (DIRECTIONS fold 6): opening it is the first of two confirms.

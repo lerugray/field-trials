@@ -2,6 +2,7 @@
 // them) and input (which hit-tests them). Presentation only, no DOM, no clock. Pointer-primary:
 // every interactive region is a rectangle the mouse can hit; the keyboard mirrors the same ids.
 import { CONFIG, ROOM } from './model.js';
+import { lastQueuedOrder } from './actions.js';
 
 export const SCREEN = { w: 640, h: 360 };
 
@@ -111,6 +112,14 @@ export function computeButtons(view) {
       // workshop does teaches them what the workshop is for.
       const hasShop = (f.rooms || []).some((r) => r.type === ROOM.FABRICATION);
       if (hasShop) specs.push({ id: 'fabricate', label: `Fabricate ${CONFIG.orders.fabricate.cost}g`, key: 'B', weight: 1 });
+      // The withdraw control appears only while an order raised this ADMIN phase is still queued
+      // (release-gate Q3: cancelOrder was implemented and imported but never reachable from a
+      // player action). The label stays a bare verb rather than "Withdraw NNg  [C]" (Fortify's own
+      // shape): "Withdraw" carries a wide W the pixel serif sets wider than "Fortify"/"Repair", and
+      // an amount-carrying label clipped its own [C] key hint off the edge of a 105px slot at this
+      // weight (measured on the built artifact, not assumed). The gold figure is still read back on
+      // the status strip's note the instant the control is used, same as every other action here.
+      if (lastQueuedOrder(f)) specs.push({ id: 'withdraw', label: 'Withdraw', key: 'C', weight: 1 });
       if (notice) specs.push({ id: 'answer', label: `Answer ${CONFIG.ladder.answerCost[notice.rung]}g`, key: 'A', weight: 1 });
       specs.push({ id: 'sign', label: 'Sign over', key: 'Enter', weight: 1.15 });
       const gap = 6;
