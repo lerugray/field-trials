@@ -480,6 +480,57 @@ function drawPlayerStand(p, x, feet, top, hgt, f) {
   drawPlayerHead(p, x, top, hgt);
 }
 
+// Two-frame walk cycle keyed to world x. The stride length (world px per phase) is
+// chosen so the legs read as genuinely stepping at the player's walk speed.
+const WALK_PHASE_DIST = 12;
+
+function drawPlayerWalk(p, x, feet, top, hgt, f, phase) {
+  const legT = Math.round(hgt * 0.34);
+  const coatTop = top + Math.round(hgt * 0.30);
+  const coatH = hgt - legT - Math.round(hgt * 0.30) + 1;
+  // A three-pixel body bob: low when a foot is forward, high when legs pass.
+  const bob = phase === 0 ? 3 : 0;
+  const bodyTop = top - bob;
+  const bodyFeet = feet - bob;
+  const hipY = bodyFeet - legT;
+  const fwd = f * 8;   // forward foot, ahead of body centre
+  const back = -f * 6; // back foot, behind body centre
+
+  if (phase === 0) {
+    walkLeg(p, x - 2, hipY, x + back, bodyFeet, legT, false);
+    walkLeg(p, x + 2, hipY, x + fwd, bodyFeet, legT, true);
+  } else {
+    walkLeg(p, x - 2, hipY, x + fwd, bodyFeet, legT, true);
+    walkLeg(p, x + 2, hipY, x + back, bodyFeet, legT, false);
+  }
+
+  for (let j = 0; j < coatH; j++) for (let i = -5; i <= 5; i++) {
+    const u = (i + 5) / 10;
+    p.px(x + i, coatTop + j - bob, rampAt(R.teal, clamp(0.30 + (f < 0 ? (1 - u) : u) * 0.5 - j * 0.012, 0, 1), x + i, coatTop + j));
+  }
+  p.vline(x, coatTop + 1 - bob, coatTop + coatH - 1 - bob, P.pa4, 0.8);
+  p.px(x, coatTop + 2 - bob, P.gd4); p.px(x, coatTop + 5 - bob, P.gd4);
+
+  // Launcher arm swings opposite to the forward leg.
+  const armX = x + f * (phase === 0 ? 6 : 4);
+  const armY = bodyTop + Math.round(hgt * 0.16) + (phase === 0 ? 1 : -1);
+  p.line(x, coatTop + 2 - bob, armX, armY, P.ink);
+  p.fcircle(armX, armY - 1, 2, P.gd3);
+  p.px(armX, armY - 2, P.gd5, 0.9);
+
+  drawPlayerHead(p, x, bodyTop, hgt);
+}
+
+function walkLeg(p, hipX, hipY, footX, footY, legT, forward) {
+  // Slightly raised knee; the forward leg lifts higher.
+  const kneeX = Math.round((hipX + footX) / 2);
+  const raise = forward ? Math.round(legT * 0.28) : Math.round(legT * 0.12);
+  const kneeY = Math.round((hipY + footY) / 2) - Math.max(1, raise);
+  p.tline(hipX, hipY, kneeX, kneeY, 2, P.ink);
+  p.tline(kneeX, kneeY, footX, footY, 2, P.ink);
+  p.hline(footX - 1, footX + 1, footY, P.ink0);
+}
+
 function drawPlayerClimb(p, x, feet, top, hgt, pl) {
   const legT = Math.round(hgt * 0.34);
   const coatTop = top + Math.round(hgt * 0.30);
@@ -542,7 +593,10 @@ function drawPlayer(p, pl, S) {
   }
 
   if (pl.state === CLIMB) drawPlayerClimb(p, x, feet, top, hgt, pl);
-  else drawPlayerStand(p, x, feet, top, hgt, f);
+  else if (pl.walking) {
+    const phase = Math.floor(pl.x / WALK_PHASE_DIST) & 1;
+    drawPlayerWalk(p, x, feet, top, hgt, f, phase);
+  } else drawPlayerStand(p, x, feet, top, hgt, f);
 }
 
 // -- render-only effects (fed from the sim event queue) ------------------------

@@ -25,10 +25,10 @@ method here, and the method is documented, gated, and inspectable.
 | [THE OFFICE OF THE ROAD](games/office-of-the-road) | You are the desk the heroes report to; the party marches itself, tarot is your only intervention | 225 | **Release gate** — 9-step run; QA verdict SHIP, 3 disclosed blemishes, in-gate fixes landed | [play](https://lerugray.github.io/field-trials/office-of-the-road/) |
 | [CAPRIOLE](games/capriole) | First-person hop-and-bop roguelite: a clockwork goat ascends islands a 1995 PlayStation dreamed | 188 | **Spawn-safety sweep** — 8,000 cases, zero death loops | [play](https://lerugray.github.io/field-trials/capriole/) |
 | [MATERIAL BREACH](games/material-breach) | You run the dungeon. Adventurers are an occupational incident, filed with a root-cause analysis and a corrective-action owner. | 205 | **Release gate** — 9-step run 2026-08-18; a save-brick blocker and a phantom notice fix caught and closed in-gate; 205/205 | [play](https://lerugray.github.io/field-trials/material-breach/) |
-| [POPINJAY](games/popinjay) | A single-screen arcade roguelite on Pang's bouncing-balloon core — a 1900s World's Fair sharpshooter, wire-as-wall commitment, hand-tinted poster idiom. | 287 | **Release gate** — 9-step run 2026-08-18; a fused title-footer caught at step 2 and a false climb certification exposed, rebuilt, and independently looker-verified; 287/287 | [play](https://lerugray.github.io/field-trials/popinjay/) |
+| [POPINJAY](games/popinjay) | A single-screen arcade roguelite on Pang's bouncing-balloon core — a 1900s World's Fair sharpshooter, wire-as-wall commitment, hand-tinted poster idiom. | 291 | **Release gate** — 9-step run 2026-08-18; a fused title-footer caught at step 2 and a false climb certification exposed, rebuilt, and independently looker-verified; 287/287. Hotfixed 2026-08-19: title confirm-dialog overlay collision and a real walk cycle (was hat-bob only), both operator-reported, both independently re-verified; 291/291. | [play](https://lerugray.github.io/field-trials/popinjay/) |
 | [ADVERSARY](games/adversary) | Six-stage action-RPG with a Souls death loop | 300 | **FIX-FIRST**, followed by two documented fix rounds | pulled 2026-08-12 — in the shop |
 
-3,747 tests across the twelve on the shelf; ADVERSARY's 300 keep running in CI while it is
+3,751 tests across the twelve on the shelf; ADVERSARY's 300 keep running in CI while it is
 in the shop. Every suite runs with `npm test` and needs nothing but Node.
 
 ADVERSARY was pulled from the shelf on 2026-08-12 after play caught what its gates had

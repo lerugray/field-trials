@@ -18,7 +18,7 @@ import { Run } from './sim/run.js';
 import { drawTitle } from './render/title.js';
 import { drawGame, Effects, nativeScreen } from './render/game.js';
 import { drawHUD } from './render/hud.js';
-import { presentFrame, drawTitleExtras, drawResumeHint, drawConfirmNewRun, drawClearedRibbon, drawDowned, drawCenterpiece, drawRehearsal, drawPaused, drawOptions, drawTrunk, drawTourMap, drawDraft, drawScorecard, drawErrorBanner, drawSaveNotice, drawControllerNotice } from './render/overlays.js';
+import { presentFrame, scrim, drawTitleExtras, drawResumeHint, drawConfirmNewRun, drawClearedRibbon, drawDowned, drawCenterpiece, drawRehearsal, drawPaused, drawOptions, drawTrunk, drawTourMap, drawDraft, drawScorecard, drawErrorBanner, drawSaveNotice, drawControllerNotice } from './render/overlays.js';
 import { beginSlide, updateSlide, paintSlide, slideActive, holdSlide, resetSlide } from './render/transition.js';
 import { saveState, loadState, inspectSave, resumableKind, clearSave, saveNoticeFor, loadScores, recordScore, loadFlags, setFlag, ownedSouvenirs, ticketBank, bankTickets, unlockSouvenir, UNLOCK_COST, loadSettings, setSetting, loadRuns, recordRun } from './engine/saves.js';
 import { CATALOG } from './sim/catalog.js';
@@ -778,9 +778,17 @@ function boot() {
 
     if (mode === TITLE) {
       drawTitle(ctx, { w: VIEW.w, h: VIEW.h, seed: seedInput ? (parseInt(seedInput, 10) || 0) : seed, build: BUILD });
-      drawTitleExtras(p, titleExtrasData());
-      if (canResume && !confirmNewRun) drawResumeHint(p);
-      if (confirmNewRun) drawConfirmNewRun(p);
+      if (confirmNewRun) {
+        // The confirm dialog occludes the title controls; discard their queued type and
+        // darken the background so the question reads cleanly.
+        takeTextLayer();
+        beginTextLayer({ skipNative: true });
+        scrim(p, 0.66);
+        drawConfirmNewRun(p);
+      } else {
+        drawTitleExtras(p, titleExtrasData());
+        if (canResume) drawResumeHint(p);
+      }
       if (saveNotice) drawSaveNotice(p, saveNotice);
     } else if (mode === SCORECARD) {
       drawScorecard(p, scorecardData());

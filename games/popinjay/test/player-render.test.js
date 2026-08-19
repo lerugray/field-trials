@@ -32,6 +32,7 @@ function samplePlayerRegion(pl) {
   world.player.feetY = pl.feetY;
   world.player.state = pl.state;
   world.player.facing = pl.facing ?? 1;
+  world.player.walking = !!pl.walking;
   if (pl.ladder) world.player.ladder = pl.ladder;
   drawGame(ctx, world, { w: VIEW.w, h: VIEW.h }, null);
   const p = nativeScreen().painter;
@@ -71,4 +72,24 @@ test('climbing leg cycle alternates pixels between vertical-travel phases', () =
   const phase1 = samplePlayerRegion({ x: cx, feetY: 549, state: CLIMB, ladder: lad, facing: 1 });
   const diff = pixelDiff(phase0, phase1);
   assert.ok(diff >= 4, `climb cycle frames must differ in >=4 pixels, got ${diff}`);
+});
+
+// 2026-08-18: real walk read with alternating stride frames (was a static slide).
+test('walking pose paints different pixels from the standing pose', () => {
+  const stage = authoredStageM1();
+  const x = 400;
+  const feetY = stage.floorBelow(x, 0).y;
+  const stand = samplePlayerRegion({ x, feetY, state: STAND, facing: 1 });
+  const walk = samplePlayerRegion({ x, feetY, state: STAND, facing: 1, walking: true });
+  const diff = pixelDiff(stand, walk);
+  assert.ok(diff >= 8, `walk pose must differ from stand in >=8 pixels, got ${diff}`);
+});
+
+test('walking leg cycle alternates pixels between stride phases', () => {
+  const stage = authoredStageM1();
+  const feetY = stage.floorBelow(400, 0).y;
+  const phase0 = samplePlayerRegion({ x: 400, feetY, state: STAND, facing: 1, walking: true });
+  const phase1 = samplePlayerRegion({ x: 412, feetY, state: STAND, facing: 1, walking: true });
+  const diff = pixelDiff(phase0, phase1);
+  assert.ok(diff >= 4, `walk cycle frames must differ in >=4 pixels, got ${diff}`);
 });

@@ -25,6 +25,7 @@ export class Player {
     this.height = PLAYER.height;
     this.iframe = 0;      // invulnerability ticks after a hit (outline-pulse render)
     this.knockVx = 0;     // decaying knockback velocity (px/s)
+    this.walking = false; // true while horizontal walk input is held (drives render cycle)
     if (stage) this._settle(stage); // drop onto the surface under the spawn
   }
 
@@ -68,6 +69,7 @@ export class Player {
     let dir = 0;
     if (inLeft) dir -= 1;
     if (inRight) dir += 1;
+    this.walking = dir !== 0;
     if (dir) this.facing = dir;
     this.x += dir * PLAYER.walkSpeed * DT;
     this._clampWalls(stage);
@@ -118,6 +120,7 @@ export class Player {
     this.state = CLIMB;
     this.ladder = lad;
     this.vy = 0;
+    this.walking = false;
     this.x = (lad.x0 + lad.x1) / 2; // snap to the ladder center
   }
 
@@ -141,13 +144,13 @@ export class Player {
   }
 
   serialize() {
-    return { x: this.x, feetY: this.feetY, vy: this.vy, state: this.state, facing: this.facing, ladder: this.ladder ? this.ladder.id : null, iframe: this.iframe, knockVx: this.knockVx };
+    return { x: this.x, feetY: this.feetY, vy: this.vy, state: this.state, facing: this.facing, ladder: this.ladder ? this.ladder.id : null, iframe: this.iframe, knockVx: this.knockVx, walking: this.walking };
   }
 
   restore(d, stage) {
     this.x = d.x; this.feetY = d.feetY; this.vy = d.vy; this.state = d.state; this.facing = d.facing;
     this.ladder = d.ladder ? stage.ladders.find((l) => l.id === d.ladder) : null;
-    this.iframe = d.iframe | 0; this.knockVx = d.knockVx || 0;
+    this.iframe = d.iframe | 0; this.knockVx = d.knockVx || 0; this.walking = !!d.walking;
     return this;
   }
 }
