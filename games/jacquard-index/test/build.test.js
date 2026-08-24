@@ -1,7 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildBundleJS, buildHTML } from '../build.js';
@@ -68,12 +69,20 @@ test('the boot entry is required last in the bundle', () => {
 });
 
 test('build.js runs as a CLI from a path containing spaces and writes dist', () => {
-  assert.match(ROOT, /\s/, 'regression fixture requires a repository path containing spaces');
-  const stdout = execFileSync(process.execPath, [path.join(ROOT, 'build.js')], {
-    cwd: ROOT,
-    encoding: 'utf8',
-  });
-  const outputPath = path.join(ROOT, 'dist', 'jacquard-index.html');
-  assert.match(stdout, /^built dist\/jacquard-index\.html \([\d.]+ KB\)\n$/);
-  assert.equal(readFileSync(outputPath, 'utf8'), buildHTML());
+  const fixture = mkdtempSync(path.join(tmpdir(), 'jacquard index '));
+  try {
+    mkdirSync(path.join(fixture, 'src'));
+    cpSync(path.join(ROOT, 'build.js'), path.join(fixture, 'build.js'));
+    cpSync(path.join(ROOT, 'src'), path.join(fixture, 'src'), { recursive: true });
+    assert.match(fixture, /\s/);
+    const stdout = execFileSync(process.execPath, [path.join(fixture, 'build.js')], {
+      cwd: fixture,
+      encoding: 'utf8',
+    });
+    const outputPath = path.join(fixture, 'dist', 'jacquard-index.html');
+    assert.match(stdout, /^built dist\/jacquard-index\.html \([\d.]+ KB\)\n$/);
+    assert.equal(readFileSync(outputPath, 'utf8'), buildHTML());
+  } finally {
+    rmSync(fixture, { recursive: true, force: true });
+  }
 });
