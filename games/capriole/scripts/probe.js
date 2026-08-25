@@ -74,8 +74,12 @@ async function main() {
     const needEnemy = !!process.env.CAPRIOLE_SPHERE;
     if (!screenMode) await page.waitForFunction((needE) => {
       const s = window.__capriole.state ? window.__capriole.state() : null;
-      return s && s.tilt > 30 && s.chain >= 3 && s.aimIndicator && s.aimIndicator.visible &&
+      const ready = s && s.tilt > 30 && s.chain >= 3 && s.aimIndicator && s.aimIndicator.visible &&
         (!needE || s.enemiesOnScreen > 0);
+      // Pin the exact qualifying frame. The armed fire pulse lasts only three sim ticks;
+      // without this, later evaluate/screenshot awaits can observe it after it expires.
+      if (ready) window.__capriole.freeze();
+      return ready;
     }, needEnemy, { timeout: 15000 }).catch(() => {});
 
     const engineErrors = await page.evaluate(() => window.__capriole.errors());
