@@ -1,0 +1,8 @@
+{
+  "commit": "7a0cc5c",
+  "files": {
+    "band.js": "1d708b80c453df66ef628f8deb08b234d17f09a00a0d222ec525e1b83edf9188",
+    "prng.js": "7944a5137d16c93bae66c093c74cb0a0871a233ff51f559aa29724fe38437161",
+    "score.js": "0fc335798956a67d607a08c89b5aabfedf90bc87c437e3547d85aa782af066c5"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "head": "239a7f0",
+  "results": [
+    {
+      "id": "B1",
+      "verdict": "PASS",
+      "evidence": "exact 08-18 payload rejected by load (reason=\"save is unreadable or from another version\"); tryResume ok=false; second reload still recovers; notice institutional"
+    },
+    {
+      "id": "Q1",
+      "verdict": "PASS",
+      "evidence": "unparseable: notice drawn; wrong-version: notice drawn; shape-invalid: notice drawn"
+    },
+    {
+      "id": "Q2",
+      "verdict": "PASS",
+      "evidence": "standalone pause offers Back [X]; dispatch(totitle) returns overlay=title"
+    },
+    {
+      "id": "Q3",
+      "verdict": "PASS",
+      "evidence": "treasury 400->400; retired=true; note=\"Fortify order withdrawn. 50g returned.\""
+    },
+    {
+      "id": "Q4",
+      "verdict": "PASS",
+      "evidence": "closed buttons=[dismiss,newtenure]; dismiss->pause=true; reopen=true; record intact=true"
+    }
+  ]
+}

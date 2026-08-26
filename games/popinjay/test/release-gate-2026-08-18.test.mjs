@@ -2,14 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { chromium } from 'playwright';
 import { pathToFileURL } from 'node:url';
-
-let chromium = null;
-try {
-  ({ chromium } = await import('playwright'));
-} catch {
-  // Playwright not installed; browser cases skip cleanly (Node-only CI path).
-}
 import { drawTitle } from '../src/render/title.js';
 import { NATIVE, Painter, beginTextLayer, takeTextLayer, computeLetterbox } from '../src/render/px.js';
 import { buildBundle } from '../scripts/build.js';
@@ -57,7 +51,7 @@ test('title footer body rows stay at least one real line-height apart and inside
     `credit row bottom ${credit.y + BODY_LINE_HEIGHT} overruns native height ${NATIVE.h}`);
 });
 
-test('title footer layout leaves a positive pixel gap between the two center rows at every release viewport', { skip: chromium ? false : 'playwright unavailable' }, async () => {
+test('title footer layout leaves a positive pixel gap between the two center rows at every release viewport', async () => {
   const artifact = freshArtifactUrl();
   const q = titleTextQueue();
   const prompt = q.find((cmd) => cmd.s === 'PRESS ENTER TO BEGIN THE TOUR' && cmd.face === 'body');

@@ -19,10 +19,11 @@ the tower-defense furniture deliberately cut.
 
 ---
 
-**Status:** M8 closed 2026-08-14 (register + interface pass: voice-law lint over every player-facing
-string; Gate 5 legibility floor measured — 8px min, readable text >= 4.87:1, dwell unbounded; all
-Gates 1-8 standing — 197 tests).
-Next: **2026-08-18 public release gate** (step 8 deploy verify, step 9 operator ratify).
+**Status:** RELEASED 2026-08-26 — live at
+[lerugray.github.io/field-trials/material-breach](https://lerugray.github.io/field-trials/material-breach/).
+Public-release gate: 9-step run 2026-08-18 (blocker + defects caught and closed in-gate), full
+re-run 2026-08-23 re-certifying all five step-7 findings fixed, battery 208/208 re-verified by the
+shipping session at release. Step-9 operator waiver recorded 2026-08-26.
 **Name:** MATERIAL BREACH, ratified by the operator 2026-08-17.
 
 **Build:** `node --test` (the battery); `node scripts/build-singlefile.mjs` (-> `dist/index.html`).

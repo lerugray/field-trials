@@ -1,0 +1,267 @@
+{
+  "date": "2026-08-15",
+  "seed": 20260815,
+  "sampleRate": 44100,
+  "tailSeconds": 5,
+  "comparison": "before uses 7a0cc5c's engine + score; after uses the current engine + Popinjay overrides + SCORE_PERFORMANCE",
+  "beforeCommit": "7a0cc5c",
+  "afterEngine": "working tree",
+  "bandOverrides": {
+    "reverb": {
+      "seconds": 3.4,
+      "decay": 2.6
+    },
+    "reverbReturnGain": 0.55,
+    "fadeOut": 1.1,
+    "fadeIn": 2.2,
+    "retireTail": 4,
+    "voiceDefaults": {
+      "pad": {
+        "verb": 0.5,
+        "cut": 700,
+        "sweep": 1.5,
+        "q": 1.2,
+        "det": 7,
+        "vol": 0.1,
+        "wave": "sawtooth",
+        "a": 1.2,
+        "d": 1,
+        "s": 0.7,
+        "r": 2
+      },
+      "drone": {
+        "verb": 0.25,
+        "cut": 320,
+        "q": 0.8,
+        "vol": 0.11,
+        "beat": 0,
+        "wave": "sine",
+        "a": 2.2,
+        "d": 0.8,
+        "s": 0.85,
+        "r": 3
+      },
+      "bell": {
+        "verb": 0.8,
+        "ratios": [
+          1,
+          2.01,
+          3.03,
+          4.78
+        ],
+        "levels": [
+          1,
+          0.4,
+          0.22,
+          0.1
+        ],
+        "vol": 0.07,
+        "a": 0.006,
+        "dScale": 0.85,
+        "s": 0.02,
+        "r": 1.4,
+        "holdScale": 0.4
+      },
+      "pluck": {
+        "verb": 0.4,
+        "cut": 2400,
+        "wave": "triangle",
+        "a": 0.005,
+        "dScale": 0.6,
+        "s": 0.06,
+        "r": 0.3,
+        "vol": 0.07,
+        "holdScale": 0.5
+      },
+      "bass": {
+        "verb": 0.1,
+        "cut": 400,
+        "q": 2.5,
+        "vol": 0.13,
+        "wave": "sawtooth",
+        "a": 0.02,
+        "dScale": 0.4,
+        "s": 0.5,
+        "r": 0.25,
+        "holdScale": 0.85
+      },
+      "lead": {
+        "verb": 0.45,
+        "cut": 2000,
+        "q": 1.8,
+        "wave": "square",
+        "vibrato": 4.8,
+        "vibratoDepth": 0.005,
+        "a": 0.06,
+        "d": 0.2,
+        "s": 0.7,
+        "r": 0.4,
+        "vol": 0.08
+      },
+      "air": {
+        "verb": 0.5,
+        "type": "bandpass",
+        "bp": 500,
+        "sweep": 2.2,
+        "q": 1.4,
+        "attackScale": 0.4,
+        "decayScale": 0.3,
+        "s": 0.7,
+        "r": 1.6,
+        "vol": 0.05
+      },
+      "snare": {
+        "verb": 0.35
+      },
+      "hat": {
+        "verb": 0.2
+      }
+    }
+  },
+  "performance": {
+    "humanize": {
+      "timingMs": [
+        0,
+        6
+      ],
+      "velocity": [
+        -0.04,
+        0.04
+      ],
+      "swing": 0.04
+    },
+    "releaseTail": 0.25,
+    "voices": {
+      "pluck": {
+        "humanize": {
+          "timingMs": [
+            0,
+            0
+          ],
+          "swing": 0
+        }
+      },
+      "bass": {
+        "humanize": {
+          "timingMs": [
+            0,
+            0
+          ],
+          "swing": 0
+        }
+      },
+      "snare": {
+        "humanize": {
+          "timingMs": [
+            0,
+            0
+          ],
+          "swing": 0
+        }
+      },
+      "hat": {
+        "humanize": {
+          "timingMs": [
+            0,
+            0
+          ],
+          "swing": 0
+        }
+      }
+    }
+  },
+  "files": [
+    {
+      "filename": "title-before.wav",
+      "cue": "title",
+      "posture": "before",
+      "engine": "7a0cc5c",
+      "passes": 4,
+      "params": {},
+      "musicSeconds": 9.23076923076923,
+      "bytes": 2510352,
+      "sha256": "f167bb5d52dbff06c72faed58299eb6083b5d556c430f820c1b8d243a7ce71f4"
+    },
+    {
+      "filename": "title-after.wav",
+      "cue": "title",
+      "posture": "after",
+      "engine": "working tree",
+      "passes": 4,
+      "params": {},
+      "musicSeconds": 9.23076923076923,
+      "bytes": 2510352,
+      "sha256": "51eefddff19a1ac0052fb1feec155f906abbdc60d1df1348428be0db9b3baa40"
+    },
+    {
+      "filename": "stage-before.wav",
+      "cue": "stage",
+      "posture": "before",
+      "engine": "7a0cc5c",
+      "passes": 8,
+      "params": {},
+      "musicSeconds": 14.545454545454545,
+      "bytes": 3447864,
+      "sha256": "4f6e478d22ccfc62a3046ccb6f9868c686938ad4f2f25c961161974044d44e93"
+    },
+    {
+      "filename": "stage-after.wav",
+      "cue": "stage",
+      "posture": "after",
+      "engine": "working tree",
+      "passes": 8,
+      "params": {},
+      "musicSeconds": 14.545454545454545,
+      "bytes": 3447864,
+      "sha256": "194bdb31a0df000959a56ea7ebf24dbae3726ff707d36617a1277f46b257cd7a"
+    },
+    {
+      "filename": "waltz-before.wav",
+      "cue": "waltz",
+      "posture": "before",
+      "engine": "7a0cc5c",
+      "passes": 8,
+      "params": {},
+      "musicSeconds": 12,
+      "bytes": 2998844,
+      "sha256": "19b17af19107afd8c317936c32a1abc64e88179ebd79ff1418c91b902090d8a5"
+    },
+    {
+      "filename": "waltz-after.wav",
+      "cue": "waltz",
+      "posture": "after",
+      "engine": "working tree",
+      "passes": 8,
+      "params": {},
+      "musicSeconds": 12,
+      "bytes": 2998844,
+      "sha256": "cf2dec274236f3f7b7c739d131403816ccdd1077ee78c102073cccb089272d52"
+    },
+    {
+      "filename": "panic-before.wav",
+      "cue": "panic",
+      "posture": "before",
+      "engine": "7a0cc5c",
+      "passes": 8,
+      "params": {
+        "heat": 0.75
+      },
+      "musicSeconds": 12.631578947368421,
+      "bytes": 3110256,
+      "sha256": "fae9e34de3b77fc5d7d93b85e894ca9ad1c4c33cebc24d8c7806c83a156cf732"
+    },
+    {
+      "filename": "panic-after.wav",
+      "cue": "panic",
+      "posture": "after",
+      "engine": "working tree",
+      "passes": 8,
+      "params": {
+        "heat": 0.75
+      },
+      "musicSeconds": 12.631578947368421,
+      "bytes": 3110256,
+      "sha256": "1cf5223ff823f442c2132d7102bdc1b94320a7d6dc4bcbd1a0c51f8a6c23a150"
+    }
+  ]
+}

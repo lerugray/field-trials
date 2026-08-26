@@ -1,14 +1,8 @@
+import { chromium } from 'playwright';
 import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-
-let chromium = null;
-try {
-  ({ chromium } = await import('playwright'));
-} catch {
-  // Playwright not installed; these tests skip cleanly.
-}
 
 const DIST = pathToFileURL(resolve('dist/popinjay.html')).href;
 
@@ -21,7 +15,7 @@ async function freshPage() {
   return { browser, ctx, page };
 }
 
-test('scorecard Escape / E returns to title instead of dead-ending', { skip: chromium ? false : 'playwright unavailable' }, async () => {
+test('scorecard Escape / E returns to title instead of dead-ending', async () => {
   const { browser, page } = await freshPage();
   try {
     const mode = () => page.evaluate(() => window.POPINJAY.mode);
@@ -43,7 +37,7 @@ test('scorecard Escape / E returns to title instead of dead-ending', { skip: chr
   }
 });
 
-test('rehearsal can be paused and unpaused without leaving the mode', { skip: chromium ? false : 'playwright unavailable' }, async () => {
+test('rehearsal can be paused and unpaused without leaving the mode', async () => {
   const { browser, page } = await freshPage();
   try {
     const mode = () => page.evaluate(() => window.POPINJAY.mode);

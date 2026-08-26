@@ -1,0 +1,12 @@
+[probe-climb] VERDICT {
+  "allClimbState": false,
+  "xFixedDuringAscent": true,
+  "feetYMonotonicFall": true,
+  "framesNotByteIdentical": true,
+  "uniqueFrameHashes": 8,
+  "feetYSpan": [
+    720,
+    547.5
+  ]
+}
+[probe-climb] wrote /Users/rayweiss/Desktop/Dev Work/popinjay/docs/verification/release-gate-2026-08-23/step4-climb/

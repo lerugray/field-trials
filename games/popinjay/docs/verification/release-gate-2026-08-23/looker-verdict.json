@@ -1,0 +1,25 @@
+{
+  "head": "85fae2a",
+  "date": "2026-08-23",
+  "source": "capped looker worker (pixel analysis of fresh captures)",
+  "climb": {
+    "playerVisible": true,
+    "climbPoseNotStand": true,
+    "legCycleDiffers": true,
+    "ascentReadable": true,
+    "pass": true,
+    "notes": "Teal-coat sharpshooter centered on ladder rails; hands flank rungs (not aim-stand); frames 0/3/7 differ; strip shows readable ascent."
+  },
+  "footer": {
+    "gapVisible1440": true,
+    "gapVisible1280": true,
+    "clearOfBottomRule": true,
+    "noCollision": true,
+    "pass": true,
+    "notes": "PRESS ENTER and credit rows are separate bands with visible gap; credit clear of bottom poster rule."
+  },
+  "strangerTitle": {
+    "furnishedMenu": true,
+    "notes": "Furnished title screen with wordmark, menu bands, and footer."
+  }
+}

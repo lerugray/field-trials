@@ -3,17 +3,11 @@
 // POPINJAY debug surface so pollPad / processPadMenus / rebind-capture /
 // disconnect-pause are proven on the boot path, not just on the pure module.
 
+import { chromium } from 'playwright';
 import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-
-let chromium = null;
-try {
-  ({ chromium } = await import('playwright'));
-} catch {
-  // Playwright not installed; these tests skip cleanly.
-}
 
 const DIST = pathToFileURL(resolve('dist/popinjay.html')).href;
 
@@ -62,7 +56,7 @@ async function tapPadButton(page, index) {
   await setPadButton(page, index, false);
 }
 
-test('keyboard rebinding of Pause / Options / Quit is live, not decorative', { skip: chromium ? false : 'playwright unavailable' }, async () => {
+test('keyboard rebinding of Pause / Options / Quit is live, not decorative', async () => {
   const { browser, page } = await freshPage();
   try {
     const mode = () => page.evaluate(() => window.POPINJAY.mode);
@@ -140,7 +134,7 @@ test('keyboard rebinding of Pause / Options / Quit is live, not decorative', { s
   }
 });
 
-test('window.getGamepads pollPad Start pauses and disconnect during play stays paused', { skip: chromium ? false : 'playwright unavailable' }, async () => {
+test('window.getGamepads pollPad Start pauses and disconnect during play stays paused', async () => {
   const { browser, page } = await freshPage();
   try {
     const mode = () => page.evaluate(() => window.POPINJAY.mode);
@@ -183,7 +177,7 @@ test('window.getGamepads pollPad Start pauses and disconnect during play stays p
   }
 });
 
-test('pad rebind capture from the Controller pane writes the new button and suppresses it until release', { skip: chromium ? false : 'playwright unavailable' }, async () => {
+test('pad rebind capture from the Controller pane writes the new button and suppresses it until release', async () => {
   const { browser, page } = await freshPage();
   try {
     const optPane = () => page.evaluate(() => window.POPINJAY.controller.optPane);
@@ -233,7 +227,7 @@ test('pad rebind capture from the Controller pane writes the new button and supp
   }
 });
 
-test('draft Enter takes the highlighted souvenir (same logical confirm as pad A)', { skip: chromium ? false : 'playwright unavailable' }, async () => {
+test('draft Enter takes the highlighted souvenir (same logical confirm as pad A)', async () => {
   const { browser, page } = await freshPage();
   try {
     await page.evaluate(() => window.POPINJAY.draftDemo());
@@ -250,7 +244,7 @@ test('draft Enter takes the highlighted souvenir (same logical confirm as pad A)
   }
 });
 
-test('reserved menu arrows keep Options navigable after climb rebind and a poisoned KeyJ profile', { skip: chromium ? false : 'playwright unavailable' }, async () => {
+test('reserved menu arrows keep Options navigable after climb rebind and a poisoned KeyJ profile', async () => {
   const { browser, page } = await freshPage();
   try {
     async function openBinds() {

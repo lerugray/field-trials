@@ -1,0 +1,46 @@
+{
+  "head": "239a7f0",
+  "url": "file:///Users/rayweiss/Desktop/Dev Work/material-breach/dist/index.html",
+  "results": [
+    {
+      "id": "COLDBOOT",
+      "verdict": "PASS",
+      "evidence": "fresh file:// boot overlay=title; menu=[enter:undefined, options:undefined, provenance:undefined]; pageerrors=0",
+      "menu": "enter:undefined, options:undefined, provenance:undefined",
+      "errs": []
+    },
+    {
+      "id": "PACING",
+      "verdict": "PASS",
+      "evidence": "desk idle 3s: cycle 1 -> 1"
+    },
+    {
+      "id": "B1",
+      "verdict": "PASS",
+      "evidence": "exact 08-18 payload: __GAME present after reload + second reload; overlay=title; pageerrors=0; saveNotice=null",
+      "errs": [],
+      "notice1": null
+    },
+    {
+      "id": "Q1",
+      "verdict": "PASS",
+      "evidence": "unparseable: pixels differ from clean; overlay=title; notice present; wrong-version: pixels differ from clean; overlay=title; notice present; shape-invalid: pixels differ from clean; overlay=title; notice present",
+      "errs": []
+    },
+    {
+      "id": "Q2",
+      "verdict": "PASS",
+      "evidence": "standalone pause offers Back (undefined); mouse click returns overlay=title"
+    },
+    {
+      "id": "Q3",
+      "verdict": "PASS",
+      "evidence": "fortifyClick=true; withdrawBtn=undefined; treasury 400->400; retired=true; note=null"
+    },
+    {
+      "id": "Q4",
+      "verdict": "PASS",
+      "evidence": "terminal condemned @ cycle 9 after 23 sign-overs; closed buttons=[dismiss,newtenure]; dismiss→pause=true; reopen intact=true; X→pause=true; score=496"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+
+> build
+> node scripts/build.js
+
+[build] dist/popinjay.html — 28 modules, 1363.5 KB
+[build] order: src/tuning.js -> src/engine/debuglog.js -> src/engine/prng.js -> src/engine/streams.js -> src/sim/stage.js -> src/sim/player.js -> src/sim/balloon.js -> src/sim/wire.js -> src/sim/drop.js -> src/sim/world.js -> src/sim/generate.js -> src/sim/bot.js -> src/sim/catalog.js -> src/sim/run.js -> src/render/fontData.js -> src/render/px.js -> src/render/vistas.js -> src/render/game.js -> src/render/title.js -> src/render/hud.js -> src/render/overlays.js -> src/render/transition.js -> src/engine/saves.js -> src/engine/band.js -> src/engine/audio-posture.js -> src/engine/score.js -> src/engine/input.js -> src/app.js
+
+> build
+> node scripts/build.js
+
+[build] dist/popinjay.html — 28 modules, 1363.5 KB
+[build] order: src/tuning.js -> src/engine/debuglog.js -> src/engine/prng.js -> src/engine/streams.js -> src/sim/stage.js -> src/sim/player.js -> src/sim/balloon.js -> src/sim/wire.js -> src/sim/drop.js -> src/sim/world.js -> src/sim/generate.js -> src/sim/bot.js -> src/sim/catalog.js -> src/sim/run.js -> src/render/fontData.js -> src/render/px.js -> src/render/vistas.js -> src/render/game.js -> src/render/title.js -> src/render/hud.js -> src/render/overlays.js -> src/render/transition.js -> src/engine/saves.js -> src/engine/band.js -> src/engine/audio-posture.js -> src/engine/score.js -> src/engine/input.js -> src/app.js

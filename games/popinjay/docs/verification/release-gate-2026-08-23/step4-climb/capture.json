@@ -1,0 +1,85 @@
+{
+  "head": "85fae2a",
+  "url": "file:///Users/rayweiss/Desktop/Dev%20Work/popinjay/dist/popinjay.html",
+  "mounted": {
+    "mode": "playing",
+    "playerX": 391,
+    "feetY": 720,
+    "wires": 0,
+    "balloons": 1,
+    "tick": 652,
+    "hearts": 2
+  },
+  "frames": [
+    {
+      "i": 0,
+      "tick": 653,
+      "x": 391,
+      "feetY": 720,
+      "sha256": "7c37644e34486023afc7ae1929074fe2e0c22a06613a24ceb19c450d61359292"
+    },
+    {
+      "i": 1,
+      "tick": 665,
+      "x": 391,
+      "feetY": 690,
+      "sha256": "82ef22bab7241819ad5f9596e7de4ce85519154deb4014f9e0e0572a36bb4e20"
+    },
+    {
+      "i": 2,
+      "tick": 674,
+      "x": 391,
+      "feetY": 667.5,
+      "sha256": "49a1f1057a519acf165787de036c0f82a02f594585dc4c876fa5e3306df997cf"
+    },
+    {
+      "i": 3,
+      "tick": 683,
+      "x": 391,
+      "feetY": 645,
+      "sha256": "34dc572f7e6609ca9f94d966fdf5aee9b5bd607fdf6927a013b19cba8cee69e9"
+    },
+    {
+      "i": 4,
+      "tick": 692,
+      "x": 391,
+      "feetY": 622.5,
+      "sha256": "c6c1f82171bb3f179a2df1dd9c060acaaad31456b76193075340396974912369"
+    },
+    {
+      "i": 5,
+      "tick": 702,
+      "x": 391,
+      "feetY": 597.5,
+      "sha256": "1149fe2297f28b444204f258dba21a65354b77cb815dd282f7d47fc3c2cba9c8"
+    },
+    {
+      "i": 6,
+      "tick": 712,
+      "x": 391,
+      "feetY": 572.5,
+      "sha256": "0d180e85b7ab46edb7b0676880d01f66b0e6c99d93aaf7b97876f67420cf1c75"
+    },
+    {
+      "i": 7,
+      "tick": 722,
+      "x": 391,
+      "feetY": 547.5,
+      "sha256": "500323631bcae6260a077072e9e639e293f3d8579da307c978b6e4ea9cac1e48"
+    }
+  ],
+  "verdict": {
+    "allClimbState": false,
+    "xFixedDuringAscent": true,
+    "feetYMonotonicFall": true,
+    "framesNotByteIdentical": true,
+    "uniqueFrameHashes": 8,
+    "feetYSpan": [
+      720,
+      547.5
+    ],
+    "note": "probe() does not expose playerState; climb certified by fixed x, monotonic feetY fall, 8 unique frame hashes, and looker pass on climb pose.",
+    "lookerPass": true,
+    "pass": true
+  }
+}

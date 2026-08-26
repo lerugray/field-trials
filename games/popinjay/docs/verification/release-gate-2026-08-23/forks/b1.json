@@ -1,0 +1,20 @@
+{
+  "head": "85fae2a",
+  "url": "file:///Users/rayweiss/Desktop/Dev%20Work/popinjay/dist/popinjay.html",
+  "B1": {
+    "offered": "ArrowUp (owned by CLIMB UP) onto CLIMB DOWN",
+    "armedAction": "down",
+    "feedbackShown": "UP ALREADY BINDS CLIMB UP - CHOOSE ANOTHER",
+    "downKeysAfter": [
+      "ArrowDown"
+    ],
+    "upKeysAfter": [
+      "ArrowUp"
+    ],
+    "previousBindSurvived": true,
+    "upStillOwnsArrowUp": true,
+    "namesOwningAction": true,
+    "silentStealAbsent": true
+  },
+  "pass": true
+}

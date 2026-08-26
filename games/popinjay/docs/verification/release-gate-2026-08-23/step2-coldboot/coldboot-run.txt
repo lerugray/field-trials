@@ -1,0 +1,18 @@
+[900x600] modes title:title options:options optionsBottom:options controls:options gameplay:playing pause:playing(paused) | walked 126.63325378029504 | fills 0.9383,0.9383,0.9383,0.9383,0.9383,0.9383 | err 0/0
+[1280x800] modes title:title options:options optionsBottom:options controls:options gameplay:playing pause:playing(paused) | walked 126.63325378029504 | fills 1,1,1,1,1,1 | err 0/0
+[1366x768] modes title:title options:options optionsBottom:options controls:options gameplay:playing pause:playing(paused) | walked 126.63325378029504 | fills 0.8997,0.8997,0.8997,0.8997,0.8997,0.8997 | err 0/0
+[1440x900] modes title:title options:options optionsBottom:options controls:options gameplay:playing pause:playing(paused) | walked 151.96658711362807 | fills 1,1,1,1,1,1 | err 0/0
+[1512x860] modes title:title options:options optionsBottom:options controls:options gameplay:playing pause:playing(paused) | walked 143.61631339253415 | fills 0.9101,0.9101,0.9101,0.9101,0.9101,0.9101 | err 0/0
+[1920x1080] modes title:title options:options optionsBottom:options controls:options gameplay:playing pause:playing(paused) | walked 155.1332537802947 | fills 0.9,0.9,0.9,0.9,0.9,0.9 | err 0/0
+[2560x1440] modes title:title options:options optionsBottom:options controls:options gameplay:playing pause:playing(paused) | walked 158.33333333333195 | fills 0.9,0.9,0.9,0.9,0.9,0.9 | err 0/0
+
+VERDICT {
+  "fillGateAllPass": false,
+  "zeroRuntimeErrors": true,
+  "footerGapRowsEverywhere": true,
+  "footerBottomSlackEverywhere": true,
+  "optionsDoorWorks": true,
+  "startsFromTitleByEnter": true,
+  "liveInputMoves": true,
+  "pauseWorks": true
+}

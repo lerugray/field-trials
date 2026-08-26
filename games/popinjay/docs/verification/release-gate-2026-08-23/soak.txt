@@ -1,0 +1,16 @@
+[soak] baseline: tours 1/1 · stages 12 · finales 1 · victories 1 · deaths 0 · sidearm 72
+[soak] wire-build: tours 1/1 · stages 12 · finales 1 · victories 1 · deaths 0 · sidearm 66
+[soak] sidearm-build: tours 1/1 · stages 12 · finales 1 · victories 1 · deaths 0 · sidearm 78
+[soak] mortal-death: tours 1/1 · stages 0 · finales 0 · victories 0 · deaths 1 · sidearm 0
+[soak] quit-resume: mode after R = playing
+[soak] dead-control: x 454→549→448 · fire live (wireSeen=true balloons 2→2)
+
+========== M7 ACCEPTANCE DOSSIER ==========
+
+BLOCKER (0)
+
+DEFECT (0)
+
+FRICTION (0)
+
+[soak] STAGEABLE — no blockers across all loadouts + death + resume.

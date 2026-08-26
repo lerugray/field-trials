@@ -1,0 +1,104 @@
+{
+  "head": "85fae2a",
+  "artifact_sha256": "2b7b45274e08f4bd69dd6c9a0de5cb51f2683fa566e4e30962b2e4ec029205b0",
+  "data_image_count": 0,
+  "data_font_count": 1,
+  "og_meta": {
+    "og:image": true,
+    "twitter:card": true
+  },
+  "og_card": {
+    "path": "docs/collateral/og-card.png",
+    "exists": true,
+    "width": 1200,
+    "height": 630,
+    "sha256": "0cda007d2df6a6928a0f0a6400503bb7209c0c5acfd665b21a4a3c976b02a2fc",
+    "aspect_1200x630": true
+  },
+  "listen_set": {
+    "dir": "docs/listen/2026-08-18",
+    "files": [
+      "MANIFEST.json",
+      "galop-aabb.wav",
+      "stage-aabb.wav",
+      "title-aabb.wav",
+      "waltz-aabb.wav"
+    ],
+    "manifest_ok": true,
+    "detail": [
+      {
+        "file": "title-aabb.wav",
+        "present": true,
+        "bytes": 2510352,
+        "sha_match": true,
+        "bytes_match": true
+      },
+      {
+        "file": "stage-aabb.wav",
+        "present": true,
+        "bytes": 3447864,
+        "sha_match": true,
+        "bytes_match": true
+      },
+      {
+        "file": "waltz-aabb.wav",
+        "present": true,
+        "bytes": 2998844,
+        "sha_match": true,
+        "bytes_match": true
+      },
+      {
+        "file": "galop-aabb.wav",
+        "present": true,
+        "bytes": 3110256,
+        "sha_match": true,
+        "bytes_match": true
+      }
+    ],
+    "expected": [
+      "title-aabb.wav",
+      "stage-aabb.wav",
+      "waltz-aabb.wav",
+      "galop-aabb.wav",
+      "MANIFEST.json"
+    ]
+  },
+  "attribution": {
+    "exists": true,
+    "mentions_OFL": true,
+    "mentions_Rye": true,
+    "mentions_OldStandard": true
+  },
+  "readme": {
+    "exists": true,
+    "has_hero": true,
+    "has_status": true,
+    "mentions_attribution": true,
+    "mentions_listen": true
+  },
+  "em_dash_scrub_pass": true,
+  "player_facing_em_dashes_named_findings": [],
+  "em_dash_note": "The five named 2026-08-18 player-facing strings are absent; ASCII replacements present. Remaining em-dashes in src are in comments only (not player-facing).",
+  "comment_only_em_dash_lines_ignored": [
+    {
+      "file": "src/app.js",
+      "line": 146,
+      "snippet": "} catch (_) { /* no matchMedia \u2014 leave the default */ }"
+    },
+    {
+      "file": "src/app.js",
+      "line": 936,
+      "snippet": "world.shield = true; // one badge only \u2014 proves slot below valance (not two-effect mask)"
+    },
+    {
+      "file": "src/engine/saves.js",
+      "line": 172,
+      "snippet": "sfx: 1.0,           // sfx level relative to the music (0..1) \u2014 the split control"
+    },
+    {
+      "file": "src/engine/saves.js",
+      "line": 175,
+      "snippet": "gameSpeed: 1.0,     // global speed scale (0.8 / 0.9 / 1.0) \u2014 an assist, never a gate"
+    }
+  ]
+}
