@@ -8,7 +8,7 @@
 // Pure draw: takes a 2D context and the logical size; touches no `window`.
 
 import { nativeScreen } from './game.js';
-import { NATIVE, P, R, rampAt, clamp, shade, rng, fbm, t3, t5, t5r, t3c, t5c, t5big, t5bigFn, w5big, w3, w5, panel, posterFrame } from './px.js';
+import { NATIVE, P, R, rampAt, clamp, shade, rng, fbm, t3, t5, t5r, t3c, t5c, t5big, t5bigFn, w5big, w3, w5, panel, posterFrame, ACCENT_RED, paintWarmDisplayShadow, sampleDisplayRamp } from './px.js';
 import { paintVista, HUD_H } from './vistas.js';
 
 export function drawTitle(ctx, { w, h, seed = 1, build = 'M0' } = {}) {
@@ -117,12 +117,8 @@ function titleRoundel(p, cx, cy, R0) {
 function titleWordmark(p, cx, y) {
   const word = 'POPINJAY', scale = 4;
   const wpx = w5big(word, scale), x = Math.round(cx - wpx / 2);
-  t5big(p, word, x + 2, y + 3, scale, '#1c1410', 0.55);            // cast shadow
-  t5bigFn(p, word, x, y, scale, (px, py, u, v) => {
-    // a vertical ramp down the face + a lit top edge, so the letters are lit metal
-    const t = 0.62 - v * 0.30 + (v < 0.16 ? 0.30 : 0);
-    return rampAt(R.rust, clamp(t, 0, 1), px, py);
-  });
+  paintWarmDisplayShadow(p, word, x, y, scale);
+  t5bigFn(p, word, x, y, scale, (px, py, u, v) => sampleDisplayRamp(R.rust, px, py, u, v));
   p.glow(cx, y + 18, 70, '#ff9a52', 0.10, 2.4);
 
   const sub = "THE WORLD'S FAIR SHARPSHOOTER";
@@ -154,10 +150,10 @@ function titleControls(p, cx, y) {
     const [a, b] = left[i], [c, d] = right[i];
     let lx = x + 10;
     lx = t5(p, a, lx, ry, P.ink, 0.95) + 6;
-    t5(p, b, lx, ry, P.rd2, 0.95);
+    t5(p, b, lx, ry, ACCENT_RED, 0.95);
     let rx = x + 248;
     rx = t5(p, c, rx, ry, P.ink, 0.95) + 6;
-    t5(p, d, rx, ry, P.rd2, 0.95);
+    t5(p, d, rx, ry, ACCENT_RED, 0.95);
     ry += 12;
   }
 }

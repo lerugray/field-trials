@@ -12,7 +12,7 @@
 
 import { CHAIN } from '../tuning.js';
 import { nativeScreen } from './game.js';
-import { NATIVE, P, R, rampAt, clamp, shade, fbm, t3, t5, t5r, t3c, t5c, w3, w5, posterFrame } from './px.js';
+import { NATIVE, P, R, rampAt, clamp, shade, fbm, t3, t5, t5r, t3c, t5c, w3, w5, posterFrame, ACCENT_RED } from './px.js';
 import { HUD_H } from './vistas.js';
 
 const hudPaperNoise = fbm(91, 4);
@@ -134,7 +134,7 @@ function hudWireSlot(p, world) {
   p.glow(80, HUD_TOP + 14, 7, col, flash ? 0.6 : 0.35, 2);
   t5(p, state, 88, HUD_TOP + 10, flash ? P.wht : P.ink, 0.95);
   if (world.souvenirs && world.souvenirs.has('gallerySidearm')) {
-    t5(p, `X${world.sidearmAmmo}`, 88 + w5(state) + 4, HUD_TOP + 11, P.rd2, 0.95);
+    t5(p, `X${world.sidearmAmmo}`, 88 + w5(state) + 4, HUD_TOP + 11, ACCENT_RED, 0.95);
   }
 }
 
@@ -163,7 +163,7 @@ function hudChainMeter(p, world) {
     p.px(bx + fill, by + 1, P.gd5, 0.9);
   }
   const mult = CHAIN.mult[Math.min(CHAIN.mult.length - 1, Math.max(0, world.chain - 1))] || 1;
-  t5(p, `x${active ? mult : 1}`, 348, HUD_TOP + 11, active ? P.rd2 : P.pa1, active ? 1 : 0.8);
+  t5(p, `x${active ? mult : 1}`, 348, HUD_TOP + 11, active ? ACCENT_RED : P.pa1, active ? 1 : 0.8);
 }
 
 // PAR — a bandstand clock. Past par the ring goes red AND the word changes, so the
@@ -172,7 +172,7 @@ function hudParDial(p, world) {
   const over = world.tick > world.parTicks && !world.parOff;
   const frac = clamp(world.tick / Math.max(1, world.parTicks), 0, 1);
   const cx = 372, cy = HUD_TOP + 14, R2 = 5;
-  t5(p, world.parOff ? 'OFF' : (over ? 'BELL' : 'PAR'), 358, HUD_TOP + 2, over ? P.rd2 : P.tl2, 0.95);
+  t5(p, world.parOff ? 'OFF' : (over ? 'BELL' : 'PAR'), 358, HUD_TOP + 2, over ? ACCENT_RED : P.tl2, 0.95);
   p.fcircle(cx, cy, R2, P.pa5);
   p.circle(cx, cy, R2, over ? P.rd2 : P.ink, 0.9);
   // the swept arc

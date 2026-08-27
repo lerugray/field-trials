@@ -91,6 +91,45 @@ export function rampAt(ramp, t, x, y) {
   return (f > bay(x, y)) ? ramp[i + 1] : ramp[i];
 }
 
+export function relLumRgb([r, g, b]) {
+  const lin = (c) => {
+    c /= 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  };
+  return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
+}
+
+export function contrastRatio(fgHex, bgHex) {
+  const l1 = relLumRgb(C(fgHex)), l2 = relLumRgb(C(bgHex));
+  const hi = Math.max(l1, l2), lo = Math.min(l1, l2);
+  return (hi + 0.05) / (lo + 0.05);
+}
+
+// Warm display headings: cream halo instead of an ink cast under rust (field-trial legibility).
+export function paintWarmDisplayShadow(p, s, x, y, scale, alpha) {
+  const a = alpha === undefined ? 1 : alpha;
+  t5big(p, s, x, y + 1, scale, P.pa5, 0.78 * a);
+  t5big(p, s, x, y, scale, P.wht, 0.20 * a);
+}
+
+export function paintCoolDisplayShadow(p, s, x, y, scale, alpha) {
+  const a = alpha === undefined ? 1 : alpha;
+  t5big(p, s, x + 1, y + 2, scale, '#14100c', 0.55 * a);
+}
+
+export function sampleDisplayRamp(ramp, px, py, u, v) {
+  const warm = ramp === R.rust;
+  const t = warm
+    ? 0.70 - v * 0.18 + (v < 0.12 ? 0.26 : 0)
+    : 0.64 - v * 0.26 + (v < 0.18 ? 0.26 : 0);
+  return rampAt(ramp, clamp(t, 0, 1), px, py);
+}
+
+function warmTextCol(col) {
+  const [r, g, b] = C(col);
+  return r > 110 && r > g * 1.22 && r > b * 1.30 && g < 190;
+}
+
 // ---------------------------------------------------------------- the palette
 // Grounded in the game's committed GAME_PAL (cream / teal / rust / gold / ground /
 // wood / ink), each hue extended into a 6-step ramp so it can be LIT rather than
@@ -106,6 +145,9 @@ export const P = {
   pu0: '#1d1030', pu1: '#341c54', pu2: '#553285', pu3: '#8a4b9c', pu4: '#b47fc4', pu5: '#ddbfe6',
   ink: '#2a2622', ink0: '#151210', wht: '#fff7e6',
 };
+// Body accent on cream paper — rd1 reads cleanly; rd2 + an ink cast shadow muddies.
+export const ACCENT_RED = P.rd1;
+
 export const R = {
   paper: [P.pa0, P.pa1, P.pa2, P.pa3, P.pa4, P.pa5],
   teal: [P.tl0, P.tl1, P.tl2, P.tl3, P.tl4, P.tl5],
@@ -534,6 +576,13 @@ export function paintTextLayer(ctx, queue, box) {
     ctx.font = `${weight} ${size}px "${family}"`;
     ctx.textAlign = cmd.align || 'left';
     ctx.globalAlpha = a;
+    if (display && warmTextCol(col)) {
+      ctx.strokeStyle = P.pa5;
+      ctx.lineWidth = Math.max(1.2, size * 0.10);
+      ctx.globalAlpha = a * 0.88;
+      ctx.strokeText(s, x, y);
+      ctx.globalAlpha = a;
+    }
     ctx.fillStyle = col;
     ctx.fillText(s, x, y);
   }

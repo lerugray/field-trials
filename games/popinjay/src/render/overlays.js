@@ -23,7 +23,7 @@
 // pixels. The one exception is the error banner, which owns its own small buffer
 // because it deliberately lives OUTSIDE the letterboxed play area.
 
-import { NATIVE, NativeScreen, P, P as PAL, R, rampAt, clamp, lerp, shade, fbm, t3, t5, t5r, t3c, t5c, t5s, t5big, t5bigFn, w5big, w3, w5, panel, posterFrame, safeText, Painter } from './px.js';
+import { NATIVE, NativeScreen, P, P as PAL, R, rampAt, clamp, lerp, shade, fbm, t3, t5, t5r, t3c, t5c, t5s, t5big, t5bigFn, w5big, w3, w5, panel, posterFrame, safeText, Painter, ACCENT_RED, paintWarmDisplayShadow, paintCoolDisplayShadow, sampleDisplayRamp } from './px.js';
 import { nativeScreen } from './game.js';
 import { BODY_FONT_FAMILY } from './fontData.js';
 
@@ -74,15 +74,17 @@ function posterGround(p, ramp, seed, t0, t1, tooth, vig, vigCol) {
 // a coloured fill.
 function heading(p, s, cx, y, scale, ramp) {
   const x = Math.round(cx - w5big(s, scale) / 2);
-  t5big(p, s, x + 1, y + 2, scale, '#14100c', 0.55);
-  t5bigFn(p, s, x, y, scale, (px, py, u, v) => rampAt(ramp, clamp(0.64 - v * 0.26 + (v < 0.18 ? 0.26 : 0), 0, 1), px, py));
+  if (ramp === R.rust) paintWarmDisplayShadow(p, s, x, y, scale);
+  else paintCoolDisplayShadow(p, s, x, y, scale);
+  t5bigFn(p, s, x, y, scale, (px, py, u, v) => sampleDisplayRamp(ramp, px, py, u, v));
   return x;
 }
 // The same heading where the whole card is fading (the centerpiece beat) — a ramped
 // face cannot carry an alpha, so this one is flat and dropped.
 function headingA(p, s, cx, y, scale, col, a) {
   const x = Math.round(cx - w5big(s, scale) / 2);
-  t5big(p, s, x + 1, y + 2, scale, '#14100c', 0.55 * a);
+  if (col === P.pa5 || col === P.rd2 || col === P.rd3 || col === P.rd4) paintWarmDisplayShadow(p, s, x, y, scale, a);
+  else paintCoolDisplayShadow(p, s, x, y, scale, a);
   t5big(p, s, x, y, scale, col, a);
   return x;
 }
@@ -262,7 +264,7 @@ export function drawPaused(p, data) {
     const kx = t5(p, k, x + 20, ry, P.ink, 0.95);
     const vx = x + bw - 20 - w5(v);
     leaders(p, kx + 4, vx - 5, ry + 4);
-    t5r(p, v, x + bw - 20, ry, P.rd2, 0.95);
+    t5r(p, v, x + bw - 20, ry, ACCENT_RED, 0.95);
     ry += 15;
   }
   rule(p, x + 26, x + bw - 27, y + bh - 26);
@@ -287,7 +289,7 @@ export function drawControllerNotice(p, notice) {
   panel(p, x, y, bw, bh, a);
   const cx = Math.round(x + bw / 2);
   const danger = /DISCONNECT|NOT MAPPED/.test(headline);
-  t5c(p, headline, cx, y + 4, danger ? P.rd2 : P.tl2, 0.95);
+  t5c(p, headline, cx, y + 4, danger ? ACCENT_RED : P.tl2, 0.95);
   t5c(p, detail, cx, y + 13, P.ink, 0.90);
   return p;
 }
@@ -312,7 +314,7 @@ export function drawTitleExtras(p, { seed, seedInput, bank, endless, scores, run
   if (seedInput !== undefined && seedInput !== '') p.hline(svEnd, svEnd + 4, 63, P.rd2, 1);
   let ry = 52 + 26;
   for (const [k, v] of rows) {
-    t5(p, k, 20, ry, P.rd2, 1);
+    t5(p, k, 20, ry, ACCENT_RED, 1);
     const endX = t5(p, v, 44, ry, P.ink, 0.95);
     if (v === 'THE TRUNK') { const tx = ticketIcon(p, endX + 4, ry - 1); t5(p, String(bank), tx, ry, P.gd1, 1); }
     if (v === 'ENDLESS PANIC') starIcon(p, endX + 6, ry + 2, P.gd3, 1);
@@ -444,7 +446,7 @@ export function drawTrunk(p, { owned, locked, bank, cursor, cost }) {
   hx = t5(p, `  ·  ${cost} TICKETS EACH  ·  ESC TO LEAVE`, hx, 36, P.pa3, 0.95);
 
   billPanel(p, 14, 48, 214, 166, `OWNED (${owned.length})`, P.tl2, owned.map((c) => ({ name: c.name })), -1, 'NOTHING YET - CLEAR STAGES');
-  billPanel(p, 252, 48, 214, 166, `FOR SALE (${locked.length})`, P.rd2, locked.map((c) => ({ name: c.name })), cursor, 'EVERY LOT SOLD');
+  billPanel(p, 252, 48, 214, 166, `FOR SALE (${locked.length})`, ACCENT_RED, locked.map((c) => ({ name: c.name })), cursor, 'EVERY LOT SOLD');
 
   // the selected lot, described
   panel(p, 14, 224, 452, 58);
@@ -455,11 +457,11 @@ export function drawTrunk(p, { owned, locked, bank, cursor, cost }) {
     const price = `${cost}`;
     const px0 = 452 - 14 - w5(price);
     ticketIcon(p, px0 - 12, 233);
-    t5r(p, price, 452 - 14, 234, affordable ? P.gd1 : P.rd2, 1);
+    t5r(p, price, 452 - 14, 234, affordable ? P.gd1 : ACCENT_RED, 1);
     rule(p, 30, 450, 245);
     t5(p, String(sel.blurb).toUpperCase(), 30, 252, P.ink, 0.9);
     t5(p, affordable ? 'PRESS ENTER TO UNLOCK - IT JOINS YOUR DRAFT POOL' : `NEED ${cost - bank} MORE TICKETS - CLEAR MORE STAGES`,
-      30, 266, affordable ? P.tl2 : P.rd2, 1);
+      30, 266, affordable ? P.tl2 : ACCENT_RED, 1);
   } else {
     t5(p, 'THE TRUNK IS COMPLETE', 30, 240, P.ink, 1);
     t5(p, 'EVERY SOUVENIR IS OWNED AND EVERY DRAFT DRAWS FROM THE WHOLE CATALOGUE.', 30, 258, P.tl2, 1);
@@ -718,7 +720,7 @@ export function drawDraft(p, { offer, held, cursor, pad }) {
 
     draftIcon(p, c.kind, x + Math.round(cw / 2), cy + ch - 44, 18);
     rule(p, x + 22, x + cw - 23, cy + ch - 24);
-    t5c(p, `TAKE ${i + 1}`, x + cw / 2, cy + ch - 16, P.rd2, 1);
+    t5c(p, `TAKE ${i + 1}`, x + cw / 2, cy + ch - 16, ACCENT_RED, 1);
     x += cw + gap;
   });
   // Declining is a real choice, not a fallback, so it gets a real affordance rather
@@ -821,7 +823,7 @@ export function drawScorecard(p, { sc, souvenirs, unlock }) {
 
   unlockBar(p, cx + 22, ry, cw - 44, unlock);
 
-  t5c(p, 'PRESS ENTER FOR A NEW RUN', CX, cy + ch - 15, P.rd2, 1);
+  t5c(p, 'PRESS ENTER FOR A NEW RUN', CX, cy + ch - 15, ACCENT_RED, 1);
   if (victory) {
     starIcon(p, cx + 20, cy + 18, P.gd4, 1); starIcon(p, cx + cw - 20, cy + 18, P.gd4, 1);
     t5c(p, 'POPINJAY - EXPOSITION AMUSEMENTS CO.', CX, cy + ch + 12, P.sl5, 0.85);
