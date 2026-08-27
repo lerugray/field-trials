@@ -139,3 +139,15 @@ Also banked: `generalstaff-private/state/fleet/deploy-check-2026-08-27-post-norm
 ## STOP
 
 Items 2-4 complete. Item 1 (jacquard live twin content sync) was already done before this lane (`37a49f6`); this lane only removed the twin filename. Items 5-6 + Rule 2 untouched.
+
+## Harvest-verify findings (opus, 2026-08-27 — none blocking, queued for a follow-up lane)
+
+1. deploy-manifest.json mislabels chapel-perilous as `kind: "cloudflare-pages"` — it is
+   actually the separate GitHub Pages repo lerugray/chp-preview, so C1/C3 silently SKIP
+   for it (C2 runs and passes; no live defect, but coverage is less than implied).
+   Fix: re-kind against a local clone path.
+2. C5's asset-ref regex is narrower than the adopted spec (requires a slash-bearing
+   path) — a same-directory bare-filename fetch would miss the asset arm. Undisclosed
+   narrowing; widen per spec.
+3. C4 proves stamp==HEAD only, not that the vendored shelf source matches byte-wise —
+   disclosed in the report; fold the limitation into the conventions doc or extend C4.
