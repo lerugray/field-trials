@@ -1,8 +1,10 @@
-import { chromium } from 'playwright';
 import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+
+const BROWSER = !!process.env.FT_BROWSER;
+const { chromium } = BROWSER ? await import('playwright') : { chromium: null };
 
 const DIST = pathToFileURL(resolve('dist/popinjay.html')).href;
 
@@ -15,7 +17,7 @@ async function freshPage() {
   return { browser, ctx, page };
 }
 
-test('scorecard Escape / E returns to title instead of dead-ending', async () => {
+test('scorecard Escape / E returns to title instead of dead-ending', { skip: !BROWSER && 'browser test; runs in the weekly browser job (FT_BROWSER=1)' }, async () => {
   const { browser, page } = await freshPage();
   try {
     const mode = () => page.evaluate(() => window.POPINJAY.mode);
@@ -37,7 +39,7 @@ test('scorecard Escape / E returns to title instead of dead-ending', async () =>
   }
 });
 
-test('rehearsal can be paused and unpaused without leaving the mode', async () => {
+test('rehearsal can be paused and unpaused without leaving the mode', { skip: !BROWSER && 'browser test; runs in the weekly browser job (FT_BROWSER=1)' }, async () => {
   const { browser, page } = await freshPage();
   try {
     const mode = () => page.evaluate(() => window.POPINJAY.mode);
